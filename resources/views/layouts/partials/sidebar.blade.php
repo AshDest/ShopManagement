@@ -68,10 +68,12 @@
                  </a>
                  <div class="collapse" id="sidebarCharts">
                      <ul class="side-nav-second-level">
-
                          <li>
-                             <a href="/">Add Aprovisionnement</a>
+                             <a href="/">Ajouter</a>
                          </li>
+                         <li>
+                            <a href="/">Approvisionnements</a>
+                        </li>
                      </ul>
                  </div>
              </li>
