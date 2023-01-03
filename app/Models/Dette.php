@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Dette extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'client_id',
+        'total_dette',
+    ];
+
+    public function client()
+    {
+        return $this->belongsTo(Client::class, 'client_id');
+    }
 }

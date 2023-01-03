@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Client extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'noms',
+        'numero',
+    ];
+
+    public function dette()
+    {
+        return $this->hasMany(Dette::class);
+    }
 }
