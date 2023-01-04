@@ -48,11 +48,12 @@
                                         </div>
                                     </th> --}}
                                     <th>Order ID</th>
-                                    <th>Date</th>
+                                    <th>Product ID</th>
                                     <th>Nom Produit</th>
                                     <th>Quantité</th>
                                     <th>Prix Unitaire</th>
                                     <th>Total</th>
+                                    <th>Date</th>
                                     <th style="width: 125px;">Action</th>
                                 </tr>
                             </thead>
@@ -66,22 +67,25 @@
                                     </td> --}}
                                     @forelse ($approvs as $approv)
                                         <td><a href="apps-ecommerce-orders-details.html"
-                                                class="text-body fw-bold">#BM9708</a> </td>
-                                        <td>
-                                            August 05 2018 <small class="text-muted">10:29 PM</small>
-                                        </td>
+                                                class="text-body fw-bold">#{{ $approv->code }}</a> </td>
+                                        <td><a href="apps-ecommerce-orders-details.html"
+                                                class="text-body fw-bold">#{{ $approv->produit->code }}</a> </td>
+
                                         <td>
                                             <h5><span class="badge badge-success-lighten"><i
-                                                        class="mdi mdi-bitcoin"></i> Paid</span></h5>
+                                                        class="mdi mdi-bitcoin"></i> {{ $approv->produit->description }}</span></h5>
                                         </td>
                                         <td>
-                                            $176.41
+                                            CDF {{$approv->qte_approv}}
                                         </td>
                                         <td>
-                                            Mastercard
+                                            {{ $approv->pu_approv }}
                                         </td>
                                         <td>
-                                            <h5><span class="badge badge-info-lighten">Shipped</span></h5>
+                                            <h5><span class="badge badge-info-lighten">{{$approv->pt_approv}}</span></h5>
+                                        </td>
+                                        <td>
+                                            {{$approv->create_atiii}}<small class="text-muted">10:29 PM</small>
                                         </td>
                                         <td>
                                             <a href="javascript:void(0);" class="action-icon"> <i
@@ -92,9 +96,9 @@
                                                     class="mdi mdi-delete"></i></a>
                                         </td>
                                     @empty
-                                    <div class="alert alert-warning" role="alert">
-                                        Pas d'Approvisionnements
-                                    </div>
+                                        <div class="alert alert-warning" role="alert">
+                                            Pas d'Approvisionnements
+                                        </div>
                                     @endforelse
                                 </tr>
                             </tbody>
