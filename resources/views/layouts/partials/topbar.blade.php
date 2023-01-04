@@ -15,7 +15,7 @@
         <li class="dropdown notification-list topbar-dropdown">
             <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#" role="button"
                 aria-haspopup="false" aria-expanded="false">
-                <img src="assets/images/flags/us.jpg" alt="user-image" class="me-0 me-sm-1" height="12">
+                <img src="{{ asset('assets/images/flags/us.jpg') }}" alt="user-image" class="me-0 me-sm-1" height="12">
                 <span class="align-middle d-none d-sm-inline-block">English</span> <i
                     class="mdi mdi-chevron-down d-none d-sm-inline-block align-middle"></i>
             </a>
@@ -41,7 +41,7 @@
 
                 <!-- item-->
                 <a href="javascript:void(0);" class="dropdown-item notify-item">
-                    <img src="assets/images/flags/russia.jpg" alt="user-image" class="me-1" height="12"> <span
+                    <img src="{{ asset('assets/images/flags/russia.jpg') }}" alt="user-image" class="me-1" height="12"> <span
                         class="align-middle">Russian</span>
                 </a>
 
@@ -121,7 +121,7 @@
                             <div class="d-flex align-items-center">
                                 <div class="flex-shrink-0">
                                     <div class="notify-icon">
-                                        <img src="assets/images/users/avatar-2.jpg" class="img-fluid rounded-circle"
+                                        <img src="{{ asset('assets/images/users/avatar-2.jpg') }}" class="img-fluid rounded-circle"
                                             alt="" />
                                     </div>
                                 </div>
@@ -166,7 +166,7 @@
                             <div class="d-flex align-items-center">
                                 <div class="flex-shrink-0">
                                     <div class="notify-icon">
-                                        <img src="assets/images/users/avatar-4.jpg" class="img-fluid rounded-circle"
+                                        <img src="{{ asset('assets/images/users/avatar-4.jpg') }}" class="img-fluid rounded-circle"
                                             alt="" />
                                     </div>
                                 </div>
@@ -204,7 +204,7 @@
                     <div class="row g-0">
                         <div class="col">
                             <a class="dropdown-icon-item" href="#">
-                                <img src="assets/images/brands/slack.png" alt="slack">
+                                <img src="{{ asset('assets/images/brands/slack.png') }}" alt="slack">
                                 <span>Slack</span>
                             </a>
                         </div>
@@ -257,7 +257,7 @@
             <a class="nav-link dropdown-toggle nav-user arrow-none me-0" data-bs-toggle="dropdown" href="#"
                 role="button" aria-haspopup="false" aria-expanded="false">
                 <span class="account-user-avatar">
-                    <img src="assets/images/users/avatar-1.jpg" alt="user-image" class="rounded-circle">
+                    <img src="{{ asset('assets/images/users/avatar-1.jpg') }}" alt="user-image" class="rounded-circle">
                 </span>
                 <span>
                     <span class="account-user-name">{{ Auth::user()->name }}</span>

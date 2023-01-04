@@ -10,6 +10,7 @@ class Produit extends Model
     use HasFactory;
 
     protected $fillable = [
+        'code',
         'description',
         'qte_stock',
         'pu',

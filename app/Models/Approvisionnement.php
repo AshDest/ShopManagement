@@ -10,6 +10,7 @@ class Approvisionnement extends Model
     use HasFactory;
 
     protected $fillable = [
+        'code',
         'produit_id',
         'qte_approv',
         'pu_approv',
