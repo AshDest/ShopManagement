@@ -25,4 +25,12 @@ class HomeController extends Controller
     {
         return view('pages/home');
     }
+    public function aprovisionnement()
+    {
+        return view('pages.Approvisionnement.list');
+    }
+    public function categorieproduit()
+    {
+        return view('pages.produits.categorieproduit');
+    }
 }
