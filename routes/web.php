@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/approvisionnement/list', [App\Http\Controllers\PagesController::class, 'index'])->name('listapprovisionnement');
 Route::get('/', function () {
     return Redirect::to('/home');
 });

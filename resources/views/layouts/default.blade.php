@@ -22,6 +22,7 @@
     <!-- App css -->
     <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/css/app.min.css') }}" rel="stylesheet" type="text/css" id="app-style" />
+    @livewireStyles
 
 </head>
 
@@ -191,7 +192,7 @@
     <script src="{{ asset('assets/js/vendor/jquery-jvectormap-1.2.2.min.js') }}"></script>
     <script src="{{ asset('assets/js/vendor/jquery-jvectormap-world-mill-en.js') }}"></script>
     <!-- third party js ends -->
-
+    @livewireScripts
     <!-- demo app -->
     <script src="{{ asset('assets/js/pages/demo.dashboard.js') }}"></script>
     <!-- end demo js-->
