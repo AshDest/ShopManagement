@@ -2,8 +2,6 @@
 <html lang="en">
 
 
-<!-- Mirrored from coderthemes.com/hyper/saas/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Jul 2022 13:29:17 GMT -->
-
 <head>
     <meta charset="utf-8" />
     <!-- CSRF Token -->
@@ -35,9 +33,7 @@
         @include('layouts.partials.sidebar')
         <!-- Left Sidebar End -->
 
-        <!-- ============================================================== -->
-        <!-- Start Page Content here -->
-        <!-- ============================================================== -->
+
 
         <div class="content-page">
             <div class="content">
