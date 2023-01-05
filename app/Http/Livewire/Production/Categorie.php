@@ -38,8 +38,6 @@ class Categorie extends Component
             'onDismissed' => 'cancelled',
             'position' => 'center'
         ]);
-        //  $this->display_delete = $id;
-        // dd( $this->display_delete );
     }
     public function confirmed()
     {
