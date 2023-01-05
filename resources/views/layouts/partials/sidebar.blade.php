@@ -38,17 +38,17 @@
 
 
              <li class="side-nav-item">
-                 <a data-bs-toggle="collapse" href="#sidebarCharts" aria-expanded="false" aria-controls="sidebarCharts"
-                     class="side-nav-link">
+                 <a data-bs-toggle="collapse" href="#sidebarProduits" aria-expanded="false"
+                     aria-controls="sidebarProduits" class="side-nav-link">
                      <i class="uil-chart"></i>
                      <span> Produits </span>
                      <span class="menu-arrow"></span>
                  </a>
-                 <div class="collapse" id="sidebarCharts">
+                 <div class="collapse" id="sidebarProduits">
                      <ul class="side-nav-second-level">
 
                          <li>
-                             <a href="/">Categorie Produit</a>
+                             <a href="/categorie">Categorie Produit</a>
                          </li>
                          <li>
                              <a href="/">Ajouter Produits</a>
@@ -60,31 +60,31 @@
                  </div>
              </li>
              <li class="side-nav-item">
-                 <a data-bs-toggle="collapse" href="#sidebarCharts" aria-expanded="false" aria-controls="sidebarCharts"
+                 <a data-bs-toggle="collapse" href="#sidebaraprov" aria-expanded="false" aria-controls="sidebaraprov"
                      class="side-nav-link">
                      <i class="uil-chart"></i>
                      <span> Aprovisionnement </span>
                      <span class="menu-arrow"></span>
                  </a>
-                 <div class="collapse" id="sidebarCharts">
+                 <div class="collapse" id="sidebaraprov">
                      <ul class="side-nav-second-level">
                          <li>
                              <a href="/">Ajouter</a>
                          </li>
                          <li>
-                            <a href="/">Approvisionnements</a>
-                        </li>
+                             <a href="/">Approvisionnements</a>
+                         </li>
                      </ul>
                  </div>
              </li>
              <li class="side-nav-item">
-                 <a data-bs-toggle="collapse" href="#sidebarCharts" aria-expanded="false" aria-controls="sidebarCharts"
-                     class="side-nav-link">
+                 <a data-bs-toggle="collapse" href="#sidebarParametre" aria-expanded="false"
+                     aria-controls="sidebarParametre" class="side-nav-link">
                      <i class="uil-chart"></i>
                      <span> Parametre </span>
                      <span class="menu-arrow"></span>
                  </a>
-                 <div class="collapse" id="sidebarCharts">
+                 <div class="collapse" id="sidebarParametre">
                      <ul class="side-nav-second-level">
 
                          <li>
@@ -97,13 +97,13 @@
                  </div>
              </li>
              <li class="side-nav-item">
-                 <a data-bs-toggle="collapse" href="#sidebarCharts" aria-expanded="false" aria-controls="sidebarCharts"
-                     class="side-nav-link">
+                 <a data-bs-toggle="collapse" href="#sidebarRapport" aria-expanded="false"
+                     aria-controls="sidebarRapport" class="side-nav-link">
                      <i class="uil-chart"></i>
                      <span> Rapport </span>
                      <span class="menu-arrow"></span>
                  </a>
-                 <div class="collapse" id="sidebarCharts">
+                 <div class="collapse" id="sidebarRapport">
                      <ul class="side-nav-second-level">
 
                          <li>

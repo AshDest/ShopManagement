@@ -15,4 +15,8 @@ class PagesController extends Controller
     {
         return view('pages.Approvisionnement.add');
     }
+    public function categorie()
+    {
+        return view('pages.produits.categorieproduit');
+    }
 }
