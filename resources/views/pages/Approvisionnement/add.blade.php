@@ -18,6 +18,6 @@
             </div>
         </div>
         <!-- end page title -->
-        @livewire('approvisionnement.approvisionnements')
+        @livewire('approvisionnement.add-approvs')
     </div>
 @endsection

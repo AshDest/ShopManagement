@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,7 +18,8 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/approvisionnement/list', [App\Http\Controllers\PagesController::class, 'index'])->name('listapprovisionnement');
+Route::get('/approvisionnement/list', [App\Http\Controllers\PagesController::class, 'approvisionnements'])->name('listapprovisionnement');
+Route::get('/approvisionnement/add', [App\Http\Controllers\PagesController::class, 'addapprovisionnement'])->name('addapprovisionnement');
 Route::get('/', function () {
     return Redirect::to('/home');
 });
