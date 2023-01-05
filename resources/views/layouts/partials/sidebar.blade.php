@@ -69,10 +69,10 @@
                  <div class="collapse" id="sidebaraprov">
                      <ul class="side-nav-second-level">
                          <li>
-                             <a href="/">Ajouter</a>
+                             <a href="{{ route('addapprovisionnement') }}">Ajouter</a>
                          </li>
                          <li>
-                             <a href="/">Approvisionnements</a>
+                             <a href="{{ route('listapprovisionnement') }}">Approvisionnements</a>
                          </li>
                      </ul>
                  </div>
