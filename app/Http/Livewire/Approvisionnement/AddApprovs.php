@@ -20,7 +20,7 @@ class AddApprovs extends Component
         'code' => 'required',
         'produit_id' => 'required',
         'qte_approv' => 'required|integer',
-        'pu_approv' => 'required|float',
+        'pu_approv' => 'required|integer',
     ];
         // realtime validation
     public function updated($propertyName)

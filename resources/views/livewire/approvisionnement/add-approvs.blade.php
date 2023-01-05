@@ -3,7 +3,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <form action="">
+                    <form  wire:submit.prevent='save'>
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="mb-3">
@@ -15,7 +15,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="mb-3">
+                                <div class="mb-3" wire:ignore>
                                     <label class="form-label">Quantité</label>
                                     <input data-toggle="touchspin" wire:model='qte_approv' data-step="1" data-bts-max="1000000" type="text" value="0" placeholder="100">
                                     <div class="valid-feedback">
@@ -42,11 +42,11 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="mb-3">
+                                <div class="mb-3" wire:ignore>
                                     <label class="form-label">Prix d'Achat (CDF)</label>
-                                    <input data-toggle="touchspin" wire:model='pu_approv' placeholder="1000.00" value="0.00" type="text" data-step="100.0" data-decimals="2" data-bts-max="1000000000" data-bts-postfix="CDF">
+                                    <input data-toggle="touchspin" wire:model='pu_approv' placeholder="1000.00" value="0.00" type="text" data-decimals="2" data-bts-max="1000000000" data-bts-postfix="CDF">
                                     <div class="valid-feedback">
-                                        @error('designation')
+                                        @error('pu_approv')
                                             <span style="color: red;">{{ $message }}</span>
                                         @enderror
                                     </div>

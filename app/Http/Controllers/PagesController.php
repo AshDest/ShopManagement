@@ -15,8 +15,13 @@ class PagesController extends Controller
     {
         return view('pages.Approvisionnement.add');
     }
+    public function editapprovisionnement($ids)
+    {
+        return view('pages.Approvisionnement.edit', compact('ids'));
+    }
     public function categorie()
     {
         return view('pages.produits.categorieproduit');
     }
+
 }
