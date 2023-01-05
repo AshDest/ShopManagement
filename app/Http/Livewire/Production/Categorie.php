@@ -79,12 +79,6 @@ class Categorie extends Component
         $this->designation = $categories->designation;
         $this->mesure = $categories->mesure;
     }
-    // public function annuler()
-    // {
-    //     $this->designation = '';
-    //     $this->mesure = '';
-    //     $this->desplayeditform = null;
-    // }
     public function reset_fields()
     {
         $this->designation = '';
