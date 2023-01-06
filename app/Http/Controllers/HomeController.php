@@ -33,4 +33,8 @@ class HomeController extends Controller
     {
         return view('pages.produits.categorieproduit');
     }
+    public function produit()
+    {
+        return view('pages.produits.produit');
+    }
 }

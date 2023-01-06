@@ -92,7 +92,7 @@
                                             <label for="inputState" class="form-label">Mesure</label>
                                             <select id="inputState" class="form-select" wire:model="mesure">
                                                 <option>Veuillez selection une mesure</option>
-                                                <option value="g">Gramme</option> ['g', 'Pièce', 'Litre']
+                                                <option value="g">Gramme</option>
                                                 <option value="Pièce">La pièce</option>
                                                 <option value="Litre">Le Litre</option>
                                             </select>
