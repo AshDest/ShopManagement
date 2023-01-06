@@ -8,11 +8,13 @@
                             <div class="col-lg-12">
                                 <div class="mb-3">
                                     <label for="simpleinput" class="form-label">Nommination</label>
-                                    <input type="text" id="simpleinput" class="form-control" wire:model='nomination' placeholder="Nom de l'entreprise">
+                                    <input type="text" id="simpleinput"
+                                        class="form-control @error('nomination') is-invalid @enderror"
+                                        wire:model='nomination' placeholder="Nom de l'entreprise">
                                     @error('nomination')
-                                        <div class="valid-feedback">
-                                            <span style="color: red;">{{ $message }}</span>
-                                        </div>
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
                                     @enderror
                                 </div>
                             </div>
@@ -20,64 +22,71 @@
                                 <div class="row g-2">
                                     <div class="mb-3 col-md-6">
                                         <label for="simpleinput" class="form-label">Numero de Téléphone</label>
-                                        <input type="text" id="simpleinput" class="form-control"
+                                        <input type="text" id="simpleinput"
+                                            class="form-control @error('contact') is-invalid @enderror"
                                             wire:model='contact' placeholder="(+243) 000000000">
                                         @error('contact')
-                                            <div class="valid-feedback">
-                                                <span style="color: red;">{{ $message }}</span>
-                                            </div>
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
                                         @enderror
                                     </div>
                                     <div class="mb-3 col-md-6">
                                         <label for="simpleinput" class="form-label">Email</label>
-                                        <input type="text" id="simpleinput" class="form-control" wire:model='email' placeholder="@gmail,yahoo,etc.com">
+                                        <input type="text" id="simpleinput"
+                                            class="form-control @error('email') is-invalid @enderror" wire:model='email'
+                                            placeholder="@gmail,yahoo,etc.com">
                                         @error('email')
-                                            <div class="valid-feedback">
-                                                <span style="color: red;">{{ $message }}</span>
-                                            </div>
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
                                         @enderror
                                     </div>
                                 </div>
                             </div>
                             <div class="mb-3">
                                 <label for="simpleinput" class="form-label">Logo</label>
-                                <input type="file" id="example-fileinput" class="form-control"
-                                    wire:model='logo'>
+                                <input type="file" id="example-fileinput"
+                                    class="form-control @error('logo') is-invalid @enderror" wire:model='logo'>
                                 @error('logo')
-                                    <div class="valid-feedback">
-                                        <span style="color: red;">{{ $message }}</span>
-                                    </div>
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
                                 @enderror
                             </div>
                             <div class="col-lg-12">
                                 <div class="row g-2">
                                     <div class="mb-3 col-md-4">
                                         <label for="simpleinput" class="form-label">RCCM</label>
-                                        <input type="text" id="simpleinput" class="form-control" wire:model='rccm'>
+                                        <input type="text" id="simpleinput"
+                                            class="form-control @error('rccm') is-invalid @enderror" wire:model='rccm'
+                                            placeholder="rccm">
                                         @error('rccm')
-                                            <div class="valid-feedback">
-                                                <span style="color: red;">{{ $message }}</span>
-                                            </div>
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
                                         @enderror
                                     </div>
                                     <div class="mb-3 col-md-4">
                                         <label for="simpleinput" class="form-label">N° Impôt</label>
-                                        <input type="text" id="simpleinput" class="form-control"
+                                        <input type="text" id="simpleinput"
+                                            class="form-control @error('num_impot') is-invalid @enderror"
                                             wire:model='num_impot'>
                                         @error('num_impot')
-                                            <div class="valid-feedback">
-                                                <span style="color: red;">{{ $message }}</span>
-                                            </div>
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
                                         @enderror
                                     </div>
                                     <div class="mb-3 col-md-4">
                                         <label for="simpleinput" class="form-label">Identification Nationale</label>
-                                        <input type="text" id="simpleinput" class="form-control"
+                                        <input type="text" id="simpleinput"
+                                            class="form-control @error('id_national') is-invalid @enderror"
                                             wire:model='id_national'>
                                         @error('id_national')
-                                            <div class="valid-feedback">
-                                                <span style="color: red;">{{ $message }}</span>
-                                            </div>
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
                                         @enderror
                                     </div>
                                 </div>
@@ -85,11 +94,12 @@
                             <div class="col-lg-12">
                                 <div class="mb-3">
                                     <label for="example-textarea" class="form-label">Adresse</label>
-                                    <textarea class="form-control" id="example-textarea" wire:model='adresse' rows="5"></textarea>
+                                    <textarea class="form-control @error('adresse') is-invalid @enderror" id="example-textarea" wire:model='adresse'
+                                        rows="5"></textarea>
                                     @error('adresse')
-                                        <div class="valid-feedback">
-                                            <span style="color: red;">{{ $message }}</span>
-                                        </div>
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
                                     @enderror
                                 </div>
                             </div>

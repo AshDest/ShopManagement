@@ -7,6 +7,7 @@ use Livewire\Component;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\WithFileUploads;
 use Intervention\Image\ImageManager;
+
 class ShopInformations extends Component
 {
     use WithFileUploads;
@@ -21,14 +22,14 @@ class ShopInformations extends Component
     public $id_national;
 
     public $rules = [
-        'nomination' =>'required|min:3',
-        'adresse' =>'required|min:10',
-        'contact' =>'required|min:9|max:13',
-        'email' =>'required|email',
-        'logo' =>'required',
-        'rccm' =>'required|max:8|min:5',
-        'num_impot' =>'required|min:5|max:8',
-        'id_national' =>'required|min:5|max:10',
+        'nomination' => 'required|min:3',
+        'adresse' => 'required|min:10',
+        'contact' => 'required|min:9|max:13',
+        'email' => 'required|email',
+        'logo' => 'nullable',
+        'rccm' => 'required|max:8|min:5',
+        'num_impot' => 'required|min:5|max:8',
+        'id_national' => 'required|min:5|max:10',
     ];
     public $messages = [
         'nomination.required' => 'Nom de l\'adresse est requis.',
@@ -50,17 +51,48 @@ class ShopInformations extends Component
         'rccm.max' => 'rccm pas valide',
         'num_import.max' => 'numero pas valide',
     ];
+
+    public function save()
+    {
+        $this->validate();
+        try {
+            $imageHash = $this->logo->hashName();
+            $manager =  new ImageManager();
+            $manager->make($this->logo->getRealPath())->resize(50, 50)->save('assets/images/logo/' . $imageHash);
+            Parametrage::create([
+                'nomination' => $this->nomination,
+                'adresse' => $this->adresse,
+                'contact' => $this->contact,
+                'email' => $this->email,
+                'logo' => $this->logo,
+                'rccm' => $this->rccm,
+                'num_impot' => $this->num_impot,
+                'id_national' => $this->id_national,
+            ])->save();
+            // Set Flash Message
+            $this->alert('success', 'Informations bien enregistrer');
+            // $this->reset_fields();
+        } catch (\Exception $e) {
+            // Set Flash Message
+            $this->alert('warning', 'Echec d\'enregistrement');
+            // Reset Form Fields After Creating departement
+            // $this->reset_fields();
+        }
+    }
+
     public function mount()
     {
-        // $vars = Parametrage::all();
-        // $this->nomination = $vars->nomination;
-        // $this->adresse = $vars->adresse;
-        // $this->contact = $vars->contact;
-        // $this->email = $vars->email;
-        // $this->logo = $vars->logo;
-        // $this->rccm = $vars->rccm;
-        // $this->num_impot = $vars->num_impot;
-        // $this->id_national = $vars->id_national;
+        $vars = Parametrage::find(1);
+        if ($vars) {
+            $this->nomination = $vars->nomination;
+            $this->adresse = $vars->adresse;
+            $this->contact = $vars->contact;
+            $this->email = $vars->email;
+            $this->logo = $vars->logo;
+            $this->rccm = $vars->rccm;
+            $this->num_impot = $vars->num_impot;
+            $this->id_national = $vars->id_national;
+        }
     }
     public function render()
     {
