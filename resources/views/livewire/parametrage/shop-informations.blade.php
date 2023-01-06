@@ -1,3 +1,94 @@
 <div>
-    {{-- If your happiness depends on money, you will never be happy with yourself. --}}
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <form wire:submit.prevent='save'>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    <label for="simpleinput" class="form-label">Nommination</label>
+                                    <input type="text" id="simpleinput" class="form-control" wire:model='nomination'>
+                                    @error('nomination')
+                                        <div class="valid-feedback">
+                                            <span style="color: red;">{{ $message }}</span>
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="mb-3">
+                                    <label for="example-textarea" class="form-label">Adresse</label>
+                                    <textarea class="form-control" id="example-textarea" wire:model='adresse' rows="5"></textarea>
+                                    @error('adresse')
+                                    <div class="valid-feedback">
+                                        <span style="color: red;">{{ $message }}</span>
+                                    </div>
+                                    @enderror
+                                </div>
+                                <div class="mb-3">
+                                    <label for="simpleinput" class="form-label">Numero de Téléphone</label>
+                                    <input type="text" id="simpleinput" class="form-control" wire:model='contact'>
+                                    @error('contact')
+                                        <div class="valid-feedback">
+                                            <span style="color: red;">{{ $message }}</span>
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="mb-3">
+                                    <label for="simpleinput" class="form-label">Email</label>
+                                    <input type="text" id="simpleinput" class="form-control" wire:model='email'>
+                                    @error('email')
+                                        <div class="valid-feedback">
+                                            <span style="color: red;">{{ $message }}</span>
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="mb-3">
+                                    <label for="simpleinput" class="form-label">Logo</label>
+                                    <input type="file" id="example-fileinput" class="form-control" wire:model='logo'>
+                                    @error('logo')
+                                        <div class="valid-feedback">
+                                            <span style="color: red;">{{ $message }}</span>
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="mb-3">
+                                    <label for="simpleinput" class="form-label">RCCM</label>
+                                    <input type="text" id="simpleinput" class="form-control" wire:model='rccm'>
+                                    @error('rccm')
+                                        <div class="valid-feedback">
+                                            <span style="color: red;">{{ $message }}</span>
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="mb-3">
+                                    <label for="simpleinput" class="form-label">N° Impôt</label>
+                                    <input type="text" id="simpleinput" class="form-control" wire:model='num_impot'>
+                                    @error('num_impot')
+                                        <div class="valid-feedback">
+                                            <span style="color: red;">{{ $message }}</span>
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="mb-3">
+                                    <label for="simpleinput" class="form-label">Identification Nationale</label>
+                                    <input type="text" id="simpleinput" class="form-control" wire:model='id_national'>
+                                    @error('id_national')
+                                        <div class="valid-feedback">
+                                            <span style="color: red;">{{ $message }}</span>
+                                        </div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+
+                            </div>
+                            <button class="btn btn-primary" type="submit">Enregistrer Informations</button>
+                        </div>
+                    </form>
+
+                </div> <!-- end card-body-->
+            </div> <!-- end card-->
+        </div> <!-- end col -->
+    </div>
+    <!-- end row -->
 </div>

@@ -23,5 +23,9 @@ class PagesController extends Controller
     {
         return view('pages.produits.categorieproduit');
     }
+    public function shopinformation()
+    {
+        return view('pages.parametrage.shop-information');
+    }
 
 }

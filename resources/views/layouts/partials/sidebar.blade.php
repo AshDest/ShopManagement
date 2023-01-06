@@ -88,7 +88,7 @@
                      <ul class="side-nav-second-level">
 
                          <li>
-                             <a href="/">Parametre entreprise</a>
+                             <a href="{{ route('shopinformations')}}">Parametre entreprise</a>
                          </li>
                          <li>
                              <a href="/">Compte utilisateur</a>
