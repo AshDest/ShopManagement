@@ -121,10 +121,11 @@ class Product extends Component
         $this->categories = Categorie::all();
         if ($this->reseach) {
             return view('livewire.production.product', [
-                'products' => Produit::whereHas('categorie', function ($s) {
-                    $s->where('designation', 'LIKE', '%' . $this->reseach . '%')
-                        ->where('description', 'LIKE', '%' . $this->reseach . '%');
-                })->paginate($this->page_active)
+                'products' => Produit::where('description', 'LIKE', '%' . $this->reseach . '%')
+                    ->orwhereHas('categorie', function ($s) {
+                        $s->where('designation', 'LIKE', '%' . $this->reseach . '%');
+                    })
+                    ->paginate($this->page_active)
             ]);
         } else {
             return view('livewire.production.product', [
