@@ -29,6 +29,7 @@ class AddApprovs extends Component
     }
     public function save()
     {
+        dd($this->produit_id);
         $this->validate();
         // Validate Form Request
         try {

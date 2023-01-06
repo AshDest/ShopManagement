@@ -55,17 +55,6 @@
                                             </div>
                                         </div>
                                         <div class="mb-3" wire:ignore>
-                                            <label class="form-label">Quantité de stock</label>
-                                            <input data-toggle="touchspin" wire:model='qte_stock' data-step="1"
-                                                data-bts-max="1000000" type="text" value="0"
-                                                placeholder="quantité en stock">
-                                            <div class="valid-feedback">
-                                                @error('qte_stock')
-                                                    <span style="color: red;">{{ $message }}</span>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                        <div class="mb-3" wire:ignore>
                                             <label class="form-label">Prix de vente unitaire</label>
                                             <input data-toggle="touchspin" wire:model='pvu' data-step="1"
                                                 data-bts-max="1000000" type="text" value="0"
@@ -130,17 +119,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="mb-3" wire:ignore>
-                                            <label class="form-label">Quantité de stock</label>
-                                            <input data-toggle="touchspin" wire:model='qte_stock' data-step="1"
-                                                data-bts-max="1000000" type="text" value="0"
-                                                placeholder="quantité en stock">
-                                            <div class="valid-feedback">
-                                                @error('qte_stock')
-                                                    <span style="color: red;">{{ $message }}</span>
-                                                @enderror
-                                            </div>
-                                        </div>
+
                                         <div class="mb-3" wire:ignore>
                                             <label class="form-label">Prix de vente unitaire</label>
                                             <input data-toggle="touchspin" wire:model='pvu' data-step="1"

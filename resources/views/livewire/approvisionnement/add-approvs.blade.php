@@ -3,12 +3,13 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <form  wire:submit.prevent='save'>
+                    <form wire:submit.prevent='save'>
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="mb-3">
                                     <label for="simpleinput" class="form-label">Code</label>
-                                    <input type="text" wire:model='code' id="example-readonly" class="form-control" readonly="" value="Readonly value">
+                                    <input type="text" wire:model='code' id="example-readonly" class="form-control"
+                                        readonly="" value="Readonly value">
                                     <div class="valid-feedback">
                                         @error('qte_approv')
                                             <span style="color: red;">{{ $message }}</span>
@@ -17,7 +18,8 @@
                                 </div>
                                 <div class="mb-3" wire:ignore>
                                     <label class="form-label">Quantité</label>
-                                    <input data-toggle="touchspin" wire:model='qte_approv' data-step="1" data-bts-max="1000000" type="text" value="0" placeholder="100">
+                                    <input data-toggle="touchspin" wire:model='qte_approv' data-step="1"
+                                        data-bts-max="1000000" type="text" value="0" placeholder="100">
                                     <div class="valid-feedback">
                                         @error('qte_approv')
                                             <span style="color: red;">{{ $message }}</span>
@@ -26,15 +28,17 @@
                                 </div>
                             </div>
                             <div class="col-lg-6">
-                                <div class="mb-3">
+                                <div class="mb-3" >
                                     <label for="example-select" class="form-label">Produit</label>
-                                    <select class="form-control select2" data-toggle="select2" wire:model='produit_id'>
-                                        @foreach ($produits as $produit)
-                                        <option>Select</option>
-                                        <optgroup label="Liste All Products">
-                                            <option value="{{$produit->id}}">{{$produit->description}}</option>
-                                        </optgroup>
-                                        @endforeach
+                                    <select  class="form-control select2"
+                                     wire:model='produit_id'>
+                                        <option value="1">Select</option>
+                                        <option alue="2">toto</option>
+                                        <option alue="3">Select</option>
+                                        {{-- @foreach ($produits as $produit)
+                                            <option>Select</option>
+                                            <option value="{{ $produit->id }}">{{ $produit->description }}</option>
+                                        @endforeach --}}
                                     </select>
                                     <div class="valid-feedback">
                                         @error('designation')
@@ -44,7 +48,9 @@
                                 </div>
                                 <div class="mb-3" wire:ignore>
                                     <label class="form-label">Prix d'Achat (CDF)</label>
-                                    <input data-toggle="touchspin" wire:model='pu_approv' placeholder="1000.00" value="0.00" type="text" data-decimals="2" data-bts-max="1000000000" data-bts-postfix="CDF">
+                                    <input data-toggle="touchspin" wire:model='pu_approv' placeholder="1000.00"
+                                        value="0.00" type="text" data-decimals="2" data-bts-max="1000000000"
+                                        data-bts-postfix="CDF">
                                     <div class="valid-feedback">
                                         @error('pu_approv')
                                             <span style="color: red;">{{ $message }}</span>

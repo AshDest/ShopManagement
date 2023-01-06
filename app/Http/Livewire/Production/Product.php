@@ -20,13 +20,11 @@ class Product extends Component
     protected $rules = [
         'code' => 'required',
         'description' => 'required',
-        'qte_stock' => 'required|integer',
         'pvu' => 'required|integer',
     ];
 
     protected $messages = [
         'description.required' => 'veuillez renseigner la description du produit',
-        'qte_stock.required' => 'veuillez renseigner la quantite',
         'pvu.required' => 'veuillez renseigner le prix vente unitaire',
     ];
     protected $listeners = [
@@ -66,7 +64,6 @@ class Product extends Component
             Produit::create([
                 'code' => $this->code,
                 'description' => $this->description,
-                'qte_stock' => $this->qte_stock,
                 'pu' => $this->pvu,
                 'category_id' => $this->categoryselected,
             ])->save();
@@ -87,7 +84,6 @@ class Product extends Component
         $products = Produit::find($this->desplayeditform);
         $this->code = $products->code;
         $this->description = $products->description;
-        $this->qte_stock = $products->qte_stock;
         $this->pvu = $products->pu;
         $this->categoryselectedvalue = $products->categorie->designation;
         $this->categorie_id = $products->category_id;
@@ -96,7 +92,6 @@ class Product extends Component
     {
         $this->description = '';
         $this->code = '';
-        $this->qte_stock = '';
         $this->pvu = '';
         $this->codeproduit();
         $this->desplayeditform = null;
@@ -106,7 +101,6 @@ class Product extends Component
         try {
             Produit::find($this->desplayeditform)->fill([
                 'description' => $this->description,
-                'qte_stock' => $this->qte_stock,
                 'pu' => $this->pvu,
                 'category_id' => $this->categoryselected,
             ])->save();
