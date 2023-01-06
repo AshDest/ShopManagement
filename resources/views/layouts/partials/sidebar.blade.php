@@ -51,7 +51,7 @@
                              <a href="/categorie">Categorie Produit</a>
                          </li>
                          <li>
-                             <a href="/">Ajouter Produits</a>
+                             <a href="/produit">Ajouter Produits</a>
                          </li>
                          <li>
                              <a href="/">Liste Produits</a>
@@ -88,7 +88,7 @@
                      <ul class="side-nav-second-level">
 
                          <li>
-                             <a href="{{ route('shopinformations')}}">Parametre entreprise</a>
+                             <a href="{{ route('shopinformations') }}">Parametre entreprise</a>
                          </li>
                          <li>
                              <a href="/">Compte utilisateur</a>

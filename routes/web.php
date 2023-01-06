@@ -23,6 +23,7 @@ Route::get('/approvisionnement/add', [App\Http\Controllers\PagesController::clas
 Route::get('/approvisionnement/edit/{id}', [App\Http\Controllers\PagesController::class, 'editapprovisionnement'])->name('editapprovisionnement');
 Route::get('/shopinformations', [App\Http\Controllers\PagesController::class, 'shopinformation'])->name('shopinformations');
 Route::get('/categorie', [App\Http\Controllers\HomeController::class, 'categorieproduit'])->name('categorie');
+Route::get('/produit', [App\Http\Controllers\HomeController::class, 'produit'])->name('produit');
 Route::get('/', function () {
     return Redirect::to('/home');
 });
