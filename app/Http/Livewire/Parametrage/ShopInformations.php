@@ -5,8 +5,11 @@ namespace App\Http\Livewire\Parametrage;
 use App\Models\Parametrage;
 use Livewire\Component;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
+use Livewire\WithFileUploads;
+use Intervention\Image\ImageManager;
 class ShopInformations extends Component
 {
+    use WithFileUploads;
     use LivewireAlert;
     public $nomination;
     public $adresse;
