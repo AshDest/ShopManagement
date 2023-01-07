@@ -26,6 +26,7 @@ Route::get('/list-produits', [App\Http\Controllers\PagesController::class, 'list
 Route::get('/shopinformations', [App\Http\Controllers\PagesController::class, 'shopinformation'])->name('shopinformations');
 Route::get('/categorie', [App\Http\Controllers\HomeController::class, 'categorieproduit'])->name('categorie');
 Route::get('/produit', [App\Http\Controllers\HomeController::class, 'produit'])->name('produit');
+Route::get('/compteuser', [App\Http\Controllers\HomeController::class, 'compteuser'])->name('compteuser');
 Route::get('/', function () {
     return Redirect::to('/home');
 });

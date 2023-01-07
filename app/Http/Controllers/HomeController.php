@@ -37,4 +37,8 @@ class HomeController extends Controller
     {
         return view('pages.produits.produit');
     }
+    public function compteuser()
+    {
+        return view('pages.parametrage.utilisateurs');
+    }
 }
