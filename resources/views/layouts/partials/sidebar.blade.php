@@ -91,7 +91,7 @@
                              <a href="{{ route('shopinformations') }}">Parametre entreprise</a>
                          </li>
                          <li>
-                             <a href="/">Compte utilisateur</a>
+                             <a href="/compteuser">Compte utilisateur</a>
                          </li>
                      </ul>
                  </div>
