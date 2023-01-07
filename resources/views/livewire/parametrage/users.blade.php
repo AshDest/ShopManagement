@@ -15,40 +15,67 @@
                         </ul> <!-- end nav-->
                         <div class="tab-content">
                             <div class="tab-pane show active" id="custom-styles-preview">
-                                <form class="needs-validation" wire:submit.prevent="editproduit()">
+                                <form class="needs-validation" wire:submit.prevent="modifieruser">
                                     <div class="mb-3">
-                                        <label for="simpleinput" class="form-label">Code</label>
-                                        <input type="text" wire:model='code' id="example-readonly"
-                                            class="form-control" readonly="" value="Readonly value">
-                                        <div class="valid-feedback">
-                                            @error('qte_approv')
-                                                <span style="color: red;">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label" for="validationCustom01">Description</label>
+                                        <label class="form-label" for="validationCustom01">Noms</label>
                                         <input type="text" class="form-control" id="validationCustom01"
-                                            placeholder="Description du produit" wire:model="description">
+                                            placeholder="votre nom" wire:model="nom">
                                         <div class="valid-feedback">
                                             <div class="valid-feedback">
-                                                @error('description')
+                                                @error('nom')
                                                     <span style="color: red;">{{ $message }}</span>
                                                 @enderror
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="mb-3" wire:ignore>
-                                        <label class="form-label">Prix de vente unitaire</label>
-                                        <input data-toggle="touchspin" wire:model='pvu' data-step="1"
-                                            data-bts-max="1000000" type="text" value="0"
-                                            placeholder="le prix de vente unitaire">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="validationCustom01">Adresse mail</label>
+                                        <input type="email" class="form-control" id="validationCustom01"
+                                            placeholder="adresse mail" wire:model="mail">
                                         <div class="valid-feedback">
-                                            @error('pvu')
-                                                <span style="color: red;">{{ $message }}</span>
-                                            @enderror
+                                            <div class="valid-feedback">
+                                                @error('mail')
+                                                    <span style="color: red;">{{ $message }}</span>
+                                                @enderror
+                                            </div>
                                         </div>
                                     </div>
+                                    <div class="mb-3">
+                                        <label class="form-label" for="validationCustom01">Nom d'utilisateur</label>
+                                        <input type="text" class="form-control" id="validationCustom01"
+                                            placeholder="votre nom d'utilisateur" wire:model="username">
+                                        <div class="valid-feedback">
+                                            <div class="valid-feedback">
+                                                @error('username')
+                                                    <span style="color: red;">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="inputState" class="form-label">Role</label>
+                                        <select id="inputState" class="form-select" wire:model="role">
+                                            <option value="0">Veuillez selection un role</option>
+                                            <option value="Admin">Admin</option>
+                                            <option value="Gerant">Gérant</option>
+                                            <option value="Seler">Vendeur</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="simpleinput" class="form-label">Avatar</label>
+                                        <input type="file" id="example-fileinput"
+                                            class="form-control @error('avatar') is-invalid @enderror"
+                                            wire:model='avatar'>
+                                        @if ($avatar)
+                                            <img src="{{ $avatar->temporaryUrl() }}" width="30%" height="30%">
+                                        @endif
+                                        @error('avatar')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+
                                     <button class="btn btn-primary" type="submit">Modifier</button>
                                 </form>
                             </div> <!-- end preview-->
@@ -134,7 +161,7 @@
                                     <div class="mb-3">
                                         <label for="inputState" class="form-label">Role</label>
                                         <select id="inputState" class="form-select" wire:model="role">
-                                            <option>Veuillez selection un role</option>
+                                            <option value="0">Veuillez selection un role</option>
                                             <option value="Admin">Admin</option>
                                             <option value="Gerant">Gérant</option>
                                             <option value="Seler">Vendeur</option>
@@ -195,32 +222,36 @@
                             <thead>
                                 <tr>
                                     <th>N<sup>o</sup></th>
-                                    <th>Code</th>
-                                    <th>Description</th>
-                                    <th>Quantité</th>
-                                    <th>Pv.Unitaire</th>
-                                    <th>Categorie</th>
+                                    <th>Utilisateur</th>
+                                    <th>email</th>
+                                    <th>Role</th>
                                     <th colspan="3"> Action</th>
                                 </tr>
                             </thead>
-                            {{-- <tbody>
-                                @forelse ($products as $product)
+                            <tbody>
+                                @forelse ($users as $user)
                                     <tr>
                                         <td class="table-user">
-                                            {{ $product->id }}
+                                            {{ $user->id }}
                                         </td>
-                                        <td>{{ $product->code }}</td>
-                                        <td>{{ $product->description }}</td>
-                                        <td>{{ $product->qte_stock . $product->categorie->mesure }}</td>
-                                        <td>{{ $product->pu }} CDF</td>
-                                        <td>{{ $product->categorie->designation }}</td>
-                                        <td><a href="{{ route('addapprovisionnement', ['ids' => $product->id]) }}"
-                                                class="action-icon" style="cursor: pointer;"> <i
-                                                    class="mdi mdi-plus-circle-multiple-outline"></i></a></td>
-                                        <td> <a wire:click="editproduct({{ $product->id }})" class="action-icon"
+                                        <td class="table-user">
+                                            @if ($user->avatar)
+                                                <img src="{{ asset('assets/images/avatar/' . $user->avatar . '') }}"
+                                                    alt="table-user" class="me-2 rounded-circle" />
+                                                {{ $user->noms }}
+                                            @else
+                                                <img src="assets/images/avatar/avatar.jpg" alt="table-user"
+                                                    class="me-2 rounded-circle" />
+                                                {{ $user->noms }}
+                                            @endif
+
+                                        </td>
+                                        <td>{{ $user->email }}</td>
+                                        <td>{{ $user->role }}</td>
+                                        <td> <a wire:click="edituser({{ $user->id }})" class="action-icon"
                                                 style="cursor: pointer;"> <i class="mdi mdi-pencil"></i></a></td>
                                         <td>
-                                            <a wire:click="delete({{ $product->id }})" class="action-icon"
+                                            <a wire:click="delete({{ $user->id }})" class="action-icon"
                                                 style="cursor: pointer;"> <i class="mdi mdi-delete"></i></a>
                                         </td>
                                     </tr>
@@ -232,13 +263,13 @@
                                     </tr>
                                 @endforelse
 
-                            </tbody> --}}
+                            </tbody>
                         </table>
                     </div><br>
                     <center>
-                        {{-- @if (count($products))
-                            {{ $products->links('vendor.livewire.bootstrap') }}
-                        @endif --}}
+                        @if (count($users))
+                            {{ $users->links('vendor.livewire.bootstrap') }}
+                        @endif
                     </center>
                     <!-- end tab-content-->
                 </div> <!-- end card-body-->
