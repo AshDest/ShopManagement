@@ -1,6 +1,5 @@
 <div>
     <div class="container-fluid">
-
         <!-- start page title -->
         <div class="row">
             <div class="col-12">
@@ -14,7 +13,6 @@
             </div>
         </div>
         <!-- end page title -->
-
         <div class="row">
             <div class="col-lg-4">
                 <div class="card">
@@ -56,8 +54,7 @@
                                         </div>
                                         <div class="mb-3" wire:ignore>
                                             <label class="form-label">Prix de vente unitaire</label>
-                                            <input data-toggle="touchspin" wire:model='pvu' data-step="1"
-                                                data-bts-max="1000000" type="text" value="0"
+                                            <input class="form-control" wire:model='pvu' type="number" value="0"
                                                 placeholder="le prix de vente unitaire">
                                             <div class="valid-feedback">
                                                 @error('pvu')
@@ -68,8 +65,6 @@
                                         <div class="mb-3">
                                             <label for="inputState" class="form-label">Categorie</label>
                                             <select id="inputState" class="form-select" wire:model="categoryselected">
-                                                <option value="{{ $this->categorie_id }}">
-                                                    {{ $this->categoryselectedvalue }}</option>
                                                 @foreach ($categories as $categ)
                                                     <option value="{{ $categ->id }}">{{ $categ->designation }}
                                                     </option>
@@ -117,18 +112,6 @@
                                                         <span style="color: red;">{{ $message }}</span>
                                                     @enderror
                                                 </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="mb-3" wire:ignore>
-                                            <label class="form-label">Prix de vente unitaire</label>
-                                            <input data-toggle="touchspin" wire:model='pvu' data-step="1"
-                                                data-bts-max="1000000" type="text" value="0"
-                                                placeholder="le prix de vente unitaire">
-                                            <div class="valid-feedback">
-                                                @error('pvu')
-                                                    <span style="color: red;">{{ $message }}</span>
-                                                @enderror
                                             </div>
                                         </div>
                                         <div class="mb-3">

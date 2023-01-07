@@ -13,7 +13,7 @@ class Product extends Component
     use WithPagination;
     use LivewireAlert;
     public  $reseach, $page_active = 4;
-    public $code, $description, $qte_stock, $pvu, $categoryselected, $categories;
+    public $code, $description, $qte_stock, $pvu, $pvu1, $categoryselected, $categories;
     public  $categoryselectedvalue, $categorie_id;
 
     public $desplayeditform = null;
@@ -86,13 +86,12 @@ class Product extends Component
         $this->description = $products->description;
         $this->pvu = $products->pu;
         $this->categoryselectedvalue = $products->categorie->designation;
-        $this->categorie_id = $products->category_id;
+        $this->categoryselected = $products->category_id;
     }
     public function reset_fields()
     {
         $this->description = '';
         $this->code = '';
-        $this->pvu = '';
         $this->codeproduit();
         $this->desplayeditform = null;
     }
@@ -101,7 +100,6 @@ class Product extends Component
         try {
             Produit::find($this->desplayeditform)->fill([
                 'description' => $this->description,
-                'pu' => $this->pvu,
                 'category_id' => $this->categoryselected,
             ])->save();
             $this->alert('success', 'Produit bien Modifier!');

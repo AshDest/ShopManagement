@@ -3,27 +3,29 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="header-title">Produits</h4>
-                    <div class="mb-3">
-                        <div class="app-search dropdown d-none d-lg-block">
-                            <div class="input-group">
-                                <input type="text" wire:model="reseach" class="form-control dropdown-toggle"
-                                    placeholder="Recherche ici..." id="top-search">
-                                <span class="mdi mdi-magnify search-icon"></span>
-                            </div>
+                    <div class="row mb-2">
+                        <div class="col-xl-8">
+                            <form
+                                class="row gy-2 gx-2 align-items-center justify-content-xl-start justify-content-between">
+                                <div class="col-auto">
+                                    <label for="inputPassword2" class="visually-hidden">Search</label>
+                                    <input type="search" wire:model="reseach" class="form-control" id="inputPassword2"
+                                        placeholder="Search...">
+                                </div>
+                            </form>
                         </div>
+                        <div class="col-xl-4">
+                            <div class="text-xl-end mt-xl-0 mt-2">
+                                <a href="" class="btn btn-danger mb-2 me-2"><i
+                                    class="mdi mdi-basket me-1"></i> Add New Order</a>
+                                <button type="button" class="btn btn-light mb-2">Export</button>
+                            </div>
+                        </div><!-- end col-->
                     </div>
-                    <ul class="nav nav-tabs nav-bordered mb-3">
-                        <li class="nav-item">
-                            <a href="#tooltips-validation-preview" data-bs-toggle="tab" aria-expanded="false"
-                                class="nav-link active">
-                                Liste
-                            </a>
-                        </li>
-                    </ul> <!-- end nav-->
-                    <div class="tab-content">
-                        <table class="table table-striped table-centered mb-0">
-                            <thead>
+
+                    <div class="table-responsive">
+                        <table class="table table-centered table-nowrap mb-0">
+                            <thead class="table-light">
                                 <tr>
                                     <th>N<sup>o</sup></th>
                                     <th>Code</th>
@@ -31,46 +33,45 @@
                                     <th>Quantité</th>
                                     <th>Pv.Unitaire</th>
                                     <th>Categorie</th>
-                                    <th>Action</th>
+                                    <th style="width: 125px;">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @php
+                                    $i = 1;
+                                @endphp
                                 @forelse ($products as $product)
-                                    <tr>
-                                        <td class="table-user">
-                                            {{ $product->id }}
-                                        </td>
-                                        <td>{{ $product->code }}</td>
-                                        <td>{{ $product->description }}</td>
-                                        <td>{{ $product->qte_stock . $product->categorie->mesure }}</td>
-                                        <td>{{ $product->pu }}Fr Congolais</td>
-                                        <td>{{ $product->categorie->designation }}</td>
-                                        <td class="table-action">
-                                            <a href="{{ route('addapprovisionnement', ['ids'=>$product->id]) }}" class="action-icon"
-                                                style="cursor: pointer;"> <i class="mdi mdi-plus-circle-multiple-outline"></i></a>
-                                            <a wire:click="editproduct({{ $product->id }})" class="action-icon"
-                                                style="cursor: pointer;"> <i class="mdi mdi-pencil"></i></a>
-                                            <a wire:click="delete({{ $product->id }})" class="action-icon"
-                                                style="cursor: pointer;"> <i class="mdi mdi-delete"></i></a>
-                                        </td>
-                                    </tr>
+                                <tr>
+                                    <td class="table-user">
+                                        @php
+                                            echo $i;
+                                            $i++;
+                                        @endphp
+                                    </td>
+                                    <td>{{ $product->code }}</td>
+                                    <td>{{ $product->description }}</td>
+                                    <td>{{ $product->qte_stock . $product->categorie->mesure }}</td>
+                                    <td>{{ $product->pu }}Fr Congolais</td>
+                                    <td>{{ $product->categorie->designation }}</td>
+                                    <td class="table-action">
+                                        <a href="{{ route('addapprovisionnement', ['ids'=>$product->id]) }}" class="action-icon"
+                                            style="cursor: pointer;"> <i class="mdi mdi-plus-circle-multiple-outline"></i></a>
+                                    </td>
+                                </tr>
                                 @empty
-                                    <tr>
-                                        <td class="alert alert-danger" colspan="12">
-                                            <center>... Pas d'enregistement pour l'estant ...</center>
-                                        </td>
-                                    </tr>
-                                @endforelse
-
+                                <div class="alert alert-warning" role="alert">
+                                    Pas d'Approvisionnements
+                                </div>
+                            @endforelse
                             </tbody>
                         </table>
-                    </div><br>
-                    <center>
-                        @if (count($products))
-                            {{ $products->links('vendor.livewire.bootstrap') }}
-                        @endif
-                    </center>
-                    <!-- end tab-content-->
+                        <br>
+                        <center>
+                            @if (count($products))
+                                {{ $products->links('vendor.livewire.bootstrap') }}
+                            @endif
+                        </center>
+                    </div>
                 </div> <!-- end card-body-->
             </div> <!-- end card-->
         </div> <!-- end col -->

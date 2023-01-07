@@ -16,6 +16,8 @@ class Approvisionnement extends Model
         'pu_approv',
         'pt_approv',
         'user_id',
+        'created_at',
+        'updated_at',
     ];
     public function produit()
     {

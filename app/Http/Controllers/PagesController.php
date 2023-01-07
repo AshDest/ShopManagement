@@ -31,5 +31,8 @@ class PagesController extends Controller
     {
         return view('pages.parametrage.shop-information');
     }
-
+    public function listProduits()
+    {
+        return view('pages.produits.list-produit');
+    }
 }

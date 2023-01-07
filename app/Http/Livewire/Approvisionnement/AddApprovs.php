@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Approvisionnement;
 
 use App\Models\Approvisionnement;
 use App\Models\Produit;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 
@@ -18,12 +19,15 @@ class AddApprovs extends Component
     public $pt_approv;
 
     public $ids;
+    public $currentQte;
+    public $pu_vente;
+    public $unite;
     
     protected $rules = [
         'code' => 'required',
-        'produit_id' => 'required',
         'qte_approv' => 'required|integer',
         'pu_approv' => 'required|integer',
+        'pu_vente' => 'required|integer',
     ];
         // realtime validation
     public function updated($propertyName)
@@ -32,21 +36,26 @@ class AddApprovs extends Component
     }
     public function save()
     {
-        dd($this->produit_id);
         $this->validate();
         // Validate Form Request
         try {
             Approvisionnement::create([
                 'code' => $this->code,
-                'produit_id' => $this->produit_id,
+                'produit_id' => $this->ids,
                 'qte_approv' => $this->qte_approv,
                 'pu_approv' => $this->pu_approv,
-                'pt_approv' => ($this->pu_approv * $this->qte_approv)
+                'pt_approv' => ($this->pu_approv * $this->qte_approv),
+                'user_id' => Auth::user()->id,
+            ])->save();
+            
+            Produit::find($this->ids)->fill([
+                'qte_stock' => ($this->currentQte + $this->qte_approv),
+                'pu' => $this->pu_vente,
             ])->save();
             // Set Flash Message
-            $this->alert('success', 'Categorie bien enregistrer');
+            $this->alert('success', 'Approvisionnement bien enregistrer');
             // Reset Form Fields After Creating departement
-            $this->reset_fields();
+            return redirect()->to(route('listapprovisionnement'));
         } catch (\Exception $e) {
             // Set Flash Message
             $this->alert('warning', 'Echec d\'enregistrement');
@@ -61,6 +70,8 @@ class AddApprovs extends Component
 
         $produit = Produit::find($this->ids);
         $this->description = $produit->description;
+        $this->currentQte = $produit->qte_stock;
+        $this->unite = $produit->categorie->mesure;
 
     }
     public function render()
