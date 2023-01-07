@@ -15,7 +15,7 @@ class Users extends Component
     use LivewireAlert;
     use WithFileUploads;
     public $desplayeditform;
-    public $nom, $mail, $username, $password, $password_confirmation, $avatar;
+    public $nom, $mail, $role, $username, $password, $password_confirmation, $avatar;
 
     public  $reseach, $page_active = 4;
     protected $rules = [
@@ -46,6 +46,7 @@ class Users extends Component
                     'email' => $this->mail,
                     'password' => $this->password,
                     'avatar' => $imageHash,
+                    'role' => $this->role,
                 ])->save();
             } else {
                 User::create([
@@ -53,11 +54,12 @@ class Users extends Component
                     'name' => $this->username,
                     'email' => $this->mail,
                     'password' => $this->password,
+                    'role' => $this->role,
                 ])->save();
             }
 
             // Set Flash Message
-            $this->alert('success', 'user bien enregistrer');
+            $this->alert('success', 'Utilisateur bien enregistrer');
             // Reset Form Fields After Creating departement
             $this->reset_fields();
         } catch (\Exception $e) {

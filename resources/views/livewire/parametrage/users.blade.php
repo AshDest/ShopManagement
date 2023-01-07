@@ -132,6 +132,15 @@
                                         </div>
                                     </div>
                                     <div class="mb-3">
+                                        <label for="inputState" class="form-label">Role</label>
+                                        <select id="inputState" class="form-select" wire:model="role">
+                                            <option>Veuillez selection un role</option>
+                                            <option value="Admin">Admin</option>
+                                            <option value="Gerant">Gérant</option>
+                                            <option value="Seler">Vendeur</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
                                         <label for="simpleinput" class="form-label">Avatar</label>
                                         <input type="file" id="example-fileinput"
                                             class="form-control @error('avatar') is-invalid @enderror"
