@@ -95,6 +95,18 @@
                                         </div>
                                     </div>
                                     <div class="mb-3">
+                                        <label class="form-label" for="validationCustom01">Nom d'utilisateur</label>
+                                        <input type="text" class="form-control" id="validationCustom01"
+                                            placeholder="votre nom d'utilisateur" wire:model="username">
+                                        <div class="valid-feedback">
+                                            <div class="valid-feedback">
+                                                @error('username')
+                                                    <span style="color: red;">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
                                         <label class="form-label" for="validationCustom01">Mot de passe</label>
                                         <input type="password" class="form-control" id="validationCustom01"
                                             placeholder="votre mot de passe" wire:model="password">
@@ -124,6 +136,9 @@
                                         <input type="file" id="example-fileinput"
                                             class="form-control @error('avatar') is-invalid @enderror"
                                             wire:model='avatar'>
+                                        @if ($avatar)
+                                            <img src="{{ $photo->temporaryUrl() }}" width="30%" height="30%">
+                                        @endif
                                         @error('avatar')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
