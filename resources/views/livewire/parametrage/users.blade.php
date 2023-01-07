@@ -137,7 +137,7 @@
                                             class="form-control @error('avatar') is-invalid @enderror"
                                             wire:model='avatar'>
                                         @if ($avatar)
-                                            <img src="{{ $photo->temporaryUrl() }}" width="30%" height="30%">
+                                            <img src="{{ $avatar->temporaryUrl() }}" width="30%" height="30%">
                                         @endif
                                         @error('avatar')
                                             <span class="invalid-feedback" role="alert">

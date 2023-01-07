@@ -7,11 +7,13 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Intervention\Image\ImageManager;
+use Livewire\WithFileUploads;
 
 class Users extends Component
 {
     use WithPagination;
     use LivewireAlert;
+    use WithFileUploads;
     public $desplayeditform;
     public $nom, $mail, $username, $password, $password_confirmation, $avatar;
 
@@ -19,7 +21,7 @@ class Users extends Component
     protected $rules = [
         'nom' => 'required|min:4',
         'mail' => 'required|email',
-        'photo' => 'image|max:2048', // 2MB Max
+        'avatar' => 'image|max:2048', // 2MB Max
         'password' => 'required|min:8',
         'username' => 'required',
         'password_confirmation' => 'required|same:password|min:8',
@@ -32,11 +34,12 @@ class Users extends Component
     {
         // Validate Form Request
         try {
+            $this->validate();
             if ($this->avatar) {
-                $this->validate();
-                $imageHash = $this->photo->hashName();
+
+                $imageHash = $this->avatar->hashName();
                 $manager =  new ImageManager();
-                $manager->make($this->photo->getRealPath())->resize(50, 50)->save('assets/images/avatar/' . $imageHash);
+                $manager->make($this->avatar->getRealPath())->resize(50, 50)->save('assets/images/avatar/' . $imageHash);
                 User::create([
                     'noms' => $this->nom,
                     'name' => $this->username,
@@ -64,8 +67,16 @@ class Users extends Component
             $this->reset_fields();
         }
     }
+    public function reset_fields()
+    {
+        $this->nom = "";
+        $this->username = "";
+        $this->mail = "";
+        $this->password = "";
+    }
     public function render()
     {
+
         return view('livewire.parametrage.users');
     }
 }
