@@ -18,6 +18,6 @@
             </div>
         </div>
         <!-- end page title -->
-        @livewire('approvisionnement.add-approvs')
+        @livewire('approvisionnement.add-approvs', ['ids' => $ids])
     </div>
 @endsection

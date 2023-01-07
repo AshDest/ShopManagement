@@ -12,9 +12,12 @@ class AddApprovs extends Component
     use LivewireAlert;
     public $code;
     public $produit_id;
+    public $description;
     public $qte_approv;
     public $pu_approv;
     public $pt_approv;
+
+    public $ids;
     
     protected $rules = [
         'code' => 'required',
@@ -55,6 +58,10 @@ class AddApprovs extends Component
         $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $pin = mt_rand(1000, 9999).$characters[rand(0, strlen('ABCDEFGHIJKLMNOPQRSTUVWXYZ') - 1)];
         $this->code = 'AP-'. str_shuffle($pin);
+
+        $produit = Produit::find($this->ids);
+        $this->description = $produit->description;
+
     }
     public function render()
     {

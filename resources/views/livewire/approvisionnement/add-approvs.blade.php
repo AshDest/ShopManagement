@@ -30,18 +30,10 @@
                             <div class="col-lg-6">
                                 <div class="mb-3" >
                                     <label for="example-select" class="form-label">Produit</label>
-                                    <select  class="form-control select2"
-                                     wire:model='produit_id'>
-                                        <option value="1">Select</option>
-                                        <option alue="2">toto</option>
-                                        <option alue="3">Select</option>
-                                        {{-- @foreach ($produits as $produit)
-                                            <option>Select</option>
-                                            <option value="{{ $produit->id }}">{{ $produit->description }}</option>
-                                        @endforeach --}}
-                                    </select>
+                                    <input type="text" wire:model='description' id="example-readonly" class="form-control"
+                                        readonly="" value="Readonly value">
                                     <div class="valid-feedback">
-                                        @error('designation')
+                                        @error('description')
                                             <span style="color: red;">{{ $message }}</span>
                                         @enderror
                                     </div>

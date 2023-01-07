@@ -187,7 +187,7 @@
                                         <th>Quantité</th>
                                         <th>Pv.Unitaire</th>
                                         <th>Categorie</th>
-                                        <th>Action</th>
+                                        <th colspan="3"> Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -199,11 +199,14 @@
                                             <td>{{ $product->code }}</td>
                                             <td>{{ $product->description }}</td>
                                             <td>{{ $product->qte_stock . $product->categorie->mesure }}</td>
-                                            <td>{{ $product->pu }}Fr Congolais</td>
+                                            <td>{{ $product->pu }} CDF</td>
                                             <td>{{ $product->categorie->designation }}</td>
-                                            <td class="table-action">
-                                                <a wire:click="editproduct({{ $product->id }})" class="action-icon"
-                                                    style="cursor: pointer;"> <i class="mdi mdi-pencil"></i></a>
+                                            <td><a href="{{ route('addapprovisionnement', ['ids' => $product->id]) }}"
+                                                    class="action-icon" style="cursor: pointer;"> <i
+                                                        class="mdi mdi-plus-circle-multiple-outline"></i></a></td>
+                                            <td> <a wire:click="editproduct({{ $product->id }})" class="action-icon"
+                                                    style="cursor: pointer;"> <i class="mdi mdi-pencil"></i></a></td>
+                                            <td>
                                                 <a wire:click="delete({{ $product->id }})" class="action-icon"
                                                     style="cursor: pointer;"> <i class="mdi mdi-delete"></i></a>
                                             </td>

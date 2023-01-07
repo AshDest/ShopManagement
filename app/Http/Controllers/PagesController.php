@@ -15,9 +15,9 @@ class PagesController extends Controller
         return view('pages.Approvisionnement.list');
     }
 
-    public function addapprovisionnement()
+    public function addapprovisionnement($ids)
     {
-        return view('pages.Approvisionnement.add');
+        return view('pages.Approvisionnement.add', compact('ids'));
     }
     public function editapprovisionnement($ids)
     {
