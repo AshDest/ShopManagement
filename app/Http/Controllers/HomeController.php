@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Parametrage;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,7 +24,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('pages/home');
+        $vars = Parametrage::find(1);
+        if ($vars) {
+            return view('pages/home');
+        } else {
+            return view('pages.starter');
+        }
     }
     public function aprovisionnement()
     {
