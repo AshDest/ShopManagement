@@ -240,7 +240,7 @@
                                                     alt="table-user" class="me-2 rounded-circle" />
                                                 {{ $user->noms }}
                                             @else
-                                                <img src="assets/images/avatar/avatar.jpg" alt="table-user"
+                                                <img src="{{ asset('assets/images/avatar/avatar.jpg') }}" alt="table-user"
                                                     class="me-2 rounded-circle" />
                                                 {{ $user->noms }}
                                             @endif
