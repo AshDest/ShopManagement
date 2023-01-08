@@ -21,12 +21,18 @@ class ShopInformations extends Component
     public $num_impot;
     public $id_national;
 
+    public $logos;
+
+    public $old_logo;
+    public $vars;
+    public $ids;
+
     public $rules = [
         'nomination' => 'required|min:3',
         'adresse' => 'required|min:10',
         'contact' => 'required|min:9|max:13',
         'email' => 'required|email',
-        'logo' => 'nullable',
+        // 'logo' => 'required|mimes:png|max:2048',// 2MB Max
         'rccm' => 'required|max:8|min:5',
         'num_impot' => 'required|min:5|max:8',
         'id_national' => 'required|min:5|max:10',
@@ -36,7 +42,8 @@ class ShopInformations extends Component
         'adresse.required' => 'Nom de l\'adresse est requis.',
         'contact.required' => 'Nom de l\'contact est requis.',
         'email.required' => 'L\'adresse email est requis.',
-        'logo.required' => 'L\'logo est requis.',
+        'logo.file' => 'Le Logo pas valide.',
+        'logo.mimes' => 'Le Logo pas valide.',
         'rccm.required' => 'L\'rcm est requis.',
         'num_impot.required' => 'L\'numéro de l\'imp',
         'id_national.required' => 'L\'identifiant national',
@@ -56,20 +63,69 @@ class ShopInformations extends Component
     {
         $this->validate();
         try {
-            $imageHash = $this->logo->hashName();
-            $manager =  new ImageManager();
-            $manager->make($this->logo->getRealPath())->resize(50, 50)->save('assets/images/logo/' . $imageHash);
-            Parametrage::create([
-                'nomination' => $this->nomination,
-                'adresse' => $this->adresse,
-                'contact' => $this->contact,
-                'email' => $this->email,
-                'logo' => $this->logo,
-                'rccm' => $this->rccm,
-                'num_impot' => $this->num_impot,
-                'id_national' => $this->id_national,
-            ])->save();
-            // Set Flash Message
+            if(!$this->vars)
+            {
+                if($this->logos){
+                    $imageHash = $this->logos->hashName();
+                    $manager =  new ImageManager();
+                    $manager->make($this->logos->getRealPath())->resize(50, 50)->save('assets/images/logo/' . $imageHash);
+                    Parametrage::create([
+                        'nomination' => $this->nomination,
+                        'adresse' => $this->adresse,
+                        'contact' => $this->contact,
+                        'email' => $this->email,
+                        'logo' => $imageHash,
+                        'rccm' => $this->rccm,
+                        'num_impot' => $this->num_impot,
+                        'id_national' => $this->id_national,
+                    ])->save();
+                    // Set Flash Message
+                }
+                else
+                {
+                    Parametrage::create([
+                        'nomination' => $this->nomination,
+                        'adresse' => $this->adresse,
+                        'contact' => $this->contact,
+                        'email' => $this->email,
+                        'rccm' => $this->rccm,
+                        'num_impot' => $this->num_impot,
+                        'id_national' => $this->id_national,
+                    ])->save();
+                    // Set Flash Message
+                }
+            }
+            else
+            {
+                if($this->logos){
+                    $imageHash = $this->logos->hashName();
+                    $manager =  new ImageManager();
+                    $manager->make($this->logos->getRealPath())->resize(50, 50)->save('assets/images/logo/' . $imageHash);
+                    Parametrage::find($this->ids)->fill([
+                        'nomination' => $this->nomination,
+                        'adresse' => $this->adresse,
+                        'contact' => $this->contact,
+                        'email' => $this->email,
+                        'logo' => $imageHash,
+                        'rccm' => $this->rccm,
+                        'num_impot' => $this->num_impot,
+                        'id_national' => $this->id_national,
+                    ])->save();
+                    $this->cleanupOldTemps($this->old_logo);
+                }
+                else
+                {
+                    Parametrage::find($this->ids)->fill([
+                        'nomination' => $this->nomination,
+                        'adresse' => $this->adresse,
+                        'contact' => $this->contact,
+                        'email' => $this->email,
+                        'rccm' => $this->rccm,
+                        'num_impot' => $this->num_impot,
+                        'id_national' => $this->id_national,
+                    ])->save();
+                }
+            }
             $this->alert('success', 'Informations bien enregistrer');
             // $this->reset_fields();
         } catch (\Exception $e) {
@@ -82,16 +138,30 @@ class ShopInformations extends Component
 
     public function mount()
     {
-        $vars = Parametrage::find(1);
-        if ($vars) {
-            $this->nomination = $vars->nomination;
-            $this->adresse = $vars->adresse;
-            $this->contact = $vars->contact;
-            $this->email = $vars->email;
-            $this->logo = $vars->logo;
-            $this->rccm = $vars->rccm;
-            $this->num_impot = $vars->num_impot;
-            $this->id_national = $vars->id_national;
+        $this->vars = Parametrage::find(1);
+
+        if ($this->vars) {
+            $this->ids = $this->vars->id;
+            $this->nomination = $this->vars->nomination;
+            $this->adresse = $this->vars->adresse;
+            $this->contact = $this->vars->contact;
+            $this->email = $this->vars->email;
+            if($this->vars->logo)
+            {
+                $this->old_logo = $this->vars->logo;
+            }
+            $this->rccm = $this->vars->rccm;
+            $this->num_impot = $this->vars->num_impot;
+            $this->id_national = $this->vars->id_national;
+        }
+    }
+    public function cleanupOldTemps($old_image)
+    {
+        if ($old_image != null) {
+            $path = public_path('assets/images/logo/' . $old_image);
+            if (file_exists($path)) {
+                unlink($path);
+            }
         }
     }
     public function render()
