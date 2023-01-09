@@ -20,6 +20,7 @@
     <!-- App css -->
     <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/css/app.min.css') }}" rel="stylesheet" type="text/css" id="app-style" />
+    @livewireStyles
 </head>
 
 <body class="loading authentication-bg" data-layout-config='{"darkMode":false}'>
@@ -37,6 +38,7 @@
     <!-- bundle -->
     <script src="{{ asset('assets/js/vendor.min.js') }}"></script>
     <script src="{{ asset('assets/js/app.min.js') }}"></script>
+    @livewireScripts
 
 </body>
 

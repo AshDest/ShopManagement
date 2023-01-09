@@ -112,7 +112,7 @@
                     @enderror
                 </div>
             </div>
-            <button class="btn btn-primary" type="submit">Enregistrer Informations</button>
+            <button class="btn btn-primary">Enregistrer Informations</button>
         </div>
     </form>
 </div>
