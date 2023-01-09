@@ -36,7 +36,6 @@ class Starters extends Component
 
     public function save()
     {
-        dd('DEST');
         $this->validate();
         try {
             if ($this->logos) {
