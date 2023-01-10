@@ -26,7 +26,7 @@ class HomeController extends Controller
     {
         $vars = Parametrage::find(1);
         if ($vars) {
-            return view('pages/home');
+            return view('pages.home');
         } else {
             return view('pages.starter');
         }
