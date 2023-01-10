@@ -20,7 +20,7 @@ class Product extends Component
     protected $rules = [
         'code' => 'required',
         'description' => 'required',
-        'pvu' => 'required|integer',
+        'categoryselected' => 'required',
     ];
 
     protected $messages = [
@@ -64,7 +64,6 @@ class Product extends Component
             Produit::create([
                 'code' => $this->code,
                 'description' => $this->description,
-                'pu' => $this->pvu,
                 'category_id' => $this->categoryselected,
             ])->save();
             // Set Flash Message
@@ -73,7 +72,7 @@ class Product extends Component
             $this->reset_fields();
         } catch (\Exception $e) {
             // Set Flash Message
-            $this->alert('warning', 'Echec d\'enregistrement');
+            $this->alert('warning', 'Echec d\'enregistrement: ' . $e->getMessage());
             // Reset Form Fields After Creating departement
             $this->reset_fields();
         }
