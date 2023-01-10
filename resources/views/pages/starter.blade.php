@@ -13,9 +13,8 @@
                 <div class="card-body p-4">
 
                     <div class="text-center w-75 m-auto">
-                        <h4 class="text-dark-50 text-center pb-0 fw-bold">Authentification</h4>
-                        <p class="text-muted mb-4">Entrez votre adresse e-mail et votre mot de passe pour accéder au panneau
-                            d'administration.
+                        <h4 class="text-dark-50 text-center pb-0 fw-bold">INFORMATION DE L'ENTREPRISE</h4>
+                        <p class="text-muted mb-4">Vuiellez enregistrer les informations necessaires de votre super marche
                         </p>
                     </div>
                     @livewire('parametrage.starters')
