@@ -88,10 +88,12 @@
     <script src="{{ asset('assets/js/app.min.js') }}"></script>
 
     <!-- third party js -->
-    <script src="{{ asset('assets/js/vendor/apexcharts.min.js') }}"></script>
+    {{-- <script src="{{ asset('assets/js/vendor/apexcharts.min.js') }}"></script> --}}
     <script src="{{ asset('assets/js/vendor/jquery-jvectormap-1.2.2.min.js') }}"></script>
     <script src="{{ asset('assets/js/vendor/jquery-jvectormap-world-mill-en.js') }}"></script>
     <script src="{{ asset('vendor/livewire-alert/livewire-alert.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    @stack('js')
     <!-- third party js ends -->
     @livewireScripts
     <!-- demo app -->

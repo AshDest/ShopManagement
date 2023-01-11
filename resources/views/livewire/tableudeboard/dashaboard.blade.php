@@ -96,28 +96,16 @@
                                 echo date('Y');
                             @endphp
                         </h4>
-                        {{-- <div class="dropdown">
-                                <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    <i class="mdi mdi-dots-vertical"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-end">
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item">Sales Report</a>
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item">Export Report</a>
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item">Profit</a>
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item">Action</a>
-                                </div>
-                            </div> --}}
                     </div>
 
+                    {{-- chart ici hein --}}
                     <div dir="ltr">
-                        <div id="high-performing-product" class="apex-charts" data-colors="#727cf5,#e3eaef"></div>
+                        <div id="chart" class="apex-charts" data-colors="#727cf5,#e3eaef"></div>
                     </div>
-
+                    {{-- end chart --}}
+                    {{-- <div dir="ltr">
+                        <div id="high-performing-product" class="apex-charts" data-colors="#727cf5,#e3eaef"></div>
+                    </div> --}}
                 </div> <!-- end card-body-->
             </div> <!-- end card-->
 
@@ -125,3 +113,57 @@
     </div>
     <!-- end row -->
 </div>
+@push('js')
+    <script>
+        var options = {
+            series: [{
+                name: 'Bénefice du mois',
+                data: @json($this->ben_per_month)
+
+            }, {
+                name: 'Vente du mois',
+                data: @json($this->sel_per_month)
+            }],
+            chart: {
+                type: 'bar',
+                height: 350
+            },
+            plotOptions: {
+                bar: {
+                    horizontal: false,
+                    columnWidth: '55%',
+                    endingShape: 'rounded'
+                },
+            },
+            dataLabels: {
+                enabled: false
+            },
+            stroke: {
+                show: true,
+                width: 2,
+                colors: ['transparent']
+            },
+            xaxis: {
+                categories: @json($this->all_month),
+            },
+            yaxis: {
+                title: {
+                    text: ' Franc Congolais'
+                }
+            },
+            fill: {
+                opacity: 1
+            },
+            tooltip: {
+                y: {
+                    formatter: function(val) {
+                        return " " + val + " Fc"
+                    }
+                }
+            }
+        };
+
+        var chart = new ApexCharts(document.querySelector("#chart"), options);
+        chart.render();
+    </script>
+@endpush
