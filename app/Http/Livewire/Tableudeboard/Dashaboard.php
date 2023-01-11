@@ -68,6 +68,7 @@ class Dashaboard extends Component
             $this->alert('warning', 'Veuillez selectionner une date svp!');
         }
     }
+
     public function render()
     {
         $this->vente();
