@@ -20,7 +20,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/approvisionnement/list', [App\Http\Controllers\PagesController::class, 'approvisionnements'])->name('listapprovisionnement');
 Route::get('/approvisionnement/add/{ids}', [App\Http\Controllers\PagesController::class, 'addapprovisionnement'])->name('addapprovisionnement');
-Route::get('/approvisionnement/edit/{id}', [App\Http\Controllers\PagesController::class, 'editapprovisionnement'])->name('editapprovisionnement');
+Route::get('/approvisionnement/edit/{ids}', [App\Http\Controllers\PagesController::class, 'editapprovisionnement'])->name('editapprovisionnement');
 Route::get('/list-produits', [App\Http\Controllers\PagesController::class, 'listProduits'])->name('listProduits');
 
 Route::get('/shopinformations', [App\Http\Controllers\PagesController::class, 'shopinformation'])->name('shopinformations');

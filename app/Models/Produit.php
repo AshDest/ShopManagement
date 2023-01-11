@@ -13,6 +13,7 @@ class Produit extends Model
         'code',
         'description',
         'qte_stock',
+        'pu_achat',
         'pu',
         'category_id',
     ];

@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('description');
             $table->integer('qte_stock')->default('0');
-            $table->float('pu_achat');
-            $table->float('pu');
+            $table->float('pu_achat')->default('0');
+            $table->float('pu')->default('0');
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();

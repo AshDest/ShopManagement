@@ -22,14 +22,14 @@ class AddApprovs extends Component
     public $currentQte;
     public $pu_vente;
     public $unite;
-    
+
     protected $rules = [
         'code' => 'required',
         'qte_approv' => 'required|integer',
         'pu_approv' => 'required|integer',
         'pu_vente' => 'required|integer',
     ];
-        // realtime validation
+    // realtime validation
     public function updated($propertyName)
     {
         $this->validateOnly($propertyName);
@@ -47,9 +47,10 @@ class AddApprovs extends Component
                 'pt_approv' => ($this->pu_approv * $this->qte_approv),
                 'user_id' => Auth::user()->id,
             ])->save();
-            
+
             Produit::find($this->ids)->fill([
                 'qte_stock' => ($this->currentQte + $this->qte_approv),
+                'pu_achat' => $this->pu_approv,
                 'pu' => $this->pu_vente,
             ])->save();
             // Set Flash Message
@@ -58,25 +59,24 @@ class AddApprovs extends Component
             return redirect()->to(route('listapprovisionnement'));
         } catch (\Exception $e) {
             // Set Flash Message
-            $this->alert('warning', 'Echec d\'enregistrement');
+            $this->alert('warning', 'Echec d\'enregistrement: ' . $e->getMessage());
             // Reset Form Fields After Creating departement
             $this->reset_fields();
         }
     }
-    public function mount(){
+    public function mount()
+    {
         $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $pin = mt_rand(1000, 9999).$characters[rand(0, strlen('ABCDEFGHIJKLMNOPQRSTUVWXYZ') - 1)];
-        $this->code = 'AP-'. str_shuffle($pin);
+        $pin = mt_rand(1000, 9999) . $characters[rand(0, strlen('ABCDEFGHIJKLMNOPQRSTUVWXYZ') - 1)];
+        $this->code = 'AP-' . str_shuffle($pin);
 
         $produit = Produit::find($this->ids);
         $this->description = $produit->description;
         $this->currentQte = $produit->qte_stock;
         $this->unite = $produit->categorie->mesure;
-
     }
     public function render()
     {
-        $produits = Produit::all();
-        return view('livewire.approvisionnement.add-approvs', ['produits' => $produits]);
+        return view('livewire.approvisionnement.add-approvs');
     }
 }
