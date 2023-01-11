@@ -17,6 +17,40 @@ class Dashaboard extends Component
     public $all_month, $sel_per_month = [];
     public  $ben_per_month = [];
 
+
+    public function vente()
+    {
+        $ventes = DetailVente::groupBy('month')
+            ->selectRaw('sum(pt_vente) as sum')
+            ->get();
+
+        $data_vente = array();
+
+        foreach ($ventes as $value) {
+            array_push(
+                $data_vente,
+                $value->sum
+            );
+            $this->sel_per_month = ($data_vente);
+        }
+    }
+
+    public function beneficie()
+    {
+        $resultats = DetailVente::groupBy('month')
+            ->selectRaw('sum(resultat) as sum1')
+            ->get();
+        $this->ben_per_month = array($resultats);
+        $data_res = array();
+        foreach ($resultats as $res) {
+            array_push(
+                $data_res,
+                $res->sum1
+            );
+            $this->ben_per_month = $data_res;
+        }
+    }
+
     public function mount()
     {
         $month = [];
@@ -25,29 +59,6 @@ class Dashaboard extends Component
             $month[] = date('F', mktime(0, 0, 0, $m, 1, date('Y')));
         }
         $this->all_month = $month;
-
-        $ventes = DetailVente::groupBy('month')
-            ->selectRaw('sum(pt_vente) as sum')
-            ->get();
-
-        $data_vente = array();
-
-        foreach ($ventes as $value) {
-            array_push($data_vente, array(
-                $value->sum
-            ));
-            $this->sel_per_month = $data_vente;
-        }
-        $resultats = DetailVente::groupBy('month')
-            ->selectRaw('sum(resultat) as sum')
-            ->get();
-        $data_res = array();
-        foreach ($resultats as $res) {
-            array_push($data_res, array(
-                $res->sum
-            ));
-            $this->ben_per_month = $data_res;
-        }
     }
     public function charger()
     {
@@ -57,8 +68,11 @@ class Dashaboard extends Component
             $this->alert('warning', 'Veuillez selectionner une date svp!');
         }
     }
+
     public function render()
     {
+        $this->vente();
+        $this->beneficie();
         $this->nbr_client = Client::count();
         $this->nbr_produit = Produit::where('qte_stock', '!=', '0')->count();
         $this->nbr_benefice = DetailVente::sum('resultat');

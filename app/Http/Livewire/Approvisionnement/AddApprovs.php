@@ -61,7 +61,7 @@ class AddApprovs extends Component
             // Set Flash Message
             $this->alert('warning', 'Echec d\'enregistrement: ' . $e->getMessage());
             // Reset Form Fields After Creating departement
-            $this->reset_fields();
+            // $this->reset_fields();
         }
     }
     public function mount()
