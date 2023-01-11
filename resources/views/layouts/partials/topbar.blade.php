@@ -12,7 +12,7 @@
                 </form>
             </div>
         </li>
-        <li class="dropdown notification-list topbar-dropdown">
+        {{-- <li class="dropdown notification-list topbar-dropdown">
             <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#" role="button"
                 aria-haspopup="false" aria-expanded="false">
                 <img src="{{ asset('assets/images/flags/us.jpg') }}" alt="user-image" class="me-0 me-sm-1"
@@ -47,9 +47,9 @@
                 </a>
 
             </div>
-        </li>
+        </li> --}}
 
-        <li class="dropdown notification-list">
+        {{-- <li class="dropdown notification-list">
             <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#" role="button"
                 aria-haspopup="false" aria-expanded="false">
                 <i class="dripicons-bell noti-icon"></i>
@@ -115,8 +115,7 @@
                     <h5 class="text-muted font-13 fw-normal mt-0">Yesterday</h5>
 
                     <!-- item-->
-                    <a href="javascript:void(0);"
-                        class="dropdown-item p-0 notify-item card read-noti shadow-none mb-2">
+                    <a href="javascript:void(0);" class="dropdown-item p-0 notify-item card read-noti shadow-none mb-2">
                         <div class="card-body">
                             <span class="float-end noti-close-btn text-muted"><i class="mdi mdi-close"></i></span>
                             <div class="d-flex align-items-center">
@@ -140,8 +139,7 @@
                     <h5 class="text-muted font-13 fw-normal mt-0">30 Dec 2021</h5>
 
                     <!-- item-->
-                    <a href="javascript:void(0);"
-                        class="dropdown-item p-0 notify-item card read-noti shadow-none mb-2">
+                    <a href="javascript:void(0);" class="dropdown-item p-0 notify-item card read-noti shadow-none mb-2">
                         <div class="card-body">
                             <span class="float-end noti-close-btn text-muted"><i class="mdi mdi-close"></i></span>
                             <div class="d-flex align-items-center">
@@ -160,8 +158,7 @@
                     </a>
 
                     <!-- item-->
-                    <a href="javascript:void(0);"
-                        class="dropdown-item p-0 notify-item card read-noti shadow-none mb-2">
+                    <a href="javascript:void(0);" class="dropdown-item p-0 notify-item card read-noti shadow-none mb-2">
                         <div class="card-body">
                             <span class="float-end noti-close-btn text-muted"><i class="mdi mdi-close"></i></span>
                             <div class="d-flex align-items-center">
@@ -192,9 +189,9 @@
                 </a>
 
             </div>
-        </li>
+        </li> --}}
 
-        <li class="dropdown notification-list d-none d-sm-inline-block">
+        {{-- <li class="dropdown notification-list d-none d-sm-inline-block">
             <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#" role="button"
                 aria-haspopup="false" aria-expanded="false">
                 <i class="dripicons-view-apps noti-icon"></i>
@@ -246,7 +243,7 @@
                 </div>
 
             </div>
-        </li>
+        </li> --}}
 
         <li class="notification-list">
             <a class="nav-link end-bar-toggle" href="javascript: void(0);">
@@ -259,16 +256,16 @@
                 role="button" aria-haspopup="false" aria-expanded="false">
                 <span class="account-user-avatar">
                     @if (Auth::user()->avatar)
-                    <img src="{{ asset('assets/images/avatar/'.Auth::user()->avatar.'') }}" alt="user-image"
-                    class="rounded-circle">
+                        <img src="{{ asset('assets/images/avatar/' . Auth::user()->avatar . '') }}" alt="user-image"
+                            class="rounded-circle">
                     @else
-                    <img src="{{ asset('assets/images/avatar/avatar.jpg') }}" alt="user-image"
-                    class="rounded-circle">
+                        <img src="{{ asset('assets/images/avatar/avatar.jpg') }}" alt="user-image"
+                            class="rounded-circle">
                     @endif
                 </span>
                 <span>
                     <span class="account-user-name">{{ Auth::user()->name }}</span>
-                    <span class="account-position">{{Auth::user()->role}}</span>
+                    <span class="account-position">{{ Auth::user()->role }}</span>
                 </span>
             </a>
             <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu profile-dropdown">
