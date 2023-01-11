@@ -115,6 +115,7 @@
 </div>
 @push('js')
     <script>
+        // console.log(@json($this->ben_per_month))
         var options = {
             series: [{
                 name: 'Bénefice du mois',
