@@ -17,7 +17,7 @@ class EditApprovs extends Component
     public $pu_approv;
     public $pt_approv;
 
-    public $ids;
+    public $approv_id;
     public $currentQte;
     public $oldQte;
     public $pu_vente;
@@ -39,7 +39,7 @@ class EditApprovs extends Component
     {
         $this->validate();
         try {
-            Approvisionnement::find($this->ids)->fill([
+            Approvisionnement::find($this->approv_id)->fill([
                 'code' => $this->code,
                 'produit_id' => $this->produit_id,
                 'qte_approv' => $this->qte_approv,
@@ -65,7 +65,7 @@ class EditApprovs extends Component
     }
     public function mount()
     {
-        $vars = Approvisionnement::find($this->ids);
+        $vars = Approvisionnement::find($this->approv_id);
         $this->code = $vars->code;
         $this->produit_id = $vars->produit_id;
         $this->oldQte = $vars->qte_approv;

@@ -71,7 +71,7 @@
                                         {{$approv->created_at}}
                                     </td>
                                     <td>
-                                        <a href="{{ route('editapprovisionnement', ['id'=>$approv->id]) }}"
+                                        <a href="{{ route('editapprovisionnement', ['approv_id'=>$approv->id]) }}"
                                             class="action-icon">
                                             <i class="mdi mdi-pencil"></i></a>
                                         <a wire:click="delete({{ $approv->id }})" class="action-icon"> <i

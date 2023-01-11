@@ -14,6 +14,7 @@ class DetailVente extends Model
         'qte_vente',
         'pu_vente',
         'pt_vente',
+        'month',
         'resultat'
     ];
 

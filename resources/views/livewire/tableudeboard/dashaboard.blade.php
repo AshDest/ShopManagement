@@ -16,8 +16,8 @@
                             <i class="mdi mdi-autorenew"></i>
                         </a>
                         {{-- <a href="javascript: void(0);" class="btn btn-primary ms-1">
-                                <i class="mdi mdi-filter-variant"></i>
-                            </a> --}}
+                            <i class="mdi mdi-filter-variant"></i>
+                        </a> --}}
                     </form>
                 </div>
                 <h4 class="page-title">Dashboard</h4>
@@ -27,10 +27,9 @@
     <!-- end page title -->
 
     <div class="row">
-        <div class="col-xl-5 col-lg-6">
-
-            <div class="row">
-                <div class="col-sm-6">
+        <div class="col-lg-12">
+            <div class="row g-2">
+                <div class="col-md-4">
                     <div class="card widget-flat">
                         <div class="card-body">
                             <div class="float-end">
@@ -43,7 +42,7 @@
                     </div> <!-- end card-->
                 </div> <!-- end col-->
 
-                <div class="col-sm-6">
+                <div class="col-md-4">
                     <div class="card widget-flat">
                         <div class="card-body">
                             <div class="float-end">
@@ -58,7 +57,7 @@
             </div> <!-- end row -->
 
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-md-4">
                     <div class="card widget-flat">
                         <div class="card-body">
                             <div class="float-end">
@@ -70,8 +69,7 @@
                         </div> <!-- end card-body-->
                     </div> <!-- end card-->
                 </div> <!-- end col-->
-
-                <div class="col-sm-6">
+                <div class="col-md-4">
                     <div class="card widget-flat">
                         <div class="card-body">
                             <div class="float-end">
@@ -84,16 +82,15 @@
                     </div> <!-- end card-->
                 </div> <!-- end col-->
             </div> <!-- end row -->
-
         </div> <!-- end col -->
 
-        <div class="col-xl-7 col-lg-6">
+        <div class="col-lg-12">
             <div class="card card-h-100">
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center mb-2">
                         <h4 class="header-title">Statistic Vente/benefice par moi année
                             @php
-                                echo date('Y');
+                            echo date('Y');
                             @endphp
                         </h4>
                     </div>
@@ -114,8 +111,8 @@
     <!-- end row -->
 </div>
 @push('js')
-    <script>
-        var options = {
+<script>
+    var options = {
             series: [{
                 name: 'Bénefice du mois',
                 data: @json($this->ben_per_month)
@@ -165,5 +162,5 @@
 
         var chart = new ApexCharts(document.querySelector("#chart"), options);
         chart.render();
-    </script>
+</script>
 @endpush

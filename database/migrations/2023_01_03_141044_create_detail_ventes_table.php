@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('qte_vente')->default('1');
             $table->float('pu_vente')->default('0');
             $table->float('pt_vente')->default('0');
+            $table->string('month')->nullable();
             $table->float('resultat')->default('0.0');
             $table->timestamps();
         });
