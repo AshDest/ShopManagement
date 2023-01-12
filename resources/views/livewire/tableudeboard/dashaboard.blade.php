@@ -41,7 +41,6 @@
                         </div> <!-- end card-body-->
                     </div> <!-- end card-->
                 </div> <!-- end col-->
-
                 <div class="col-md-3">
                     <div class="card widget-flat">
                         <div class="card-body">
@@ -50,7 +49,6 @@
                             </div>
                             <h5 class="text-muted fw-normal mt-0" title="Nombre de Produits">Produits en stock</h5>
                             <h3 class="mt-3 mb-3">{{ $this->nbr_produit }}</h3>
-
                         </div> <!-- end card-body-->
                     </div> <!-- end card-->
                 </div> <!-- end col-->
@@ -62,7 +60,6 @@
                             </div>
                             <h5 class="text-muted fw-normal mt-0" title="Average Revenue">Bénéfice</h5>
                             <h3 class="mt-3 mb-3">{{ $this->nbr_benefice }}</h3>
-
                         </div> <!-- end card-body-->
                     </div> <!-- end card-->
                 </div> <!-- end col-->
@@ -79,8 +76,6 @@
                     </div> <!-- end card-->
                 </div> <!-- end col-->
             </div> <!-- end row -->
-
-
         </div> <!-- end col -->
 
         <div class="col-lg-12">
@@ -89,7 +84,7 @@
                     <div class="d-flex justify-content-between align-items-center mb-2">
                         <h4 class="header-title">Statistic Vente/benefice par moi année
                             @php
-                                echo date('Y');
+                            echo date('Y');
                             @endphp
                         </h4>
                     </div>
@@ -110,8 +105,8 @@
     <!-- end row -->
 </div>
 @push('js')
-    <script>
-        var options = {
+<script>
+    var options = {
             series: [{
                 name: 'Bénefice du mois',
                 data: @json($this->ben_per_month)
@@ -161,5 +156,5 @@
 
         var chart = new ApexCharts(document.querySelector("#chart"), options);
         chart.render();
-    </script>
+</script>
 @endpush
