@@ -45,7 +45,7 @@
                     <div class="card widget-flat">
                         <div class="card-body">
                             <div class="float-end">
-                                <i class="mdi mdi-cart-plus widget-icon"></i>
+                                <i class="mdi mdi-currency-usd widget-icon"></i>
                             </div>
                             <h5 class="text-muted fw-normal mt-0" title="CA">Chiffre d'Affaire</h5>
                             <h3 class="mt-3 mb-3">{{ $this->nbr_produit }}</h3>
@@ -56,7 +56,7 @@
                     <div class="card widget-flat">
                         <div class="card-body">
                             <div class="float-end">
-                                <i class="mdi mdi-currency-usd widget-icon"></i>
+                                <i class="uil-money-insert widget-icon"></i>
                             </div>
                             <h5 class="text-muted fw-normal mt-0" title="Average Revenue">Cout d'Achat</h5>
                             <h3 class="mt-3 mb-3">{{ $this->nbr_benefice }}</h3>
@@ -67,7 +67,7 @@
                     <div class="card widget-flat">
                         <div class="card-body">
                             <div class="float-end">
-                                <i class="mdi mdi-pulse widget-icon"></i>
+                                <i class=" dripicons-graph-pie widget-icon"></i>
                             </div>
                             <h5 class="text-muted fw-normal mt-0" title="Growth">Prix de Reviens</h5>
                             <h3 class="mt-3 mb-3">{{ $this->nbr_vente }}</h3>
