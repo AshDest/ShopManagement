@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Production;
 
 use App\Models\Categorie;
+use App\Models\Mesure;
 use App\Models\Produit;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -14,7 +15,7 @@ class Product extends Component
     use LivewireAlert;
     public  $reseach, $page_active = 4;
     public $code, $description, $qte_stock, $pvu, $pvu1, $categoryselected, $categories;
-    public  $categoryselectedvalue, $categorie_id;
+    public  $categoryselectedvalue, $categorie_id, $mesureselected, $mesures;
 
     public $desplayeditform = null;
     protected $rules = [
@@ -65,6 +66,7 @@ class Product extends Component
                 'code' => $this->code,
                 'description' => $this->description,
                 'category_id' => $this->categoryselected,
+                'designationmesure' => $this->mesureselected,
             ])->save();
             // Set Flash Message
             $this->alert('success', 'produit bien enregistré');
@@ -100,6 +102,7 @@ class Product extends Component
             Produit::find($this->desplayeditform)->fill([
                 'description' => $this->description,
                 'category_id' => $this->categoryselected,
+                'designationmesure' => $this->mesureselected,
             ])->save();
             $this->alert('success', 'Produit bien Modifier!');
             $this->reset_fields();
@@ -110,9 +113,11 @@ class Product extends Component
     public function render()
     {
         $this->categories = Categorie::all();
+        $this->mesures = Mesure::all();
         if ($this->reseach) {
             return view('livewire.production.product', [
                 'products' => Produit::where('description', 'LIKE', '%' . $this->reseach . '%')
+                    ->orwhere('designationmesure', 'LIKE', '%' . $this->reseach)
                     ->orwhereHas('categorie', function ($s) {
                         $s->where('designation', 'LIKE', '%' . $this->reseach . '%');
                     })

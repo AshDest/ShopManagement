@@ -16,12 +16,10 @@ class Categorie extends Component
     public $desplayeditform = null;
     protected $rules = [
         'designation' => 'required',
-        'mesure' => 'required',
     ];
 
     protected $messages = [
         'designation.required' => 'veuillez renseigner la desination',
-        'mesure.required' => 'veuillez selectionez la mesure',
     ];
     protected $listeners = [
         'confirmed'
@@ -59,7 +57,6 @@ class Categorie extends Component
         try {
             ModelsCategorie::create([
                 'designation' => $this->designation,
-                'mesure' => $this->mesure,
             ])->save();
             // Set Flash Message
             $this->alert('success', 'Categorie bien enregistrer');
@@ -77,12 +74,10 @@ class Categorie extends Component
         $this->desplayeditform = $id;
         $categories = ModelsCategorie::find($this->desplayeditform);
         $this->designation = $categories->designation;
-        $this->mesure = $categories->mesure;
     }
     public function reset_fields()
     {
         $this->designation = '';
-        $this->mesure = '';
         $this->desplayeditform = null;
     }
     public function editcateg()
@@ -90,7 +85,6 @@ class Categorie extends Component
         try {
             ModelsCategorie::find($this->desplayeditform)->fill([
                 'designation' => $this->designation,
-                'mesure' => $this->mesure,
             ])->save();
             $this->alert('success', 'Categorie bien Modifier!');
             $this->reset_fields();
@@ -103,7 +97,6 @@ class Categorie extends Component
         if ($this->reseach) {
             return view('livewire.production.categorie', [
                 'categories' => ModelsCategorie::where('designation', 'LIKE', '%' . $this->reseach . '%')
-                    ->orwhere('mesure', 'LIKE', '%' . $this->reseach)
                     ->orderBy('id', 'DESC')->paginate($this->page_active)
             ]);
         } else {

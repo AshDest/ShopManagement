@@ -16,6 +16,7 @@ class Produit extends Model
         'pu_achat',
         'pu',
         'category_id',
+        'designationmesure',
     ];
 
     public function categorie()

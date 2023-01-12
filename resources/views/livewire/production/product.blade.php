@@ -74,6 +74,15 @@
                                                 @endforeach
                                             </select>
                                         </div>
+                                        <div class="mb-3">
+                                            <label for="inputState1" class="form-label">Mesure</label>
+                                            <select id="inputState1" class="form-select" wire:model="mesureselected">
+                                                @foreach ($mesures as $mesure)
+                                                    <option value="{{ $mesure->mesures }}">{{ $mesure->mesures }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
                                         <button class="btn btn-primary" type="submit">Modifier</button>
                                     </form>
                                 </div> <!-- end preview-->
@@ -128,6 +137,16 @@
                                                 @endforeach
                                             </select>
                                         </div>
+                                        <div class="mb-3">
+                                            <label for="inputState1" class="form-label">Mesure</label>
+                                            <select id="inputState1" class="form-select" wire:model="mesureselected">
+                                                <option>Veuillez selection une mesure</option>
+                                                @foreach ($mesures as $mesure)
+                                                    <option value="{{ $mesure->mesures }}">{{ $mesure->mesures }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
                                         <button class="btn btn-primary" type="submit">Enregistrer</button>
                                     </form>
                                 </div> <!-- end preview-->
@@ -173,6 +192,7 @@
                                         <th>Quantité</th>
                                         <th>Pv.Unitaire</th>
                                         <th>Categorie</th>
+                                        <th>Mesure</th>
                                         <th colspan="3"> Action</th>
                                     </tr>
                                 </thead>
@@ -187,6 +207,7 @@
                                             <td>{{ $product->qte_stock . $product->categorie->mesure }}</td>
                                             <td>{{ $product->pu }} CDF</td>
                                             <td>{{ $product->categorie->designation }}</td>
+                                            <td>{{ $product->designationmesure }}</td>
                                             <td><a href="{{ route('addapprovisionnement', ['ids' => $product->id]) }}"
                                                     class="action-icon" style="cursor: pointer;"> <i
                                                         class="mdi mdi-plus-circle-multiple-outline"></i></a></td>
