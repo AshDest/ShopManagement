@@ -45,15 +45,7 @@
                                                 @enderror
                                             </div>
                                         </div>
-                                        <div class="mb-3">
-                                            <label for="inputState" class="form-label">Mesure</label>
-                                            <select id="inputState" class="form-select" wire:model="mesure">
-                                                <option>Veuillez selection une mesure</option>
-                                                <option value="g">Gramme</option> ['g', 'Pièce', 'Litre']
-                                                <option value="Pièce">La pièce</option>
-                                                <option value="Litre">Le Litre</option>
-                                            </select>
-                                        </div>
+
                                         {{-- <button wire:click="annuler" class="btn btn-outline-primary"
                                             type="submit">Annuler</button> --}}
                                         <button class="btn btn-outline-primary" type="submit">Modifier</button>
@@ -91,15 +83,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="mb-3">
-                                            <label for="inputState" class="form-label">Mesure</label>
-                                            <select id="inputState" class="form-select" wire:model="mesure">
-                                                <option>Veuillez selection une mesure</option>
-                                                <option value="g">Gramme</option>
-                                                <option value="Pièce">La pièce</option>
-                                                <option value="Litre">Le Litre</option>
-                                            </select>
-                                        </div>
+
                                         <button class="btn btn-primary" type="submit">Enregistrer</button>
                                     </form>
                                 </div> <!-- end preview-->
@@ -141,7 +125,6 @@
                                     <tr>
                                         <th>N<sup>o</sup></th>
                                         <th>Designation</th>
-                                        <th>Mesure</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -152,11 +135,9 @@
                                                 {{ $categorie->id }}
                                             </td>
                                             <td>{{ $categorie->designation }}</td>
-                                            <td>{{ $categorie->mesure }}</td>
                                             <td class="table-action">
-                                                <a wire:click="editcategorie({{ $categorie->id }})"
-                                                    class="action-icon" style="cursor: pointer;"> <i
-                                                        class="mdi mdi-pencil"></i></a>
+                                                <a wire:click="editcategorie({{ $categorie->id }})" class="action-icon"
+                                                    style="cursor: pointer;"> <i class="mdi mdi-pencil"></i></a>
                                                 <a wire:click="delete({{ $categorie->id }})" class="action-icon"
                                                     style="cursor: pointer;"> <i class="mdi mdi-delete"></i></a>
                                             </td>
