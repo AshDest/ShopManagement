@@ -15,7 +15,9 @@ return new class extends Migration
     {
         Schema::create('detail_ventes', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('vente_id');
             $table->unsignedBigInteger('produit_id');
+            $table->foreign('vente_id')->references('id')->on('ventes')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('produit_id')->references('id')->on('produits')->onDelete('cascade')->onUpdate('cascade');
             $table->integer('qte_vente')->default('1');
             $table->float('pu_vente')->default('0');
