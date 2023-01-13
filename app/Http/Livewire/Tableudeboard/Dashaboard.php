@@ -20,7 +20,7 @@ class Dashaboard extends Component
     public $all_month, $sel_per_month = [];
     public  $ben_per_month = [];
 
-    public $count_user, $ca, $ctaprov, $topproduct;
+    public $count_user, $ca, $ctaprov, $topproduct, $topdesi_prod;
 
 
     public function vente()
@@ -45,7 +45,6 @@ class Dashaboard extends Component
         $resultats = DetailVente::groupBy('month')
             ->selectRaw('sum(resultat) as sum1')
             ->get();
-        $this->ben_per_month = array($resultats);
         $data_res = array();
         foreach ($resultats as $res) {
             array_push(
@@ -57,29 +56,30 @@ class Dashaboard extends Component
     }
     public function topvente()
     {
-        // $this->topproduct = Produit::whereHas('detailvente')
-        //     ->select(DB::raw("count(*)"), 'description')
-        //     ->groupBy('description')
-        //     ->get();
-        $this->topproduct = DetailVente::whereHas('produit', function ($query) {
-            $query->select(DB::raw("count(*)"), 'description')
-                ->groupBy('description')
-                ->get();
-        })->get();
+        $topproduct =  DB::table('detail_ventes as d')
+            ->join('produits as p', 'd.produit_id', '=', 'p.id')
+            ->select(DB::raw("count(*) as nbr"), 'produit_id', 'p.description')
+            ->groupBy('produit_id')
+            ->get();
+        $data_top = array();
+        $data_id = array();
+        foreach ($topproduct as $top) {
 
-        dd($this->topproduct);
-
-        // $resultats = DetailVente::groupBy('month')
-        //     ->selectRaw('sum(resultat) as sum1')
+            array_push($data_top, $top->nbr);
+            array_push($data_id, $top->description);
+            $this->topproduct = $data_top;
+            $this->topdesi_prod = $data_id;
+        }
+        // $designaprod = Produit::select(DB::raw("description"))->where('id', $top->produit_id)
         //     ->get();
-        // $this->ben_per_month = array($resultats);
-        // $data_res = array();
-        // foreach ($resultats as $res) {
+        // $data_designa = array();
+        // foreach ($designaprod as $des) {
+
         //     array_push(
-        //         $data_res,
-        //         $res->sum1
+        //         $data_designa,
+        //         $des->description
         //     );
-        //     $this->ben_per_month = $data_res;
+        //     $this->topdesi_prod = $data_designa;
         // }
     }
 

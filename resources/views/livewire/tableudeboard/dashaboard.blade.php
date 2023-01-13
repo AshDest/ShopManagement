@@ -258,12 +258,12 @@
 @push('jschart')
     <script>
         var options = {
-            series: [44, 55, 13, 43, 22],
+            series: @json($this->topproduct),
             chart: {
                 width: 380,
                 type: 'donut',
             },
-            labels: ['Team A', 'Team B', 'Team C', 'Team D', 'Team E'],
+            labels: @json($this->topdesi_prod),
             responsive: [{
                 breakpoint: 480,
                 options: {
