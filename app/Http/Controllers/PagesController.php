@@ -40,4 +40,9 @@ class PagesController extends Controller
     {
         return view('pages.produits.mesure');
     }
+
+    public function syntheticliste()
+    {
+        return view('pages.rapports.list-synthetic');
+    }
 }

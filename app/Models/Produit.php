@@ -17,6 +17,7 @@ class Produit extends Model
         'pu',
         'category_id',
         'designationmesure',
+        'updated_at'
     ];
 
     public function categorie()

@@ -98,7 +98,7 @@
                     <ul class="side-nav-second-level">
 
                         <li>
-                            <a href="/">Les rapport</a>
+                            <a href="{{ route('synthetic') }}">Les rapport</a>
                         </li>
                     </ul>
                 </div>
