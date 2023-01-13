@@ -94,6 +94,7 @@
     <script src="{{ asset('vendor/livewire-alert/livewire-alert.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     @stack('js')
+    @stack('jschart')
     <!-- third party js ends -->
     @livewireScripts
     <!-- demo app -->
