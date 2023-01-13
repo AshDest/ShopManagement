@@ -22,6 +22,7 @@ Route::get('/approvisionnement/list', [App\Http\Controllers\PagesController::cla
 Route::get('/approvisionnement/add/{ids}', [App\Http\Controllers\PagesController::class, 'addapprovisionnement'])->name('addapprovisionnement');
 Route::get('/approvisionnement/edit/{approv_id}', [App\Http\Controllers\PagesController::class, 'editapprovisionnement'])->name('editapprovisionnement');
 Route::get('/list-produits', [App\Http\Controllers\PagesController::class, 'listProduits'])->name('listProduits');
+Route::get('/mesures', [App\Http\Controllers\PagesController::class, 'mesure'])->name('mesures');
 
 Route::get('/shopinformations', [App\Http\Controllers\PagesController::class, 'shopinformation'])->name('shopinformations');
 Route::get('/categorie', [App\Http\Controllers\HomeController::class, 'categorieproduit'])->name('categorie');

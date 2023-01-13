@@ -35,4 +35,9 @@ class PagesController extends Controller
     {
         return view('pages.produits.list-produit');
     }
+
+    public function mesure()
+    {
+        return view('pages.produits.mesure');
+    }
 }
