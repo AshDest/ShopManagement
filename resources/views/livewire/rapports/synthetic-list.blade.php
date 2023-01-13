@@ -29,6 +29,7 @@
                                 <tr>
                                     <th>N°</th>
                                     <th>Description Produit</th>
+                                    <th>Quantité Stock</th>
                                     <th>Total Achat</th>
                                     <th>Total Vente</th>
                                     <th>Prix Revien</th>
@@ -45,10 +46,30 @@
                                         echo $i; $i++
                                         @endphp</td>
                                     <td>{{$product->description}}</td>
-                                    <td>{{($product->qte_stock)*($product->pu_achat)}} CDF</td>
-                                    <td>{{($product->qte_stock)*($product->pu)}} CDF</td>
-                                    <td>{{(($product->qte_stock)*($product->pu))-(($product->qte_stock)*($product->pu_achat))}}
-                                        CDF
+                                    <td>
+                                        @if ($product->qte_stock > 14)
+                                        <span class="badge bg-success">{{$product->qte_stock}}
+                                            {{$product->designationmesure}}</span>
+                                        @elseif ($product->qte_stock < 15 && $product->qte_stock > 5)
+                                            <span class="badge bg-warning">{{$product->qte_stock}}
+                                                {{$product->designationmesure}}</span>
+                                            @else
+                                            <span class="badge bg-danger">{{$product->qte_stock}}
+                                                {{$product->designationmesure}}</span>
+                                            @endif
+                                    </td>
+                                    <td>@php
+                                        echo number_format((($product->qte_stock)*($product->pu_achat))).' CDF'
+                                        @endphp</td>
+                                    <td>@php
+                                        echo number_format(($product->qte_stock)*($product->pu)).' CDF'
+                                        @endphp</td>
+                                    <td>
+                                        @php
+                                        echo
+                                        number_format((($product->qte_stock)*($product->pu))-(($product->qte_stock)*($product->pu_achat))).'
+                                        CDF'
+                                        @endphp
                                     </td>
                                     <td>{{$product->updated_at}}</td>
                                 </tr>
