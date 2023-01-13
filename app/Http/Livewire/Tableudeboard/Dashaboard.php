@@ -87,12 +87,13 @@ class Dashaboard extends Component
     public function mount()
     {
         $month = [];
-
         for ($m = 1; $m <= 12; $m++) {
             $month[] = date('F', mktime(0, 0, 0, $m, 1, date('Y')));
         }
         $this->all_month = $month;
     }
+
+
     public function charger()
     {
         if ($this->dt_filtre) {
