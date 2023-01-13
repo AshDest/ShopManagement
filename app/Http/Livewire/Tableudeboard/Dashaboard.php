@@ -65,7 +65,6 @@ class Dashaboard extends Component
         $data_top = array();
         $data_id = array();
         foreach ($topproduct as $top) {
-
             array_push($data_top, $top->nbr);
             array_push($data_id, $top->description);
             $this->topproduct = $data_top;
