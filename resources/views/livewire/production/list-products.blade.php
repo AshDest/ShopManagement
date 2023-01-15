@@ -16,9 +16,9 @@
                         </div>
                         <div class="col-xl-4">
                             <div class="text-xl-end mt-xl-0 mt-2">
-                                <a href="" class="btn btn-danger mb-2 me-2"><i
-                                    class="mdi mdi-basket me-1"></i> Add New Order</a>
-                                <button type="button" class="btn btn-light mb-2">Export</button>
+                                <a href="" class="btn btn-danger mb-2 me-2"><i class="mdi mdi-file-pdf-box"></i>
+                                    Export
+                                    PDF</a>
                             </div>
                         </div><!-- end col-->
                     </div>
@@ -38,14 +38,14 @@
                             </thead>
                             <tbody>
                                 @php
-                                    $i = 1;
+                                $i = 1;
                                 @endphp
                                 @forelse ($products as $product)
                                 <tr>
                                     <td class="table-user">
                                         @php
-                                            echo $i;
-                                            $i++;
+                                        echo $i;
+                                        $i++;
                                         @endphp
                                     </td>
                                     <td>{{ $product->code }}</td>
@@ -54,21 +54,22 @@
                                     <td>{{ $product->pu }}Fr Congolais</td>
                                     <td>{{ $product->categorie->designation }}</td>
                                     <td class="table-action">
-                                        <a href="{{ route('addapprovisionnement', ['ids'=>$product->id]) }}" class="action-icon"
-                                            style="cursor: pointer;"> <i class="mdi mdi-plus-circle-multiple-outline"></i></a>
+                                        <a href="{{ route('addapprovisionnement', ['ids'=>$product->id]) }}"
+                                            class="action-icon" style="cursor: pointer;"> <i
+                                                class="mdi mdi-plus-circle-multiple-outline"></i></a>
                                     </td>
                                 </tr>
                                 @empty
                                 <div class="alert alert-warning" role="alert">
                                     Pas d'Approvisionnements
                                 </div>
-                            @endforelse
+                                @endforelse
                             </tbody>
                         </table>
                         <br>
                         <center>
                             @if (count($products))
-                                {{ $products->links('vendor.livewire.bootstrap') }}
+                            {{ $products->links('vendor.livewire.bootstrap') }}
                             @endif
                         </center>
                     </div>
