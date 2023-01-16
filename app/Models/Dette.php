@@ -12,6 +12,7 @@ class Dette extends Model
     protected $fillable = [
         'client_id',
         'total_dette',
+        'created_at',
     ];
 
     public function client()

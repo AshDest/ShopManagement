@@ -12,18 +12,18 @@
                                         readonly="" value="Readonly value">
                                     <div class="valid-feedback">
                                         @error('qte_approv')
-                                            <span style="color: red;">{{ $message }}</span>
+                                        <span style="color: red;">{{ $message }}</span>
                                         @enderror
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <label for="example-select" class="form-label">Produit</label>
-                                <input type="text" wire:model='description' id="example-readonly"
-                                    class="form-control" readonly="" value="Readonly value">
+                                <input type="text" wire:model='description' id="example-readonly" class="form-control"
+                                    readonly="" value="Readonly value">
                                 <div class="valid-feedback">
                                     @error('description')
-                                        <span style="color: red;">{{ $message }}</span>
+                                    <span style="color: red;">{{ $message }}</span>
                                     @enderror
                                 </div>
                             </div>
@@ -35,7 +35,7 @@
                                             data-bts-max="1000000" type="text" value="0" placeholder="100">
                                         <div class="valid-feedback">
                                             @error('qte_approv')
-                                                <span style="color: red;">{{ $message }}</span>
+                                            <span style="color: red;">{{ $message }}</span>
                                             @enderror
                                         </div>
                                     </div>
@@ -43,22 +43,20 @@
                                 <div class="mb-3 col-md-4" wire:ignore>
                                     <label class="form-label">Prix d'Achat (CDF)</label>
                                     <input data-toggle="touchspin" wire:model='pu_approv' placeholder="1000.00"
-                                        value="0.00" type="text" data-decimals="2" data-bts-max="1000000000"
-                                        data-bts-postfix="CDF">
+                                        init-val="1" type="text" data-decimals="2" data-bts-postfix="CDF">
                                     <div class="valid-feedback">
                                         @error('pu_approv')
-                                            <span style="color: red;">{{ $message }}</span>
+                                        <span style="color: red;">{{ $message }}</span>
                                         @enderror
                                     </div>
                                 </div>
                                 <div class="mb-3 col-md-4" wire:ignore>
                                     <label class="form-label">Prix de Vente (CDF)</label>
                                     <input data-toggle="touchspin" wire:model='pu_vente' placeholder="1000.00"
-                                        value="0.00" type="text" data-decimals="2" data-bts-max="1000000000"
-                                        data-bts-postfix="CDF">
+                                        type="text" data-decimals="2" data-bts-postfix="CDF">
                                     <div class="valid-feedback">
                                         @error('pu_vente')
-                                            <span style="color: red;">{{ $message }}</span>
+                                        <span style="color: red;">{{ $message }}</span>
                                         @enderror
                                     </div>
                                 </div>
