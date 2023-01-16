@@ -4,9 +4,17 @@ namespace App\Http\Livewire\Terminal;
 
 use App\Models\Dette;
 use Livewire\Component;
+use Livewire\WithPagination;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 class Paiements extends Component
 {
+    use WithPagination;
+    use LivewireAlert;
+    public  $reseach, $page_active = 4;
+
+    public $montant_dette;
+    public $montant_paie;
     // public function conclusionConsultation($id)
     // {
     //     $this->appointement = $id;
@@ -26,11 +34,22 @@ class Paiements extends Component
 
     public function paiementview($id)
     {
-        $this->dispatchBrowserEvent('show-consultation-modal');
+        $this->dispatchBrowserEvent('paiementview');
     }
     public function render()
     {
-        $dettes = Dette::all();
-        return view('livewire.terminal.paiements', ['dettes' => $dettes]);
+        if ($this->reseach) {
+            return view('livewire.terminal.paiements', [
+                'dettes' => Dette::where('client_id', 'LIKE', '%' . $this->reseach . '%')
+                    ->orwhereHas('client', function ($s) {
+                        $s->where('noms', 'LIKE', '%' . $this->reseach . '%');
+                    })
+                    ->paginate($this->page_active)
+            ]);
+        } else {
+            return view('livewire.terminal.paiements', [
+                'dettes' => Dette::orderBy('created_at', 'DESC')->paginate($this->page_active)
+            ]);
+        }
     }
 }

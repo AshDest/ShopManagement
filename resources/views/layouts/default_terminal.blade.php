@@ -88,6 +88,7 @@
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     @stack('js')
     @stack('jschart')
+    @stack('scripts')
     <!-- third party js ends -->
     @livewireScripts
     <!-- demo app -->
