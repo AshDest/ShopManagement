@@ -187,10 +187,14 @@
                                     <th>Description</th>
                                     <th>Quantité</th>
                                     <th>Prix Total</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @if ($this->paniers)
+                                    @php
+                                        $total_general = 0;
+                                    @endphp
                                     @forelse ($this->paniers as $panier)
                                         <tr>
                                             <?php $i = 1; ?>
@@ -200,6 +204,15 @@
                                             <td>{{ $panier->qte_vente }}</td>
                                             <td>{{ number_format($panier->pt_vente) . ' CDF' }}
                                             </td>
+                                            <td class="table-action">
+                                                <a style="cursor: pointer;"
+                                                    wire:click="suppannier({{ $panier->produit->id }},'{{ $panier->qte_vente }}')"
+                                                    class="action-icon">
+                                                    <i class="mdi mdi-delete"></i></a>
+                                            </td>
+                                            @php
+                                                $total_general += $panier->pt_vente;
+                                            @endphp
                                         </tr>
                                     @empty
                                         <tr>
@@ -208,6 +221,12 @@
                                             </td>
                                         </tr>
                                     @endforelse
+                                    <tr>
+                                        <td colspan="4"><b>Total Générale</b> </td>
+                                        <td><b>@php
+                                            echo $total_general;
+                                        @endphp</b></td>
+                                    </tr>
                                 @endif
                             </tbody>
 

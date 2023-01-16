@@ -6,7 +6,9 @@ use App\Models\DetailVente;
 use App\Models\Panier;
 use App\Models\Produit;
 use App\Models\Vente;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
@@ -31,8 +33,8 @@ class Ventes extends Component
     ];
     public function render()
     {
-        $this->paniers = DetailVente::with('vente', function ($s) {
-            $s->where('code', $this->numvente)->get();
+        $this->paniers = DetailVente::whereHas('vente', function ($s) {
+            $s->where('code', $this->numvente);
         })->get();
 
         if ($this->reseach) {
@@ -62,6 +64,7 @@ class Ventes extends Component
     }
     public function formvente($id, $code, $description, $qte_stock, $puprod)
     {
+        $this->qtvendu = "";
         if ($id !== null) {
             $this->flag = 1;
         }
@@ -77,28 +80,49 @@ class Ventes extends Component
         try {
             // `id`, `client_id`, `total`, `montant_paie`, `rest_paie`, `user_id`, `created_at`, `updated_at`, `code`
             if ($this->qtvendu <= $this->qte_stock) {
-                $vente = Vente::create([
-                    'code' => $this->numvente,
-                    'total' => $this->mttotal,
-                    'montant_paie' => 0,
-                    'rest_paie' => $this->mttotal,
-                    'user_id' => Auth::user()->id,
-                ])->save();
+
+                $v_id = Vente::where('code', $this->numvente)->first();
+                $vente = false;
+                if ($v_id) {
+                    $vente = Vente::find($v_id->id)->fill([
+                        'total' => $this->mttotal + $v_id->total,
+                    ])->save();
+                } else {
+                    $vente = Vente::create([
+                        'code' => $this->numvente,
+                        'total' => $this->mttotal,
+                        'montant_paie' => 0,
+                        'rest_paie' => $this->mttotal,
+                        'user_id' => Auth::user()->id,
+                    ])->save();
+                }
                 if ($vente) {
                     $vente_id = Vente::where('code', $this->numvente)->first(['id'])->id;
-
+                    $now = Carbon::now();
                     $detailsvente = DetailVente::create([
                         'produit_id' => $this->id_produit,
                         'vente_id' => $vente_id,
                         'qte_vente' => $this->qtvendu,
-                        'pu_vente' => $this->mttotal,
-                        'user_id' => Auth::user()->id,
+                        'pu_vente' => $this->pu_prod,
+                        'pt_vente' => $this->mttotal,
+                        'resultat' => 0,
+                        'month' => $now->month,
                     ])->save();
                 }
                 // Set Flash Message
-                $this->alert('success', 'Ajouté au panier');
+                if ($detailsvente) {
+                    // $updateproduits = Produit::where('id', $this->id_produit)->first();
+                    $newprod = $this->qte_stock - $this->qtvendu;
+                    $prod = Produit::find($this->id_produit)->fill([
+                        'qte_stock' => $newprod,
+                    ])->save();
+                    if ($prod) {
+                        $this->alert('success', 'Ajouté au panier');
+                        $this->reset_fields();
+                    }
+                }
                 // Reset Form Fields After Creating departement
-                $this->reset_fields();
+
             } else {
                 $this->alert('info', 'Il n\'y a pas cette quantité dans le stock pour ce produit,');
             }
@@ -117,7 +141,21 @@ class Ventes extends Component
     }
     public function updatedqtvendu()
     {
-
         $this->mttotal = floatval($this->qtvendu) * floatval($this->pu_prod);
+    }
+    public function suppannier($id, $qte)
+    {
+        dd($qte);
+        $detaildel = DetailVente::whereId($id)->delete();
+        if ($detaildel) {
+            $produitqt = Produit::where('id', $id)->first();
+            $qte_updated = $qte + $produitqt->qte_stock;
+            $produp = Produit::find($id)->fill([
+                'qte_stock' => $qte_updated,
+            ])->save();
+            if ($produp) {
+                $this->alert('info', 'Produit suprimer dans le panier!');
+            }
+        }
     }
 }
