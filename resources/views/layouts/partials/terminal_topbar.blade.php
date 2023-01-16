@@ -26,7 +26,7 @@
                     <div class="p-2">
                         <div class="row g-0">
                             <div class="col">
-                                <a class="dropdown-icon-item" href="#">
+                                <a class="dropdown-icon-item" href="/vente">
                                     <img src="assets/images/brands/bucketvente.png" alt="vente">
                                     <span>Vente</span>
                                 </a>

@@ -51,4 +51,8 @@ class PagesController extends Controller
     {
         return view('pages.terminals.paiement');
     }
+    public function vente()
+    {
+        return view('pages.terminals.vente');
+    }
 }
