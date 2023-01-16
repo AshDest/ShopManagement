@@ -29,6 +29,8 @@ Route::get('/categorie', [App\Http\Controllers\HomeController::class, 'categorie
 Route::get('/produit', [App\Http\Controllers\HomeController::class, 'produit'])->name('produit');
 Route::get('/compteuser', [App\Http\Controllers\HomeController::class, 'compteuser'])->name('compteuser');
 
+Route::get('/paiement', [App\Http\Controllers\PagesController::class, 'paiements'])->name('paiements');
+
 Route::get('/synthetic', [App\Http\Controllers\PagesController::class, 'syntheticliste'])->name('synthetic');
 Route::get('/', function () {
     return Redirect::to('/home');

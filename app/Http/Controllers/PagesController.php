@@ -45,4 +45,10 @@ class PagesController extends Controller
     {
         return view('pages.rapports.list-synthetic');
     }
+
+
+    public function paiements()
+    {
+        return view('pages.terminals.paiement');
+    }
 }
