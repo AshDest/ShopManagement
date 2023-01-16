@@ -230,6 +230,11 @@
                                             echo $total_general;
                                         @endphp</b></td>
                                     </tr>
+                                    <tr>
+                                        <td colspan="2"><b>Total Générale</b> </td>
+                                        <td colspan="2"> <button class="btn btn-success" type="submit">Terminer
+                                                et payer</button></td>
+                                    </tr>
                                 @endif
                             </tbody>
 

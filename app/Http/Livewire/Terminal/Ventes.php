@@ -65,6 +65,7 @@ class Ventes extends Component
     public function formvente($id, $code, $description, $qte_stock, $puprod)
     {
         $this->qtvendu = "";
+        $this->mttotal = "";
         if ($id !== null) {
             $this->flag = 1;
         }
@@ -138,6 +139,7 @@ class Ventes extends Component
     {
         $this->id_produit = "";
         $this->qte_stock = "";
+        $this->mttotal = "";
         $this->description = "";
     }
     public function updatedqtvendu()
