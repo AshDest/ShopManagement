@@ -2,6 +2,8 @@
 
 namespace App\Http\Livewire\Terminal;
 
+use App\Models\DetailVente;
+use App\Models\Panier;
 use App\Models\Produit;
 use App\Models\Vente;
 use Illuminate\Support\Facades\Auth;
@@ -13,6 +15,7 @@ class Ventes extends Component
 {
     use WithPagination;
     use LivewireAlert;
+    public $paniers = null;
     public  $reseach, $page_active = 3;
     public $id_produit, $pu_prod, $numvente, $description, $qtvendu, $qte_stock, $mttotal;
     public $flag = 0;
@@ -28,6 +31,9 @@ class Ventes extends Component
     ];
     public function render()
     {
+        $this->paniers = DetailVente::with('vente', function ($s) {
+            $s->where('code', $this->numvente)->get();
+        })->get();
 
         if ($this->reseach) {
             return view('livewire.terminal.ventes', [
@@ -64,19 +70,31 @@ class Ventes extends Component
         $this->pu_prod = $puprod;
         $this->description = $code . ' ' . $description . ' à ' . number_format($this->pu_prod) . ' CDF l\'unité';
     }
+
     public function savepanier()
     {
         $this->validate();
         try {
             // `id`, `client_id`, `total`, `montant_paie`, `rest_paie`, `user_id`, `created_at`, `updated_at`, `code`
             if ($this->qtvendu <= $this->qte_stock) {
-                Vente::create([
-                    'code' => $this->code,
+                $vente = Vente::create([
+                    'code' => $this->numvente,
                     'total' => $this->mttotal,
                     'montant_paie' => 0,
                     'rest_paie' => $this->mttotal,
                     'user_id' => Auth::user()->id,
                 ])->save();
+                if ($vente) {
+                    $vente_id = Vente::where('code', $this->numvente)->first(['id'])->id;
+
+                    $detailsvente = DetailVente::create([
+                        'produit_id' => $this->id_produit,
+                        'vente_id' => $vente_id,
+                        'qte_vente' => $this->qtvendu,
+                        'pu_vente' => $this->mttotal,
+                        'user_id' => Auth::user()->id,
+                    ])->save();
+                }
                 // Set Flash Message
                 $this->alert('success', 'Ajouté au panier');
                 // Reset Form Fields After Creating departement

@@ -15,11 +15,16 @@ class DetailVente extends Model
         'pu_vente',
         'pt_vente',
         'month',
-        'resultat'
+        'resultat',
+        'vente_id',
     ];
 
     public function produit()
     {
         return $this->belongsTo(Produit::class, 'produit_id');
+    }
+    public function vente()
+    {
+        return $this->belongsTo(Vente::class, 'vente_id');
     }
 }

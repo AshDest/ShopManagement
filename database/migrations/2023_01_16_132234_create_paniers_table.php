@@ -13,12 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('panniers', function (Blueprint $table) {
+        Schema::create('paniers', function (Blueprint $table) {
             $table->id();
+            $table->string('codeprod');
             $table->string('description');
+            $table->float('qtvendu')->default('0');
             $table->float('pu_vente')->default('0');
             $table->float('pt_vente')->default('0');
-            $table->float('resultat')->default('0.0');
+            $table->string('user_id');
             $table->timestamps();
         });
     }
@@ -30,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('panniers');
+        Schema::dropIfExists('paniers');
     }
 };

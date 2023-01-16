@@ -27,4 +27,8 @@ class Vente extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+    public function detailvente()
+    {
+        return $this->hasMany(DetailVente::class);
+    }
 }

@@ -179,35 +179,36 @@
                         </li>
                     </ul> <!-- end nav-->
                     <div class="tab-content">
+
                         <table class="table table-striped table-centered mb-0">
                             <thead>
                                 <tr>
                                     <th>N<sup>o</sup></th>
                                     <th>Description</th>
-                                    <th>Quantité en stock et Pu</th>
+                                    <th>Quantité</th>
                                     <th>Prix Total</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($detailsventes as $detailsvente)
-                                    <tr>
-                                        <?php $i = 1; ?>
-                                        <td><?php echo $i;
-                                        $i++; ?></td>
-                                        <td>{{ $detailsvente->description }}</td>
-                                        <td>{{ $product->qte_stock . ' ' . $product->designationmesure . ' à ' . number_format($product->pu) . ' CDF' }}
-                                        </td>
-                                        <td>
-                                            {{ $product->description }}
-                                        </td>
-                                    </tr>
-                                @empty
-                                    <tr>
-                                        <td class="alert alert-danger" colspan="12">
-                                            <center>... Pas de produit dans le panier ...</center>
-                                        </td>
-                                    </tr>
-                                @endforelse
+                                @if ($this->paniers)
+                                    @forelse ($this->paniers as $panier)
+                                        <tr>
+                                            <?php $i = 1; ?>
+                                            <td><?php echo $i;
+                                            $i++; ?></td>
+                                            <td>{{ $panier->produit->description }}</td>
+                                            <td>{{ $panier->qte_vente }}</td>
+                                            <td>{{ number_format($panier->pt_vente) . ' CDF' }}
+                                            </td>
+                                        </tr>
+                                    @empty
+                                        <tr>
+                                            <td class="alert alert-danger" colspan="12">
+                                                <center>... Pas de produit dans le panier ...</center>
+                                            </td>
+                                        </tr>
+                                    @endforelse
+                                @endif
                             </tbody>
 
                         </table>
