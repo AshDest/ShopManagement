@@ -36,9 +36,16 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @php
+                                $i = 1;
+                                @endphp
                                 @forelse ($dettes as $dette)
                                 <tr>
-                                    <td></td>
+                                    <td>
+                                        @php
+                                        echo $i; $i++;
+                                        @endphp
+                                    </td>
                                     <td><a href="apps-ecommerce-orders-details.html" class="text-body fw-bold">#{{
                                             $dette->client->noms }}</a> </td>
                                     <td><a href="apps-ecommerce-orders-details.html" class="text-body fw-bold">#{{
@@ -50,7 +57,7 @@
                                         {{ $dette->created_at }}
                                     </td>
                                     <td>
-                                        <a wire:click="delete({{ $dette->id }})" class="action-icon"> <i
+                                        <a wire:click="paiementview({{ $dette->id }})" class="action-icon"> <i
                                                 class="mdi mdi-account-cash-outline"></i></a>
                                     </td>
                                 </tr>
@@ -83,41 +90,31 @@
                             <span><img src="assets/images/logo-dark.png" alt="" height="18"></span>
                         </a>
                     </div>
-
                     <form class="ps-3 pe-3" action="#">
-
                         <div class="mb-3">
-                            <label for="username" class="form-label">Name</label>
-                            <input class="form-control" type="email" id="username" required=""
-                                placeholder="Michael Zenaty">
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="emailaddress" class="form-label">Email address</label>
-                            <input class="form-control" type="email" id="emailaddress" required=""
-                                placeholder="john@deo.com">
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="password" class="form-label">Password</label>
-                            <input class="form-control" type="password" required="" id="password"
-                                placeholder="Enter your password">
-                        </div>
-
-                        <div class="mb-3">
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="customCheck1">
-                                <label class="form-check-label" for="customCheck1">I accept <a href="#">Terms and
-                                        Conditions</a></label>
+                            <label class="form-label">Montant Dette (CDF)</label>
+                            <input data-toggle="touchspin" wire:model='montant_dette' placeholder="1000.00" init-val="1"
+                                type="text" data-decimals="2" data-bts-postfix="CDF">
+                            <div class="valid-feedback">
+                                @error('montant_dette')
+                                <span style="color: red;">{{ $message }}</span>
+                                @enderror
                             </div>
                         </div>
-
-                        <div class="mb-3 text-center">
-                            <button class="btn btn-primary" type="submit">Sign Up Free</button>
+                        <div class="mb-3">
+                            <label class="form-label">Montant Paie (CDF)</label>
+                            <input data-toggle="touchspin" wire:model='montant_paie' placeholder="1000.00" init-val="1"
+                                type="text" data-decimals="2" data-bts-postfix="CDF">
+                            <div class="valid-feedback">
+                                @error('montant_paie')
+                                <span style="color: red;">{{ $message }}</span>
+                                @enderror
+                            </div>
                         </div>
-
+                        <div class="mb-3 text-center">
+                            <button class="btn btn-primary" type="submit">Enregistrer</button>
+                        </div>
                     </form>
-
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
