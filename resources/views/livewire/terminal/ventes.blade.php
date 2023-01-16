@@ -1,6 +1,6 @@
 <div>
     <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-5">
             <div class="card">
                 <div class="card-body">
                     <h4 class="header-title">Liste de produits</h4>
@@ -85,8 +85,9 @@
                     </div> <!-- end tab-content-->
                 </div> <!-- end card-body -->
             </div>
-        </div> <!-- end col -->
-        <div class=" col-lg-6">
+        </div>
+        <!-- end col -->
+        <div class=" col-lg-3">
             <div class="card">
                 <div class="card-body">
                     <h4 class="header-title">Terminal de vente</h4>
@@ -165,6 +166,54 @@
             </div> <!-- end card-->
 
         </div> <!-- end col -->
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title">Panier</h4>
+                    <ul class="nav nav-tabs nav-bordered mb-3">
+                        <li class="nav-item">
+                            <a href="#simple-popover-preview" data-bs-toggle="tab" aria-expanded="false"
+                                class="nav-link active">
+                                Visualisation du panier
+                            </a>
+                        </li>
+                    </ul> <!-- end nav-->
+                    <div class="tab-content">
+                        <table class="table table-striped table-centered mb-0">
+                            <thead>
+                                <tr>
+                                    <th>N<sup>o</sup></th>
+                                    <th>Description</th>
+                                    <th>Quantité en stock et Pu</th>
+                                    <th>Prix Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse ($detailsventes as $detailsvente)
+                                    <tr>
+                                        <?php $i = 1; ?>
+                                        <td><?php echo $i;
+                                        $i++; ?></td>
+                                        <td>{{ $detailsvente->description }}</td>
+                                        <td>{{ $product->qte_stock . ' ' . $product->designationmesure . ' à ' . number_format($product->pu) . ' CDF' }}
+                                        </td>
+                                        <td>
+                                            {{ $product->description }}
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td class="alert alert-danger" colspan="12">
+                                            <center>... Pas de produit dans le panier ...</center>
+                                        </td>
+                                    </tr>
+                                @endforelse
+                            </tbody>
 
+                        </table>
+                    </div> <!-- end tab-content-->
+                </div> <!-- end card-body -->
+            </div>
+        </div>
     </div>
 </div>
