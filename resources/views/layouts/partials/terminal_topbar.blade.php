@@ -15,41 +15,7 @@
         <ul class="list-unstyled topbar-menu float-end mb-0">
 
 
-            <li class="dropdown notification-list topbar-dropdown d-none d-lg-block">
-                <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" id="topbar-languagedrop"
-                    href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                    <img src="assets/images/flags/us.jpg" alt="user-image" class="me-1" height="12"> <span
-                        class="align-middle">English</span> <i class="mdi mdi-chevron-down"></i>
-                </a>
-                <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu"
-                    aria-labelledby="topbar-languagedrop">
 
-                    <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <img src="assets/images/flags/germany.jpg" alt="user-image" class="me-1" height="12"> <span
-                            class="align-middle">German</span>
-                    </a>
-
-                    <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <img src="assets/images/flags/italy.jpg" alt="user-image" class="me-1" height="12"> <span
-                            class="align-middle">Italian</span>
-                    </a>
-
-                    <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <img src="assets/images/flags/spain.jpg" alt="user-image" class="me-1" height="12"> <span
-                            class="align-middle">Spanish</span>
-                    </a>
-
-                    <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <img src="assets/images/flags/russia.jpg" alt="user-image" class="me-1" height="12"> <span
-                            class="align-middle">Russian</span>
-                    </a>
-
-                </div>
-            </li>
             <li class="dropdown notification-list d-none d-sm-inline-block">
                 <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#" role="button"
                     aria-haspopup="false" aria-expanded="false">
@@ -61,20 +27,14 @@
                         <div class="row g-0">
                             <div class="col">
                                 <a class="dropdown-icon-item" href="#">
-                                    <img src="assets/images/brands/slack.png" alt="slack">
-                                    <span>Slack</span>
+                                    <img src="assets/images/brands/bucketvente.png" alt="vente">
+                                    <span>Vente</span>
                                 </a>
                             </div>
                             <div class="col">
                                 <a class="dropdown-icon-item" href="#">
-                                    <img src="assets/images/brands/github.png" alt="Github">
-                                    <span>GitHub</span>
-                                </a>
-                            </div>
-                            <div class="col">
-                                <a class="dropdown-icon-item" href="#">
-                                    <img src="assets/images/brands/dribbble.png" alt="dribbble">
-                                    <span>Dribbble</span>
+                                    <img src="assets/images/brands/list_vente.png" alt="listevente">
+                                    <span>Liste de vente</span>
                                 </a>
                             </div>
                         </div>
@@ -82,20 +42,14 @@
                         <div class="row g-0">
                             <div class="col">
                                 <a class="dropdown-icon-item" href="#">
-                                    <img src="assets/images/brands/bitbucket.png" alt="bitbucket">
-                                    <span>Bitbucket</span>
+                                    <img src="assets/images/brands/admin.png" alt="admin">
+                                    <span>Adminstration</span>
                                 </a>
                             </div>
                             <div class="col">
                                 <a class="dropdown-icon-item" href="#">
-                                    <img src="assets/images/brands/dropbox.png" alt="dropbox">
-                                    <span>Dropbox</span>
-                                </a>
-                            </div>
-                            <div class="col">
-                                <a class="dropdown-icon-item" href="#">
-                                    <img src="assets/images/brands/g-suite.png" alt="G Suite">
-                                    <span>G Suite</span>
+                                    <img src="assets/images/brands/paiment.png" alt="paiment">
+                                    <span>Paiement</span>
                                 </a>
                             </div>
 
@@ -109,8 +63,8 @@
                     role="button" aria-haspopup="false" aria-expanded="false">
                     <span class="account-user-avatar">
                         @if (Auth::user()->avatar)
-                            <img src="{{ asset('assets/images/avatar/' . Auth::user()->avatar . '') }}"
-                                alt="user-image" class="rounded-circle">
+                            <img src="{{ asset('assets/images/avatar/' . Auth::user()->avatar . '') }}" alt="user-image"
+                                class="rounded-circle">
                         @else
                             <img src="{{ asset('assets/images/avatar/avatar.jpg') }}" alt="user-image"
                                 class="rounded-circle">
