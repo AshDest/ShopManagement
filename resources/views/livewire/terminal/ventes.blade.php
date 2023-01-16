@@ -1,6 +1,6 @@
 <div>
     <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-5">
             <div class="card">
                 <div class="card-body">
                     <h4 class="header-title">Liste de produits</h4>
@@ -48,8 +48,9 @@
                                                 <div id="tooltip-container2">
                                                     <button type="button" class="btn btn-warning"
                                                         wire:click="formvente({{ $product->id }},
-                                                        {{ $product->code }},
-                                                        {{ $product->description }},{{ $product->qte_stock }})"
+                                                        '{{ $product->code }}',
+                                                        '{{ $product->description }}','{{ $product->qte_stock }}',
+                                                        '{{ $product->pu }}')"
                                                         data-bs-container="#tooltip-container2" data-bs-toggle="tooltip"
                                                         data-bs-placement="top" title="Ajouter au panier"> <i
                                                             class="mdi mdi-basket-plus"></i></button>
@@ -84,8 +85,9 @@
                     </div> <!-- end tab-content-->
                 </div> <!-- end card-body -->
             </div>
-        </div> <!-- end col -->
-        <div class=" col-lg-6">
+        </div>
+        <!-- end col -->
+        <div class=" col-lg-3">
             <div class="card">
                 <div class="card-body">
                     <h4 class="header-title">Terminal de vente</h4>
@@ -102,7 +104,7 @@
                         </li>
                     </ul> <!-- end nav-->
                     <div class="tab-content">
-                        <form class="needs-validation" wire:submit.prevent="saveproduit">
+                        <form class="needs-validation" wire:submit.prevent="savepanier">
                             <div class="mb-3">
                                 <label for="simpleinput" class="form-label">Numero de vente</label>
                                 <input type="text" wire:model='numvente' id="example-readonly" class="form-control"
@@ -126,17 +128,36 @@
                                 </div>
                             </div>
 
-                            <div class="mb-3" wire:ignore>
+                            <div class="mb-3">
                                 <label class="form-label">Quantié Vendue</label>
-                                <input class="form-control" wire:model='qt_vendu' placeholder="1000.00" type="text"
-                                    data-decimals="1" data-bts-postfix="CDF">
-                                <div class="valid-feedback">
-                                    @error('qt_vendu')
-                                        <span style="color: red;">{{ $message }}</span>
-                                    @enderror
+                                <div class="input-group flex-nowrap">
+                                    <span class="input-group-text" id="basic-addon1">CDF</span>
+                                    <input class="form-control" wire:model='qtvendu' type="number" min="1"
+                                        placeholder="Quantié vendue" aria-label="Quantié vendue"
+                                        aria-describedby="basic-addon1">
                                 </div>
+                                @error('qtvendu')
+                                    <span style="color: red;">{{ $message }}</span>
+                                @enderror
                             </div>
-                            <button class="btn btn-primary" type="submit">Enregistrer</button>
+                            <div class="mb-3">
+                                <label class="form-label">Montant total à payer</label>
+                                <div class="input-group flex-nowrap">
+                                    <span class="input-group-text" id="basic-addon1">CDF</span>
+                                    <input class="form-control" wire:model='mttotal' type="number" min="1"
+                                        placeholder="Montant total à payer" aria-label="Quantié vendue"
+                                        aria-describedby="basic-addon1" disabled>
+                                </div>
+                                @error('mttotal')
+                                    <span style="color: red;">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            @if ($this->flag == 1)
+                                <button class="btn btn-primary" type="submit">Ajouter au panier</button>
+                            @else
+                                <button class="btn btn-primary" type="submit" disabled>Ajouter au panier</button>
+                            @endif
+
                         </form>
 
 
@@ -145,6 +166,54 @@
             </div> <!-- end card-->
 
         </div> <!-- end col -->
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title">Panier</h4>
+                    <ul class="nav nav-tabs nav-bordered mb-3">
+                        <li class="nav-item">
+                            <a href="#simple-popover-preview" data-bs-toggle="tab" aria-expanded="false"
+                                class="nav-link active">
+                                Visualisation du panier
+                            </a>
+                        </li>
+                    </ul> <!-- end nav-->
+                    <div class="tab-content">
+                        <table class="table table-striped table-centered mb-0">
+                            <thead>
+                                <tr>
+                                    <th>N<sup>o</sup></th>
+                                    <th>Description</th>
+                                    <th>Quantité en stock et Pu</th>
+                                    <th>Prix Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse ($detailsventes as $detailsvente)
+                                    <tr>
+                                        <?php $i = 1; ?>
+                                        <td><?php echo $i;
+                                        $i++; ?></td>
+                                        <td>{{ $detailsvente->description }}</td>
+                                        <td>{{ $product->qte_stock . ' ' . $product->designationmesure . ' à ' . number_format($product->pu) . ' CDF' }}
+                                        </td>
+                                        <td>
+                                            {{ $product->description }}
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td class="alert alert-danger" colspan="12">
+                                            <center>... Pas de produit dans le panier ...</center>
+                                        </td>
+                                    </tr>
+                                @endforelse
+                            </tbody>
 
+                        </table>
+                    </div> <!-- end tab-content-->
+                </div> <!-- end card-body -->
+            </div>
+        </div>
     </div>
 </div>
