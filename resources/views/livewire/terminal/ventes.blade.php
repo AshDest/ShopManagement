@@ -47,7 +47,9 @@
                                             @if ($product->qte_stock != 0)
                                                 <div id="tooltip-container2">
                                                     <button type="button" class="btn btn-warning"
-                                                        wire:click="editproduct({{ $product->id }})"
+                                                        wire:click="formvente({{ $product->id }},
+                                                        {{ $product->code }},
+                                                        {{ $product->description }},{{ $product->qte_stock }})"
                                                         data-bs-container="#tooltip-container2" data-bs-toggle="tooltip"
                                                         data-bs-placement="top" title="Ajouter au panier"> <i
                                                             class="mdi mdi-basket-plus"></i></button>
@@ -102,17 +104,17 @@
                     <div class="tab-content">
                         <form class="needs-validation" wire:submit.prevent="saveproduit">
                             <div class="mb-3">
-                                <label for="simpleinput" class="form-label">Code</label>
-                                <input type="text" wire:model='code' id="example-readonly" class="form-control"
+                                <label for="simpleinput" class="form-label">Numero de vente</label>
+                                <input type="text" wire:model='numvente' id="example-readonly" class="form-control"
                                     readonly="" value="Readonly value">
                                 <div class="valid-feedback">
-                                    @error('qte_approv')
+                                    @error('numvente')
                                         <span style="color: red;">{{ $message }}</span>
                                     @enderror
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label" for="validationCustom01">Description</label>
+                                <label class="form-label" for="validationCustom01">Description produit</label>
                                 <input type="text" class="form-control" id="validationCustom01"
                                     placeholder="Description du produit" wire:model="description">
                                 <div class="valid-feedback">
@@ -124,15 +126,15 @@
                                 </div>
                             </div>
 
-                            <div class="mb-3">
-                                <label for="inputState1" class="form-label">Mesure</label>
-                                <select id="inputState1" class="form-select" wire:model="mesureselected">
-                                    <option>Veuillez selection une mesure</option>
-                                    {{-- @foreach ($mesures as $mesure)
-                                        <option value="{{ $mesure->mesures }}">{{ $mesure->mesures }}
-                                        </option>
-                                    @endforeach --}}
-                                </select>
+                            <div class="mb-3" wire:ignore>
+                                <label class="form-label">Quantié Vendue</label>
+                                <input class="form-control" wire:model='qt_vendu' placeholder="1000.00" type="text"
+                                    data-decimals="1" data-bts-postfix="CDF">
+                                <div class="valid-feedback">
+                                    @error('qt_vendu')
+                                        <span style="color: red;">{{ $message }}</span>
+                                    @enderror
+                                </div>
                             </div>
                             <button class="btn btn-primary" type="submit">Enregistrer</button>
                         </form>

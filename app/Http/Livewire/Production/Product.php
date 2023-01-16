@@ -129,6 +129,9 @@ class Product extends Component
             ]);
         }
     }
+    public function formvente($id)
+    {
+    }
     public function mount()
     {
         $this->codeproduit();
