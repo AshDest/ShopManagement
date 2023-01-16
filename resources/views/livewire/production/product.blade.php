@@ -38,7 +38,7 @@
                                             <input type="text" wire:model='code' id="example-readonly"
                                                 class="form-control" readonly="" value="Readonly value">
                                             <div class="valid-feedback">
-                                                @error('qte_approv')
+                                                @error('code')
                                                     <span style="color: red;">{{ $message }}</span>
                                                 @enderror
                                             </div>
