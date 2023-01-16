@@ -206,7 +206,10 @@
                                             </td>
                                             <td class="table-action">
                                                 <a style="cursor: pointer;"
-                                                    wire:click="suppannier({{ $panier->produit->id }},'{{ $panier->qte_vente }}')"
+                                                    wire:click="suppannier({{ $panier->produit->id }},
+                                                    '{{ $panier->qte_vente }}',
+                                                    '{{ $panier->vente_id }}',
+                                                    '{{ $panier->pt_vente }}')"
                                                     class="action-icon">
                                                     <i class="mdi mdi-delete"></i></a>
                                             </td>

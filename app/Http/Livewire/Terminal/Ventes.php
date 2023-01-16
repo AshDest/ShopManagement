@@ -86,6 +86,7 @@ class Ventes extends Component
                 if ($v_id) {
                     $vente = Vente::find($v_id->id)->fill([
                         'total' => $this->mttotal + $v_id->total,
+                        'rest_paie' => $this->mttotal + $v_id->rest_paie,
                     ])->save();
                 } else {
                     $vente = Vente::create([
@@ -143,16 +144,24 @@ class Ventes extends Component
     {
         $this->mttotal = floatval($this->qtvendu) * floatval($this->pu_prod);
     }
-    public function suppannier($id, $qte)
+    public function suppannier($id, $qte, $vente_id, $mttotal)
     {
-        dd($qte);
-        $detaildel = DetailVente::whereId($id)->delete();
+        $detaildel = DetailVente::where('produit_id', $id)->delete();
         if ($detaildel) {
             $produitqt = Produit::where('id', $id)->first();
             $qte_updated = $qte + $produitqt->qte_stock;
             $produp = Produit::find($id)->fill([
                 'qte_stock' => $qte_updated,
             ])->save();
+            $vente_upd = Vente::where('id', $vente_id)->first();
+            $vente = Vente::find($vente_id)->fill([
+                'total' => $vente_upd->total - $mttotal,
+                'rest_paie' => $vente_upd->rest_paie - $mttotal,
+            ])->save();
+            $revente_upd = Vente::where('id', $vente_id)->first();
+            if (($revente_upd->total == "0.00") && ($revente_upd->code == $this->numvente)) {
+                Vente::where('code', $this->numvente)->delete();
+            }
             if ($produp) {
                 $this->alert('info', 'Produit suprimer dans le panier!');
             }
