@@ -14,16 +14,40 @@
 
         <ul class="list-unstyled topbar-menu float-end mb-0">
 
-            <li class="dropdown notification-list d-xl-none">
-                <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#" role="button"
-                    aria-haspopup="false" aria-expanded="false">
-                    <i class="dripicons-search noti-icon"></i>
+
+            <li class="dropdown notification-list topbar-dropdown d-none d-lg-block">
+                <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" id="topbar-languagedrop"
+                    href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                    <img src="assets/images/flags/us.jpg" alt="user-image" class="me-1" height="12"> <span
+                        class="align-middle">English</span> <i class="mdi mdi-chevron-down"></i>
                 </a>
-                <div class="dropdown-menu dropdown-menu-animated dropdown-lg p-0">
-                    <form class="p-3">
-                        <input type="text" class="form-control" placeholder="Search ..."
-                            aria-label="Recipient's username">
-                    </form>
+                <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu"
+                    aria-labelledby="topbar-languagedrop">
+
+                    <!-- item-->
+                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                        <img src="assets/images/flags/germany.jpg" alt="user-image" class="me-1" height="12"> <span
+                            class="align-middle">German</span>
+                    </a>
+
+                    <!-- item-->
+                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                        <img src="assets/images/flags/italy.jpg" alt="user-image" class="me-1" height="12"> <span
+                            class="align-middle">Italian</span>
+                    </a>
+
+                    <!-- item-->
+                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                        <img src="assets/images/flags/spain.jpg" alt="user-image" class="me-1" height="12"> <span
+                            class="align-middle">Spanish</span>
+                    </a>
+
+                    <!-- item-->
+                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                        <img src="assets/images/flags/russia.jpg" alt="user-image" class="me-1" height="12"> <span
+                            class="align-middle">Russian</span>
+                    </a>
+
                 </div>
             </li>
             <li class="dropdown notification-list d-none d-sm-inline-block">
@@ -85,11 +109,11 @@
                     role="button" aria-haspopup="false" aria-expanded="false">
                     <span class="account-user-avatar">
                         @if (Auth::user()->avatar)
-                        <img src="{{ asset('assets/images/avatar/' . Auth::user()->avatar . '') }}" alt="user-image"
-                            class="rounded-circle">
+                            <img src="{{ asset('assets/images/avatar/' . Auth::user()->avatar . '') }}"
+                                alt="user-image" class="rounded-circle">
                         @else
-                        <img src="{{ asset('assets/images/avatar/avatar.jpg') }}" alt="user-image"
-                            class="rounded-circle">
+                            <img src="{{ asset('assets/images/avatar/avatar.jpg') }}" alt="user-image"
+                                class="rounded-circle">
                         @endif
                     </span>
                     <span>
