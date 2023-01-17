@@ -1,16 +1,14 @@
 <div>
     <div class="row">
-        <div class="col-lg-3">
-
+        <div class="col-lg-2">
         </div>
         <!-- end col -->
-        <div class=" col-lg-5">
+        <div class=" col-lg-8">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="header-title">Liste de produits</h4>
+                    <h4 class="header-title">Liste de Vente</h4>
                     <p class="text-muted font-14">
-                        Selectionner le produit dans la liste pour l'ajouter au panier ou faite une recherche de votre
-                        produit
+                        Liste de toutes les ventes
                     </p>
                     <div class="mb-3">
                         <div class="app-search dropdown d-none d-lg-block">
@@ -26,7 +24,7 @@
                         <li class="nav-item">
                             <a href="#simple-popover-preview" data-bs-toggle="tab" aria-expanded="false"
                                 class="nav-link active">
-                                Liste de produit
+                                Liste de vente
                             </a>
                         </li>
                     </ul> <!-- end nav-->
@@ -34,42 +32,33 @@
                         <table class="table table-striped table-centered mb-0">
                             <thead>
                                 <tr>
-                                    <th>Code</th>
-                                    <th>Description</th>
-                                    <th>Quantité en stock et Pu</th>
-                                    <th> Ajouter au panier</th>
+                                    <th>Id</th>
+                                    <th>Numero de Vente</th>
+                                    <th>Prix de vente Total</th>
+                                    <th>Montant Payé</th>
+                                    <th> Reste à payé</th>
+                                    <th> Date de Vente</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($products as $product)
+                                @php
+                                    $total_vente = 0;
+                                    $total_payer = 0;
+                                    $total_reste = 0;
+                                @endphp
+                                @forelse ($ventes as $vente)
                                     <tr>
-                                        <td>{{ $product->code }}</td>
-                                        <td>{{ $product->description }}</td>
-                                        <td>{{ $product->qte_stock . ' ' . $product->designationmesure . ' à ' . number_format($product->pu) . ' CDF' }}
-                                        </td>
-                                        <td>
-                                            @if ($product->qte_stock != 0)
-                                                <div id="tooltip-container2">
-                                                    <button type="button" class="btn btn-warning"
-                                                        wire:click="formvente({{ $product->id }},
-                                                        '{{ $product->code }}',
-                                                        '{{ $product->description }}','{{ $product->qte_stock }}',
-                                                        '{{ $product->pu }}',
-                                                        '{{ $product->pu_achat }}')"
-                                                        data-bs-container="#tooltip-container2" data-bs-toggle="tooltip"
-                                                        data-bs-placement="top" title="Ajouter au panier"> <i
-                                                            class="mdi mdi-basket-plus"></i></button>
-                                                </div>
-                                            @else
-                                                <div id="tooltip-container2">
-                                                    <button type="button" class="btn btn-warning" disabled
-                                                        wire:click="editproduct({{ $product->id }})"
-                                                        data-bs-container="#tooltip-container2" data-bs-toggle="tooltip"
-                                                        data-bs-placement="top" title="Ajouter au panier"> <i
-                                                            class="mdi mdi-basket-plus"></i></button>
-                                                </div>
-                                            @endif
-                                        </td>
+                                        <td>{{ $vente->id }}</td>
+                                        <td>{{ $vente->code }}</td>
+                                        <td>{{ number_format($vente->total) . ' CDF' }}</td>
+                                        <td>{{ number_format($vente->montant_paie) . ' CDF' }}</td>
+                                        <td>{{ number_format($vente->rest_paie) . ' CDF' }}</td>
+                                        <td>{{ $vente->created_at }}</td>
+                                        @php
+                                            $total_vente += $vente->total;
+                                            $total_payer += $vente->montant_paie;
+                                            $total_reste += $vente->rest_paie;
+                                        @endphp
                                     </tr>
                                 @empty
                                     <tr>
@@ -78,20 +67,33 @@
                                         </td>
                                     </tr>
                                 @endforelse
+                                <tr>
+                                    <td colspan="2"><b>Total Générale</b> </td>
+                                    <td><b>@php
+                                        echo number_format($total_vente);
+                                    @endphp</b></td>
+                                    <td><b>@php
+                                        echo number_format($total_payer);
+                                    @endphp</b></td>
+                                    <td><b>@php
+                                        echo number_format($total_reste);
+                                    @endphp</b></td>
+                                    <td><b>Total Générale</b> </td>
+                                </tr>
                             </tbody>
 
                         </table>
                         <br>
                         <center>
-                            @if (count($products))
-                                {{ $products->links('vendor.livewire.bootstrap') }}
+                            @if (count($ventes))
+                                {{ $ventes->links('vendor.livewire.bootstrap') }}
                             @endif
                         </center>
                     </div> <!-- end tab-content-->
                 </div> <!-- end card-body -->
             </div>
         </div> <!-- end col -->
-        <div class="col-lg-4">
+        <div class="col-lg-2">
 
         </div>
     </div>
