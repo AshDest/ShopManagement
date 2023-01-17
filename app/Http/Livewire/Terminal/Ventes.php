@@ -21,6 +21,7 @@ class Ventes extends Component
     public  $reseach, $page_active = 3;
     public $id_produit, $pu_prod, $numvente, $description, $qtvendu, $qte_stock, $mttotal;
     public $flag = 0;
+    public $numventepaiement, $mtapayer, $mtpayer;
     protected $rules = [
         'numvente' => 'required',
         'description' => 'required',
@@ -171,6 +172,9 @@ class Ventes extends Component
     }
     public function paiement()
     {
+        $vente_total = Vente::where('code', $this->numvente)->first();
+        $this->mtapayer = number_format($vente_total->total);
+        $this->numventepaiement = $this->numvente;
         $this->dispatchBrowserEvent('paiementsave');
     }
 }

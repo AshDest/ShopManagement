@@ -227,7 +227,7 @@
                                     <tr>
                                         <td colspan="4"><b>Total Générale</b> </td>
                                         <td><b>@php
-                                            echo $total_general;
+                                            echo number_format($total_general);
                                         @endphp</b></td>
                                     </tr>
                                     <tr>
