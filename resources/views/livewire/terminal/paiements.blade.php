@@ -18,7 +18,8 @@
                                 </div>
                                 <div class="col-xl-4">
                                     <div class="text-xl-end mt-xl-0 mt-2">
-                                        <a href="" class="btn btn-danger mb-2 me-2"><i class="mdi mdi-file-pdf-box"></i>
+                                        <a href="" class="btn btn-danger mb-2 me-2"><i
+                                                class="mdi mdi-file-pdf-box"></i>
                                             Export
                                             PDF</a>
                                     </div>
@@ -39,45 +40,46 @@
                                     </thead>
                                     <tbody>
                                         @php
-                                        $i = 1;
+                                            $i = 1;
                                         @endphp
                                         @forelse ($dettes as $dette)
-                                        <tr>
-                                            <td>
-                                                @php
-                                                echo $i; $i++;
-                                                @endphp
-                                            </td>
-                                            <td><a href="apps-ecommerce-orders-details.html"
-                                                    class="text-body fw-bold">#{{
-                                                    $dette->client->noms }}</a> </td>
-                                            <td><a href="apps-ecommerce-orders-details.html"
-                                                    class="text-body fw-bold">#{{
-                                                    $dette->client->numero }}</a> </td>
-                                            <td>
-                                                @php
-                                                echo number_format($dette->total_dette).' CDF'
-                                                @endphp
-                                            </td>
-                                            <td>
-                                                {{ $dette->updated_at }}
-                                            </td>
-                                            <td>
-                                                <a wire:click="paiementview({{ $dette->id }})" class="action-icon"> <i
-                                                        class="mdi mdi-account-cash-outline"></i></a>
-                                            </td>
-                                        </tr>
+                                            <tr>
+                                                <td>
+                                                    @php
+                                                        echo $i;
+                                                        $i++;
+                                                    @endphp
+                                                </td>
+                                                <td><a href="apps-ecommerce-orders-details.html"
+                                                        class="text-body fw-bold">#{{ $dette->client->noms }}</a> </td>
+                                                <td><a href="apps-ecommerce-orders-details.html"
+                                                        class="text-body fw-bold">#{{ $dette->client->numero }}</a>
+                                                </td>
+                                                <td>
+                                                    @php
+                                                        echo number_format($dette->total_dette) . ' CDF';
+                                                    @endphp
+                                                </td>
+                                                <td>
+                                                    {{ $dette->updated_at }}
+                                                </td>
+                                                <td>
+                                                    <a wire:click="paiementview({{ $dette->id }})"
+                                                        class="action-icon" style="cursor: pointer;"> <i
+                                                            class="mdi mdi-account-cash-outline"></i></a>
+                                                </td>
+                                            </tr>
                                         @empty
-                                        <div class="alert alert-warning" role="alert">
-                                            Pas de dettes
-                                        </div>
+                                            <div class="alert alert-warning" role="alert">
+                                                Pas de dettes
+                                            </div>
                                         @endforelse
                                     </tbody>
                                 </table>
                                 <br>
                                 <center>
                                     @if (count($dettes))
-                                    {{ $dettes->links('vendor.livewire.bootstrap') }}
+                                        {{ $dettes->links('vendor.livewire.bootstrap') }}
                                     @endif
                                 </center>
                             </div>
@@ -100,7 +102,8 @@
                                 </div>
                                 <div class="col-xl-4">
                                     <div class="text-xl-end mt-xl-0 mt-2">
-                                        <a href="" class="btn btn-danger mb-2 me-2"><i class="mdi mdi-file-pdf-box"></i>
+                                        <a href="" class="btn btn-danger mb-2 me-2"><i
+                                                class="mdi mdi-file-pdf-box"></i>
                                             Export
                                             PDF</a>
                                     </div>
@@ -121,45 +124,46 @@
                                     </thead>
                                     <tbody>
                                         @php
-                                        $i = 1;
+                                            $i = 1;
                                         @endphp
                                         @forelse ($paies as $paie)
-                                        <tr>
-                                            <td>
-                                                @php
-                                                echo $i; $i++;
-                                                @endphp
-                                            </td>
-                                            <td><a href="apps-ecommerce-orders-details.html"
-                                                    class="text-body fw-bold">#{{
-                                                    $paie->dette->client->noms }}</a> </td>
-                                            <td><a href="apps-ecommerce-orders-details.html"
-                                                    class="text-body fw-bold">#{{
-                                                    $paie->dette->client->numero }}</a> </td>
-                                            <td>
-                                                @php
-                                                echo number_format($paie->montant_paie).' CDF'
-                                                @endphp
-                                            </td>
-                                            <td>
-                                                {{ $paie->updated_at }}
-                                            </td>
-                                            {{-- <td>
+                                            <tr>
+                                                <td>
+                                                    @php
+                                                        echo $i;
+                                                        $i++;
+                                                    @endphp
+                                                </td>
+                                                <td><a href="apps-ecommerce-orders-details.html"
+                                                        class="text-body fw-bold">#{{ $paie->dette->client->noms }}</a>
+                                                </td>
+                                                <td><a href="apps-ecommerce-orders-details.html"
+                                                        class="text-body fw-bold">#{{ $paie->dette->client->numero }}</a>
+                                                </td>
+                                                <td>
+                                                    @php
+                                                        echo number_format($paie->montant_paie) . ' CDF';
+                                                    @endphp
+                                                </td>
+                                                <td>
+                                                    {{ $paie->updated_at }}
+                                                </td>
+                                                {{-- <td>
                                                 <a wire:click="paiementview({{ $paie->id }})" class="action-icon"> <i
                                                         class="mdi mdi-account-cash-outline"></i></a>
                                             </td> --}}
-                                        </tr>
+                                            </tr>
                                         @empty
-                                        <div class="alert alert-warning" role="alert">
-                                            Pas de paiement
-                                        </div>
+                                            <div class="alert alert-warning" role="alert">
+                                                Pas de paiement
+                                            </div>
                                         @endforelse
                                     </tbody>
                                 </table>
                                 <br>
                                 <center>
                                     @if (count($paies))
-                                    {{ $paies->links('vendor.livewire.bootstrap') }}
+                                        {{ $paies->links('vendor.livewire.bootstrap') }}
                                     @endif
                                 </center>
                             </div>
@@ -188,17 +192,17 @@
                                 readonly>
                             <div class="valid-feedback">
                                 @error('montant_dette')
-                                <span style="color: red;">{{ $message }}</span>
+                                    <span style="color: red;">{{ $message }}</span>
                                 @enderror
                             </div>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Montant Paie (CDF)</label>
-                            <input data-toggle="touchspin" wire:model='montant_paie' placeholder="1000.00" init-val="1"
-                                type="text" data-decimals="2" data-bts-postfix="CDF">
+                            <input data-toggle="touchspin" wire:model='montant_paie' placeholder="1000.00"
+                                init-val="1" type="text" data-decimals="2" data-bts-postfix="CDF">
                             <div class="valid-feedback">
                                 @error('montant_paie')
-                                <span style="color: red;">{{ $message }}</span>
+                                    <span style="color: red;">{{ $message }}</span>
                                 @enderror
                             </div>
                         </div>
@@ -212,13 +216,13 @@
         </div> <!-- end modal dialog-->
     </div> <!-- end modal-->
     @push('scripts')
-    <script type="text/javascript">
-        window.addEventListener('paiementview',event =>{
+        <script type="text/javascript">
+            window.addEventListener('paiementview', event => {
                 $('#add_paie').modal('show');
             });
-            window.addEventListener('close-modal',event =>{
+            window.addEventListener('close-modal', event => {
                 $('#add_paie').modal('hiden');
             });
-    </script>
+        </script>
     @endpush
 </div>
