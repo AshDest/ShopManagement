@@ -63,7 +63,8 @@
                                                 {{ $dette->updated_at }}
                                             </td>
                                             <td>
-                                                <a wire:click="paiementview({{ $dette->id }})" class="action-icon"> <i
+                                                <a wire:click="paiementview({{ $dette->id }})" class="action-icon"
+                                                    style="cursor: pointer;"> <i
                                                         class="mdi mdi-account-cash-outline"></i></a>
                                             </td>
                                         </tr>

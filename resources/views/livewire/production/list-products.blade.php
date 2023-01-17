@@ -50,8 +50,11 @@
                                     </td>
                                     <td>{{ $product->code }}</td>
                                     <td>{{ $product->description }}</td>
-                                    <td>{{ $product->qte_stock . $product->categorie->mesure }}</td>
-                                    <td>{{ $product->pu }}Fr Congolais</td>
+                                    <td>{{ $product->qte_stock . $product->designationmesure }}</td>
+                                    <td>@php
+                                        echo number_format($product->pu).' CDF'
+                                        @endphp
+                                    </td>
                                     <td>{{ $product->categorie->designation }}</td>
                                     <td class="table-action">
                                         <a href="{{ route('addapprovisionnement', ['ids'=>$product->id]) }}"
