@@ -169,4 +169,8 @@ class Ventes extends Component
             }
         }
     }
+    public function paiement()
+    {
+        $this->dispatchBrowserEvent('paiementsave');
+    }
 }
