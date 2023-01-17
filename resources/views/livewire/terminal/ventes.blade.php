@@ -231,8 +231,9 @@
                                         @endphp</b></td>
                                     </tr>
                                     <tr>
-                                        <td colspan="2"><b>Total Générale</b> </td>
-                                        <td colspan="2"> <button class="btn btn-success" type="submit">Terminer
+                                        <td colspan="2"><b></b> </td>
+                                        <td colspan="3"> <button class="btn btn-success"
+                                                style="margin-left: 70px;" type="submit">Terminer
                                                 et payer</button></td>
                                     </tr>
                                 @endif

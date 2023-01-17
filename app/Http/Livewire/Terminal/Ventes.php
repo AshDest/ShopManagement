@@ -48,7 +48,7 @@ class Ventes extends Component
             ]);
         } else {
             return view('livewire.terminal.ventes', [
-                'products' => Produit::orderBy('id', 'DESC')->paginate($this->page_active),
+                'products' => Produit::orderBy('qte_stock', 'DESC')->paginate($this->page_active),
             ]);
         }
     }
