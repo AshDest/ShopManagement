@@ -118,7 +118,7 @@
                             <div class="mb-3">
                                 <label class="form-label" for="validationCustom01">Description produit</label>
                                 <input type="text" class="form-control" id="validationCustom01"
-                                    placeholder="Description du produit" wire:model="description">
+                                    placeholder="Description du produit" wire:model="description" disabled>
                                 <div class="valid-feedback">
                                     <div class="valid-feedback">
                                         @error('description')
@@ -233,9 +233,16 @@
                                     <tr>
                                         <td colspan="2"><b></b> </td>
                                         <td colspan="3">
-                                            <button class="btn btn-success" style="margin-left: 70px;" type="submit"
-                                                wire:click="paiement()">Terminer
-                                                et payer</button>
+                                            @if ($total_general != 0)
+                                                <button class="btn btn-success" style="margin-left: 70px;"
+                                                    type="submit" wire:click="paiement()">Terminer
+                                                    et payer</button>
+                                            @else
+                                                <button class="btn btn-danger" style="margin-left: 70px;"
+                                                    type="submit" wire:click="paiement()" disabled>Terminer
+                                                    et payer</button>
+                                            @endif
+
                                         </td>
                                     </tr>
                                 @endif
@@ -249,12 +256,12 @@
     </div>
 
     <!-- Modal -->
-    <div wire:ignore.self id="add_paimenent" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false"
-        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div id="add_paimenent" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Ajouter un Paiement</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">FORMULAIRE DE PAIEMENT</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
                 </div> <!-- end modal header -->
                 <form class="ps-3 pe-3" action="#">
@@ -293,13 +300,42 @@
                                 <span style="color: red;">{{ $message }}</span>
                             @enderror
                         </div>
+                        @if ($formclient)
+                            <div class="mb-3">
+                                <label class="form-label">Numéro de telephone</label>
+                                <div class="input-group flex-nowrap">
+                                    <span class="input-group-text" id="basic-addon1"><i
+                                            class="dripicons-phone"></i></span>
+                                    <input class="form-control" wire:model='numphoneclient' type="text"
+                                        placeholder="Numéro de telephone" aria-label="Numéro de telephone"
+                                        aria-describedby="basic-addon1">
+                                </div>
+                                @error('numphoneclient')
+                                    <span style="color: red;">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Noms complet du client</label>
+                                <div class="input-group flex-nowrap">
+                                    <span class="input-group-text" id="basic-addon1"><i
+                                            class="dripicons-user"></i></span>
+                                    <input class="form-control" wire:model='nomcompletclient' type="text"
+                                        placeholder="Noms complet du client" aria-label="Noms complet du client"
+                                        aria-describedby="basic-addon1">
+                                </div>
+                                @error('nomcompletclient')
+                                    <span style="color: red;">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        @endif
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Understood</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                        <button type="button" class="btn btn-primary">Paiement</button>
                     </div> <!-- end modal footer -->
                 </form>
-            </div> <!-- end modal content-->
+            </div>
+            <!-- end modal content-->
         </div> <!-- end modal dialog-->
     </div>
     <!-- end modal-->
