@@ -41,13 +41,13 @@
 
                         <div class="row g-0">
                             <div class="col">
-                                <a class="dropdown-icon-item" href="#">
+                                <a class="dropdown-icon-item" href="{{ route('home') }}">
                                     <img src="assets/images/brands/admin.png" alt="admin">
                                     <span>Adminstration</span>
                                 </a>
                             </div>
                             <div class="col">
-                                <a class="dropdown-icon-item" href="#">
+                                <a class="dropdown-icon-item" href="{{ route('paiements') }}">
                                     <img src="assets/images/brands/paiment.png" alt="paiment">
                                     <span>Paiement</span>
                                 </a>
@@ -63,11 +63,11 @@
                     role="button" aria-haspopup="false" aria-expanded="false">
                     <span class="account-user-avatar">
                         @if (Auth::user()->avatar)
-                            <img src="{{ asset('assets/images/avatar/' . Auth::user()->avatar . '') }}" alt="user-image"
-                                class="rounded-circle">
+                        <img src="{{ asset('assets/images/avatar/' . Auth::user()->avatar . '') }}" alt="user-image"
+                            class="rounded-circle">
                         @else
-                            <img src="{{ asset('assets/images/avatar/avatar.jpg') }}" alt="user-image"
-                                class="rounded-circle">
+                        <img src="{{ asset('assets/images/avatar/avatar.jpg') }}" alt="user-image"
+                            class="rounded-circle">
                         @endif
                     </span>
                     <span>
