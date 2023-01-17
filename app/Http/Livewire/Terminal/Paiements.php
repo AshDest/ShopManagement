@@ -34,6 +34,8 @@ class Paiements extends Component
 
     public function paiementview($id)
     {
+        $vars = Dette::where('id', $id)->first();
+        $this->montant_dette = number_format($vars->total_dette) . ' CDF';
         $this->dispatchBrowserEvent('paiementview');
     }
     public function render()

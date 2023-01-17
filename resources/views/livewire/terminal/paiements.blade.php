@@ -80,21 +80,22 @@
         </div> <!-- end col -->
     </div>
     <!-- end row -->
-    <div id="add_paie" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Modal -->
+    <div wire:ignore.self id="add_paie" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-
-                <div class="modal-body">
-                    <div class="text-center mt-2 mb-4">
-                        <a href="index.html" class="text-success">
-                            <span><img src="assets/images/logo-dark.png" alt="" height="18"></span>
-                        </a>
-                    </div>
-                    <form class="ps-3 pe-3" action="#">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Ajouter un Paiement</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                </div> <!-- end modal header -->
+                <form class="ps-3 pe-3" action="#">
+                    <div class="modal-body">
                         <div class="mb-3">
                             <label class="form-label">Montant Dette (CDF)</label>
-                            <input data-toggle="touchspin" wire:model='montant_dette' placeholder="1000.00" init-val="1"
-                                type="text" data-decimals="2" data-bts-postfix="CDF">
+                            <input class="form-control" wire:model='montant_dette' placeholder="1000.00" type="text"
+                                readonly>
                             <div class="valid-feedback">
                                 @error('montant_dette')
                                 <span style="color: red;">{{ $message }}</span>
@@ -111,15 +112,15 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="mb-3 text-center">
-                            <button class="btn btn-primary" type="submit">Enregistrer</button>
-                        </div>
-                    </form>
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
-
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Understood</button>
+                    </div> <!-- end modal footer -->
+                </form>
+            </div> <!-- end modal content-->
+        </div> <!-- end modal dialog-->
+    </div> <!-- end modal-->
     @push('scripts')
     <script type="text/javascript">
         window.addEventListener('paiementview',event =>{
