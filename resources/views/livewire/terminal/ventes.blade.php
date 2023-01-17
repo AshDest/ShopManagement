@@ -50,7 +50,8 @@
                                                         wire:click="formvente({{ $product->id }},
                                                         '{{ $product->code }}',
                                                         '{{ $product->description }}','{{ $product->qte_stock }}',
-                                                        '{{ $product->pu }}')"
+                                                        '{{ $product->pu }}',
+                                                        '{{ $product->pu_achat }}')"
                                                         data-bs-container="#tooltip-container2" data-bs-toggle="tooltip"
                                                         data-bs-placement="top" title="Ajouter au panier"> <i
                                                             class="mdi mdi-basket-plus"></i></button>
@@ -256,8 +257,8 @@
     </div>
 
     <!-- Modal -->
-    <div id="add_paimenent" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div wire:ignore.self id="add_paimenent" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -279,7 +280,8 @@
                         <div class="mb-3">
                             <label class="form-label">Montant total à payer</label>
                             <div class="input-group flex-nowrap">
-                                <span class="input-group-text" id="basic-addon1">CDF</span>
+                                <span class="input-group-text" id="basic-addon1" wire:ignore.self><i
+                                        class="uil-money-stack"></i></span>
                                 <input class="form-control" wire:model='mtapayer' type="number" min="1"
                                     placeholder="Montant total à payer" aria-label="Quantié vendue"
                                     aria-describedby="basic-addon1" disabled>
@@ -291,7 +293,7 @@
                         <div class="mb-3">
                             <label class="form-label">Montant payé</label>
                             <div class="input-group flex-nowrap">
-                                <span class="input-group-text" id="basic-addon1">CDF</span>
+                                <span class="input-group-text"><i class=" uil-receipt-alt"></i></span>
                                 <input class="form-control" wire:model='mtpayer' type="number" min="1"
                                     placeholder="Montant payé" aria-label="Montant payé"
                                     aria-describedby="basic-addon1">
@@ -331,11 +333,10 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                        <button type="button" class="btn btn-primary">Paiement</button>
+                        <button wire:click="savepaiement" type="button" class="btn btn-primary">Paiement</button>
                     </div> <!-- end modal footer -->
                 </form>
-            </div>
-            <!-- end modal content-->
+            </div> <!-- end modal content-->
         </div> <!-- end modal dialog-->
     </div>
     <!-- end modal-->
