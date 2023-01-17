@@ -50,7 +50,8 @@
                                                         wire:click="formvente({{ $product->id }},
                                                         '{{ $product->code }}',
                                                         '{{ $product->description }}','{{ $product->qte_stock }}',
-                                                        '{{ $product->pu }}')"
+                                                        '{{ $product->pu }}',
+                                                        '{{ $product->pu_achat }}')"
                                                         data-bs-container="#tooltip-container2" data-bs-toggle="tooltip"
                                                         data-bs-placement="top" title="Ajouter au panier"> <i
                                                             class="mdi mdi-basket-plus"></i></button>
@@ -118,7 +119,7 @@
                             <div class="mb-3">
                                 <label class="form-label" for="validationCustom01">Description produit</label>
                                 <input type="text" class="form-control" id="validationCustom01"
-                                    placeholder="Description du produit" wire:model="description">
+                                    placeholder="Description du produit" wire:model="description" disabled>
                                 <div class="valid-feedback">
                                     <div class="valid-feedback">
                                         @error('description')
@@ -131,7 +132,7 @@
                             <div class="mb-3">
                                 <label class="form-label">Quantié Vendue</label>
                                 <div class="input-group flex-nowrap">
-                                    <span class="input-group-text" id="basic-addon1">CDF</span>
+                                    <span class="input-group-text" id="basic-addon1">Unité</span>
                                     <input class="form-control" wire:model='qtvendu' type="number" min="1"
                                         placeholder="Quantié vendue" aria-label="Quantié vendue"
                                         aria-describedby="basic-addon1">
@@ -227,14 +228,23 @@
                                     <tr>
                                         <td colspan="4"><b>Total Générale</b> </td>
                                         <td><b>@php
-                                            echo $total_general;
+                                            echo number_format($total_general);
                                         @endphp</b></td>
                                     </tr>
                                     <tr>
                                         <td colspan="2"><b></b> </td>
-                                        <td colspan="3"> <button class="btn btn-success"
-                                                style="margin-left: 70px;" type="submit">Terminer
-                                                et payer</button></td>
+                                        <td colspan="3">
+                                            @if ($total_general != 0)
+                                                <button class="btn btn-success" style="margin-left: 70px;"
+                                                    type="submit" wire:click="paiement()">Terminer
+                                                    et payer</button>
+                                            @else
+                                                <button class="btn btn-danger" style="margin-left: 70px;"
+                                                    type="submit" wire:click="paiement()" disabled>Terminer
+                                                    et payer</button>
+                                            @endif
+
+                                        </td>
                                     </tr>
                                 @endif
                             </tbody>
@@ -245,4 +255,100 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal -->
+    <div wire:ignore.self id="add_paimenent" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">FORMULAIRE DE PAIEMENT</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                </div> <!-- end modal header -->
+                <form class="ps-3 pe-3" action="#">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="simpleinput" class="form-label">Numero de vente</label>
+                            <input type="text" wire:model='numventepaiement' id="example-readonly"
+                                class="form-control" readonly="" value="Readonly value">
+                            <div class="valid-feedback">
+                                @error('numventepaiement')
+                                    <span style="color: red;">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Montant total à payer</label>
+                            <div class="input-group flex-nowrap">
+                                <span class="input-group-text" id="basic-addon1" wire:ignore.self><i
+                                        class="uil-money-stack"></i></span>
+                                <input class="form-control" wire:model='mtapayer' type="number" min="1"
+                                    placeholder="Montant total à payer" aria-label="Quantié vendue"
+                                    aria-describedby="basic-addon1" disabled>
+                            </div>
+                            @error('mtapayer')
+                                <span style="color: red;">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Montant payé</label>
+                            <div class="input-group flex-nowrap">
+                                <span class="input-group-text"><i class=" uil-receipt-alt"></i></span>
+                                <input class="form-control" wire:model='mtpayer' type="number" min="1"
+                                    placeholder="Montant payé" aria-label="Montant payé"
+                                    aria-describedby="basic-addon1">
+                            </div>
+                            @error('mtpayer')
+                                <span style="color: red;">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        @if ($formclient)
+                            <div class="mb-3">
+                                <label class="form-label">Numéro de telephone</label>
+                                <div class="input-group flex-nowrap">
+                                    <span class="input-group-text" id="basic-addon1"><i
+                                            class="dripicons-phone"></i></span>
+                                    <input class="form-control" wire:model='numphoneclient' type="text"
+                                        placeholder="Numéro de telephone" aria-label="Numéro de telephone"
+                                        aria-describedby="basic-addon1">
+                                </div>
+                                @error('numphoneclient')
+                                    <span style="color: red;">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Noms complet du client</label>
+                                <div class="input-group flex-nowrap">
+                                    <span class="input-group-text" id="basic-addon1"><i
+                                            class="dripicons-user"></i></span>
+                                    <input class="form-control" wire:model='nomcompletclient' type="text"
+                                        placeholder="Noms complet du client" aria-label="Noms complet du client"
+                                        aria-describedby="basic-addon1">
+                                </div>
+                                @error('nomcompletclient')
+                                    <span style="color: red;">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        @endif
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                        <button wire:click="savepaiement" type="button" class="btn btn-primary">Paiement</button>
+                    </div> <!-- end modal footer -->
+                </form>
+            </div> <!-- end modal content-->
+        </div> <!-- end modal dialog-->
+    </div>
+    <!-- end modal-->
+    @push('modalpaiment')
+        <script type="text/javascript">
+            window.addEventListener('paiementsave', event => {
+                $('#add_paimenent').modal('show');
+            });
+            window.addEventListener('close-modal', event => {
+                $('#add_paimenent').modal('hiden');
+            });
+        </script>
+    @endpush
+
 </div>

@@ -86,8 +86,7 @@
     <script src="{{ asset('assets/js/vendor/jquery-jvectormap-world-mill-en.js') }}"></script>
     <script src="{{ asset('vendor/livewire-alert/livewire-alert.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-    @stack('js')
-    @stack('jschart')
+    @stack('modalpaiment')
     @stack('scripts')
     <!-- third party js ends -->
     @livewireScripts

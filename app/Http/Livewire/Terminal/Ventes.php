@@ -2,7 +2,9 @@
 
 namespace App\Http\Livewire\Terminal;
 
+use App\Models\Client;
 use App\Models\DetailVente;
+use App\Models\Dette;
 use App\Models\Panier;
 use App\Models\Produit;
 use App\Models\Vente;
@@ -19,8 +21,10 @@ class Ventes extends Component
     use LivewireAlert;
     public $paniers = null;
     public  $reseach, $page_active = 3;
-    public $id_produit, $pu_prod, $numvente, $description, $qtvendu, $qte_stock, $mttotal;
+    public $id_produit, $pu_prod, $numvente, $description, $qtvendu, $qte_stock, $mttotal, $pu_achat;
     public $flag = 0;
+    public $numventepaiement, $mtapayer, $mtpayer, $formclient = false;
+    public $numphoneclient, $nomcompletclient, $client_id, $idvente;
     protected $rules = [
         'numvente' => 'required',
         'description' => 'required',
@@ -62,7 +66,7 @@ class Ventes extends Component
         $pin = mt_rand(1000, 9999) . $characters[rand(0, strlen('ABCDEFGHIJKLMNOPQRSTUVWXYZ') - 1)];
         $this->numvente = 'VENT-' . str_shuffle($pin);
     }
-    public function formvente($id, $code, $description, $qte_stock, $puprod)
+    public function formvente($id, $code, $description, $qte_stock, $puprod, $pa_u)
     {
         $this->qtvendu = "";
         $this->mttotal = "";
@@ -72,6 +76,7 @@ class Ventes extends Component
         $this->id_produit = $id;
         $this->qte_stock = $qte_stock;
         $this->pu_prod = $puprod;
+        $this->pu_achat = $pa_u;
         $this->description = $code . ' ' . $description . ' à ' . number_format($this->pu_prod) . ' CDF l\'unité';
     }
 
@@ -107,7 +112,7 @@ class Ventes extends Component
                         'qte_vente' => $this->qtvendu,
                         'pu_vente' => $this->pu_prod,
                         'pt_vente' => $this->mttotal,
-                        'resultat' => 0,
+                        'resultat' => $this->mttotal - ($this->pu_achat * $this->qtvendu),
                         'month' => $now->month,
                     ])->save();
                 }
@@ -167,6 +172,79 @@ class Ventes extends Component
             if ($produp) {
                 $this->alert('info', 'Produit suprimer dans le panier!');
             }
+        }
+    }
+    public function paiement()
+    {
+        $vente_total = Vente::where('code', $this->numvente)->first();
+        $this->mtapayer = $vente_total->total;
+        $this->numventepaiement = $this->numvente;
+        $this->idvente = $vente_total->id;
+        $this->dispatchBrowserEvent('paiementsave');
+    }
+    public function updatedMtpayer()
+    {
+        if ($this->mtapayer > $this->mtpayer) {
+            $this->formclient = true;
+        } else if ($this->mtpayer >= $this->mtapayer) {
+            $this->formclient = false;
+            $this->nomcompletclient = "";
+            $this->numphoneclient = "";
+        }
+    }
+    public function savepaiement()
+    {
+        if ($this->mtapayer > $this->mtpayer) {
+            // le client est a enregister on constate une dette
+            $cl_id = Client::where('numero', $this->numphoneclient)->first();
+            if (!$cl_id) {
+                Client::create([
+                    'noms' => $this->nomcompletclient,
+                    'numero' => $this->numphoneclient,
+                ])->save();
+            }
+            $this->client_id = Client::where('numero', $this->numphoneclient)->first(['id'])->id;
+            // enregistrement du paiement(update vente)
+            $vente = Vente::find($this->idvente)->fill([
+                'client_id' => $this->client_id,
+                'montant_paie' => $this->mtpayer,
+                'rest_paie' => $this->mtapayer - $this->mtpayer,
+            ])->save();
+            if ($vente) {
+                $dettes = Dette::where('client_id', $this->client_id)->first();
+                if (!$dettes) {
+                    Dette::create([
+                        'client_id' => $this->client_id,
+                        'total_dette' => $this->mtapayer - $this->mtpayer,
+                    ])->save();
+                } else {
+                    Dette::find($dettes->id)->fill([
+                        'client_id' => $this->client_id,
+                        'total_dette' => $dettes->total_dette + ($this->mtapayer - $this->mtpayer),
+                    ])->save();
+                }
+
+                $this->alert('success', 'Paiement bien effectué et dette enregistre!');
+            }
+        } else if ($this->mtpayer >= $this->mtapayer) {
+            $vente = Vente::find($this->idvente)->fill([
+                'montant_paie' => $this->mtpayer,
+                'rest_paie' => $this->mtapayer - $this->mtpayer,
+            ])->save();
+            if ($vente) {
+                $this->alert('success', 'Paiement bien effectué!');
+            }
+            // pas de dette payement cach...on a pas besoin d'enregist le client
+        }
+        redirect('/vente');
+    }
+    public function updatedNumphoneclient()
+    {
+        $infoclient = Client::where('numero', $this->numphoneclient)->first();
+        if ($infoclient) {
+            $this->nomcompletclient = $infoclient->noms;
+        } else {
+            $this->nomcompletclient = "";
         }
     }
 }
