@@ -33,10 +33,35 @@
                     <div class="card widget-flat">
                         <div class="card-body">
                             <div class="float-end">
+                                <i class="mdi mdi-pulse widget-icon"></i>
+                            </div>
+                            <h5 class="text-muted fw-normal mt-0" title="Growth">Ventes</h5>
+                            <h3 class="mt-3 mb-3">
+                                @php
+                                    echo number_format($this->nbr_vente);
+                                @endphp</h3>
+                            <p class="mb-0 text-muted">
+                                <span class="text-nowrap">Total de Ventes</span>
+                                <span class="text-success me-2"><i class="mdi mdi-arrow-up-bold"></i>@php
+                                    echo date('Y');
+                                @endphp
+                                </span>
+                            </p>
+
+                        </div> <!-- end card-body-->
+                    </div> <!-- end card-->
+                </div> <!-- end col-->
+                <div class="col-md-4">
+                    <div class="card widget-flat">
+                        <div class="card-body">
+                            <div class="float-end">
                                 <i class="mdi mdi-currency-usd widget-icon"></i>
                             </div>
                             <h5 class="text-muted fw-normal mt-0" title="CA">CA</h5>
-                            <h3 class="mt-3 mb-3">{{ $this->ca }}Fc</h3>
+                            <h3 class="mt-3 mb-3">
+                                @php
+                                    echo number_format($this->ca) . ' CDF';
+                                @endphp</h3>
                             <p class="mb-0 text-muted">
                                 <span class="text-danger me-2"><i class="mdi mdi-arrow-down-bold"></i>
                                     @php
@@ -51,28 +76,13 @@
                     <div class="card widget-flat">
                         <div class="card-body">
                             <div class="float-end">
-                                <i class="uil-money-insert widget-icon"></i>
-                            </div>
-                            <h5 class="text-muted fw-normal mt-0" title="Average Revenue">Cout d'Achat</h5>
-                            <h3 class="mt-3 mb-3">{{ $this->ctaprov }}Fc</h3>
-                            <p class="mb-0 text-muted">
-                                <span class="text-danger me-2"><i class="mdi mdi-arrow-down-bold"></i>
-                                    @php
-                                        echo date('Y');
-                                    @endphp</span>
-                                <span class="text-nowrap">Cout d'Achat</span>
-                            </p>
-                        </div> <!-- end card-body-->
-                    </div> <!-- end card-->
-                </div> <!-- end col-->
-                <div class="col-md-4">
-                    <div class="card widget-flat">
-                        <div class="card-body">
-                            <div class="float-end">
                                 <i class=" dripicons-graph-pie widget-icon"></i>
                             </div>
                             <h5 class="text-muted fw-normal mt-0" title="Growth">Benefice</h5>
-                            <h3 class="mt-3 mb-3">{{ $this->nbr_benefice }}Fc</h3>
+                            <h3 class="mt-3 mb-3">
+                                @php
+                                    echo number_format($this->nbr_benefice) . ' CDF';
+                                @endphp</h3>
                             <p class="mb-0 text-muted">
                                 <span class="text-danger me-2"><i class="mdi mdi-arrow-down-bold"></i>
                                     @php
@@ -94,10 +104,12 @@
                                 <i class="mdi mdi-account-multiple widget-icon"></i>
                             </div>
                             <h5 class="text-muted fw-normal mt-0" title="Nombre de clients">
-                                Clients</h5>
-                            <h3 class="mt-3 mb-3">{{ $this->nbr_client }}</h3>
+                                Dettes</h5>
+                            <h3 class="mt-3 mb-3">@php
+                                echo number_format($this->sum_dette);
+                            @endphp</h3>
                             <p class="mb-0 text-muted">
-                                <span class="text-nowrap">Nombre de client</span>
+                                <span class="text-nowrap">Total de Dettes</span>
                                 <span class="text-success me-2"><i class="mdi mdi-arrow-up-bold"></i>@php
                                     echo date('Y');
                                 @endphp
@@ -112,10 +124,12 @@
                             <div class="float-end">
                                 <i class="mdi mdi-cart-plus widget-icon"></i>
                             </div>
-                            <h5 class="text-muted fw-normal mt-0" title="Nombre de Produits">Produits</h5>
-                            <h3 class="mt-3 mb-3">{{ $this->nbr_produit }}</h3>
+                            <h5 class="text-muted fw-normal mt-0" title="Nombre de Produits">Montant Payé</h5>
+                            <h3 class="mt-3 mb-3">@php
+                                echo number_format($this->sum_mtpayer);
+                            @endphp</h3>
                             <p class="mb-0 text-muted">
-                                <span class="text-nowrap">Produits stock</span>
+                                <span class="text-nowrap">Montant deja payé</span>
                                 <span class="text-success me-2"><i class="mdi mdi-arrow-up-bold"></i>@php
                                     echo date('Y');
                                 @endphp
@@ -130,10 +144,12 @@
                             <div class="float-end">
                                 <i class="mdi mdi-pulse widget-icon"></i>
                             </div>
-                            <h5 class="text-muted fw-normal mt-0" title="Growth">Ventes</h5>
-                            <h3 class="mt-3 mb-3">{{ $this->nbr_vente }}</h3>
+                            <h5 class="text-muted fw-normal mt-0" title="Growth">Dettes payé</h5>
+                            <h3 class="mt-3 mb-3">@php
+                                echo number_format($this->sumpaiement);
+                            @endphp</h3>
                             <p class="mb-0 text-muted">
-                                <span class="text-nowrap">Total de Ventes</span>
+                                <span class="text-nowrap">Montant des dettes payé</span>
                                 <span class="text-success me-2"><i class="mdi mdi-arrow-up-bold"></i>@php
                                     echo date('Y');
                                 @endphp
@@ -143,6 +159,7 @@
                         </div> <!-- end card-body-->
                     </div> <!-- end card-->
                 </div> <!-- end col-->
+
             </div><!-- end row -->
         </div> <!-- end col -->
 

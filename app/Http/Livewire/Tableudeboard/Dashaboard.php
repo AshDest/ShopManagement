@@ -5,6 +5,8 @@ namespace App\Http\Livewire\Tableudeboard;
 use App\Models\Approvisionnement;
 use App\Models\Client;
 use App\Models\DetailVente;
+use App\Models\Dette;
+use App\Models\Paiement;
 use App\Models\Produit;
 use App\Models\User;
 use App\Models\Vente;
@@ -16,7 +18,7 @@ use Illuminate\Support\Facades\DB;
 class Dashaboard extends Component
 {
     use LivewireAlert;
-    public $dt_filtre, $nbr_client, $nbr_produit, $nbr_vente, $nbr_benefice;
+    public $dt_filtre, $sum_dette, $sum_mtpayer, $nbr_vente, $nbr_benefice, $sumpaiement;
     public $all_month, $sel_per_month = [];
     public  $ben_per_month = [];
 
@@ -108,12 +110,12 @@ class Dashaboard extends Component
         $this->vente();
         $this->beneficie();
         $this->topvente();
-        $this->nbr_client = Client::count();
-        $this->count_user = User::count();
-        $this->nbr_produit = Produit::where('qte_stock', '!=', '0')->count();
-        $this->nbr_benefice = DetailVente::sum('resultat');
+        $this->sum_dette = Dette::sum('total_dette');
         $this->nbr_vente = Vente::count();
-        $this->ca = Produit::sum(DB::raw("qte_stock*pu"));
+        $this->sum_mtpayer = Vente::sum(DB::raw("montant_paie"));
+        $this->nbr_benefice = DetailVente::sum('resultat');
+        $this->sumpaiement = Paiement::sum('montant_paie');
+        $this->ca = Vente::sum(DB::raw("total"));
         $this->ctaprov = Produit::sum(DB::raw("qte_stock*pu_achat"));
 
         // $columnChartModel =
