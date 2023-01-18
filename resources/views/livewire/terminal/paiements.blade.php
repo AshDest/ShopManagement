@@ -68,6 +68,32 @@
                                                         class="mdi mdi-account-cash-outline"></i></a>
                                             </td>
                                         </tr>
+                                        <tr>
+                                            <td>
+                                                @php
+                                                echo $i;
+                                                $i++;
+                                                @endphp
+                                            </td>
+                                            <td><a href="apps-ecommerce-orders-details.html"
+                                                    class="text-body fw-bold">#{{ $dette->client->noms }}</a> </td>
+                                            <td><a href="apps-ecommerce-orders-details.html"
+                                                    class="text-body fw-bold">#{{ $dette->client->numero }}</a>
+                                            </td>
+                                            <td>
+                                                @php
+                                                echo number_format($dette->total_dette) . ' CDF';
+                                                @endphp
+                                            </td>
+                                            <td>
+                                                {{ $dette->updated_at }}
+                                            </td>
+                                            <td>
+                                                <a wire:click="paiementview({{ $dette->id }})" class="action-icon"
+                                                    style="cursor: pointer;"> <i
+                                                        class="mdi mdi-account-cash-outline"></i></a>
+                                            </td>
+                                        </tr>
                                         @empty
                                         <div class="alert alert-warning" role="alert">
                                             Pas de dettes
@@ -128,18 +154,19 @@
                                         <tr>
                                             <td>
                                                 @php
-                                                echo $i; $i++;
+                                                echo $i;
+                                                $i++;
                                                 @endphp
                                             </td>
                                             <td><a href="apps-ecommerce-orders-details.html"
-                                                    class="text-body fw-bold">#{{
-                                                    $paie->dette->client->noms }}</a> </td>
+                                                    class="text-body fw-bold">#{{ $paie->dette->client->noms }}</a>
+                                            </td>
                                             <td><a href="apps-ecommerce-orders-details.html"
-                                                    class="text-body fw-bold">#{{
-                                                    $paie->dette->client->numero }}</a> </td>
+                                                    class="text-body fw-bold">#{{ $paie->dette->client->numero }}</a>
+                                            </td>
                                             <td>
                                                 @php
-                                                echo number_format($paie->montant_paie).' CDF'
+                                                echo number_format($paie->montant_paie) . ' CDF';
                                                 @endphp
                                             </td>
                                             <td>
@@ -214,10 +241,10 @@
     </div> <!-- end modal-->
     @push('scripts')
     <script type="text/javascript">
-        window.addEventListener('paiementview',event =>{
+        window.addEventListener('paiementview', event => {
                 $('#add_paie').modal('show');
             });
-            window.addEventListener('close-modal',event =>{
+            window.addEventListener('close-modal', event => {
                 $('#add_paie').modal('hiden');
             });
     </script>

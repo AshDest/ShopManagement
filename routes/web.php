@@ -31,6 +31,7 @@ Route::get('/compteuser', [App\Http\Controllers\HomeController::class, 'compteus
 
 Route::get('/paiement', [App\Http\Controllers\PagesController::class, 'paiements'])->name('paiements');
 Route::get('/vente', [App\Http\Controllers\PagesController::class, 'vente'])->name('vente');
+Route::get('/listevente', [App\Http\Controllers\PagesController::class, 'listevente'])->name('listevente');
 
 Route::get('/synthetic', [App\Http\Controllers\PagesController::class, 'syntheticliste'])->name('synthetic');
 Route::get('/', function () {

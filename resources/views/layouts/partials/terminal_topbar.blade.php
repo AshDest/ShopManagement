@@ -5,10 +5,10 @@
         <!-- LOGO -->
         <a href="#" class="topnav-logo">
             <span class="topnav-logo-lg">
-                <img src="assets/images/logo-light.png" alt="" height="16">
+                <img src="{{ asset('assets/images/logo-light.png') }}" alt="" height="16">
             </span>
             <span class="topnav-logo-sm">
-                <img src="assets/images/logo_sm_dark.png" alt="" height="16">
+                <img src="{{ asset('assets/images/logo_sm_dark.png') }}" alt="" height="16">
             </span>
         </a>
 
@@ -27,13 +27,13 @@
                         <div class="row g-0">
                             <div class="col">
                                 <a class="dropdown-icon-item" href="/vente">
-                                    <img src="assets/images/brands/bucketvente.png" alt="vente">
+                                    <img src="{{ asset('assets/images/brands/bucketvente.png') }}" alt="vente">
                                     <span>Vente</span>
                                 </a>
                             </div>
                             <div class="col">
-                                <a class="dropdown-icon-item" href="#">
-                                    <img src="assets/images/brands/list_vente.png" alt="listevente">
+                                <a class="dropdown-icon-item" href="/listevente">
+                                    <img src="{{ asset('assets/images/brands/list_vente.png') }}" alt="listevente">
                                     <span>Liste de vente</span>
                                 </a>
                             </div>
@@ -42,13 +42,13 @@
                         <div class="row g-0">
                             <div class="col">
                                 <a class="dropdown-icon-item" href="{{ route('home') }}">
-                                    <img src="assets/images/brands/admin.png" alt="admin">
+                                    <img src="{{ asset('assets/images/brands/admin.png') }}" alt="admin">
                                     <span>Adminstration</span>
                                 </a>
                             </div>
                             <div class="col">
                                 <a class="dropdown-icon-item" href="{{ route('paiements') }}">
-                                    <img src="assets/images/brands/paiment.png" alt="paiment">
+                                    <img src="{{ asset('assets/images/brands/paiment.png') }}" alt="paiment">
                                     <span>Paiement</span>
                                 </a>
                             </div>
@@ -63,11 +63,11 @@
                     role="button" aria-haspopup="false" aria-expanded="false">
                     <span class="account-user-avatar">
                         @if (Auth::user()->avatar)
-                        <img src="{{ asset('assets/images/avatar/' . Auth::user()->avatar . '') }}" alt="user-image"
-                            class="rounded-circle">
+                            <img src="{{ asset('assets/images/avatar/' . Auth::user()->avatar . '') }}" alt="user-image"
+                                class="rounded-circle">
                         @else
-                        <img src="{{ asset('assets/images/avatar/avatar.jpg') }}" alt="user-image"
-                            class="rounded-circle">
+                            <img src="{{ asset('assets/images/avatar/avatar.jpg') }}" alt="user-image"
+                                class="rounded-circle">
                         @endif
                     </span>
                     <span>
