@@ -48,11 +48,11 @@
                                                 echo $i; $i++;
                                                 @endphp
                                             </td>
-                                            <td><a href="apps-ecommerce-orders-details.html"
-                                                    class="text-body fw-bold">#{{
+                                            <td><a href="apps-ecommerce-orders-details.html" class="text-body fw-bold">#
+                                                    {{
                                                     $dette->client->noms }}</a> </td>
-                                            <td><a href="apps-ecommerce-orders-details.html"
-                                                    class="text-body fw-bold">#{{
+                                            <td><a href="apps-ecommerce-orders-details.html" class="text-body fw-bold">#
+                                                    {{
                                                     $dette->client->numero }}</a> </td>
                                             <td>
                                                 @php

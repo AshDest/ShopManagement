@@ -25,7 +25,6 @@
         </div>
     </div>
     <!-- end page title -->
-
     <div class="row">
         <div class="col-lg-6">
             <div class="row g-2">
@@ -47,7 +46,6 @@
                                     @endphp
                                 </span>
                             </p>
-
                         </div> <!-- end card-body-->
                     </div> <!-- end card-->
                 </div> <!-- end col-->
@@ -90,12 +88,10 @@
                                     @endphp</span>
                                 <span class="text-nowrap">Benefice Total</span>
                             </p>
-
                         </div> <!-- end card-body-->
                     </div> <!-- end card-->
                 </div> <!-- end col-->
             </div>
-
             <div class="row g-2">
                 <div class="col-md-4">
                     <div class="card widget-flat">
@@ -106,7 +102,7 @@
                             <h5 class="text-muted fw-normal mt-0" title="Nombre de clients">
                                 Dettes</h5>
                             <h3 class="mt-3 mb-3">@php
-                                echo number_format($this->sum_dette);
+                                echo number_format($this->sum_dette).' CDF';
                                 @endphp</h3>
                             <p class="mb-0 text-muted">
                                 <span class="text-nowrap">Total de Dettes</span>
@@ -126,7 +122,7 @@
                             </div>
                             <h5 class="text-muted fw-normal mt-0" title="Nombre de Produits">Montant Payé</h5>
                             <h3 class="mt-3 mb-3">@php
-                                echo number_format($this->sum_mtpayer);
+                                echo number_format($this->sum_mtpayer). ' CDF';
                                 @endphp</h3>
                             <p class="mb-0 text-muted">
                                 <span class="text-nowrap">Montant deja payé</span>
@@ -146,7 +142,7 @@
                             </div>
                             <h5 class="text-muted fw-normal mt-0" title="Growth">Dettes payé</h5>
                             <h3 class="mt-3 mb-3">@php
-                                echo number_format($this->sumpaiement);
+                                echo number_format($this->sumpaiement). ' CDF';
                                 @endphp</h3>
                             <p class="mb-0 text-muted">
                                 <span class="text-nowrap">Montant dettes payés</span>
@@ -155,14 +151,11 @@
                                     @endphp
                                 </span>
                             </p>
-
                         </div> <!-- end card-body-->
                     </div> <!-- end card-->
                 </div> <!-- end col-->
-
             </div><!-- end row -->
         </div> <!-- end col -->
-
         <div class="col-lg-6">
             <div class="row g-2">
                 <div class="card card-h-100">
@@ -174,22 +167,16 @@
                                 @endphp
                             </h4>
                         </div>
-
                         {{-- chart ici hein --}}
                         <div dir="ltr">
                             <div id="chartvente" class="apex-charts" data-colors="#727cf5,#e3eaef"></div>
                         </div>
-
                     </div>
                 </div>
             </div>
-
             <div class="row g-2">
                 <div class="col-md-4">
-
                 </div> <!-- end col-->
-
-
             </div><!-- end row -->
         </div> <!-- end col -->
         <div class="col-lg-12">
