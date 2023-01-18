@@ -120,7 +120,7 @@
                                         class="row gy-2 gx-2 align-items-center justify-content-xl-start justify-content-between">
                                         <div class="col-auto">
                                             <label for="inputPassword2" class="visually-hidden">Recherche</label>
-                                            <input type="search" wire:model="reseach" class="form-control"
+                                            <input type="search" wire:model="reseach2" class="form-control"
                                                 id="inputPassword2" placeholder="Rechercher ici...">
                                         </div>
                                     </form>
