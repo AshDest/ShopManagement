@@ -33,6 +33,8 @@ Route::get('/paiement', [App\Http\Controllers\PagesController::class, 'paiements
 Route::get('/vente', [App\Http\Controllers\PagesController::class, 'vente'])->name('vente');
 Route::get('/listevente', [App\Http\Controllers\PagesController::class, 'listevente'])->name('listevente');
 
+Route::get('/listconversion', [App\Http\Controllers\PagesController::class, 'listconversion'])->name('listconversion');
+
 Route::get('/synthetic', [App\Http\Controllers\PagesController::class, 'syntheticliste'])->name('synthetic');
 Route::get('/', function () {
     return Redirect::to('/home');
