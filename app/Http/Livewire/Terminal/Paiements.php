@@ -75,7 +75,7 @@ class Paiements extends Component
             ]);
         } elseif ($this->reseach2) {
             return view('livewire.terminal.paiements', [
-                'paies' => Dette::where('montant_paie', 'LIKE', '%' . $this->reseach2 . '%')
+                'paies' => Paiement::where('montant_paie', 'LIKE', '%' . $this->reseach2 . '%')
                     ->orwhereHas('dette', function ($s) {
                         $s->orwhereHas('client', function ($t) {
                             $t->where('noms', 'LIKE', '%' . $this->reseach2 . '%');
