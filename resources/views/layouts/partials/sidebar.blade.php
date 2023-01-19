@@ -65,6 +65,9 @@
                         <li>
                             <a href="{{ route('listapprovisionnement') }}">Approvisionnements</a>
                         </li>
+                        <li>
+                            <a href="{{ route('listconversion') }}">Conversion</a>
+                        </li>
                     </ul>
                 </div>
             </li>

@@ -15,7 +15,9 @@
                             </form>
                         </div>
                         <div class="col-xl-4">
-                            <div class="text-xl-end mt-xl-0 mt-2">
+                            <div class="text-xl-end mt-xl-0 mt-4">
+                                <a href="" class="btn btn-primary mb-2 me-2"><i class="mdi mdi-archive-plus"></i>
+                                    Convertir une Quantité</a>
                                 <a href="" class="btn btn-danger mb-2 me-2"><i class="mdi mdi-file-pdf-box"></i>
                                     Export
                                     PDF</a>
@@ -66,8 +68,8 @@
                         </table>
                         <br>
                         <center>
-                            @if (count($products))
-                            {{ $products->links('vendor.livewire.bootstrap') }}
+                            @if (count($conversions))
+                            {{ $conversions->links('vendor.livewire.bootstrap') }}
                             @endif
                         </center>
                     </div>
