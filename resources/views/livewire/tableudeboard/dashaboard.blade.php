@@ -20,7 +20,7 @@
                         </a> --}}
                     </form>
                 </div>
-                <h4 class="page-title">Tableu de port/Situation de vente pour un mois</h4>
+                <h4 class="page-title">Tableu de Bord /Situation du super marché</h4>
             </div>
         </div>
     </div>
