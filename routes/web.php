@@ -34,6 +34,9 @@ Route::get('/vente', [App\Http\Controllers\PagesController::class, 'vente'])->na
 Route::get('/listevente', [App\Http\Controllers\PagesController::class, 'listevente'])->name('listevente');
 
 Route::get('/synthetic', [App\Http\Controllers\PagesController::class, 'syntheticliste'])->name('synthetic');
+Route::get('/download', [App\Http\Controllers\PagesController::class, 'export'])->name('download');
+
+
 Route::get('/', function () {
     return Redirect::to('/home');
 });
