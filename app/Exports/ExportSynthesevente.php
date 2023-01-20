@@ -5,6 +5,7 @@ namespace App\Exports;
 use App\Models\Produit;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Illuminate\Contracts\Support\Responsable;
+use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithHeadings;
@@ -21,26 +22,26 @@ class ExportSynthesevente implements FromCollection, WithHeadings, Responsable, 
     private $collumns = [
         'CODE',
         'DESCRIPTION',
-        'qte_stock',
-        'Prix Achat Total',
-        'Prix Vente Total',
+        'QUANTIE',
+        'PRIX D\'ACHAT TOTAL',
+        'PRIX DE VENTE TOTAL',
         'MESURE',
-        'Dernier Mise en jour '
+        'DERNIER MISE EN JOUR '
     ];
-    private $collumn2 = [
-        'code',
-        'description',
-        'qte_stock',
-        'pu_achat',
-        'pu',
-        'designationmesure',
-        'updated_at'
-    ];
+
 
     public function collection()
     {
         return Produit::query()
-            ->select($this->collumn2)->get();
+            ->select(
+                'code',
+                'description',
+                'qte_stock',
+                DB::raw("pu_achat*qte_stock"),
+                DB::raw("pu*qte_stock"),
+                'designationmesure',
+                'updated_at'
+            )->get();
     }
     public function headings(): array
     {
