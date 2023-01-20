@@ -15,9 +15,10 @@
                         </div>
                         <div class="col-xl-4">
                             <div class="text-xl-end mt-xl-0 mt-2">
-                                <a href="" class="btn btn-danger mb-2 me-2"><i class="mdi mdi-file-pdf-box"></i>
+                                <a href="/listevente/excel" class="btn btn-success mb-2 me-2"><i
+                                        class="mdi mdi-file-excel"></i>
                                     Export
-                                    PDF</a>
+                                    Excel</a>
                             </div>
                         </div><!-- end col-->
                     </div>

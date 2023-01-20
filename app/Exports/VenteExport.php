@@ -6,12 +6,9 @@ use App\Models\Vente;
 use Illuminate\Contracts\Support\Responsable;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\FromCollection;
-use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
-use Maatwebsite\Excel\Concerns\WithDrawings;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Excel;
-use PhpOffice\PhpSpreadsheet\Shared\Drawing;
 use Carbon\Carbon;
 
 class VenteExport implements FromCollection, WithHeadings, Responsable, ShouldAutoSize
