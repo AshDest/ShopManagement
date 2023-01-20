@@ -58,9 +58,11 @@ class Dashaboard extends Component
     }
     public function topvente()
     {
+        $now = Carbon::now();
         $topproduct =  DB::table('detail_ventes as d')
             ->join('produits as p', 'd.produit_id', '=', 'p.id')
             ->select(DB::raw("count(*) as nbr"), 'produit_id', 'p.description')
+            ->where('month', $now->month)
             ->groupBy('produit_id')
             ->limit('5')
             ->get();
@@ -110,6 +112,8 @@ class Dashaboard extends Component
         $this->vente();
         $this->beneficie();
         $this->topvente();
+        // $this->sum_dette = Dette::where('MONTH(created_at)', $todays->month)
+        //     ->sum('total_dette');
         $this->sum_dette = Dette::sum('total_dette');
         $this->nbr_vente = Vente::count();
         $this->sum_mtpayer = Vente::sum(DB::raw("montant_paie"));

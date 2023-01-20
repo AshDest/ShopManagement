@@ -5,20 +5,20 @@
                 <div class="card-body">
                     <div class="row mb-2">
                         <div class="col-xl-8">
-                            <form
-                                class="row gy-2 gx-2 align-items-center justify-content-xl-start justify-content-between">
-                                <div class="col-auto">
-                                    <label for="inputPassword2" class="visually-hidden">Search</label>
-                                    <input type="search" wire:model="reseach" class="form-control" id="inputPassword2"
-                                        placeholder="Search...">
+                            <div class="app-search dropdown d-none d-lg-block">
+                                <div class="input-group">
+                                    <input type="text" wire:model="reseach" class="form-control dropdown-toggle"
+                                        placeholder="Recherche ici..." id="top-search">
+                                    <span class="mdi mdi-magnify search-icon"></span>
                                 </div>
-                            </form>
+                            </div>
                         </div>
                         <div class="col-xl-4">
                             <div class="text-xl-end mt-xl-0 mt-2">
-                                <a href="" class="btn btn-danger mb-2 me-2"><i class="mdi mdi-file-pdf-box"></i>
+                                <a href="/listepreveiwvente/excel" class="btn btn-success mb-2 me-2"><i
+                                        class="mdi mdi-file-excel"></i>
                                     Export
-                                    PDF</a>
+                                    Excel</a>
                             </div>
                         </div><!-- end col-->
                     </div>
@@ -38,41 +38,41 @@
                             </thead>
                             <tbody>
                                 @php
-                                $i = 1;
+                                    $i = 1;
                                 @endphp
                                 @forelse ($products as $product)
-                                <tr>
-                                    <td class="table-user">
-                                        @php
-                                        echo $i;
-                                        $i++;
+                                    <tr>
+                                        <td class="table-user">
+                                            @php
+                                                echo $i;
+                                                $i++;
+                                            @endphp
+                                        </td>
+                                        <td>{{ $product->code }}</td>
+                                        <td>{{ $product->description }}</td>
+                                        <td>{{ $product->qte_stock . $product->designationmesure }}</td>
+                                        <td>@php
+                                            echo number_format($product->pu) . ' CDF';
                                         @endphp
-                                    </td>
-                                    <td>{{ $product->code }}</td>
-                                    <td>{{ $product->description }}</td>
-                                    <td>{{ $product->qte_stock . $product->designationmesure }}</td>
-                                    <td>@php
-                                        echo number_format($product->pu).' CDF'
-                                        @endphp
-                                    </td>
-                                    <td>{{ $product->categorie->designation }}</td>
-                                    <td class="table-action">
-                                        <a href="{{ route('addapprovisionnement', ['ids'=>$product->id]) }}"
-                                            class="action-icon" style="cursor: pointer;"> <i
-                                                class="mdi mdi-plus-circle-multiple-outline"></i></a>
-                                    </td>
-                                </tr>
+                                        </td>
+                                        <td>{{ $product->categorie->designation }}</td>
+                                        <td class="table-action">
+                                            <a href="{{ route('addapprovisionnement', ['ids' => $product->id]) }}"
+                                                class="action-icon" style="cursor: pointer;"> <i
+                                                    class="mdi mdi-plus-circle-multiple-outline"></i></a>
+                                        </td>
+                                    </tr>
                                 @empty
-                                <div class="alert alert-warning" role="alert">
-                                    Pas d'Approvisionnements
-                                </div>
+                                    <div class="alert alert-warning" role="alert">
+                                        Pas d'Approvisionnements
+                                    </div>
                                 @endforelse
                             </tbody>
                         </table>
                         <br>
                         <center>
                             @if (count($products))
-                            {{ $products->links('vendor.livewire.bootstrap') }}
+                                {{ $products->links('vendor.livewire.bootstrap') }}
                             @endif
                         </center>
                     </div>

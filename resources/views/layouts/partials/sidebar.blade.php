@@ -1,6 +1,6 @@
 <div class="leftside-menu">
     <!-- LOGO -->
-    <a href="index.html" class="logo text-center logo-light">
+    <a href="/" class="logo text-center logo-light">
         <span class="logo-lg">
             <img src="{{ asset('assets/images/logo.png') }}" alt="" height="16">
         </span>
@@ -9,7 +9,7 @@
         </span>
     </a>
     <!-- LOGO -->
-    <a href="index.html" class="logo text-center logo-dark">
+    <a href="/" class="logo text-center logo-dark">
         <span class="logo-lg">
             <img src="{{ asset('assets/images/logo-dark.png') }}" alt="" height="16">
         </span>

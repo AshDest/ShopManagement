@@ -8,10 +8,16 @@
                             <form
                                 class="row gy-2 gx-2 align-items-center justify-content-xl-start justify-content-between">
                                 <div class="col-auto">
-                                    <label for="inputPassword2" class="visually-hidden">Recherche</label>
-                                    <input type="search" wire:model="reseach" class="form-control" id="inputPassword2"
-                                        placeholder="Rechercher ici...">
+                                    <div class="app-search dropdown d-none d-lg-block">
+                                        <div class="input-group">
+                                            <input type="text" wire:model="reseach"
+                                                class="form-control dropdown-toggle" placeholder="Recherche ici..."
+                                                id="top-search">
+                                            <span class="mdi mdi-magnify search-icon"></span>
+                                        </div>
+                                    </div>
                                 </div>
+
                                 <div class="col-auto">
                                     <div class="d-flex align-items-center">
                                         <label for="status-select" class="me-2">Catégorie</label>
@@ -28,9 +34,10 @@
                         </div>
                         <div class="col-xl-4">
                             <div class="text-xl-end mt-xl-0 mt-2">
-                                <a href="" class="btn btn-danger mb-2 me-2"><i class="mdi mdi-file-pdf-box"></i>
+                                <a href="/listepreveiwvente/excel" class="btn btn-success mb-2 me-2"><i
+                                        class="mdi mdi-file-excel"></i>
                                     Export
-                                    PDF</a>
+                                    Excel</a>
                             </div>
                         </div><!-- end col-->
                     </div>

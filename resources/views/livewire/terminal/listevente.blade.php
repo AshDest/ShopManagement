@@ -38,14 +38,24 @@
                         <form class="d-flex">
                             <div class="input-group">
                                 <input type="date" class="form-control form-control-light" wire:model="dt_filtre">
-                                <span style="cursor: pointer;" wire:click="chargerventer"
-                                    class="input-group-text bg-primary border-primary text-white">
-                                    <i class="mdi mdi-arrow-down-circle font-13"></i>
-                                </span>
+                                <div id="tooltip-container2">
+                                    <span style="cursor: pointer;" wire:click="resets"
+                                        data-bs-container="#tooltip-container2" data-bs-toggle="tooltip"
+                                        data-bs-placement="top" title="Reinitialiser"
+                                        class="input-group-text bg-primary border-primary text-white">
+                                        <i class="mdi mdi-autorenew  font-13"></i>
+                                    </span>
+                                </div>
                             </div>
-                            <a class="btn btn-primary ms-2">
-                                <i class="mdi mdi-autorenew"></i>
-                            </a>
+
+                            <div id="tooltip-container2">
+                                <a href="intervalrapport/{{ $this->dt_filtre }}" class="btn btn-primary ms-2"
+                                    data-bs-container="#tooltip-container2" data-bs-toggle="tooltip"
+                                    data-bs-placement="top" title="Telecharger le rapport">
+                                    <i class="mdi mdi-arrow-down-circle"></i>
+                                </a>
+
+                            </div>
                             {{-- <a href="javascript: void(0);" class="btn btn-primary ms-1">
                             <i class="mdi mdi-filter-variant"></i>
                         </a> --}}
@@ -114,7 +124,7 @@
                                 @empty
                                     <tr>
                                         <td class="alert alert-danger" colspan="12">
-                                            <center>... Pas d'enregistement pour l'estant ...</center>
+                                            <center>... Pas de vente ...</center>
                                         </td>
                                     </tr>
                                 @endforelse

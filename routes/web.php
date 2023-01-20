@@ -37,8 +37,10 @@ Route::get('/listconversion', [App\Http\Controllers\PagesController::class, 'lis
 Route::get('/conversion/add', [App\Http\Controllers\PagesController::class, 'addconversion'])->name('addconversion');
 
 Route::get('/synthetic', [App\Http\Controllers\PagesController::class, 'syntheticliste'])->name('synthetic');
+// les routes pour tout les rapports
 Route::get('/listevente/excel', [App\Http\Controllers\PagesController::class, 'listeventexport'])->name('listeventexport');
-
+Route::get('/intervalrapport/{interval}', [App\Http\Controllers\PagesController::class, 'intervalrapport'])->name('intervalrapport');
+Route::get('/listepreveiwvente/excel', [App\Http\Controllers\PagesController::class, 'listepreveiwvente'])->name('listepreveiwvente');
 
 Route::get('/', function () {
     return Redirect::to('/home');
