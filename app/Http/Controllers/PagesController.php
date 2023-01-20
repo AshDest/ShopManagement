@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Exports\UsersExport;
+use App\Exports\VenteExport;
 use Maatwebsite\Excel\Facades\Excel;
 
 class PagesController extends Controller
@@ -70,9 +70,9 @@ class PagesController extends Controller
     }
 
     // LES EXPORTATIONS ICI
-    public function export()
+    public function listeventexport()
     {
-        return Excel::download(new UsersExport, 'users.xlsx');
+        return Excel::download(new VenteExport, 'listevente.xlsx');
         // return Excel::download(new UsersExport, 'invoices.csv', \Maatwebsite\Excel\Excel::CSV);
         // return Excel::download(new UsersExport, 'invoices.pdf', \Maatwebsite\Excel\Excel::MPDF);
     }

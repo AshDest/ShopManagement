@@ -10,14 +10,25 @@
                     <p class="text-muted font-14">
                         Liste de toutes les ventes
                     </p>
-                    <div class="mb-3">
-                        <div class="app-search dropdown d-none d-lg-block">
-                            <div class="input-group">
-                                <input type="text" wire:model="reseach" class="form-control dropdown-toggle"
-                                    placeholder="Recherche ici..." id="top-search">
-                                <span class="mdi mdi-magnify search-icon"></span>
+
+                    <div class="row mb-2">
+                        <div class="col-xl-8">
+                            <div class="app-search dropdown d-none d-lg-block">
+                                <div class="input-group">
+                                    <input type="text" wire:model="reseach" class="form-control dropdown-toggle"
+                                        placeholder="Recherche ici..." id="top-search">
+                                    <span class="mdi mdi-magnify search-icon"></span>
+                                </div>
                             </div>
                         </div>
+                        <div class="col-xl-4">
+                            <div class="text-xl-end mt-xl-0 mt-2">
+                                <a href="/listevente/excel" class="btn btn-success mb-2 me-2"><i
+                                        class="mdi mdi-file-excel"></i>
+                                    Export
+                                    Excel</a>
+                            </div>
+                        </div><!-- end col-->
                     </div>
 
                     <ul class="nav nav-tabs nav-bordered mb-3">

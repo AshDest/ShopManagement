@@ -36,7 +36,7 @@ Route::get('/listevente', [App\Http\Controllers\PagesController::class, 'listeve
 Route::get('/listconversion', [App\Http\Controllers\PagesController::class, 'listconversion'])->name('listconversion');
 
 Route::get('/synthetic', [App\Http\Controllers\PagesController::class, 'syntheticliste'])->name('synthetic');
-Route::get('/download', [App\Http\Controllers\PagesController::class, 'export'])->name('download');
+Route::get('/listevente/excel', [App\Http\Controllers\PagesController::class, 'listeventexport'])->name('listeventexport');
 
 
 Route::get('/', function () {

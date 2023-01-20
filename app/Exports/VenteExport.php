@@ -10,9 +10,10 @@ class VenteExport implements FromCollection, WithHeadings
 {
     private $collumns = [
         'id',
-        'name',
-        'email',
-        'role',
+        'code',
+        'total',
+        'montant_paie',
+        'rest_paie',
         'created_at',
     ];
     /**
@@ -21,8 +22,7 @@ class VenteExport implements FromCollection, WithHeadings
     public function collection()
     {
         return Vente::query()
-            ->select($this->collumns)
-            ->where('role', 'Admin')->get();
+            ->select($this->collumns)->get();
     }
     public function headings(): array
     {
