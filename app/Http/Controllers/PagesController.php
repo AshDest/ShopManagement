@@ -60,11 +60,22 @@ class PagesController extends Controller
     {
         return view('pages.terminals.listevente');
     }
+<<<<<<< HEAD
     // LES EXPORTATIONS ICI
     public function export()
     {
         return Excel::download(new UsersExport, 'users.xlsx');
         // return Excel::download(new UsersExport, 'invoices.csv', \Maatwebsite\Excel\Excel::CSV);
         // return Excel::download(new UsersExport, 'invoices.pdf', \Maatwebsite\Excel\Excel::MPDF);
+=======
+
+    public function listconversion()
+    {
+        return view('pages.conversion.list-conversion');
+    }
+    public function addconversion()
+    {
+        return view('pages.conversion.add-conversion');
+>>>>>>> 821245d9ca9424e7538a446426e8494b28796dfb
     }
 }

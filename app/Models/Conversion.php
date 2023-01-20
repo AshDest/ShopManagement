@@ -16,7 +16,7 @@ class Conversion extends Model
         'motif',
     ];
 
-    public function conversion()
+    public function produit()
     {
         return $this->belongsTo(Produit::class, 'produit_id');
     }

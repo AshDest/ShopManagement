@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Conversion;
 
 use App\Models\Conversion;
+use App\Models\Produit;
 use Livewire\Component;
 
 class AddConversions extends Component
@@ -15,6 +16,8 @@ class AddConversions extends Component
 
     public $oldqte;
     public $oldquantite;
+
+    public $produits;
 
     protected $rules = [
         'produit_id' => 'required',
@@ -34,6 +37,11 @@ class AddConversions extends Component
             'qte_ajout' => $this->qte_ajout,
             'motif' => $this->motif,
         ])->save();
+    }
+
+    public function mount()
+    {
+        $this->produits = Produit::all();
     }
     public function render()
     {
