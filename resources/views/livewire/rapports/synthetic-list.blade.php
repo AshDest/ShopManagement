@@ -30,9 +30,9 @@
                                     <th>N°</th>
                                     <th>Description Produit</th>
                                     <th>Quantité Stock</th>
-                                    <th>Total Achat</th>
-                                    <th>Total Vente</th>
-                                    <th>Prix Revien</th>
+                                    <th>Toal Achat</th>
+                                    <th>Vente Prevu</th>
+                                    <th>Benefice Prevu</th>
                                     <th>Dernier Changement</th>
                                 </tr>
                             </thead>

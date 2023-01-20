@@ -9,7 +9,7 @@
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="{{ route('home') }}">Accueil</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('listapprovisionnement') }}">Liste
+                            <li class="breadcrumb-item"><a href="{{ route('synthetic') }}">Liste
                                     Total/Produit synthetique</a></li>
                             <li class="breadcrumb-item active">Prevision</li>
                         </ol>

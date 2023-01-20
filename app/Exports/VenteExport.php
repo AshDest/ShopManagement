@@ -31,6 +31,14 @@ class VenteExport implements FromCollection, WithHeadings, Responsable, ShouldAu
         'created_at',
     ];
 
+    private $collumn2 = [
+        'NUM',
+        'CODE VENTE',
+        'PRIX DE VENTE TOTLA',
+        'MONTANT PAYER',
+        'RESTE A PAYER',
+        'DATE DE VENTE',
+    ];
     private $dt_from;
     /**
      * @return \Illuminate\Support\Collection
@@ -52,7 +60,7 @@ class VenteExport implements FromCollection, WithHeadings, Responsable, ShouldAu
     }
     public function headings(): array
     {
-        return $this->collumns;
+        return $this->collumn2;
     }
 
     public function forInterval(string $dt_from)
