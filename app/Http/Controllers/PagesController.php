@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Exports\VenteExport;
-use Maatwebsite\Excel\Facades\Excel;
 
 class PagesController extends Controller
 {
@@ -72,8 +71,9 @@ class PagesController extends Controller
     // LES EXPORTATIONS ICI
     public function listeventexport()
     {
-        return Excel::download(new VenteExport, 'listevente.xlsx');
+        return new VenteExport();
+        // return Excel::download(new VenteExport, 'listevente.xlsx');
         // return Excel::download(new UsersExport, 'invoices.csv', \Maatwebsite\Excel\Excel::CSV);
-        // return Excel::download(new UsersExport, 'invoices.pdf', \Maatwebsite\Excel\Excel::MPDF);
+        // return Excel::download(new VenteExport, 'invoices.pdf', \Maatwebsite\Excel\Excel::DOMPDF);
     }
 }
