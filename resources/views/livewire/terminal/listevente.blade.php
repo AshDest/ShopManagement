@@ -114,7 +114,7 @@
                                 @empty
                                     <tr>
                                         <td class="alert alert-danger" colspan="12">
-                                            <center>... Pas d'enregistement pour l'estant ...</center>
+                                            <center>... Pas de vente ...</center>
                                         </td>
                                     </tr>
                                 @endforelse
