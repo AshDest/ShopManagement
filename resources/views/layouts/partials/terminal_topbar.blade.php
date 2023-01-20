@@ -3,7 +3,7 @@
     <div class="container-fluid">
 
         <!-- LOGO -->
-        <a href="#" class="topnav-logo">
+        <a href="/vente" class="topnav-logo">
             <span class="topnav-logo-lg">
                 <img src="{{ asset('assets/images/logo-light.png') }}" alt="" height="16">
             </span>
