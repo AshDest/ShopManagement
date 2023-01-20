@@ -9,7 +9,7 @@
                                 <div class="col-xl-8">
                                     <div class="app-search dropdown d-none d-lg-block">
                                         <div class="input-group">
-                                            <input type="text" wire:model="reseach2"
+                                            <input type="text" wire:model="reseach"
                                                 class="form-control dropdown-toggle" placeholder="Recherche ici..."
                                                 id="top-search">
                                             <span class="mdi mdi-magnify search-icon"></span>
@@ -71,32 +71,7 @@
                                                             class="mdi mdi-account-cash-outline"></i></a>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>
-                                                    @php
-                                                        echo $i;
-                                                        $i++;
-                                                    @endphp
-                                                </td>
-                                                <td><a href="apps-ecommerce-orders-details.html"
-                                                        class="text-body fw-bold">#{{ $dette->client->noms }}</a> </td>
-                                                <td><a href="apps-ecommerce-orders-details.html"
-                                                        class="text-body fw-bold">#{{ $dette->client->numero }}</a>
-                                                </td>
-                                                <td>
-                                                    @php
-                                                        echo number_format($dette->total_dette) . ' CDF';
-                                                    @endphp
-                                                </td>
-                                                <td>
-                                                    {{ $dette->updated_at }}
-                                                </td>
-                                                <td>
-                                                    <a wire:click="paiementview({{ $dette->id }})"
-                                                        class="action-icon" style="cursor: pointer;"> <i
-                                                            class="mdi mdi-account-cash-outline"></i></a>
-                                                </td>
-                                            </tr>
+
                                         @empty
                                             <div class="alert alert-warning" role="alert">
                                                 Pas de dettes
@@ -121,7 +96,7 @@
                                 <div class="col-xl-8">
                                     <div class="app-search dropdown d-none d-lg-block">
                                         <div class="input-group">
-                                            <input type="text" wire:model="reseach"
+                                            <input type="text" wire:model="reseach2"
                                                 class="form-control dropdown-toggle" placeholder="Recherche ici..."
                                                 id="top-search">
                                             <span class="mdi mdi-magnify search-icon"></span>

@@ -1,4 +1,28 @@
 <div>
+    {{-- <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+                <div class="page-title-right">
+                    <form class="d-flex">
+                        <div class="input-group">
+                            <input type="date" class="form-control form-control-light" wire:model="dt_filtre">
+                            <span style="cursor: pointer;" wire:click="charger()"
+                                class="input-group-text bg-primary border-primary text-white">
+                                <i class="mdi mdi-arrow-down-circle font-13"></i>
+                            </span>
+                        </div>
+                        <a class="btn btn-primary ms-2">
+                            <i class="mdi mdi-autorenew"></i>
+                        </a>
+                        {{-- <a href="javascript: void(0);" class="btn btn-primary ms-1">
+                            <i class="mdi mdi-filter-variant"></i>
+                        </a> --}}
+    {{-- </form>
+                </div>
+                <h4 class="page-title">Dashboard</h4>
+            </div>
+        </div>
+    </div> --}}
     <div class="row">
         <div class="col-lg-2">
         </div>
@@ -10,7 +34,23 @@
                     <p class="text-muted font-14">
                         Liste de toutes les ventes
                     </p>
-
+                    <div class="page-title-right">
+                        <form class="d-flex">
+                            <div class="input-group">
+                                <input type="date" class="form-control form-control-light" wire:model="dt_filtre">
+                                <span style="cursor: pointer;" wire:click="chargerventer"
+                                    class="input-group-text bg-primary border-primary text-white">
+                                    <i class="mdi mdi-arrow-down-circle font-13"></i>
+                                </span>
+                            </div>
+                            <a class="btn btn-primary ms-2">
+                                <i class="mdi mdi-autorenew"></i>
+                            </a>
+                            {{-- <a href="javascript: void(0);" class="btn btn-primary ms-1">
+                            <i class="mdi mdi-filter-variant"></i>
+                        </a> --}}
+                        </form>
+                    </div><br>
                     <div class="row mb-2">
                         <div class="col-xl-8">
                             <div class="app-search dropdown d-none d-lg-block">

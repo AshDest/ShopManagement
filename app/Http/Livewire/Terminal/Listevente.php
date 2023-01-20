@@ -12,6 +12,10 @@ class Listevente extends Component
     use WithPagination;
     use LivewireAlert;
     public  $reseach, $page_active = 3;
+    public $dt_filtre;
+    public function chargerventer()
+    {
+    }
     public function render()
     {
         if ($this->reseach) {

@@ -31,6 +31,7 @@ class VenteExport implements FromCollection, WithHeadings, Responsable, ShouldAu
         'rest_paie',
         'created_at',
     ];
+    private $year;
     /**
      * @return \Illuminate\Support\Collection
      */
@@ -44,15 +45,10 @@ class VenteExport implements FromCollection, WithHeadings, Responsable, ShouldAu
         return $this->collumns;
     }
 
-    // public function drawings()
-    // {
-    //     $drawing = new Drawing();
-    //     $drawing->setName('Logo');
-    //     $drawing->setDescription('This is my logo');
-    //     $drawing->setPath(public_path('/img/logo.jpg'));
-    //     $drawing->setHeight(90);
-    //     $drawing->setCoordinates('B3');
+    public function forDays(string $year)
+    {
+        $this->year = $year;
 
-    //     return $drawing;
-    // }
+        return $this;
+    }
 }
