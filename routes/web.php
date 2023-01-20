@@ -34,6 +34,7 @@ Route::get('/vente', [App\Http\Controllers\PagesController::class, 'vente'])->na
 Route::get('/listevente', [App\Http\Controllers\PagesController::class, 'listevente'])->name('listevente');
 
 Route::get('/listconversion', [App\Http\Controllers\PagesController::class, 'listconversion'])->name('listconversion');
+Route::get('/conversion/add', [App\Http\Controllers\PagesController::class, 'addconversion'])->name('addconversion');
 
 Route::get('/synthetic', [App\Http\Controllers\PagesController::class, 'syntheticliste'])->name('synthetic');
 Route::get('/listevente/excel', [App\Http\Controllers\PagesController::class, 'listeventexport'])->name('listeventexport');

@@ -7,67 +7,57 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="mb-3">
-                                    <label for="simpleinput" class="form-label">Code</label>
-                                    <input type="text" wire:model='code' id="example-readonly" class="form-control"
-                                        readonly="" value="Readonly value">
-                                    <select name="code" id="code" wire:model='produit_id' class="form-select">
-                                        @foreach ($produits as $produit)
+                                    <label for="simpleinput" class="form-label">Produit à Convertir</label>
+                                    <select name="selectProdui1" id="code" wire:model='selectProdui1'
+                                        class="form-select">
                                         <option value=""></option>
+                                        @foreach ($produits as $produit)
                                         <option value="{{$produit->id}}">{{$produit->description}}</option>
                                         @endforeach
                                     </select>
                                     <div class="valid-feedback">
-                                        @error('qte_approv')
+                                        @error('selectProdui1')
                                         <span style="color: red;">{{ $message }}</span>
                                         @enderror
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-6">
-                                <label for="example-select" class="form-label">Produit</label>
-                                <input type="text" wire:model='description' id="example-readonly" class="form-control"
-                                    readonly="" value="Readonly value">
+                                <label class="form-label">Quantité /{{$unite}}</label>
+                                <input class="form-control" wire:model='quantite' type="number" placeholder="100">
                                 <div class="valid-feedback">
-                                    @error('description')
+                                    @error('quantite')
                                     <span style="color: red;">{{ $message }}</span>
                                     @enderror
                                 </div>
                             </div>
-                            <div class="row g-2">
-                                <div class="mb-3 col-md-4">
-                                    <div class="mb-3" wire:ignore>
-                                        <label class="form-label">Quantité /{{$unite}}</label>
-                                        <input data-toggle="touchspin" wire:model='qte_approv' data-step="1"
-                                            data-bts-max="1000000" type="text" value="0" placeholder="100">
-                                        <div class="valid-feedback">
-                                            @error('qte_approv')
-                                            <span style="color: red;">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="mb-3 col-md-4" wire:ignore>
-                                    <label class="form-label">Prix d'Achat (CDF)</label>
-                                    <input data-toggle="touchspin" wire:model='pu_approv' placeholder="1000.00"
-                                        init-val="1" type="text" data-decimals="2" data-bts-postfix="CDF">
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    <label for="simpleinput" class="form-label">Produit à Approvisionner</label>
+                                    <select name="selectProdui2" id="code" wire:model='selectProdui2'
+                                        class="form-select">
+                                        <option value=""></option>
+                                        @foreach ($produits as $produit)
+                                        <option value="{{$produit->id}}">{{$produit->description}}</option>
+                                        @endforeach
+                                    </select>
                                     <div class="valid-feedback">
-                                        @error('pu_approv')
-                                        <span style="color: red;">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="mb-3 col-md-4" wire:ignore>
-                                    <label class="form-label">Prix de Vente (CDF)</label>
-                                    <input data-toggle="touchspin" wire:model='pu_vente' placeholder="1000.00"
-                                        type="text" data-decimals="2" data-bts-postfix="CDF">
-                                    <div class="valid-feedback">
-                                        @error('pu_vente')
+                                        @error('selectProdui2')
                                         <span style="color: red;">{{ $message }}</span>
                                         @enderror
                                     </div>
                                 </div>
                             </div>
-                            <button class="btn btn-primary" type="submit">Enregistrer l'Approvisionnement</button>
+                            <div class="col-lg-6">
+                                <label class="form-label">Quantité à Ajouter /{{$unite2}}</label>
+                                <input class="form-control" wire:model='qte_ajout' type="number" placeholder="100">
+                                <div class="valid-feedback">
+                                    @error('qte_ajout')
+                                    <span style="color: red;">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <button class="btn btn-primary" type="submit">Enregistrer la Conversion</button>
                         </div>
                     </form>
 
