@@ -6,11 +6,13 @@ use App\Models\Vente;
 use Illuminate\Contracts\Support\Responsable;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithDrawings;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Excel;
 use PhpOffice\PhpSpreadsheet\Shared\Drawing;
+use Carbon\Carbon;
 
 class VenteExport implements FromCollection, WithHeadings, Responsable, ShouldAutoSize
 {
@@ -31,23 +33,34 @@ class VenteExport implements FromCollection, WithHeadings, Responsable, ShouldAu
         'rest_paie',
         'created_at',
     ];
-    private $year;
+
+    private $dt_from;
     /**
      * @return \Illuminate\Support\Collection
      */
     public function collection()
     {
-        return Vente::query()
-            ->select($this->collumns)->get();
+        $dt_to = Carbon::now()->toDateTimeString();
+        // dd($this->year);
+        if ($this->dt_from) {
+            return Vente::query()
+                ->select($this->collumns)
+                ->whereBetween('created_at', [$this->dt_from, $dt_to])
+                ->get();
+        } else {
+            return Vente::query()
+                ->select($this->collumns)->get();
+        }
+        // return Vente::query()->whereYear('created_at', $this->year);
     }
     public function headings(): array
     {
         return $this->collumns;
     }
 
-    public function forDays(string $year)
+    public function forInterval(string $dt_from)
     {
-        $this->year = $year;
+        $this->dt_from = $dt_from;
 
         return $this;
     }

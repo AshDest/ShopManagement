@@ -76,4 +76,12 @@ class PagesController extends Controller
         // return Excel::download(new UsersExport, 'invoices.csv', \Maatwebsite\Excel\Excel::CSV);
         // return Excel::download(new VenteExport, 'invoices.pdf', \Maatwebsite\Excel\Excel::DOMPDF);
     }
+    public function intervalrapport($interval)
+    {
+
+        // return Excel::download(new VenteExport, 'listevente.xlsx');
+        return (new VenteExport)->forInterval($interval)->download('listeventeinterval.xlsx');
+        // return new VenteExport()->forInterval($interval);
+        // return view('pages.Approvisionnement.add', compact('interval'));
+    }
 }
