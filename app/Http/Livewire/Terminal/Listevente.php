@@ -18,6 +18,7 @@ class Listevente extends Component
     {
         $this->dt_filtre = Null;
     }
+
     public function render()
     {
         if ($this->reseach) {

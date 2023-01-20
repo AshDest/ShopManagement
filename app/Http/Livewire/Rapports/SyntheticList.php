@@ -19,6 +19,7 @@ class SyntheticList extends Component
             return view('livewire.rapports.synthetic-list', [
                 'products' => Produit::where('code', 'LIKE', '%' . $this->reseach . '%')
                     ->orwhere('id', 'LIKE', '%' . $this->reseach)
+                    ->orwhere('qte_stock', 'LIKE', '%' . $this->reseach)
                     ->orwhere('description', 'LIKE', '%' . $this->reseach)
                     ->paginate($this->page_active),
             ]);
