@@ -24,6 +24,7 @@ class ExportSynthesevente implements FromCollection, WithHeadings, Responsable, 
         'qte_stock',
         'Prix Achat Total',
         'Prix Vente Total',
+        'MESURE',
         'Dernier Mise en jour '
     ];
     private $collumn2 = [
@@ -32,7 +33,6 @@ class ExportSynthesevente implements FromCollection, WithHeadings, Responsable, 
         'qte_stock',
         'pu_achat',
         'pu',
-        'category_id',
         'designationmesure',
         'updated_at'
     ];
@@ -40,7 +40,7 @@ class ExportSynthesevente implements FromCollection, WithHeadings, Responsable, 
     public function collection()
     {
         return Produit::query()
-            ->select($this->collumns)->get();
+            ->select($this->collumn2)->get();
     }
     public function headings(): array
     {
