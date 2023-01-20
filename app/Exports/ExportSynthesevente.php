@@ -19,17 +19,28 @@ class ExportSynthesevente implements FromCollection, WithHeadings, Responsable, 
      * @return \Illuminate\Support\Collection
      */
     private $collumns = [
-        'code',
-        'description',
+        'CODE',
+        'DESCRIPTION',
         'qte_stock',
         'Prix Achat Total',
         'Prix Vente Total',
         'Dernier Mise en jour '
     ];
+    private $collumn2 = [
+        'code',
+        'description',
+        'qte_stock',
+        'pu_achat',
+        'pu',
+        'category_id',
+        'designationmesure',
+        'updated_at'
+    ];
 
     public function collection()
     {
-        return Produit::all();
+        return Produit::query()
+            ->select($this->collumns)->get();
     }
     public function headings(): array
     {
