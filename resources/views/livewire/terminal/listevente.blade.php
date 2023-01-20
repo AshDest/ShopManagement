@@ -38,14 +38,11 @@
                         <form class="d-flex">
                             <div class="input-group">
                                 <input type="date" class="form-control form-control-light" wire:model="dt_filtre">
-                                <span style="cursor: pointer;" wire:click="chargerventer"
+                                <span style="cursor: pointer;" wire:click="resets"
                                     class="input-group-text bg-primary border-primary text-white">
-                                    <i class="mdi mdi-arrow-down-circle font-13"></i>
+                                    <i class="mdi mdi-autorenew font-13"></i>
                                 </span>
                             </div>
-                            <a class="btn btn-primary ms-2">
-                                <i class="mdi mdi-autorenew"></i>
-                            </a>
                             {{-- <a href="javascript: void(0);" class="btn btn-primary ms-1">
                             <i class="mdi mdi-filter-variant"></i>
                         </a> --}}

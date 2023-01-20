@@ -14,10 +14,10 @@ class Listevente extends Component
     use LivewireAlert;
     public  $reseach, $page_active = 3;
     public $dt_filtre;
-    // public function chargerventer()
-    // {
-
-    // }
+    public function resets()
+    {
+        $this->dt_filtre = Null;
+    }
     public function render()
     {
         if ($this->reseach) {
