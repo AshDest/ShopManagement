@@ -51,11 +51,9 @@
                                                         $i++;
                                                     @endphp
                                                 </td>
-                                                <td><a href="apps-ecommerce-orders-details.html"
-                                                        class="text-body fw-bold">#
+                                                <td><a href="/paiement" class="text-body fw-bold">#
                                                         {{ $dette->client->noms }}</a> </td>
-                                                <td><a href="apps-ecommerce-orders-details.html"
-                                                        class="text-body fw-bold">#
+                                                <td><a href="/paiement" class="text-body fw-bold">#
                                                         {{ $dette->client->numero }}</a> </td>
                                                 <td>
                                                     @php
@@ -138,10 +136,10 @@
                                                         $i++;
                                                     @endphp
                                                 </td>
-                                                <td><a href="apps-ecommerce-orders-details.html"
+                                                <td><a href="/paiement"
                                                         class="text-body fw-bold">#{{ $paie->dette->client->noms }}</a>
                                                 </td>
-                                                <td><a href="apps-ecommerce-orders-details.html"
+                                                <td><a href="/paiement"
                                                         class="text-body fw-bold">#{{ $paie->dette->client->numero }}</a>
                                                 </td>
                                                 <td>

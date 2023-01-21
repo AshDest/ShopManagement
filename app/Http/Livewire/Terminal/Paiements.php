@@ -78,19 +78,19 @@ class Paiements extends Component
         if ($this->reseach2) {
             return view('livewire.terminal.paiements', [
                 'paies' => Paiement::where('montant_paie', 'LIKE', '%' . $this->reseach2 . '%')
-                    ->orwhereHas('dette', function ($s) {
-                        $s->orwhereHas('client', function ($t) {
-                            $t->where('noms', 'LIKE', '%' . $this->reseach2 . '%');
+                    ->orwhereHas('dette', function ($t) {
+                        $t->whereHas('client', function ($s) {
+                            $s->where('noms', 'LIKE', '%' . $this->reseach2 . '%');
                         });
                     })
                     ->paginate($this->page_active),
                 'dettes' => Dette::orderBy('created_at', 'DESC')->paginate($this->page_active),
             ]);
-        } else {
-            return view('livewire.terminal.paiements', [
-                'dettes' => Dette::orderBy('created_at', 'DESC')->paginate($this->page_active),
-                'paies' => Paiement::orderBy('created_at', 'DESC')->paginate($this->page_active)
-            ]);
         }
+
+        return view('livewire.terminal.paiements', [
+            'dettes' => Dette::orderBy('created_at', 'DESC')->paginate($this->page_active),
+            'paies' => Paiement::orderBy('created_at', 'DESC')->paginate($this->page_active)
+        ]);
     }
 }
