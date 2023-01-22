@@ -60,12 +60,12 @@ class Categorie extends Component
             ])->save();
             // Set Flash Message
             $this->alert('success', 'Categorie bien enregistrer');
-            // Reset Form Fields After Creating departement
+
             $this->reset_fields();
         } catch (\Exception $e) {
             // Set Flash Message
             $this->alert('warning', 'Echec d\'enregistrement');
-            // Reset Form Fields After Creating departement
+
             $this->reset_fields();
         }
     }

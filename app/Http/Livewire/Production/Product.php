@@ -70,12 +70,12 @@ class Product extends Component
             ])->save();
             // Set Flash Message
             $this->alert('success', 'produit bien enregistré');
-            // Reset Form Fields After Creating departement
+
             $this->reset_fields();
         } catch (\Exception $e) {
             // Set Flash Message
             $this->alert('warning', 'Echec d\'enregistrement: ' . $e->getMessage());
-            // Reset Form Fields After Creating departement
+
             $this->reset_fields();
         }
     }
