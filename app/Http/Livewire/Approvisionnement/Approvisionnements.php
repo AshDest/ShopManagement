@@ -1,11 +1,13 @@
 <?php
 
 namespace App\Http\Livewire\Approvisionnement;
+
 use App\Models\Approvisionnement;
 use App\Models\Categorie;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
+
 class Approvisionnements extends Component
 {
     use WithPagination;
@@ -43,7 +45,7 @@ class Approvisionnements extends Component
     }
     public function render()
     {
-        // $approvs = Approvisionnement::all();
+
         // return view('livewire.approvisionnement.approvisionnements', ['approvs' => $approvs]);
         if ($this->reseach) {
             return view('livewire.approvisionnement.approvisionnements', [

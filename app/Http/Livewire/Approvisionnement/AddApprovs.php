@@ -55,12 +55,12 @@ class AddApprovs extends Component
             ])->save();
             // Set Flash Message
             $this->alert('success', 'Approvisionnement bien enregistrer');
-            // Reset Form Fields After Creating departement
+
             return redirect()->to(route('listapprovisionnement'));
         } catch (\Exception $e) {
             // Set Flash Message
             $this->alert('warning', 'Echec d\'enregistrement: ' . $e->getMessage());
-            // Reset Form Fields After Creating departement
+
             // $this->reset_fields();
         }
     }
