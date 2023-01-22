@@ -112,8 +112,6 @@ class Dashaboard extends Component
         $this->vente();
         $this->beneficie();
         $this->topvente();
-        // $this->sum_dette = Dette::where('MONTH(created_at)', $todays->month)
-        //     ->sum('total_dette');
         $this->sum_dette = Dette::sum('total_dette');
         $this->nbr_vente = Vente::count();
         $this->sum_mtpayer = Vente::sum(DB::raw("montant_paie"));
@@ -122,12 +120,7 @@ class Dashaboard extends Component
         $this->ca = Vente::sum(DB::raw("total"));
         $this->ctaprov = Produit::sum(DB::raw("qte_stock*pu_achat"));
 
-        // $columnChartModel =
-        //     (new ColumnChartModel())
-        //     ->setTitle('Expenses by Type')
-        //     ->addColumn('Food', 100, '#f6ad55')
-        //     ->addColumn('Shopping', 200, '#fc8181')
-        //     ->addColumn('Travel', 300, '#90cdf4');
+
         return view('livewire.tableudeboard.dashaboard');
     }
 }
