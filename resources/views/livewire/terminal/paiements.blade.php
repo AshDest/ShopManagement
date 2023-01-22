@@ -150,10 +150,7 @@
                                                 <td>
                                                     {{ $paie->updated_at }}
                                                 </td>
-                                                {{-- <td>
-                                                <a wire:click="paiementview({{ $paie->id }})" class="action-icon"> <i
-                                                        class="mdi mdi-account-cash-outline"></i></a>
-                                            </td> --}}
+
                                             </tr>
                                         @empty
                                             <div class="alert alert-warning" role="alert">
