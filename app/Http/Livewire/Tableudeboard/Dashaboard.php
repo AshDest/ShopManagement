@@ -101,17 +101,8 @@ class Dashaboard extends Component
                 $datamonth,
                 Carbon::create(null, $moi->month)->format('F')
             );
-            // $monthNumber = 6; // June
-            // $monthName = Carbon::create(null, $datamonth)->format('F');
             $this->all_month = $datamonth;
         }
-        // dd($this->all_month);
-        // $month = [];
-        // for ($m = 1; $m <= 12; $m++) {
-        //     $month[] = date('F', mktime(0, 0, 0, $m, 1, date('Y')));
-        // }
-        // $this->all_month = $month;
-        // dd($this->all_month);
     }
 
 
