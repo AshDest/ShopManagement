@@ -93,9 +93,7 @@ class Dashaboard extends Component
         $mois = DetailVente::groupBy('month')
             ->selectRaw('month')
             ->get();
-
         $datamonth = array();
-
         foreach ($mois as $moi) {
             array_push(
                 $datamonth,
