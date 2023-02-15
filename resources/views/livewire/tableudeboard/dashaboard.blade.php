@@ -264,7 +264,7 @@
 @push('jschart')
     <script>
         var options = {
-            series: @json($this->topproduct),
+            series: [@json($this->topproduct)],
             chart: {
                 width: 380,
                 type: 'donut',

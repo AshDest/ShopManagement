@@ -90,18 +90,35 @@ class Dashaboard extends Component
 
     public function mount()
     {
-        $month = [];
-        for ($m = 1; $m <= 12; $m++) {
-            $month[] = date('F', mktime(0, 0, 0, $m, 1, date('Y')));
+        $mois = DetailVente::groupBy('month')
+            ->selectRaw('month')
+            ->get();
+
+        $datamonth = array();
+
+        foreach ($mois as $moi) {
+            array_push(
+                $datamonth,
+                Carbon::create(null, $moi->month)->format('F')
+            );
+            // $monthNumber = 6; // June
+            // $monthName = Carbon::create(null, $datamonth)->format('F');
+            $this->all_month = $datamonth;
         }
-        $this->all_month = $month;
+        // dd($this->all_month);
+        // $month = [];
+        // for ($m = 1; $m <= 12; $m++) {
+        //     $month[] = date('F', mktime(0, 0, 0, $m, 1, date('Y')));
+        // }
+        // $this->all_month = $month;
+        // dd($this->all_month);
     }
 
 
     public function charger()
     {
         if ($this->dt_filtre) {
-            dd($this->dt_filtre);
+            // dd($this->dt_filtre);
         } else {
             $this->alert('warning', 'Veuillez selectionner une date svp!');
         }
@@ -109,6 +126,7 @@ class Dashaboard extends Component
 
     public function render()
     {
+
         $this->vente();
         $this->beneficie();
         $this->topvente();
