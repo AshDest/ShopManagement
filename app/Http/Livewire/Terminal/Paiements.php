@@ -67,30 +67,34 @@ class Paiements extends Component
     {
         if ($this->reseach) {
             return view('livewire.terminal.paiements', [
-                'dettes' => Dette::where('client_id', 'LIKE', '%' . $this->reseach . '%')
+                'dettes' => Dette::where('user_id', Auth::user()->id)
+                    ->where('client_id', 'LIKE', '%' . $this->reseach . '%')
                     ->orwhereHas('client', function ($s) {
                         $s->where('noms', 'LIKE', '%' . $this->reseach . '%');
                     })
                     ->paginate($this->page_active),
-                'paies' => Paiement::orderBy('created_at', 'DESC')->paginate($this->page_active)
+                'paies' => Paiement::where('user_id', Auth::user()->id)
+                    ->orderBy('created_at', 'DESC')->paginate($this->page_active)
             ]);
         }
         if ($this->reseach2) {
             return view('livewire.terminal.paiements', [
-                'paies' => Paiement::where('montant_paie', 'LIKE', '%' . $this->reseach2 . '%')
+                'paies' => Paiement::where('user_id', Auth::user()->id)
+                    ->where('montant_paie', 'LIKE', '%' . $this->reseach2 . '%')
                     ->orwhereHas('dette', function ($t) {
                         $t->whereHas('client', function ($s) {
                             $s->where('noms', 'LIKE', '%' . $this->reseach2 . '%');
                         });
                     })
                     ->paginate($this->page_active),
-                'dettes' => Dette::orderBy('created_at', 'DESC')->paginate($this->page_active),
+                'dettes' => Dette::where('user_id', Auth::user()->id)
+                    ->orderBy('created_at', 'DESC')->paginate($this->page_active),
             ]);
         }
 
         return view('livewire.terminal.paiements', [
-            'dettes' => Dette::orderBy('created_at', 'DESC')->paginate($this->page_active),
-            'paies' => Paiement::orderBy('created_at', 'DESC')->paginate($this->page_active)
+            'dettes' => Dette::where('user_id', Auth::user()->id)->orderBy('created_at', 'DESC')->paginate($this->page_active),
+            'paies' => Paiement::where('user_id', Auth::user()->id)->orderBy('created_at', 'DESC')->paginate($this->page_active)
         ]);
     }
 }

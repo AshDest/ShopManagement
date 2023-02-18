@@ -222,11 +222,13 @@ class Ventes extends Component
                     Dette::create([
                         'client_id' => $this->client_id,
                         'total_dette' => $this->mtapayer - $this->mtpayer,
+                        'user_id' => Auth::user()->id,
                     ])->save();
                 } else {
                     Dette::find($dettes->id)->fill([
                         'client_id' => $this->client_id,
                         'total_dette' => $dettes->total_dette + ($this->mtapayer - $this->mtpayer),
+                        'user_id' => Auth::user()->id,
                     ])->save();
                 }
 

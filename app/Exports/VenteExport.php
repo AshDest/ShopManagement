@@ -10,6 +10,7 @@ use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Excel;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class VenteExport implements FromCollection, WithHeadings, Responsable, ShouldAutoSize
 {
@@ -50,10 +51,12 @@ class VenteExport implements FromCollection, WithHeadings, Responsable, ShouldAu
         if ($this->dt_from) {
             return Vente::query()
                 ->select($this->collumns)
+                ->where('user_id', Auth::user()->id)
                 ->whereBetween('created_at', [$this->dt_from, $dt_to])
                 ->get();
         } else {
             return Vente::query()
+                ->where('user_id', Auth::user()->id)
                 ->select($this->collumns)->get();
         }
         // return Vente::query()->whereYear('created_at', $this->year);

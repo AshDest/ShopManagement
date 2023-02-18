@@ -41,7 +41,9 @@ class ExportSynthesevente implements FromCollection, WithHeadings, Responsable, 
                 DB::raw("pu*qte_stock"),
                 'designationmesure',
                 'updated_at'
-            )->get();
+            )
+            ->where('user_id', Auth::user()->id)
+            ->get();
     }
     public function headings(): array
     {
