@@ -17,7 +17,8 @@ class Produit extends Model
         'pu',
         'category_id',
         'designationmesure',
-        'updated_at'
+        'updated_at',
+        'user_id'
     ];
 
     public function categorie()
@@ -27,5 +28,9 @@ class Produit extends Model
     public function detailvente()
     {
         return $this->hasMany(DetailVente::class);
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }
