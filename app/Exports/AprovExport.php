@@ -23,7 +23,6 @@ class AprovExport implements FromCollection
      */
     private $collumns = [
         'Order ID',
-        'Product ID',
         'DESIGNATION PRODUIT',
         'QUANTITE',
         'PRIX UNIT',
@@ -33,13 +32,13 @@ class AprovExport implements FromCollection
     public function collection()
     {
         return Approvisionnement::query()
+            ->join('produits as p', 'aprovionnements.produit_id', '=', 'p.id')
             ->select(
                 'code',
-                'description',
-                'qte_stock',
-                DB::raw("pu_achat*qte_stock"),
-                DB::raw("pu*qte_stock"),
-                'designationmesure',
+                'p.description',
+                'qte_approv',
+                'pu_approv',
+                'pt_approv',
                 'updated_at'
             )
             ->where('user_id', Auth::user()->id)
