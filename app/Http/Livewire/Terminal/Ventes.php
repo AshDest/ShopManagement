@@ -43,16 +43,22 @@ class Ventes extends Component
 
         if ($this->reseach) {
             return view('livewire.terminal.ventes', [
-                'products' => Produit::where('description', 'LIKE', '%' . $this->reseach . '%')
-                    ->orwhere('designationmesure', 'LIKE', '%' . $this->reseach)
-                    ->orwhereHas('categorie', function ($s) {
-                        $s->where('designation', 'LIKE', '%' . $this->reseach . '%');
-                    })
+                'products' => Produit::where('user_id', Auth::user()->id)
+                    ->where(
+                        function ($query) {
+                            $query->where('description', 'LIKE', '%' . $this->reseach . '%')
+                                ->orwhere('designationmesure', 'LIKE', '%' . $this->reseach)
+                                ->orwhereHas('categorie', function ($s) {
+                                    $s->where('designation', 'LIKE', '%' . $this->reseach . '%');
+                                });
+                        }
+                    )
                     ->paginate($this->page_active)
             ]);
         } else {
             return view('livewire.terminal.ventes', [
-                'products' => Produit::orderBy('qte_stock', 'DESC')->paginate($this->page_active),
+                'products' => Produit::where('user_id', Auth::user()->id)
+                    ->orderBy('qte_stock', 'DESC')->paginate($this->page_active),
             ]);
         }
     }
