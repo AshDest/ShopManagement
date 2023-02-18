@@ -59,9 +59,8 @@
                             <tbody>
                                 @forelse ($approvs as $approv)
                                     <tr>
-                                        <td><a href="apps-ecommerce-orders-details.html"
-                                                class="text-body fw-bold">#{{ $approv->code }}</a> </td>
-                                        <td><a href="apps-ecommerce-orders-details.html"
+                                        <td><a href="#" class="text-body fw-bold">#{{ $approv->code }}</a> </td>
+                                        <td><a href="#"
                                                 class="text-body fw-bold">#{{ $approv->produit->code }}</a> </td>
 
                                         <td>

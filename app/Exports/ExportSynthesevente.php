@@ -5,6 +5,7 @@ namespace App\Exports;
 use App\Models\Produit;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Illuminate\Contracts\Support\Responsable;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
@@ -42,7 +43,6 @@ class ExportSynthesevente implements FromCollection, WithHeadings, Responsable, 
                 'designationmesure',
                 'updated_at'
             )
-            ->where('user_id', Auth::user()->id)
             ->get();
     }
     public function headings(): array
