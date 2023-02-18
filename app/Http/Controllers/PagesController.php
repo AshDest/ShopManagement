@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Exports\AprovExport;
 use App\Exports\VenteExport;
 use App\Exports\ExportSynthesevente;
+use App\Exports\ProduitExport;
 
 class PagesController extends Controller
 {
@@ -91,5 +92,9 @@ class PagesController extends Controller
     public function listeaprov()
     {
         return new AprovExport();
+    }
+    public function listeproduit()
+    {
+        return new ProduitExport();
     }
 }

@@ -42,6 +42,7 @@ Route::get('/listevente/excel', [App\Http\Controllers\PagesController::class, 'l
 Route::get('/intervalrapport/{interval}', [App\Http\Controllers\PagesController::class, 'intervalrapport'])->name('intervalrapport');
 Route::get('/listepreveiwvente/excel', [App\Http\Controllers\PagesController::class, 'listepreveiwvente'])->name('listepreveiwvente');
 Route::get('/listeaprov/excel', [App\Http\Controllers\PagesController::class, 'listeaprov'])->name('listeaprov');
+Route::get('/listeproduit/excel', [App\Http\Controllers\PagesController::class, 'listeproduit'])->name('listeproduit');
 Route::get('/', function () {
     return Redirect::to('/home');
 });
