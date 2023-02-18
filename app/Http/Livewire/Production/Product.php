@@ -68,6 +68,7 @@ class Product extends Component
                 'description' => $this->description,
                 'category_id' => $this->categoryselected,
                 'designationmesure' => $this->mesureselected,
+                'user_id' => $this->vendeurselected,
             ])->save();
             // Set Flash Message
             $this->alert('success', 'produit bien enregistré');
@@ -87,8 +88,10 @@ class Product extends Component
         $this->code = $products->code;
         $this->description = $products->description;
         $this->pvu = $products->pu;
-        $this->categoryselectedvalue = $products->categorie->designation;
+
         $this->categoryselected = $products->category_id;
+        $this->vendeurselected = $products->user_id;
+        $this->mesureselected = $products->designationmesure;
     }
     public function reset_fields()
     {
@@ -104,6 +107,7 @@ class Product extends Component
                 'description' => $this->description,
                 'category_id' => $this->categoryselected,
                 'designationmesure' => $this->mesureselected,
+                'user_id' => $this->vendeurselected,
             ])->save();
             $this->alert('success', 'Produit bien Modifier!');
             $this->reset_fields();

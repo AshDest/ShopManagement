@@ -83,6 +83,16 @@
                                                 @endforeach
                                             </select>
                                         </div>
+                                        <div class="mb-3">
+                                            <label for="inputState2" class="form-label">AffectationVendeur</label>
+                                            <select id="inputState2" class="form-select" wire:model="vendeurselected">
+                                                <option>Selectionnez un vendeur</option>
+                                                @foreach ($vendeurs as $vendeur)
+                                                    <option value="{{ $vendeur->id }}">{{ $vendeur->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
                                         <button class="btn btn-primary" type="submit">Modifier</button>
                                     </form>
                                 </div> <!-- end preview-->
@@ -148,8 +158,8 @@
                                             </select>
                                         </div>
                                         <div class="mb-3">
-                                            <label for="inputState1" class="form-label">AffectationVendeur</label>
-                                            <select id="inputState1" class="form-select"
+                                            <label for="inputState2" class="form-label">AffectationVendeur</label>
+                                            <select id="inputState2" class="form-select"
                                                 wire:model="vendeurselected">
                                                 <option>Selectionnez un vendeur</option>
                                                 @foreach ($vendeurs as $vendeur)
