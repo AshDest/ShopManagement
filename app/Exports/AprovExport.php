@@ -6,18 +6,17 @@ use App\Models\Approvisionnement;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Illuminate\Contracts\Support\Responsable;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Excel;
 
 
-class AprovExport implements FromCollection
+class AprovExport implements FromCollection, WithHeadings, Responsable, ShouldAutoSize
 {
     use Exportable;
     private $writerType = Excel::XLSX;
-    private $fileName = 'listeprevisionvente.xlsx';
+    private $fileName = 'listeaprov.xlsx';
     /**
      * @return \Illuminate\Support\Collection
      */
@@ -32,17 +31,20 @@ class AprovExport implements FromCollection
     public function collection()
     {
         return Approvisionnement::query()
-            ->join('produits as p', 'aprovionnements.produit_id', '=', 'p.id')
             ->select(
-                'code',
-                'p.description',
+                'produits.code',
+                'produits.description',
                 'qte_approv',
                 'pu_approv',
                 'pt_approv',
-                'updated_at'
-            )
-            ->where('user_id', Auth::user()->id)
+                'approvisionnements.updated_at'
+            )->join('produits', 'approvisionnements.produit_id', '=', 'produits.id')
             ->get();
         // return Approvisionnement::all();
+        //  ->where('approvisionnements.user_id', Auth::user()->id)
+    }
+    public function headings(): array
+    {
+        return $this->collumns;
     }
 }
