@@ -37,6 +37,12 @@
                                     <span>Liste de vente</span>
                                 </a>
                             </div>
+                            <div class="col">
+                                <a class="dropdown-icon-item" href="{{ route('paiements') }}">
+                                    <img src="{{ asset('assets/images/brands/depense.png') }}" alt="paiment">
+                                    <span>Depense</span>
+                                </a>
+                            </div>
                         </div>
 
                         <div class="row g-0">
@@ -52,6 +58,13 @@
                                     <span>Paiement</span>
                                 </a>
                             </div>
+                            <div class="col">
+                                <a class="dropdown-icon-item" href="{{ route('paiements') }}">
+                                    <img src="{{ asset('assets/images/brands/caisse.png') }}" alt="paiment">
+                                    <span>Caisse</span>
+                                </a>
+                            </div>
+
 
                         </div>
                     </div>
@@ -63,8 +76,8 @@
                     role="button" aria-haspopup="false" aria-expanded="false">
                     <span class="account-user-avatar">
                         @if (Auth::user()->avatar)
-                            <img src="{{ asset('assets/images/avatar/' . Auth::user()->avatar . '') }}" alt="user-image"
-                                class="rounded-circle">
+                            <img src="{{ asset('assets/images/avatar/' . Auth::user()->avatar . '') }}"
+                                alt="user-image" class="rounded-circle">
                         @else
                             <img src="{{ asset('assets/images/avatar/avatar.jpg') }}" alt="user-image"
                                 class="rounded-circle">
