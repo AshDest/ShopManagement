@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Exports\AprovExport;
+use App\Exports\ExportDette;
+use App\Exports\ExportPaiement;
 use App\Exports\VenteExport;
 use App\Exports\ExportSynthesevente;
 use App\Exports\ProduitExport;
@@ -96,5 +98,13 @@ class PagesController extends Controller
     public function listeproduit()
     {
         return new ProduitExport();
+    }
+    public function listedette()
+    {
+        return new ExportDette();
+    }
+    public function listepaiment()
+    {
+        return new  ExportPaiement();
     }
 }

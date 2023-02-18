@@ -19,7 +19,7 @@
                                 </div>
                                 <div class="col-xl-4">
                                     <div class="text-xl-end mt-xl-0 mt-2">
-                                        <a href="" class="btn btn-success mb-2 me-2"><i
+                                        <a href="/listedette/excel" class="btn btn-success mb-2 me-2"><i
                                                 class="mdi mdi-file-excel"></i>
                                             Export
                                             Excel</a>
@@ -104,7 +104,7 @@
                                 </div>
                                 <div class="col-xl-4">
                                     <div class="text-xl-end mt-xl-0 mt-2">
-                                        <a href="" class="btn btn-success mb-2 me-2"><i
+                                        <a href="/listepaiment/excel" class="btn btn-success mb-2 me-2"><i
                                                 class="mdi mdi-file-excel"></i>
                                             Export
                                             Excel</a>
