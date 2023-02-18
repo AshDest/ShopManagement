@@ -147,6 +147,17 @@
                                                 @endforeach
                                             </select>
                                         </div>
+                                        <div class="mb-3">
+                                            <label for="inputState1" class="form-label">AffectationVendeur</label>
+                                            <select id="inputState1" class="form-select"
+                                                wire:model="vendeurselected">
+                                                <option>Selectionnez un vendeur</option>
+                                                @foreach ($vendeurs as $vendeur)
+                                                    <option value="{{ $vendeur->id }}">{{ $vendeur->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
                                         <button class="btn btn-primary" type="submit">Enregistrer</button>
                                     </form>
                                 </div> <!-- end preview-->

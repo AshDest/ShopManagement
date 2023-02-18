@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Production;
 use App\Models\Categorie;
 use App\Models\Mesure;
 use App\Models\Produit;
+use App\Models\User;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
@@ -15,7 +16,7 @@ class Product extends Component
     use LivewireAlert;
     public  $reseach, $page_active = 4;
     public $code, $description, $qte_stock, $pvu, $pvu1, $categoryselected, $categories;
-    public  $categoryselectedvalue, $categorie_id, $mesureselected, $mesures;
+    public  $categoryselectedvalue, $categorie_id, $mesureselected, $mesures, $vendeurs, $vendeurselected;
 
     public $desplayeditform = null;
     protected $rules = [
@@ -114,6 +115,7 @@ class Product extends Component
     {
         $this->categories = Categorie::all();
         $this->mesures = Mesure::all();
+        $this->vendeurs = User::all();
         if ($this->reseach) {
             return view('livewire.production.product', [
                 'products' => Produit::where('description', 'LIKE', '%' . $this->reseach . '%')
