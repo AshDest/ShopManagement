@@ -13,10 +13,15 @@ class Dette extends Model
         'client_id',
         'total_dette',
         'updated_at',
+        'user_id',
     ];
 
     public function client()
     {
         return $this->belongsTo(Client::class, 'client_id');
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

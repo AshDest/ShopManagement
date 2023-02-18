@@ -6,6 +6,7 @@ use App\Models\Vente;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 class Listevente extends Component
@@ -23,7 +24,8 @@ class Listevente extends Component
     {
         if ($this->reseach) {
             return view('livewire.terminal.listevente', [
-                'ventes' => Vente::where('code', 'LIKE', '%' . $this->reseach . '%')
+                'ventes' => Vente::where('user_id', Auth::user()->id)
+                    ->where('code', 'LIKE', '%' . $this->reseach . '%')
                     ->orwhere('id', 'LIKE', '%' . $this->reseach)
                     ->paginate($this->page_active)
             ]);
@@ -31,12 +33,14 @@ class Listevente extends Component
             $now = Carbon::now()->toDateTimeString();
             // dd($now);
             return view('livewire.terminal.listevente', [
-                'ventes' => Vente::whereBetween('created_at', [$this->dt_filtre, $now])
+                'ventes' => Vente::where('user_id', Auth::user()->id)
+                    ->whereBetween('created_at', [$this->dt_filtre, $now])
                     ->paginate($this->page_active)
             ]);
         } else {
             return view('livewire.terminal.listevente', [
-                'ventes' => Vente::orderBy('id', 'DESC')->paginate($this->page_active),
+                'ventes' => Vente::where('user_id', Auth::user()->id)
+                    ->orderBy('id', 'DESC')->paginate($this->page_active),
             ]);
         }
     }

@@ -214,7 +214,6 @@
                                         <th>Pv.Unitaire</th>
                                         <th>Categorie</th>
                                         <th>Mesure</th>
-                                        <th>Vendeur</th>
                                         <th colspan="3"> Action</th>
                                     </tr>
                                 </thead>
@@ -230,7 +229,6 @@
                                             <td>{{ $product->pu }} CDF</td>
                                             <td>{{ $product->categorie->designation }}</td>
                                             <td>{{ $product->designationmesure }}</td>
-                                            <td>{{ $product->user->name }}</td>
                                             <td><a href="{{ route('addapprovisionnement', ['ids' => $product->id]) }}"
                                                     class="action-icon" style="cursor: pointer;"> <i
                                                         class="mdi mdi-plus-circle-multiple-outline"></i></a></td>

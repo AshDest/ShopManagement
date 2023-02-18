@@ -33,6 +33,7 @@
                                     <th>Quantité</th>
                                     <th>Pv.Unitaire</th>
                                     <th>Categorie</th>
+                                    <th>Vendeur</th>
                                     <th style="width: 125px;">Action</th>
                                 </tr>
                             </thead>
@@ -56,6 +57,7 @@
                                         @endphp
                                         </td>
                                         <td>{{ $product->categorie->designation }}</td>
+                                        <td>{{ $product->user->name }}</td>
                                         <td class="table-action">
                                             <a href="{{ route('addapprovisionnement', ['ids' => $product->id]) }}"
                                                 class="action-icon" style="cursor: pointer;"> <i

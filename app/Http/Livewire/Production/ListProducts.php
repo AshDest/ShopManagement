@@ -25,6 +25,9 @@ class ListProducts extends Component
                     ->orwhereHas('categorie', function ($s) {
                         $s->where('designation', 'LIKE', '%' . $this->reseach . '%');
                     })
+                    ->orwhereHas('user', function ($s) {
+                        $s->where('name', 'LIKE', '%' . $this->reseach . '%');
+                    })
                     ->paginate($this->page_active)
             ]);
         } else {
