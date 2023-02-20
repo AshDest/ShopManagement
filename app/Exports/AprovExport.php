@@ -47,4 +47,8 @@ class AprovExport implements FromCollection, WithHeadings, Responsable, ShouldAu
     {
         return $this->collumns;
     }
+
+
+    // php artisan make:export UsersExport --model=User pour creer un fichier d'exportation en excel
+    // liens du site: https://docs.laravel-excel.com/3.1/exports/
 }
