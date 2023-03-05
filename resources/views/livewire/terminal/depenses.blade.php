@@ -12,7 +12,6 @@
                                     <span class="mdi mdi-magnify search-icon"></span>
                                 </div>
                             </div>
-
                         </div>
                         <div class="col-xl-4">
                             <div class="text-xl-end mt-xl-0 mt-2">
@@ -26,7 +25,6 @@
                             </div>
                         </div><!-- end col-->
                     </div>
-
                     <div class="table-responsive">
                         <table class="table table-centered table-nowrap mb-0">
                             <thead class="table-light">
@@ -54,9 +52,10 @@
                                     <td>{{ $depense->libelle }}</td>
                                     <td>{{ $depense->user->name }}</td>
                                     <td> <a wire:click="edit({{ $depense->id }})" class="action-icon"
-                                            style="cursor: pointer;"> <i class="mdi mdi-pencil"></i></a></td>
-                                    {{-- <button wire:click="delete({{ $depense->id }})">Supprimer</button>
-                                    </td> --}}
+                                            style="cursor: pointer;"> <i class="mdi mdi-pencil"></i></a>
+                                        <a wire:click="delete({{ $depense->id }})" class="action-icon"
+                                            style="cursor: pointer;"> <i class="mdi mdi-delete"></i></a>
+                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -73,7 +72,6 @@
         </div> <!-- end col -->
     </div>
     <!-- end row -->
-
     <!-- Modal -->
     <div wire:ignore.self id="modal" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -142,9 +140,9 @@
         window.addEventListener('openModal', event => {
                 $('#modal').modal('show');
             });
-            window.addEventListener('close-modal', event => {
-                $('#modal').modal('hiden');
-            });
+window.addEventListener('closeModal', event => {
+                    $('#modal').modal('hiden');
+                    });
     </script>
     @endpush
     @push('modaleditdepenses')
@@ -152,9 +150,16 @@
         window.addEventListener('openeditModal', event => {
                             $('#editmodal').modal('show');
                             });
-                    window.addEventListener('close-modal', event => {
+                    window.addEventListener('closeModal', event => {
                         $('#editmodal').modal('hiden');
                     });
+    </script>
+    @endpush
+    @push('closeModal')
+    <script type="text/javascript">
+        window.addEventListener('closeModal', event => {
+$('#modal').modal('hiden');
+});
     </script>
     @endpush
 </div>

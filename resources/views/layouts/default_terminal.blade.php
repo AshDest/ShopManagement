@@ -89,6 +89,7 @@
     @stack('modalpaiment')
     @stack('modaldepenses')
     @stack('modaleditdepenses')
+    @stack('closeModal')
     @stack('scripts')
     <!-- third party js ends -->
     @livewireScripts

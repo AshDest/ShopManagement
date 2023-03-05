@@ -47,7 +47,6 @@ class Depenses extends Component
         $caisse->solde -= $this->montant;
         $caisse->save();
 
-        $this->emit('modal');
         $this->closeModal();
         $this->reset();
     }
@@ -81,6 +80,7 @@ class Depenses extends Component
             'user_id' => Auth::user()->id,
         ]);
 
+        $this->emit('editmodal');
         $this->closeModal();
         $this->reset();
     }
