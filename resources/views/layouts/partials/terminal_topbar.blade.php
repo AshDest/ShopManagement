@@ -1,4 +1,8 @@
 <!-- Topbar Start -->
+@php
+use App\Models\Caisse;
+$montantcaisse = Caisse::where('user_id', Auth::user()->id)->first();
+@endphp
 <div class="navbar-custom topnav-navbar">
     <div class="container-fluid">
 
@@ -38,7 +42,7 @@
                                 </a>
                             </div>
                             <div class="col">
-                                <a class="dropdown-icon-item" href="{{ route('paiements') }}">
+                                <a class="dropdown-icon-item" href="{{ route('depenses') }}">
                                     <img src="{{ asset('assets/images/brands/depense.png') }}" alt="paiment">
                                     <span>Depense</span>
                                 </a>
@@ -58,14 +62,16 @@
                                     <span>Paiement</span>
                                 </a>
                             </div>
+                        </div>
+                        <div class="row g-0">
                             <div class="col">
                                 <a class="dropdown-icon-item" href="{{ route('paiements') }}">
                                     <img src="{{ asset('assets/images/brands/caisse.png') }}" alt="paiment">
-                                    <span>Caisse</span>
+                                    <span>Caisse: <strong style="color: yellowgreen">@php
+                                            echo number_format($montantcaisse->solde) . ' CDF';
+                                            @endphp</strong></span>
                                 </a>
                             </div>
-
-
                         </div>
                     </div>
 
@@ -76,11 +82,11 @@
                     role="button" aria-haspopup="false" aria-expanded="false">
                     <span class="account-user-avatar">
                         @if (Auth::user()->avatar)
-                            <img src="{{ asset('assets/images/avatar/' . Auth::user()->avatar . '') }}"
-                                alt="user-image" class="rounded-circle">
+                        <img src="{{ asset('assets/images/avatar/' . Auth::user()->avatar . '') }}" alt="user-image"
+                            class="rounded-circle">
                         @else
-                            <img src="{{ asset('assets/images/avatar/avatar.jpg') }}" alt="user-image"
-                                class="rounded-circle">
+                        <img src="{{ asset('assets/images/avatar/avatar.jpg') }}" alt="user-image"
+                            class="rounded-circle">
                         @endif
                     </span>
                     <span>

@@ -99,7 +99,6 @@
                                             <span class="mdi mdi-magnify search-icon"></span>
                                         </div>
                                     </div>
-
                                 </div>
                                 <div class="col-xl-4">
                                     <div class="text-xl-end mt-xl-0 mt-2">
@@ -110,7 +109,6 @@
                                     </div>
                                 </div><!-- end col-->
                             </div>
-
                             <div class="table-responsive">
                                 <table class="table table-centered table-nowrap mb-0">
                                     <thead class="table-dark">

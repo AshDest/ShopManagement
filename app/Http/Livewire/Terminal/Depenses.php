@@ -37,18 +37,20 @@ class Depenses extends Component
                 'solde' => 0
             ]);
         }
-
-        $depense = Depense::create([
-            'montant' => $this->montant,
-            'libelle' => $this->libelle,
-            'user_id' => Auth::user()->id,
-        ]);
-
-        $caisse->solde -= $this->montant;
-        $caisse->save();
-
-        $this->closeModal();
-        $this->reset();
+        if ($caisse->solde > $this->montant) {
+            $depense = Depense::create([
+                'montant' => $this->montant,
+                'libelle' => $this->libelle,
+                'user_id' => Auth::user()->id,
+            ]);
+            $caisse->solde -= $this->montant;
+            $caisse->save();
+            $this->alert('success', 'Enregistrement Reussi!');
+            $this->closeModal();
+            $this->reset();
+        } else {
+            $this->alert('warning', 'La caisse est Insuffisante!');
+        }
     }
 
     public function edit(Depense $depense)
@@ -70,19 +72,23 @@ class Depenses extends Component
 
         $depense = Depense::find($this->depense->id);
 
-        $caisse->solde += $depense->montant;
-        $caisse->solde -= $this->montant;
-        $caisse->save();
+        if ($caisse->solde > $this->montant) {
+            $caisse->solde += $depense->montant;
+            $caisse->solde -= $this->montant;
+            $caisse->save();
 
-        $depense->update([
-            'montant' => $this->montant,
-            'libelle' => $this->libelle,
-            'user_id' => Auth::user()->id,
-        ]);
-
-        $this->emit('editmodal');
-        $this->closeModal();
-        $this->reset();
+            $depense->update([
+                'montant' => $this->montant,
+                'libelle' => $this->libelle,
+                'user_id' => Auth::user()->id,
+            ]);
+            $this->alert('success', 'Modification Reussie!');
+            $this->emit('editmodal');
+            $this->closeModal();
+            $this->reset();
+        } else {
+            $this->alert('warning', 'La caisse est Insuffisante!');
+        }
     }
 
     public function delete(Depense $depense)
@@ -93,6 +99,7 @@ class Depenses extends Component
         $caisse->save();
 
         $depense->delete();
+        $this->alert('success', 'Suppression Reussie!');
     }
     public function openModal()
     {
