@@ -22,5 +22,11 @@ class DatabaseSeeder extends Seeder
         // ]);
         $this->call(RoleSeeder::class);
         $this->call(AdminSeeder::class);
+
+        // pour executer tout les Seeds on  tape : php artisan db:seed en cas d'erreur  taper php artisan db:seed --force
+        //pour executer un seed specifique on  tape : php artisan db:seed --class=NomDeVotreSeeder ex: php artisan db:seed --class=RoleSeeder
+
+        // pour creer un seeder php artisan make:seeder NomDeVotreSeeder
+
     }
 }
