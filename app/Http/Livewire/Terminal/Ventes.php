@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Terminal;
 
+use App\Models\Caisse;
 use App\Models\Client;
 use App\Models\DetailVente;
 use App\Models\Dette;
@@ -66,6 +67,7 @@ class Ventes extends Component
     {
         $this->codeproduit();
     }
+
     public function codeproduit()
     {
         $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -200,6 +202,13 @@ class Ventes extends Component
     }
     public function savepaiement()
     {
+        $caisse = Caisse::where('user_id', Auth::user()->id)->first();
+        if (!$caisse) {
+            $caisse = Caisse::create([
+                'user_id' => Auth::user()->id,
+                'solde' => 0
+            ]);
+        }
         if ($this->mtapayer > $this->mtpayer) {
             // le client est a enregister on constate une dette
             $cl_id = Client::where('numero', $this->numphoneclient)->first();
@@ -217,6 +226,9 @@ class Ventes extends Component
                 'rest_paie' => $this->mtapayer - $this->mtpayer,
             ])->save();
             if ($vente) {
+                $caisse = Caisse::where('user_id', Auth::user()->id)->first();
+                $caisse->solde += $this->mtpayer;
+                $caisse->save();
                 $dettes = Dette::where('client_id', $this->client_id)->first();
                 if (!$dettes) {
                     Dette::create([
@@ -240,6 +252,9 @@ class Ventes extends Component
                 'rest_paie' => $this->mtapayer - $this->mtpayer,
             ])->save();
             if ($vente) {
+                $caisse = Caisse::where('user_id', Auth::user()->id)->first();
+                $caisse->solde += $this->mtpayer;
+                $caisse->save();
                 $this->alert('success', 'Paiement bien effectué!');
             }
             // pas de dette payement cach...on a pas besoin d'enregist le client

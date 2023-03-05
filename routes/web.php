@@ -44,6 +44,7 @@ Route::group(['middleware' => ['auth', 'role:seler']], function () {
     Route::get('/paiement', [App\Http\Controllers\PagesController::class, 'paiements'])->name('paiements');
     Route::get('/vente', [App\Http\Controllers\PagesController::class, 'vente'])->name('vente');
     Route::get('/listevente', [App\Http\Controllers\PagesController::class, 'listevente'])->name('listevente');
+    Route::get('/depenses', [App\Http\Controllers\PagesController::class, 'depenses'])->name('depenses');
 });
 
 
