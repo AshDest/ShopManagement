@@ -67,9 +67,13 @@ $montantcaisse = Caisse::where('user_id', Auth::user()->id)->first();
                             <div class="col">
                                 <a class="dropdown-icon-item" href="{{ route('paiements') }}">
                                     <img src="{{ asset('assets/images/brands/caisse.png') }}" alt="paiment">
-                                    <span>Caisse: <strong style="color: yellowgreen">@php
+                                    <span>Caisse: <strong style="color: yellowgreen">@if ($montantcaisse->solde)
+                                            @php
                                             echo number_format($montantcaisse->solde) . ' CDF';
-                                            @endphp</strong></span>
+                                            @endphp
+                                            @else
+                                            0
+                                            @endif</strong></span>
                                 </a>
                             </div>
                         </div>
