@@ -48,9 +48,14 @@
                                         $i++;
                                         @endphp
                                     </td>
-                                    <td>@php
+                                    <td>@if ($depense->montant)
+                                        @php
                                         echo number_format($depense->montant) . ' CDF';
-                                        @endphp</td>
+                                        @endphp
+                                        @else
+                                        0
+                                        @endif
+                                    </td>
                                     <td>{{ $depense->libelle }}</td>
                                     <td>{{ $depense->user->name }}</td>
                                     <td> <a wire:click="edit({{ $depense->id }})" class="action-icon"
