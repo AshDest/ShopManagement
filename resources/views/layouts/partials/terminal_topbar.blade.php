@@ -59,7 +59,7 @@ $montantcaisse = Caisse::where('user_id', Auth::user()->id)->first();
                                 </a>
                             </div>
                         </div>
-                        <div class="row g-0">
+                        <div class="row g-0" style="background-color: rgba(120, 80, 173, 0.192)">
                             <div class="col">
                                 <a class="dropdown-icon-item" href="{{ route('paiements') }}">
                                     <img src="{{ asset('assets/images/brands/caisse.png') }}" alt="paiment">
