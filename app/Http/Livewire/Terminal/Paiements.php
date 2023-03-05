@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Terminal;
 
+use App\Models\Caisse;
 use App\Models\Dette;
 use App\Models\Paiement;
 use Illuminate\Support\Facades\Auth;
@@ -43,20 +44,34 @@ class Paiements extends Component
     {
         $this->validate();
         try {
-            Paiement::create([
-                'dette_id' => $this->dette_id,
-                'montant_paie' => $this->montant_paie,
-                'reste_paie' => ($this->dette - $this->montant_paie),
-                'user_id' => Auth::user()->id,
-            ])->save();
+            $caisse = Caisse::where('user_id', Auth::user()->id)->first();
+            if (!$caisse) {
+                $caisse = Caisse::create([
+                    'user_id' => Auth::user()->id,
+                    'solde' => 0
+                ]);
+            }
+            if ($this->montant_paie <= $this->dette) {
+                Paiement::create([
+                    'dette_id' => $this->dette_id,
+                    'montant_paie' => $this->montant_paie,
+                    'reste_paie' => ($this->dette - $this->montant_paie),
+                    'user_id' => Auth::user()->id,
+                ])->save();
 
-            Dette::find($this->dette_id)->fill([
-                'total_dette' => ($this->dette - $this->montant_paie),
-            ])->save();
-            // Set Flash Message
-            $this->alert('success', 'Paiement bien enregistrer');
-            // Reset Form Fields After Creating departement
-            return redirect()->to(route('paiements'));
+                Dette::find($this->dette_id)->fill([
+                    'total_dette' => ($this->dette - $this->montant_paie),
+                ])->save();
+
+                $caisse->solde += $this->montant_paie;
+                $caisse->save();
+                // Set Flash Message
+                $this->alert('success', 'Paiement bien enregistrer');
+                // Reset Form Fields After Creating departement
+                return redirect()->to(route('paiements'));
+            } else {
+                $this->alert('warning', 'Montant Superieur à la dette!!');
+            }
         } catch (\Throwable $e) {
             // Set Flash Message
             $this->alert('warning', 'Echec d\'enregistrement: ' . $e->getMessage());

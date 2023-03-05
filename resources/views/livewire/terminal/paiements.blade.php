@@ -194,8 +194,7 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Montant Paie (CDF)</label>
-                            <input data-toggle="touchspin" wire:model='montant_paie' placeholder="1000.00" init-val="1"
-                                type="text" data-decimals="2" data-bts-postfix="CDF">
+                            <input class="form-control" wire:model='montant_paie' placeholder="1000.00" type="number">
                             <div class="valid-feedback">
                                 @error('montant_paie')
                                 <span style="color: red;">{{ $message }}</span>
