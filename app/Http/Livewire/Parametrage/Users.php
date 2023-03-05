@@ -108,22 +108,91 @@ class Users extends Component
                 $imageHash = $this->avatar->hashName();
                 $manager =  new ImageManager();
                 $manager->make($this->avatar->getRealPath())->resize(50, 50)->save('assets/images/avatar/' . $imageHash);
-                User::create([
-                    'noms' => $this->nom,
-                    'name' => $this->username,
-                    'email' => $this->mail,
-                    'password' => $this->password,
-                    'avatar' => $imageHash,
-                    'role' => $this->role,
-                ])->save();
+                switch ($this->role) {
+
+                    case 'Admin':
+                        User::create([
+                            'noms' => $this->nom,
+                            'name' => $this->username,
+                            'email' => $this->mail,
+                            'password' => $this->password,
+                            'avatar' => $imageHash,
+                            'role' => $this->role,
+                        ])->assignRole('writer', 'admin');
+                        break;
+                    case 'Gerant':
+                        User::create([
+                            'noms' => $this->nom,
+                            'name' => $this->username,
+                            'email' => $this->mail,
+                            'password' => $this->password,
+                            'avatar' => $imageHash,
+                            'role' => $this->role,
+                        ])->assignRole('writer', 'manager', 'seler');
+                        break;
+                    case 'Seler':
+                        User::create([
+                            'noms' => $this->nom,
+                            'name' => $this->username,
+                            'email' => $this->mail,
+                            'password' => $this->password,
+                            'avatar' => $imageHash,
+                            'role' => $this->role,
+                        ])->assignRole('writer', 'seler');
+                        break;
+                    case 'User':
+                        User::create([
+                            'noms' => $this->nom,
+                            'name' => $this->username,
+                            'email' => $this->mail,
+                            'password' => $this->password,
+                            'avatar' => $imageHash,
+                            'role' => $this->role,
+                        ])->assignRole('writer', 'admin');
+                        break;
+                    default:
+                }
             } else {
-                User::create([
-                    'noms' => $this->nom,
-                    'name' => $this->username,
-                    'email' => $this->mail,
-                    'password' => $this->password,
-                    'role' => $this->role,
-                ])->save();
+                switch ($this->role) {
+
+                    case 'Admin':
+                        User::create([
+                            'noms' => $this->nom,
+                            'name' => $this->username,
+                            'email' => $this->mail,
+                            'password' => $this->password,
+                            'role' => $this->role,
+                        ])->assignRole('writer', 'admin');
+                        break;
+                    case 'Gerant':
+                        User::create([
+                            'noms' => $this->nom,
+                            'name' => $this->username,
+                            'email' => $this->mail,
+                            'password' => $this->password,
+                            'role' => $this->role,
+                        ])->assignRole('writer', 'manager', 'seler');
+                        break;
+                    case 'Seler':
+                        User::create([
+                            'noms' => $this->nom,
+                            'name' => $this->username,
+                            'email' => $this->mail,
+                            'password' => $this->password,
+                            'role' => $this->role,
+                        ])->assignRole('writer', 'seler');
+                        break;
+                    case 'User':
+                        User::create([
+                            'noms' => $this->nom,
+                            'name' => $this->username,
+                            'email' => $this->mail,
+                            'password' => $this->password,
+                            'role' => $this->role,
+                        ])->assignRole('writer', 'admin');
+                        break;
+                    default:
+                }
             }
 
             // Set Flash Message
