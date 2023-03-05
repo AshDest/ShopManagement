@@ -87,6 +87,8 @@
     <script src="{{ asset('vendor/livewire-alert/livewire-alert.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     @stack('modalpaiment')
+    @stack('modaldepenses')
+    @stack('modaleditdepenses')
     @stack('scripts')
     <!-- third party js ends -->
     @livewireScripts

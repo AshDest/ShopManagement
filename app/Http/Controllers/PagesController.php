@@ -56,6 +56,10 @@ class PagesController extends Controller
     {
         return view('pages.terminals.paiement');
     }
+    public function depenses()
+    {
+        return view('pages.terminals.depense');
+    }
     public function vente()
     {
         return view('pages.terminals.vente');
