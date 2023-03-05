@@ -91,6 +91,7 @@
     @stack('modaleditdepenses')
     @stack('closeModal')
     @stack('scripts')
+    @stack('editpaie')
     <!-- third party js ends -->
     @livewireScripts
     <!-- demo app -->

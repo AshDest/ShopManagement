@@ -21,6 +21,9 @@ class Paiements extends Component
     public $montant_paie;
     public $dette_id;
 
+    public $dets;
+    public $montant;
+    public $paiement_id;
 
     protected $rules = [
         'montant_paie' => 'required',
@@ -38,6 +41,64 @@ class Paiements extends Component
         $this->dette = $vars->total_dette;
         $this->montant_dette = number_format($vars->total_dette) . ' CDF';
         $this->dispatchBrowserEvent('paiementview');
+    }
+
+    public function paiementedit(Paiement $paiement)
+    {
+        // $vars = Paiement::where('id', $ids)->first();
+        $this->paiement_id = $paiement->id;
+        $this->dette_id = $paiement->dette_id;
+        $this->montant = $paiement->montant_paie;
+        $this->dispatchBrowserEvent('paiementedit');
+    }
+
+    public function update()
+    {
+        try {
+            $caisse = Caisse::where('user_id', Auth::user()->id)->first();
+            $paies = Paiement::find($this->paiement_id);
+            $old_dettes = Dette::find($this->dette_id);
+            // dd($this->paiement_id);
+            if (!$caisse) {
+                $caisse = Caisse::create([
+                    'user_id' => Auth::user()->id,
+                    'solde' => 0
+                ]);
+            }
+            // dd($old_dettes->total_dette + $paies->montant_paie);
+            if ($this->montant <= $old_dettes->total_dette + $paies->montant_paie) {
+
+                // dd(($paies->montant_paie + $paies->reste_paie) - $this->montant);
+                // Mofification de la caisse
+                $caisse->solde -= $paies->montant_paie;
+                $caisse->solde += $this->montant;
+                $caisse->save();
+
+                //Modification de la dette
+                $old_dettes->total_dette += $paies->montant_paie;
+                $old_dettes->total_dette -= $this->montant;
+                $old_dettes->save();
+
+                // modification du paiement
+                $paies->update([
+                    'dette_id' => $this->dette_id,
+                    'montant_paie' => $this->montant,
+                    'reste_paie' => ($paies->montant_paie + $paies->reste_paie) - $this->montant,
+                    'user_id' => Auth::user()->id,
+                ]);
+
+                // Set Flash Message
+                $this->alert('success', 'Paiement bien Modifier!!');
+                // Reset Form Fields After Creating departement
+                return redirect()->to(route('paiements'));
+            } else {
+                $this->alert('warning', 'Montant Superieur à la dette!!');
+            }
+        } catch (\Throwable $e) {
+            // Set Flash Message
+            $this->alert('warning', 'Echec d\'enregistrement: ' . $e->getMessage());
+            // Reset Form Fields After Creating departement
+        }
     }
 
     public function savepaiement()

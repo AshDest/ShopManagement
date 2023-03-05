@@ -99,6 +99,7 @@
                                             <span class="mdi mdi-magnify search-icon"></span>
                                         </div>
                                     </div>
+
                                 </div>
                                 <div class="col-xl-4">
                                     <div class="text-xl-end mt-xl-0 mt-2">
@@ -109,6 +110,7 @@
                                     </div>
                                 </div><!-- end col-->
                             </div>
+
                             <div class="table-responsive">
                                 <table class="table table-centered table-nowrap mb-0">
                                     <thead class="table-dark">
@@ -118,7 +120,7 @@
                                             <th>Num Clients</th>
                                             <th>Montant Payé</th>
                                             <th>Mise à Jour</th>
-                                            {{-- <th style="width: 125px;">Action</th> --}}
+                                            <th style="width: 125px;">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -147,7 +149,10 @@
                                             <td>
                                                 {{ $paie->updated_at }}
                                             </td>
-
+                                            <td>
+                                                <a wire:click="paiementedit({{ $paie->id }})" class="action-icon"
+                                                    style="cursor: pointer;"> <i class="mdi mdi mdi-pencil"></i></a>
+                                            </td>
                                         </tr>
                                         @empty
                                         <div class="alert alert-warning" role="alert">
@@ -210,6 +215,48 @@
             </div> <!-- end modal content-->
         </div> <!-- end modal dialog-->
     </div> <!-- end modal-->
+
+    <div wire:ignore.self id="editpaie" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: rgb(98, 43, 226)">
+                    <h5 class="modal-title" style="color: white" id="staticBackdropLabel">Modifier un Paiement</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                </div> <!-- end modal header -->
+                <form class="ps-3 pe-3" wire:submit.prevent="update">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="form-label">Montant Dette (CDF)</label>
+                            <select class="form-control" wire:model='dette_id'>
+                                @foreach ($dettes as $item)
+                                <option value="{{$item->id}}">{{$item->client->noms}}</option>
+                                @endforeach
+                            </select>
+                            <div class="valid-feedback">
+                                @error('dette_id')
+                                <span style="color: red;">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Montant Paie (CDF)</label>
+                            <input class="form-control" wire:model='montant' placeholder="1000.00" type="number">
+                            <div class="valid-feedback">
+                                @error('montant')
+                                <span style="color: red;">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                        <button class="btn btn-primary">Modifier ce paiement</button>
+                    </div> <!-- end modal footer -->
+                </form>
+            </div> <!-- end modal content-->
+        </div> <!-- end modal dialog-->
+    </div> <!-- end modal-->
     @push('scripts')
     <script type="text/javascript">
         window.addEventListener('paiementview', event => {
@@ -218,6 +265,16 @@
             window.addEventListener('close-modal', event => {
                 $('#add_paie').modal('hiden');
             });
+    </script>
+    @endpush
+    @push('editpaie')
+    <script type="text/javascript">
+        window.addEventListener('paiementedit', event => {
+                        $('#editpaie').modal('show');
+                    });
+                    window.addEventListener('close-modal', event => {
+                        $('#editpaie').modal('hiden');
+                    });
     </script>
     @endpush
 </div>
