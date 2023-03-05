@@ -9,17 +9,13 @@ $montantcaisse = Caisse::where('user_id', Auth::user()->id)->first();
         <!-- LOGO -->
         <a href="/vente" class="topnav-logo">
             <span class="topnav-logo-lg">
-                <img src="{{ asset('assets/images/logo-light.png') }}" alt="" height="16">
+                <img src="{{ asset('assets/images/logo-light1.png') }}" alt="" height="16">
             </span>
             <span class="topnav-logo-sm">
-                <img src="{{ asset('assets/images/logo_sm_dark.png') }}" alt="" height="16">
+                <img src="{{ asset('assets/images/logo_sm_dark1.png') }}" alt="" height="16">
             </span>
         </a>
-
         <ul class="list-unstyled topbar-menu float-end mb-0">
-
-
-
             <li class="dropdown notification-list d-none d-sm-inline-block">
                 <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#" role="button"
                     aria-haspopup="false" aria-expanded="false">
