@@ -62,6 +62,6 @@ Route::get('/listeaprov/excel', [App\Http\Controllers\PagesController::class, 'l
 Route::get('/listeproduit/excel', [App\Http\Controllers\PagesController::class, 'listeproduit'])->name('listeproduit');
 Route::get('/listedette/excel', [App\Http\Controllers\PagesController::class, 'listedette'])->name('listedette');
 Route::get('/listepaiment/excel', [App\Http\Controllers\PagesController::class, 'listepaiment'])->name('listepaiment');
-// Route::get('/', function () {
-//     return Redirect::to('/home');
-// });
+Route::get('/', function () {
+    return Redirect::to('/home');
+});
