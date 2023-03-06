@@ -15,7 +15,7 @@
     <meta content="Application de gestion d'un super marché" name="description" />
     <meta content="Coderthemes" name="Gracieux Sikuly|Destin Ashuza" />
     <!-- App favicon -->
-    <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
+    <link rel="shortcut icon" href="{{ asset('assets/images/shop.ico') }}">
 
     <!-- App css -->
     <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
