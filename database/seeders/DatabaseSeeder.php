@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
         $this->call(RoleSeeder::class);
-        // $this->call(AdminSeeder::class);
+        $this->call(AdminSeeder::class);
 
 
         // pour executer tout les Seeds on  tape : php artisan db:seed en cas d'erreur  taper php artisan db:seed --force
