@@ -1,6 +1,6 @@
 <div class="leftside-menu">
     <!-- LOGO -->
-    <a href="/" class="logo text-center logo-light">
+    <a href="{{route('home')}}" class="logo text-center logo-light">
         <span class="logo-lg">
             <img src="{{ asset('assets/images/logo-light1.png') }}" alt="" height="16">
         </span>
@@ -9,7 +9,7 @@
         </span>
     </a>
     <!-- LOGO -->
-    <a href="/" class="logo text-center logo-dark">
+    <a href="{{route('home')}}" class="logo text-center logo-dark">
         <span class="logo-lg">
             <img src="{{ asset('assets/images/logo-light1.png') }}" alt="" height="16">
         </span>
@@ -22,7 +22,7 @@
         <ul class="side-nav">
             <li class="side-nav-title side-nav-item">Navigation</li>
             <li class="side-nav-item">
-                <a href="/" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">
+                <a href="{{route('home')}}" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">
                     <i class="uil-home-alt"></i>
                     {{-- <span class="badge bg-success float-end">4</span> --}}
                     <span> Dashboards </span>
@@ -39,10 +39,10 @@
                     <ul class="side-nav-second-level">
 
                         <li>
-                            <a href="/categorie">Categorie Produit</a>
+                            <a href="{{ route('categorie') }}">Categorie Produit</a>
                         </li>
                         <li>
-                            <a href="/produit">Ajouter Produits</a>
+                            <a href="{{ route('produit') }}">Ajouter Produits</a>
                         </li>
                         <li>
                             <a href="{{ route('listProduits') }}">Liste Produits</a>
@@ -85,7 +85,7 @@
                             <a href="{{ route('shopinformations') }}">Parametre entreprise</a>
                         </li>
                         <li>
-                            <a href="/compteuser">Compte utilisateur</a>
+                            <a href="{{ route('compteuser') }}">Compte utilisateur</a>
                         </li>
                     </ul>
                 </div>

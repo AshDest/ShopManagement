@@ -102,7 +102,6 @@ class Users extends Component
     {
         // Validate Form Request
         try {
-
             if ($this->avatar) {
                 $this->validate();
                 $imageHash = $this->avatar->hashName();
