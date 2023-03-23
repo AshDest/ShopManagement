@@ -8,7 +8,6 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-
 class LoginController extends Controller
 {
     /*
@@ -38,6 +37,7 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
+            $user->hasRole('writer');
             if ($user->hasRole('admin')) {
                 return redirect()->route('admin.home');
             } else if ($user->hasRole('seler')) {
