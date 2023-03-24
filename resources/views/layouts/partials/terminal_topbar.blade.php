@@ -7,7 +7,7 @@ $montantcaisse = Caisse::where('user_id', Auth::user()->id)->first();
     <div class="container-fluid">
 
         <!-- LOGO -->
-        <a href="/vente" class="topnav-logo">
+        <a href="/seller/vente" class="topnav-logo">
             <span class="topnav-logo-lg">
                 <img src="{{ asset('assets/images/logo-light1.png') }}" alt="" height="16">
             </span>
@@ -26,13 +26,13 @@ $montantcaisse = Caisse::where('user_id', Auth::user()->id)->first();
                     <div class="p-2">
                         <div class="row g-0">
                             <div class="col">
-                                <a class="dropdown-icon-item" href="/vente">
+                                <a class="dropdown-icon-item" href="/seller/vente">
                                     <img src="{{ asset('assets/images/brands/bucketvente.png') }}" alt="vente">
                                     <span>Vente</span>
                                 </a>
                             </div>
                             <div class="col">
-                                <a class="dropdown-icon-item" href="/listevente">
+                                <a class="dropdown-icon-item" href="/seller/listevente">
                                     <img src="{{ asset('assets/images/brands/list_vente.png') }}" alt="listevente">
                                     <span>Liste de vente</span>
                                 </a>
@@ -44,7 +44,7 @@ $montantcaisse = Caisse::where('user_id', Auth::user()->id)->first();
                                 </a>
                             </div>
                         </div>
-
+                        @if (Auth::user()->role=="Gerant")
                         <div class="row g-0">
                             <div class="col">
                                 <a class="dropdown-icon-item" href="{{ route('home') }}">
@@ -59,6 +59,7 @@ $montantcaisse = Caisse::where('user_id', Auth::user()->id)->first();
                                 </a>
                             </div>
                         </div>
+                        @endif
                         <div class="row g-0" style="background-color: rgba(120, 80, 173, 0.192)">
                             <div class="col">
                                 <a class="dropdown-icon-item" href="{{ route('paiements') }}">

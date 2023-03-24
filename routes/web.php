@@ -19,9 +19,8 @@ Auth::routes();
 
 // LES ROUTES ADMINS ET GESTIONNAIRES
 
-Route::get('/admin/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware(['auth', 'role:admin'])
-    ->name('home');
-
+Route::get('/admin/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// ->middleware(['auth', 'role:admin'])
 
 
 Route::get('/admin/approvisionnement/list', [App\Http\Controllers\PagesController::class, 'approvisionnements'])->name('listapprovisionnement');
@@ -39,13 +38,13 @@ Route::get('/admin/conversion/add', [App\Http\Controllers\PagesController::class
 
 
 
-Route::group(['middleware' => ['auth', 'role:seler']], function () {
-    // LES ROUTES DU TERMINALS DE VENTES
-    Route::get('/seller/paiement', [App\Http\Controllers\PagesController::class, 'paiements'])->name('paiements');
-    Route::get('/seller/vente', [App\Http\Controllers\PagesController::class, 'vente'])->name('vente');
-    Route::get('/seller/listevente', [App\Http\Controllers\PagesController::class, 'listevente'])->name('listevente');
-    Route::get('/seller/depenses', [App\Http\Controllers\PagesController::class, 'depenses'])->name('depenses');
-});
+// Route::group(['middleware' => ['auth', 'role:seler']], function () {
+// LES ROUTES DU TERMINALS DE VENTES
+Route::get('/seller/paiement', [App\Http\Controllers\PagesController::class, 'paiements'])->name('paiements');
+Route::get('/seller/vente', [App\Http\Controllers\PagesController::class, 'vente'])->name('vente');
+Route::get('/seller/listevente', [App\Http\Controllers\PagesController::class, 'listevente'])->name('listevente');
+Route::get('/seller/depenses', [App\Http\Controllers\PagesController::class, 'depenses'])->name('depenses');
+// });
 
 
 

@@ -28,46 +28,46 @@ class LoginController extends Controller
      *
      * @var string
      */
-    public function login(Request $request)
-    {
-        $credentials = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
-
-        if (Auth::attempt($credentials)) {
-            $user = Auth::user();
-            $user->hasRole('writer');
-            if ($user->hasRole('admin')) {
-                return redirect()->route('admin.home');
-            } else if ($user->hasRole('seler')) {
-                return redirect()->route('seller.vente');
-            } else {
-                return redirect()->route('seller.vente');
-            }
-        } else {
-            return redirect()->route('login')->withErrors(['email' => 'Identifiants incorrects']);
-        }
-    }
-    //protected $redirectTo = RouteServiceProvider::HOME;
-    // protected function redirectTo()
+    // public function login(Request $request)
     // {
+    //     $credentials = $request->validate([
+    //         'email' => 'required|email',
+    //         'password' => 'required',
+    //     ]);
 
-    //     $user = Auth::user();
-    //     // if ($user->role == 'Admin') {
-    //     //     // dd("toto");
-    //     //     return '/admin/home';
-    //     // } elseif ($user->role == 'Seler') {
-    //     //     // dd("bb");
-    //     //     return '/seller/vente';
+    //     // if (Auth::attempt($credentials)) {
+    //     //     $user = Auth::user();
+
+    //     //     if ($user->hasRole('admin')) {
+    //     //         return redirect()->route('admin.home');
+    //     //     } else if ($user->hasRole('seler')) {
+    //     //         return redirect()->route('seller.vente');
+    //     //     } else {
+    //     //         return redirect()->route('seller.vente');
+    //     //     }
     //     // } else {
-    //     //     return '/user/dashboard';
+    //     //     return redirect()->route('login')->withErrors(['email' => 'Identifiants incorrects']);
     //     // }
     // }
-    // protected function authenticated(Request $request, $user)
-    // {
-    //     return redirect()->intended($this->redirectTo());
-    // }
+    //protected $redirectTo = RouteServiceProvider::HOME;
+    protected function redirectTo()
+    {
+
+        $user = Auth::user();
+        if ($user->role == 'Admin' || $user->role == 'Gerant') {
+            // dd("toto");
+            return '/admin/home';
+        } elseif ($user->role == 'Seler') {
+            //dd("bb");
+            return '/seller/vente';
+        } else {
+            return '/user/dashboard';
+        }
+    }
+    protected function authenticated(Request $request, $user)
+    {
+        return redirect()->intended($this->redirectTo());
+    }
     /**
      * Create a new controller instance.
      *
