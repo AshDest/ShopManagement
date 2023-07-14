@@ -49,7 +49,7 @@ class Users extends Component
         $categdel = User::whereId($this->desplayeditform)->delete();
         if ($categdel) {
             $this->cleanupOldTemps($this->old_avatar);
-            $this->alert('info', 'categorie bien Suprime!');
+            $this->alert('info', 'utilisateur bien Suprime!');
             $this->reset_fields();
         }
     }
@@ -73,7 +73,7 @@ class Users extends Component
                 $manager->make($this->avatar->getRealPath())->resize(50, 50)->save('assets/images/avatar/' . $imageHash);
                 User::find($this->desplayeditform)->fill([
                     'noms' => $this->nom,
-                    'name' => $this->username,
+                    'username' => $this->username,
                     'email' => $this->mail,
                     'password' => $this->password,
                     'avatar' => $imageHash,
@@ -83,7 +83,7 @@ class Users extends Component
             } else {
                 User::find($this->desplayeditform)->fill([
                     'noms' => $this->nom,
-                    'name' => $this->username,
+                    'username' => $this->username,
                     'email' => $this->mail,
                     'password' => $this->password,
                     'role' => $this->role,
@@ -112,7 +112,7 @@ class Users extends Component
                     case 'Admin':
                         User::create([
                             'noms' => $this->nom,
-                            'name' => $this->username,
+                            'username' => $this->username,
                             'email' => $this->mail,
                             'password' => $this->password,
                             'avatar' => $imageHash,
@@ -123,7 +123,7 @@ class Users extends Component
                     case 'Gerant':
                         User::create([
                             'noms' => $this->nom,
-                            'name' => $this->username,
+                            'username' => $this->username,
                             'email' => $this->mail,
                             'password' => $this->password,
                             'avatar' => $imageHash,
@@ -134,7 +134,7 @@ class Users extends Component
                     case 'Seler':
                         User::create([
                             'noms' => $this->nom,
-                            'name' => $this->username,
+                            'username' => $this->username,
                             'email' => $this->mail,
                             'password' => $this->password,
                             'avatar' => $imageHash,
@@ -145,7 +145,7 @@ class Users extends Component
                     case 'User':
                         User::create([
                             'noms' => $this->nom,
-                            'name' => $this->username,
+                            'username' => $this->username,
                             'email' => $this->mail,
                             'password' => $this->password,
                             'avatar' => $imageHash,
@@ -161,7 +161,7 @@ class Users extends Component
                     case 'Admin':
                         User::create([
                             'noms' => $this->nom,
-                            'name' => $this->username,
+                            'username' => $this->username,
                             'email' => $this->mail,
                             'password' => $this->password,
                             'role' => $this->role,
@@ -171,7 +171,7 @@ class Users extends Component
                     case 'Gerant':
                         User::create([
                             'noms' => $this->nom,
-                            'name' => $this->username,
+                            'username' => $this->username,
                             'email' => $this->mail,
                             'password' => $this->password,
                             'role' => $this->role,
@@ -181,7 +181,7 @@ class Users extends Component
                     case 'Seler':
                         User::create([
                             'noms' => $this->nom,
-                            'name' => $this->username,
+                            'username' => $this->username,
                             'email' => $this->mail,
                             'password' => $this->password,
                             'role' => $this->role,
@@ -191,7 +191,7 @@ class Users extends Component
                     case 'User':
                         User::create([
                             'noms' => $this->nom,
-                            'name' => $this->username,
+                            'username' => $this->username,
                             'email' => $this->mail,
                             'password' => $this->password,
                             'role' => $this->role,
@@ -236,7 +236,7 @@ class Users extends Component
     {
         if ($this->reseach) {
             return view('livewire.parametrage.users', [
-                'users' => User::where('name', 'LIKE', '%' . $this->reseach . '%')
+                'users' => User::where('username', 'LIKE', '%' . $this->reseach . '%')
                     ->orwhere('noms', 'LIKE', '%' . $this->reseach)
                     ->orwhere('email', 'LIKE', '%' . $this->reseach)
                     ->orwhere('role', 'LIKE', '%' . $this->reseach)
