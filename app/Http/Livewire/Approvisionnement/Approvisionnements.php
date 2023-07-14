@@ -36,7 +36,7 @@ class Approvisionnements extends Component
         $categdel = Approvisionnement::whereId($this->desplayeditform)->delete();
         if ($categdel) {
             $this->alert('info', 'Approvisionnement bien Suprime!');
-            $this->reset_fields();
+            // $this->reset_fields();
         }
     }
     public function mount()
