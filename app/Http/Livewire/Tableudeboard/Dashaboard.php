@@ -63,7 +63,7 @@ class Dashaboard extends Component
             ->join('produits as p', 'd.produit_id', '=', 'p.id')
             ->select(DB::raw("count(*) as nbr"), 'produit_id', 'p.description')
             ->where('month', $now->month)
-            ->groupBy('produit_id')
+            ->groupBy('produit_id','p.description')
             ->limit('5')
             ->get();
         $data_top = array();
