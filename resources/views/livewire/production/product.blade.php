@@ -88,7 +88,7 @@
                                             <select id="inputState2" class="form-select" wire:model="vendeurselected">
                                                 <option>Selectionnez un vendeur</option>
                                                 @foreach ($vendeurs as $vendeur)
-                                                    <option value="{{ $vendeur->id }}">{{ $vendeur->name }}
+                                                    <option value="{{ $vendeur->id }}">{{ $vendeur->username }}
                                                     </option>
                                                 @endforeach
                                             </select>
@@ -163,7 +163,7 @@
                                                 wire:model="vendeurselected">
                                                 <option>Selectionnez un vendeur</option>
                                                 @foreach ($vendeurs as $vendeur)
-                                                    <option value="{{ $vendeur->id }}">{{ $vendeur->name }}
+                                                    <option value="{{ $vendeur->id }}">{{ $vendeur->username }}
                                                     </option>
                                                 @endforeach
                                             </select>
