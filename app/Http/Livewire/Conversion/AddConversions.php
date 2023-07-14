@@ -54,6 +54,16 @@ class AddConversions extends Component
         $this->unite = $vars->designationmesure;
     }
 
+    public function addproducts($id)
+    {
+        $vars = Produit::whereId($id)->first();
+        if ($this->selectProdui1) {
+            $this->selectProdui2 = $vars->description;
+        } else {
+            $this->selectProdui1 = $vars->description;
+        }
+    }
+
     public function updatedselectProdui2($id)
     {
         if ($this->selectProdui1 == $this->selectProdui2) {
