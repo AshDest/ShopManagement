@@ -19,32 +19,36 @@ Auth::routes();
 
 // LES ROUTES ADMINS ET GESTIONNAIRES
 
-Route::get('/admin/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 // ->middleware(['auth', 'role:admin'])
 
+Route::group(['middleware' => ['auth', 'redirect_based_on_role']], function () {
+    Route::get('/admin/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/admin/approvisionnement/list', [App\Http\Controllers\PagesController::class, 'approvisionnements'])->name('listapprovisionnement');
+    Route::get('/admin/approvisionnement/add/{ids}', [App\Http\Controllers\PagesController::class, 'addapprovisionnement'])->name('addapprovisionnement');
+    Route::get('/admin/approvisionnement/edit/{approv_id}', [App\Http\Controllers\PagesController::class, 'editapprovisionnement'])->name('editapprovisionnement');
+    Route::get('/admin/list-produits', [App\Http\Controllers\PagesController::class, 'listProduits'])->name('listProduits');
+    Route::get('/admin/mesures', [App\Http\Controllers\PagesController::class, 'mesure'])->name('mesures');
+    Route::get('/admin/shopinformations', [App\Http\Controllers\PagesController::class, 'shopinformation'])->name('shopinformations');
+    Route::get('/admin/categorie', [App\Http\Controllers\HomeController::class, 'categorieproduit'])->name('categorie');
+    Route::get('/admin/produit', [App\Http\Controllers\HomeController::class, 'produit'])->name('produit');
+    Route::get('/admin/compteuser', [App\Http\Controllers\HomeController::class, 'compteuser'])->name('compteuser');
+    Route::get('/admin/synthetic', [App\Http\Controllers\PagesController::class, 'syntheticliste'])->name('synthetic');
+    Route::get('/admin/listconversion', [App\Http\Controllers\PagesController::class, 'listconversion'])->name('listconversion');
+    Route::get('/admin/conversion/add', [App\Http\Controllers\PagesController::class, 'addconversion'])->name('addconversion');
+});
 
-Route::get('/admin/approvisionnement/list', [App\Http\Controllers\PagesController::class, 'approvisionnements'])->name('listapprovisionnement');
-Route::get('/admin/approvisionnement/add/{ids}', [App\Http\Controllers\PagesController::class, 'addapprovisionnement'])->name('addapprovisionnement');
-Route::get('/admin/approvisionnement/edit/{approv_id}', [App\Http\Controllers\PagesController::class, 'editapprovisionnement'])->name('editapprovisionnement');
-Route::get('/admin/list-produits', [App\Http\Controllers\PagesController::class, 'listProduits'])->name('listProduits');
-Route::get('/admin/mesures', [App\Http\Controllers\PagesController::class, 'mesure'])->name('mesures');
-Route::get('/admin/shopinformations', [App\Http\Controllers\PagesController::class, 'shopinformation'])->name('shopinformations');
-Route::get('/admin/categorie', [App\Http\Controllers\HomeController::class, 'categorieproduit'])->name('categorie');
-Route::get('/admin/produit', [App\Http\Controllers\HomeController::class, 'produit'])->name('produit');
-Route::get('/admin/compteuser', [App\Http\Controllers\HomeController::class, 'compteuser'])->name('compteuser');
-Route::get('/admin/synthetic', [App\Http\Controllers\PagesController::class, 'syntheticliste'])->name('synthetic');
-Route::get('/admin/listconversion', [App\Http\Controllers\PagesController::class, 'listconversion'])->name('listconversion');
-Route::get('/admin/conversion/add', [App\Http\Controllers\PagesController::class, 'addconversion'])->name('addconversion');
 
 
 
 // Route::group(['middleware' => ['auth', 'role:seler']], function () {
 // LES ROUTES DU TERMINALS DE VENTES
+Route::group(['middleware' => ['auth', 'terminal_vente']], function () {
 Route::get('/seller/paiement', [App\Http\Controllers\PagesController::class, 'paiements'])->name('paiements');
 Route::get('/seller/vente', [App\Http\Controllers\PagesController::class, 'vente'])->name('vente');
 Route::get('/seller/listevente', [App\Http\Controllers\PagesController::class, 'listevente'])->name('listevente');
 Route::get('/seller/depenses', [App\Http\Controllers\PagesController::class, 'depenses'])->name('depenses');
-// });
+});
 
 
 

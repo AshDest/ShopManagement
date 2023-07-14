@@ -28,46 +28,9 @@ class LoginController extends Controller
      *
      * @var string
      */
-    // public function login(Request $request)
-    // {
-    //     $credentials = $request->validate([
-    //         'email' => 'required|email',
-    //         'password' => 'required',
-    //     ]);
 
-    //     // if (Auth::attempt($credentials)) {
-    //     //     $user = Auth::user();
+    protected $redirectTo = RouteServiceProvider::HOME;
 
-    //     //     if ($user->hasRole('admin')) {
-    //     //         return redirect()->route('admin.home');
-    //     //     } else if ($user->hasRole('seler')) {
-    //     //         return redirect()->route('seller.vente');
-    //     //     } else {
-    //     //         return redirect()->route('seller.vente');
-    //     //     }
-    //     // } else {
-    //     //     return redirect()->route('login')->withErrors(['email' => 'Identifiants incorrects']);
-    //     // }
-    // }
-    //protected $redirectTo = RouteServiceProvider::HOME;
-    protected function redirectTo()
-    {
-
-        $user = Auth::user();
-        if ($user->role == 'Admin' || $user->role == 'Gerant') {
-            // dd("toto");
-            return '/admin/home';
-        } elseif ($user->role == 'Seler') {
-            //dd("bb");
-            return '/seller/vente';
-        } else {
-            return '/user/dashboard';
-        }
-    }
-    protected function authenticated(Request $request, $user)
-    {
-        return redirect()->intended($this->redirectTo());
-    }
     /**
      * Create a new controller instance.
      *

@@ -117,7 +117,8 @@ class Users extends Component
                             'password' => $this->password,
                             'avatar' => $imageHash,
                             'role' => $this->role,
-                        ])->assignRole('writer', 'admin');
+                        ]);
+                        // ->assignRole('writer', 'admin');
                         break;
                     case 'Gerant':
                         User::create([
@@ -127,7 +128,8 @@ class Users extends Component
                             'password' => $this->password,
                             'avatar' => $imageHash,
                             'role' => $this->role,
-                        ])->assignRole('writer', 'manager', 'seler');
+                        ]);
+                        // ->assignRole('writer', 'manager', 'seler');
                         break;
                     case 'Seler':
                         User::create([
@@ -137,7 +139,8 @@ class Users extends Component
                             'password' => $this->password,
                             'avatar' => $imageHash,
                             'role' => $this->role,
-                        ])->assignRole('writer', 'seler');
+                        ]);
+                        // ->assignRole('writer', 'seler');
                         break;
                     case 'User':
                         User::create([
@@ -147,7 +150,8 @@ class Users extends Component
                             'password' => $this->password,
                             'avatar' => $imageHash,
                             'role' => $this->role,
-                        ])->assignRole('writer', 'admin');
+                        ]);
+                        // ->assignRole('writer', 'admin');
                         break;
                     default:
                 }
@@ -161,7 +165,8 @@ class Users extends Component
                             'email' => $this->mail,
                             'password' => $this->password,
                             'role' => $this->role,
-                        ])->assignRole('writer', 'admin');
+                        ]);
+                        // ->assignRole('writer', 'admin');
                         break;
                     case 'Gerant':
                         User::create([
@@ -170,7 +175,8 @@ class Users extends Component
                             'email' => $this->mail,
                             'password' => $this->password,
                             'role' => $this->role,
-                        ])->assignRole('writer', 'manager', 'seler');
+                        ]);
+                        //->assignRole('writer', 'manager', 'seler');
                         break;
                     case 'Seler':
                         User::create([
@@ -179,7 +185,8 @@ class Users extends Component
                             'email' => $this->mail,
                             'password' => $this->password,
                             'role' => $this->role,
-                        ])->assignRole('writer', 'seler');
+                        ]);
+                        // ->assignRole('writer', 'seler');
                         break;
                     case 'User':
                         User::create([
@@ -188,7 +195,8 @@ class Users extends Component
                             'email' => $this->mail,
                             'password' => $this->password,
                             'role' => $this->role,
-                        ])->assignRole('writer', 'admin');
+                        ]);
+                        // ->assignRole('writer', 'admin');
                         break;
                     default:
                 }
