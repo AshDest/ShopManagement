@@ -132,7 +132,7 @@ class ShopInformations extends Component
             // Set Flash Message
             $this->alert('warning', 'Echec d\'enregistrement');
             // Reset Form Fields After Creating departement
-            // $this->reset_fields();
+
         }
     }
 
