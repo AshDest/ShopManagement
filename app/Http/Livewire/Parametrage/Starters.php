@@ -72,7 +72,7 @@ class Starters extends Component
             // Set Flash Message
             $this->alert('warning', 'Echec d\'enregistrement');
             // Reset Form Fields After Creating departement
-            // $this->reset_fields();
+
         }
     }
     public function render()
