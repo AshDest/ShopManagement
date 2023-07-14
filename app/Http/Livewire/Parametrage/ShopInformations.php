@@ -32,7 +32,7 @@ class ShopInformations extends Component
         'adresse' => 'required|min:10',
         'contact' => 'required|min:9|max:13',
         'email' => 'required|email',
-        // 'logo' => 'required|mimes:png|max:2048',// 2MB Max
+
         'rccm' => 'required|max:8|min:5',
         'num_impot' => 'required|min:5|max:8',
         'id_national' => 'required|min:5|max:10',
