@@ -40,37 +40,39 @@
                             </thead>
                             <tbody>
                                 @php
-                                $i = 1;
+                                    $i = 1;
                                 @endphp
                                 @forelse ($conversions as $conversion)
-                                <tr>
-                                    <td class="table-user">
-                                        @php
-                                        echo $i;
-                                        $i++;
-                                        @endphp
-                                    </td>
-                                    <td>{{ $conversion->produit->description }}</td>
-                                    <td>{{$conversion->quantite}}</td>
-                                    <td>{{ $conversion->produit->description }}</td>
-                                    <td>{{$conversion->qte_ajout}}</td>
-                                    <td class="table-action">
-                                        <a href="{{ route('addapprovisionnement', ['ids'=>$conversion->id]) }}"
-                                            class="action-icon" style="cursor: pointer;"> <i
-                                                class="mdi mdi-plus-circle-multiple-outline"></i></a>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td class="table-user">
+                                            @php
+                                                echo $i;
+                                                $i++;
+                                            @endphp
+                                        </td>
+                                        <td>{{ $conversion->produit->description }}</td>
+                                        <td>{{ $conversion->quantite }} {{ $conversion->produit->designationmesure }}
+                                        </td>
+                                        <td>{{ $conversion->convertis->description }}</td>
+                                        <td>{{ $conversion->qte_ajout }} {{ $conversion->convertis->designationmesure }}
+                                        </td>
+                                        <td class="table-action">
+                                            <a href="{{ route('addapprovisionnement', ['ids' => $conversion->id]) }}"
+                                                class="action-icon" style="cursor: pointer;"> <i
+                                                    class="mdi mdi-plus-circle-multiple-outline"></i></a>
+                                        </td>
+                                    </tr>
                                 @empty
-                                <div class="alert alert-warning" role="alert">
-                                    Pas d'Approvisionnements
-                                </div>
+                                    <div class="alert alert-warning" role="alert">
+                                        Pas d'Approvisionnements
+                                    </div>
                                 @endforelse
                             </tbody>
                         </table>
                         <br>
                         <center>
                             @if (count($conversions))
-                            {{ $conversions->links('vendor.livewire.bootstrap') }}
+                                {{ $conversions->links('vendor.livewire.bootstrap') }}
                             @endif
                         </center>
                     </div>

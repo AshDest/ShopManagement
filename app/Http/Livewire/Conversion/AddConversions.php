@@ -51,35 +51,35 @@ class AddConversions extends Component
             $prod2 = Produit::whereId($this->idprod2)->first();
 
             if ($prod1 && $prod2) {
-                Conversion::create([
-                    'produit_id' => $this->idprod1,
-                    'quantite' => $this->quantite,
-                    'produit_code' => $this->idprod2,
-                    'qte_ajout' => $this->qte_ajout,
-                ])->save();
+                if ($this->quantite > $prod1->quantite) {
+                    $this->alert('error', 'La quantité de produit à convertir est supérieur à la quantité disponible en stock', [
+                        'position' => 'center'
+                    ]);
+                    return;
+                } else {
+                    Conversion::create([
+                        'produit_id' => $this->idprod1,
+                        'quantite' => $this->quantite,
+                        'produit_code' => $this->idprod2,
+                        'qte_ajout' => $this->qte_ajout,
+                    ])->save();
 
-                $prod1->update([
-                    'qte_stock' => $prod1->qte_stock - $this->quantite
-                ]);
-                $prod2->update([
-                    'qte_stock' => $prod2->qte_stock + $this->qte_ajout,
-                    'pu' => $this->prix_vente
-                ]);
+                    $prod1->update([
+                        'qte_stock' => $prod1->qte_stock - $this->quantite
+                    ]);
+                    $prod2->update([
+                        'qte_stock' => $prod2->qte_stock + $this->qte_ajout,
+                        'pu' => $this->prix_vente
+                    ]);
+                    $this->alert('success', 'Conversion bien enregistrer');
+
+                    return redirect()->to(route('listconversion'));
+                }
             }
-            $this->alert('success', 'Conversion bien enregistrer');
-
-            return redirect()->to(route('listconversion'));
         } catch (\Throwable $th) {
             $this->alert('error', $th->getMessage());
         }
     }
-
-    public function updatedselectProdui1($id)
-    {
-        $vars = Produit::whereId($id)->first();
-        $this->unite = $vars->designationmesure;
-    }
-
     public function addproducts($id)
     {
         $vars = Produit::whereId($id)->first();
@@ -104,8 +104,6 @@ class AddConversions extends Component
                     $this->unite2 = $vars->designationmesure;
                 }
             }
-            // $this->selectProdui2 = $vars->description;
-            // $this->unite2 = $vars->designationmesure;
         } else {
             $this->idprod1 = $id;
             $this->catprod1 = $vars->category_id;
@@ -113,22 +111,6 @@ class AddConversions extends Component
             $this->unite = $vars->designationmesure;
         }
     }
-
-    public function updatedselectProdui2($id)
-    {
-        if ($this->selectProdui1 == $this->selectProdui2) {
-            $this->alert('error', 'Vous avez selectionné le même Produit', [
-                'position' => 'center'
-            ]);
-            $this->selectProdui2 = null;
-        }
-        $vars = Produit::whereId($id)->first();
-        $this->unite2 = $vars->designationmesure;
-    }
-    // public function mount()
-    // {
-    //     $this->produits = Produit::all();
-    // }
     public function render()
     {
         // return view('livewire.conversion.add-conversions');
