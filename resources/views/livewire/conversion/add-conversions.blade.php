@@ -5,7 +5,7 @@
                 <div class="card-body">
                     <form wire:submit.prevent='save'>
                         <div class="row">
-                            <div class="col-lg-6">
+                            <div class="col-lg-8">
                                 <div class="mb-3">
                                     <form
                                         class="row gy-2 gx-2 align-items-center justify-content-xl-start justify-content-between">
@@ -61,9 +61,20 @@
                                                             <a wire:click='addproducts({{ $produit->id }})'
                                                                 style="cursor: pointer;" class="font-18 text-info me-2"
                                                                 data-bs-toggle="tooltip" data-bs-placement="top"
-                                                                title="Selectionner le Produit"><i
-                                                                    class="uil uil-focus-add"></i></a>
+                                                                title="Convertire ce Produit"><i
+                                                                    class="uil uil-download-alt"></i></a>
                                                         </td>
+                                                    @else
+                                                        @if ($selectProdui1)
+                                                            <td class="text-end">
+                                                                <a wire:click='addproducts({{ $produit->id }})'
+                                                                    style="cursor: pointer;"
+                                                                    class="font-18 text-success me-2"
+                                                                    data-bs-toggle="tooltip" data-bs-placement="top"
+                                                                    title="Approvisionner ce produit par la conversion"><i
+                                                                        class="uil uil-focus-add"></i></a>
+                                                            </td>
+                                                        @endif
                                                     @endif
                                                 </tr>
                                             @empty
@@ -78,7 +89,7 @@
                                     </center>
                                 </div> <!-- end table-responsive-->
                             </div>
-                            <div class="col-lg-6">
+                            <div class="col-lg-4">
                                 <form action="">
                                     <div class="mb-3">
                                         <label for="">Produit 1 Quantité /{{ $unite }}</label>

@@ -75,7 +75,7 @@ class AddConversions extends Component
             } else {
 
                 if ($this->catprod1 != $this->catprod2) {
-                    $this->alert('error', 'Vous avez selectionné des Produits de catégories différentes', [
+                    $this->alert('error', 'Les deux produits ne peuvent pas être convertis!!! Veuillez recommencer', [
                         'position' => 'center'
                     ]);
                     $this->selectProdui2 = null;
