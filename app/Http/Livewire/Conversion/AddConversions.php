@@ -63,27 +63,32 @@ class AddConversions extends Component
     public function addproducts($id)
     {
         $vars = Produit::whereId($id)->first();
+        // dd($vars->category_id);
         if ($this->selectProdui1) {
             $this->idprod2 = $id;
-            $this->catprod2 = $vars->categorie_id;
+            $this->catprod2 = $vars->category_id;
             if ($this->idprod1 == $this->idprod2) {
                 $this->alert('error', 'Vous avez selectionné le même Produit', [
                     'position' => 'center'
                 ]);
                 $this->selectProdui2 = null;
             } else {
+
                 if ($this->catprod1 != $this->catprod2) {
                     $this->alert('error', 'Vous avez selectionné des Produits de catégories différentes', [
                         'position' => 'center'
                     ]);
                     $this->selectProdui2 = null;
+                } else {
+                    $this->selectProdui2 = $vars->description;
+                    $this->unite2 = $vars->designationmesure;
                 }
             }
             // $this->selectProdui2 = $vars->description;
             // $this->unite2 = $vars->designationmesure;
         } else {
             $this->idprod1 = $id;
-            $this->catprod1 = $vars->categorie_id;
+            $this->catprod1 = $vars->category_id;
             $this->selectProdui1 = $vars->description;
             $this->unite = $vars->designationmesure;
         }
