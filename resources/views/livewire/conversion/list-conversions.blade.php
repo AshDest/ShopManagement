@@ -58,8 +58,9 @@
                                         </td>
                                         <td class="table-action">
                                             <a href="{{ route('editconversion', ['conversion' => $conversion->id]) }}"
-                                                class="action-icon" style="cursor: pointer;"> <i
-                                                    class="mdi mdi-plus-circle-multiple-outline"></i></a>
+                                                class="action-icon text-primary me-2" style="cursor: pointer;"
+                                                data-bs-toggle="tooltip" data-bs-placement="top"
+                                                title="Modifier la conversion"> <i class="mdi mdi-archive-edit"></i></a>
                                         </td>
                                     </tr>
                                 @empty
