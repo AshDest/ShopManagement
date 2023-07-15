@@ -77,6 +77,11 @@ class PagesController extends Controller
         return view('pages.conversion.add-conversion');
     }
 
+    public function editconversion($conversion)
+    {
+        return view('pages.conversion.modif-conversion', compact('conversion'));
+    }
+
     // LES EXPORTATIONS ICI
     public function listeventexport()
     {

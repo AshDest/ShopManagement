@@ -51,7 +51,7 @@ class AddConversions extends Component
             $prod2 = Produit::whereId($this->idprod2)->first();
 
             if ($prod1 && $prod2) {
-                if ($this->quantite > $prod1->quantite) {
+                if ($this->quantite > $prod1->qte_stock) {
                     $this->alert('error', 'La quantité de produit à convertir est supérieur à la quantité disponible en stock', [
                         'position' => 'center'
                     ]);

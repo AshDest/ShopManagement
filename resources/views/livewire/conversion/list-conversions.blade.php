@@ -57,7 +57,7 @@
                                         <td>{{ $conversion->qte_ajout }} {{ $conversion->convertis->designationmesure }}
                                         </td>
                                         <td class="table-action">
-                                            <a href="{{ route('addapprovisionnement', ['ids' => $conversion->id]) }}"
+                                            <a href="{{ route('editconversion', ['conversion' => $conversion->id]) }}"
                                                 class="action-icon" style="cursor: pointer;"> <i
                                                     class="mdi mdi-plus-circle-multiple-outline"></i></a>
                                         </td>

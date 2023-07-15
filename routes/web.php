@@ -36,6 +36,7 @@ Route::group(['middleware' => ['auth', 'redirect_based_on_role']], function () {
     Route::get('/admin/synthetic', [App\Http\Controllers\PagesController::class, 'syntheticliste'])->name('synthetic');
     Route::get('/admin/listconversion', [App\Http\Controllers\PagesController::class, 'listconversion'])->name('listconversion');
     Route::get('/admin/conversion/add', [App\Http\Controllers\PagesController::class, 'addconversion'])->name('addconversion');
+    Route::get('/admin/conversion/edit/{conversion}', [App\Http\Controllers\PagesController::class, 'editconversion'])->name('editconversion');
 });
 
 
@@ -44,10 +45,10 @@ Route::group(['middleware' => ['auth', 'redirect_based_on_role']], function () {
 // Route::group(['middleware' => ['auth', 'role:seler']], function () {
 // LES ROUTES DU TERMINALS DE VENTES
 Route::group(['middleware' => ['auth', 'terminal_vente']], function () {
-Route::get('/seller/paiement', [App\Http\Controllers\PagesController::class, 'paiements'])->name('paiements');
-Route::get('/seller/vente', [App\Http\Controllers\PagesController::class, 'vente'])->name('vente');
-Route::get('/seller/listevente', [App\Http\Controllers\PagesController::class, 'listevente'])->name('listevente');
-Route::get('/seller/depenses', [App\Http\Controllers\PagesController::class, 'depenses'])->name('depenses');
+    Route::get('/seller/paiement', [App\Http\Controllers\PagesController::class, 'paiements'])->name('paiements');
+    Route::get('/seller/vente', [App\Http\Controllers\PagesController::class, 'vente'])->name('vente');
+    Route::get('/seller/listevente', [App\Http\Controllers\PagesController::class, 'listevente'])->name('listevente');
+    Route::get('/seller/depenses', [App\Http\Controllers\PagesController::class, 'depenses'])->name('depenses');
 });
 
 
