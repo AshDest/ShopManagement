@@ -19,6 +19,7 @@ class AddConversions extends Component
     public $selectProdui2;
     public $qte_ajout;
     public $motif;
+    public $prix_vente;
 
     public $oldqte;
     public $oldquantite;
@@ -39,19 +40,38 @@ class AddConversions extends Component
         'quantite' => 'required',
         'selectProdui2' => 'required',
         'qte_ajout' => 'required',
-        'motif' => 'required',
+        'prix_vente' => 'required'
     ];
 
     public function save()
     {
         $this->validate();
-        Conversion::create([
-            'produit_id' => $this->selectProdui1,
-            'quantite' => $this->quantite,
-            'produit_code' => $this->selectProdui2,
-            'qte_ajout' => $this->qte_ajout,
-            'motif' => $this->motif,
-        ])->save();
+        try {
+            $prod1 = Produit::whereId($this->idprod1)->first();
+            $prod2 = Produit::whereId($this->idprod2)->first();
+
+            if ($prod1 && $prod2) {
+                Conversion::create([
+                    'produit_id' => $this->idprod1,
+                    'quantite' => $this->quantite,
+                    'produit_code' => $this->idprod2,
+                    'qte_ajout' => $this->qte_ajout,
+                ])->save();
+
+                $prod1->update([
+                    'qte_stock' => $prod1->qte_stock - $this->quantite
+                ]);
+                $prod2->update([
+                    'qte_stock' => $prod2->qte_stock + $this->qte_ajout,
+                    'pu' => $this->prix_vente
+                ]);
+            }
+            $this->alert('success', 'Conversion bien enregistrer');
+
+            return redirect()->to(route('listconversion'));
+        } catch (\Throwable $th) {
+            $this->alert('error', $th->getMessage());
+        }
     }
 
     public function updatedselectProdui1($id)
