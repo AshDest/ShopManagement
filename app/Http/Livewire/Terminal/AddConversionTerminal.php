@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Terminal;
 use Livewire\Component;
 use App\Models\Conversion;
 use App\Models\Produit;
+use Illuminate\Support\Facades\Auth;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\WithPagination;
 
@@ -118,12 +119,12 @@ class AddConversionTerminal extends Component
                 'produits' => Produit::where('description', 'LIKE', '%' . $this->reseach . '%')
                     ->orwhereHas('categorie', function ($s) {
                         $s->where('designation', 'LIKE', '%' . $this->reseach . '%');
-                    })
+                    })->where('user_id', Auth::user()->id)
                     ->paginate($this->page_active)
             ]);
         } else {
             return view('livewire.terminal.add-conversion-terminal', [
-                'produits' => Produit::orderBy('id', 'DESC')->paginate($this->page_active)
+                'produits' => Produit::where('user_id', Auth::user()->id)->orderBy('id', 'DESC')->paginate($this->page_active)
             ]);
         }
         // return view('livewire.terminal.add-conversion-terminal');
