@@ -60,7 +60,8 @@ $montantcaisse = Caisse::where('user_id', Auth::user()->id)->first();
                             </div>
                         </div>
                         @endif
-                        <div class="row g-0" style="background-color: rgba(120, 80, 173, 0.192)">
+
+                        <div class="row g-0">
                             <div class="col">
                                 <a class="dropdown-icon-item" href="{{ route('paiements') }}">
                                     <img src="{{ asset('assets/images/brands/caisse.png') }}" alt="paiment">
@@ -71,6 +72,18 @@ $montantcaisse = Caisse::where('user_id', Auth::user()->id)->first();
                                             @else
                                             0
                                             @endif</strong></span>
+                                </a>
+                            </div>
+                            <div class="col">
+                                <a class="dropdown-icon-item" href="/seller/listevente">
+                                    <img src="{{ asset('assets/images/brands/list_vente.png') }}" alt="listevente">
+                                    <span>Conversion</span>
+                                </a>
+                            </div>
+                            <div class="col">
+                                <a class="dropdown-icon-item" href="{{ route('depenses') }}">
+                                    <img src="{{ asset('assets/images/brands/depense.png') }}" alt="paiment">
+                                    <span>Aprovisionnement</span>
                                 </a>
                             </div>
                         </div>
