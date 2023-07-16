@@ -259,7 +259,7 @@ class Ventes extends Component
             }
             // pas de dette payement cach...on a pas besoin d'enregist le client
         }
-        redirect('/vente');
+        redirect('/seller/vente');
     }
     public function updatedNumphoneclient()
     {
