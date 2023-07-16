@@ -72,6 +72,14 @@ class PagesController extends Controller
     {
         return view('pages.conversion.list-conversion');
     }
+    public function listeconversion()
+    {
+        return view('pages.terminals.terminal-conversion');
+    }
+    public function terminaladdconversion()
+    {
+        return view('pages.terminals.terminal-add-conversion');
+    }
     public function addconversion()
     {
         return view('pages.conversion.add-conversion');

@@ -75,7 +75,7 @@ $montantcaisse = Caisse::where('user_id', Auth::user()->id)->first();
                                 </a>
                             </div>
                             <div class="col">
-                                <a class="dropdown-icon-item" href="/seller/listevente">
+                                <a class="dropdown-icon-item" href="/seller/listeconversion">
                                     <img src="{{ asset('assets/images/brands/list_vente.png') }}" alt="listevente">
                                     <span>Conversion</span>
                                 </a>

@@ -72,7 +72,7 @@ class AddConversionTerminal extends Component
                     ]);
                     $this->alert('success', 'Conversion bien enregistrer');
 
-                    return redirect()->to(route('listconversion'));
+                    return redirect()->to(route('listeconversion'));
                 }
             }
         } catch (\Throwable $th) {

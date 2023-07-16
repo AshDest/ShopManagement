@@ -49,6 +49,8 @@ Route::group(['middleware' => ['auth', 'terminal_vente']], function () {
     Route::get('/seller/vente', [App\Http\Controllers\PagesController::class, 'vente'])->name('vente');
     Route::get('/seller/listevente', [App\Http\Controllers\PagesController::class, 'listevente'])->name('listevente');
     Route::get('/seller/depenses', [App\Http\Controllers\PagesController::class, 'depenses'])->name('depenses');
+    Route::get('/seller/listeconversion', [App\Http\Controllers\PagesController::class, 'listeconversion'])->name('listeconversion');
+    Route::get('/seller/conversion/add', [App\Http\Controllers\PagesController::class, 'terminaladdconversion'])->name('addconversionterminal');
 });
 
 
