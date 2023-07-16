@@ -59,7 +59,7 @@
                                         <td>{{ $product->categorie->designation }}</td>
                                         <td>{{ $product->user->name }}</td>
                                         <td class="table-action">
-                                            <a href="{{ route('addapprovisionnement', ['ids' => $product->id]) }}"
+                                            <a href="{{ route('termianladdapprovisionnement', ['ids' => $product->id]) }}"
                                                 class="action-icon" style="cursor: pointer;"> <i
                                                     class="mdi mdi-plus-circle-multiple-outline"></i></a>
                                         </td>

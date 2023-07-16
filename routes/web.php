@@ -53,6 +53,7 @@ Route::group(['middleware' => ['auth', 'terminal_vente']], function () {
     Route::get('/seller/conversion/add', [App\Http\Controllers\PagesController::class, 'terminaladdconversion'])->name('addconversionterminal');
 
     Route::get('/seller/listeproduit', [App\Http\Controllers\PagesController::class, 'listeproduitterminal'])->name('listeproduitterminal');
+    Route::get('/seller/approvisionnement/add/{ids}', [App\Http\Controllers\PagesController::class, 'termianladdapprovisionnement'])->name('termianladdapprovisionnement');
 });
 
 

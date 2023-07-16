@@ -81,7 +81,7 @@ $montantcaisse = Caisse::where('user_id', Auth::user()->id)->first();
                                 </a>
                             </div>
                             <div class="col">
-                                <a class="dropdown-icon-item" href="{{ route('listeproduit') }}">
+                                <a class="dropdown-icon-item" href="{{ route('listeproduitterminal') }}">
                                     <img src="{{ asset('assets/images/brands/depense.png') }}" alt="paiment">
                                     <span>Aprovisionnement</span>
                                 </a>

@@ -94,6 +94,11 @@ class PagesController extends Controller
         return view('pages.terminals.terminal-listeproduit');
     }
 
+    public function termianladdapprovisionnement($ids)
+    {
+        return view('pages.terminals.terminal-add-aprov', compact('ids'));
+    }
+
     // LES EXPORTATIONS ICI
     public function listeventexport()
     {
