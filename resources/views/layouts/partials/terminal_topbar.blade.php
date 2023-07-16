@@ -75,13 +75,13 @@ $montantcaisse = Caisse::where('user_id', Auth::user()->id)->first();
                                 </a>
                             </div>
                             <div class="col">
-                                <a class="dropdown-icon-item" href="/seller/listeconversion">
+                                <a class="dropdown-icon-item" href="{{ route('listeconversion') }}">
                                     <img src="{{ asset('assets/images/brands/list_vente.png') }}" alt="listevente">
                                     <span>Conversion</span>
                                 </a>
                             </div>
                             <div class="col">
-                                <a class="dropdown-icon-item" href="{{ route('depenses') }}">
+                                <a class="dropdown-icon-item" href="{{ route('listeproduit') }}">
                                     <img src="{{ asset('assets/images/brands/depense.png') }}" alt="paiment">
                                     <span>Aprovisionnement</span>
                                 </a>

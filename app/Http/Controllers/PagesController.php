@@ -90,6 +90,10 @@ class PagesController extends Controller
         return view('pages.conversion.modif-conversion', compact('conversion'));
     }
 
+    public function listeproduitterminal(){
+        return view('pages.terminals.terminal-listeproduit');
+    }
+
     // LES EXPORTATIONS ICI
     public function listeventexport()
     {
