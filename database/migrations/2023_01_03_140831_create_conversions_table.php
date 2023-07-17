@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('qte_ajout')->default('0');
             $table->integer('quantite')->default('0');
             $table->text('motif')->nullable();
-            $table->foreign('produit_id', 'fk_conversions_produit_id')->references('id');
+            $table->foreign('produit_id', 'fk_conversions_produit_id')->references('id')->on('produits');
             $table->timestamps();
         });
 
