@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('conversions', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('produit_id');
+            $table->integer('produit_id')->unsigned()->index();;
             $table->foreign('produit_id', 'fk_conversions_produit_id')->references('id')->on('produits')->onDelete('cascade')->onUpdate('cascade');
             $table->integer('quantite')->default('0');
-            $table->bigInteger('produit_code');
+            $table->integer('produit_code')->unsigned()->index();
             $table->foreign('produit_code', 'fk_conversions_produit_code')->references('produit_code')->on('produits')->onDelete('cascade')->onUpdate('cascade');
             $table->integer('qte_ajout')->default('0');
             $table->text('motif')->nullable();
