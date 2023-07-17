@@ -15,11 +15,15 @@ return new class extends Migration
     {
         Schema::create('conversions', function (Blueprint $table) {
             $table->id();
-            $table->integer('produit_id')->unsigned()->index();
-            $table->integer('qte_ajout')->default('0');
-            $table->integer('quantite')->default('0');
+            $table->unsignedBigInteger('produit_id');
+            $table->unsignedBigInteger('produit_code');
+            $table->integer('qte_ajout')->default(0);
+            $table->integer('quantite')->default(0);
             $table->text('motif')->nullable();
             $table->timestamps();
+
+            $table->foreign('produit_id')->references('id')->on('produits')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('produit_code')->references('produit_code')->on('produits')->onDelete('cascade')->onUpdate('cascade');
         });
 
 
@@ -33,6 +37,11 @@ return new class extends Migration
      */
     public function down()
     {
+        Schema::table('conversions', function (Blueprint $table) {
+            $table->dropForeign(['produit_id']);
+            $table->dropForeign(['produit_code']);
+        });
+
         Schema::dropIfExists('conversions');
     }
 };
