@@ -41,7 +41,7 @@
                                     </div>
                                 </div>
                                 <div class="mb-3 col-md-4" wire:ignore>
-                                    <label class="form-label">Prix d'Achat (CDF) Unitaire</label>
+                                    <label class="form-label">Prix d'Achat Unitaire (CDF)</label>
                                     <input data-toggle="touchspin" wire:model='pu_approv' placeholder="1000.00"
                                         init-val="1" type="text" data-decimals="2" data-bts-postfix="CDF">
                                     <div class="valid-feedback">
@@ -51,7 +51,7 @@
                                     </div>
                                 </div>
                                 <div class="mb-3 col-md-4" wire:ignore>
-                                    <label class="form-label">Prix de Vente (CDF) Unitaire</label>
+                                    <label class="form-label">Prix de Vente Unitaire (CDF)</label>
                                     <input data-toggle="touchspin" wire:model='pu_vente' placeholder="1000.00"
                                         type="text" data-decimals="2" data-bts-postfix="CDF">
                                     <div class="valid-feedback">
