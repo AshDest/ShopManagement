@@ -13,7 +13,7 @@ class ListProducts extends Component
     use WithPagination;
     use LivewireAlert;
 
-    public  $reseach, $page_active = 4;
+    public  $reseach, $page_active = 5;
     public  $categories;
 
     public function render()

@@ -51,7 +51,7 @@
                                         </td>
                                         <td>{{ $product->code }}</td>
                                         <td>{{ $product->description }}</td>
-                                        <td>{{ $product->qte_stock . $product->designationmesure }}</td>
+                                        <td>{{ $product->qte_stock }} {{ $product->designationmesure }}</td>
                                         <td>@php
                                             echo number_format($product->pu) . ' CDF';
                                         @endphp
