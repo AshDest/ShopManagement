@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Production;
 
 use App\Models\Categorie;
 use App\Models\Produit;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
@@ -27,12 +28,12 @@ class ListProducts extends Component
                     })
                     ->orwhereHas('user', function ($s) {
                         $s->where('name', 'LIKE', '%' . $this->reseach . '%');
-                    })
+                    })->where('user_id', Auth::user()->id)
                     ->paginate($this->page_active)
             ]);
         } else {
             return view('livewire.production.list-products', [
-                'products' => Produit::orderBy('id', 'DESC')->paginate($this->page_active)
+                'products' => Produit::where('user_id', Auth::user()->id)->orderBy('id', 'DESC')->paginate($this->page_active)
             ]);
         }
     }
