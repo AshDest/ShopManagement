@@ -39,7 +39,7 @@ class ProduitExport implements FromCollection, WithHeadings, Responsable, Should
                 'pu_achat',
                 'pu',
                 'categories.designation',
-                'users.name'
+                'users.username'
             )->join('categories', 'produits.category_id', '=', 'categories.id')
             ->join('users', 'produits.user_id', '=', 'users.id')
             ->get();
