@@ -22,11 +22,7 @@
         <div class="col-lg-5">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="header-title">Liste de produits</h4>
-                    <p class="text-muted font-14">
-                        Selectionner le produit dans la liste pour l'ajouter au panier ou faite une recherche de votre
-                        produit
-                    </p>
+                    <h4 class="header-title">Liste de projets</h4>
                     <div class="mb-3">
                         <div class="app-search dropdown d-none d-lg-block">
                             <div class="input-group">
@@ -41,7 +37,7 @@
                         <li class="nav-item">
                             <a href="#simple-popover-preview" data-bs-toggle="tab" aria-expanded="false"
                                 class="nav-link active">
-                                Liste de produit
+                                Liste de projets
                             </a>
                         </li>
                     </ul> <!-- end nav-->
@@ -50,9 +46,10 @@
                             <thead>
                                 <tr>
                                     <th>Code</th>
-                                    <th>Description</th>
-                                    <th>Quantité en stock et Pu</th>
-                                    <th> Ajouter au panier</th>
+                                    <th>Designation</th>
+                                    <th>Responsable</th>
+                                    <th> Contact</th>
+                                    <th> Status</th>
                                 </tr>
                             </thead>
                             <tbody>

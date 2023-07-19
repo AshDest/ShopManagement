@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('designationprojet');
             $table->string('responsableprojet');
             $table->string('contactreponsable');
-            $table->string('statutprojet');
+            $table->enum('statutprojet',['encours','cloture'])->default('encours');
             $table->timestamps();
         });
     }
