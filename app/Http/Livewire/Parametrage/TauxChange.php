@@ -19,11 +19,18 @@ class TauxChange extends Component
     public function saveuser()
     {
         // Validate Form Request
-        try {
-            Taux::create([
-                'taux' => $this->taux,
-            ]);
 
+        try {
+            $id = Taux::value('id');
+            if($id){
+                Taux::find($id)->fill([
+                    'taux' => $this->taux,
+                ])->save();
+            }else{
+                Taux::create([
+                    'taux' => $this->taux,
+                ]);
+            }
             // Set Flash Message
             $this->alert('success', 'Taux de change bien enregistrer');
             // Reset Form Fields After Creating departement
