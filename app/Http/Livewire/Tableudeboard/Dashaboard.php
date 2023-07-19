@@ -74,6 +74,7 @@ class Dashaboard extends Component
             $this->topproduct = $data_top;
             $this->topdesi_prod = $data_id;
         }
+        // dd($this->topproduct);
         // $designaprod = Produit::select(DB::raw("description"))->where('id', $top->produit_id)
         //     ->get();
         // $data_designa = array();
