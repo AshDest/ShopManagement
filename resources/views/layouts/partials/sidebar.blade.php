@@ -110,6 +110,23 @@
                 </div>
             </li>
 
+            <li class="side-nav-item">
+                <a data-bs-toggle="collapse" href="#sidebarConstruction" aria-expanded="false" aria-controls="sidebarConstruction"
+                    class="side-nav-link">
+                    <i class="uil-chart"></i>
+                    <span>Depense construction </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="sidebarConstruction">
+                    <ul class="side-nav-second-level">
+
+                        <li>
+                            <a href="{{ route('depenseconstruction') }}">Cartnet de depense</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
         </ul>
 
         <!-- Help Box -->

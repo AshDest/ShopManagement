@@ -52,4 +52,7 @@ class HomeController extends Controller
     {
         return view('pages.parametrage.taux');
     }
+    public function depenseconstruction(){
+        return view('pages.construction.depenseconstruction');
+    }
 }
