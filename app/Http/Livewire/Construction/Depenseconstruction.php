@@ -14,14 +14,14 @@ class Depenseconstruction extends Component
     public $paniers = null;
     public  $reseach, $page_active = 3;
 
-    public $codeprojet;
+    public $codeprojet,$designationprojet,$responsableprojet,$contactreponsable;
 
     public function newproject()
     {
         $this->dispatchBrowserEvent('modal_project');
     }
     public function saveprojet(){
-
+        $this->dispatchBrowserEvent('close_modal');
     }
     public function render()
     {

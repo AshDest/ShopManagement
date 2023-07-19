@@ -344,8 +344,8 @@
             window.addEventListener('paiementsave', event => {
                 $('#add_paimenent').modal('show');
             });
-            window.addEventListener('close-modal', event => {
-                $('#add_paimenent').modal('hiden');
+            window.addEventListener('close_modal', event => {
+                $('#add_paimenent').modal('hide');
             });
         </script>
     @endpush

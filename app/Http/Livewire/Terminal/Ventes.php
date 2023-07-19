@@ -259,7 +259,9 @@ class Ventes extends Component
             }
             // pas de dette payement cach...on a pas besoin d'enregist le client
         }
-        redirect('/seller/vente');
+
+        // $this->dispatchBrowserEvent('close_modal');
+         redirect('/seller/vente');
     }
     public function updatedNumphoneclient()
     {

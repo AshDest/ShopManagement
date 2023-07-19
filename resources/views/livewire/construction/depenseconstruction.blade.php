@@ -267,27 +267,38 @@ tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                     </div>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">Montant total à payer</label>
+                    <label class="form-label">Description du projet</label>
                     <div class="input-group flex-nowrap">
                         <span class="input-group-text" id="basic-addon1" wire:ignore.self><i
                                 class="uil-money-stack"></i></span>
-                        <input class="form-control" wire:model='mtapayer' type="number" min="1"
-                            placeholder="Montant total à payer" aria-label="Quantié vendue"
-                            aria-describedby="basic-addon1" disabled>
+                        <input class="form-control" wire:model='designationprojet' type="text"
+                            placeholder="description du projet" aria-describedby="basic-addon1">
                     </div>
-                    @error('mtapayer')
+                    @error('designationprojet')
                         <span style="color: red;">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">Montant payé</label>
+                    <label class="form-label">Noms du Responsables du projet</label>
                     <div class="input-group flex-nowrap">
-                        <span class="input-group-text"><i class=" uil-receipt-alt"></i></span>
-                        <input class="form-control" wire:model='mtpayer' type="number" min="1"
-                            placeholder="Montant payé" aria-label="Montant payé"
-                            aria-describedby="basic-addon1">
+                        <span class="input-group-text" id="basic-addon2" wire:ignore.self><i
+                                class="uil-money-stack"></i></span>
+                        <input class="form-control" wire:model='responsableprojet' type="text"
+                            placeholder="noms du chef de projet" aria-describedby="basic-addon2">
                     </div>
-                    @error('mtpayer')
+                    @error('responsableprojet')
+                        <span style="color: red;">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Numéro de téléphone</label>
+                    <div class="input-group flex-nowrap">
+                        <span class="input-group-text" id="basic-addon3" wire:ignore.self><i
+                                class="uil-money-stack"></i></span>
+                        <input class="form-control" wire:model='contactreponsable' type="text"
+                            placeholder="numéro de téléphone" aria-describedby="basic-addon3">
+                    </div>
+                    @error('contactreponsable')
                         <span style="color: red;">{{ $message }}</span>
                     @enderror
                 </div>
@@ -295,7 +306,7 @@ tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                <button wire:click="saveprojet" type="button" class="btn btn-primary">Paiement</button>
+                <button wire:click="saveprojet" type="button" class="btn btn-primary">Enregistrer le projet</button>
             </div> <!-- end modal footer -->
         </form>
     </div> <!-- end modal content-->
@@ -307,11 +318,12 @@ tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 @push('addprojet_modal')
 <script type="text/javascript">
     window.addEventListener('modal_project', event => {
-        console.log("ok");
+        // console.log("ok");
         $('#add_projet').modal('show');
     });
     window.addEventListener('close_modal', event => {
-        $('#add_projet').modal('hiden');
+        // console.log("ok");
+        $('#add_projet').modal('hide');
     });
 </script>
 @endpush
