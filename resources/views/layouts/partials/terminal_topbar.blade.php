@@ -1,7 +1,7 @@
 <!-- Topbar Start -->
 @php
-use App\Models\Caisse;
-$montantcaisse = Caisse::where('user_id', Auth::user()->id)->first();
+    use App\Models\Caisse;
+    $montantcaisse = Caisse::where('user_id', Auth::user()->id)->first();
 @endphp
 <div class="navbar-custom topnav-navbar">
     <div class="container-fluid">
@@ -44,34 +44,36 @@ $montantcaisse = Caisse::where('user_id', Auth::user()->id)->first();
                                 </a>
                             </div>
                         </div>
-                        @if (Auth::user()->role=="Gerant")
-                        <div class="row g-0">
-                            <div class="col">
-                                <a class="dropdown-icon-item" href="{{ route('home') }}">
-                                    <img src="{{ asset('assets/images/brands/admin.png') }}" alt="admin">
-                                    <span>Adminstration</span>
-                                </a>
+                        @if (Auth::user()->role == 'Gerant')
+                            <div class="row g-0">
+                                <div class="col">
+                                    <a class="dropdown-icon-item" href="{{ route('home') }}">
+                                        <img src="{{ asset('assets/images/brands/admin.png') }}" alt="admin">
+                                        <span>Adminstration</span>
+                                    </a>
+                                </div>
+                                <div class="col">
+                                    <a class="dropdown-icon-item" href="{{ route('paiements') }}">
+                                        <img src="{{ asset('assets/images/brands/paiment.png') }}" alt="paiment">
+                                        <span>Paiement</span>
+                                    </a>
+                                </div>
                             </div>
-                            <div class="col">
-                                <a class="dropdown-icon-item" href="{{ route('paiements') }}">
-                                    <img src="{{ asset('assets/images/brands/paiment.png') }}" alt="paiment">
-                                    <span>Paiement</span>
-                                </a>
-                            </div>
-                        </div>
                         @endif
 
                         <div class="row g-0">
                             <div class="col">
                                 <a class="dropdown-icon-item" href="{{ route('paiements') }}">
                                     <img src="{{ asset('assets/images/brands/caisse.png') }}" alt="paiment">
-                                    <span>Caisse: <strong style="color: yellowgreen">@if ($montantcaisse)
-                                            @php
-                                            echo number_format($montantcaisse->solde) . ' CDF';
-                                            @endphp
+                                    <span>Caisse: <strong style="color: yellowgreen">
+                                            @if ($montantcaisse)
+                                                @php
+                                                    echo number_format($montantcaisse->solde) . ' CDF';
+                                                @endphp
                                             @else
-                                            0
-                                            @endif</strong></span>
+                                                0
+                                            @endif
+                                        </strong></span>
                                 </a>
                             </div>
                             <div class="col">
@@ -96,11 +98,11 @@ $montantcaisse = Caisse::where('user_id', Auth::user()->id)->first();
                     role="button" aria-haspopup="false" aria-expanded="false">
                     <span class="account-user-avatar">
                         @if (Auth::user()->avatar)
-                        <img src="{{ asset('assets/images/avatar/' . Auth::user()->avatar . '') }}" alt="user-image"
-                            class="rounded-circle">
+                            <img src="{{ asset('assets/images/avatar/' . Auth::user()->avatar . '') }}"
+                                alt="user-image" class="rounded-circle">
                         @else
-                        <img src="{{ asset('assets/images/avatar/avatar.jpg') }}" alt="user-image"
-                            class="rounded-circle">
+                            <img src="{{ asset('assets/images/avatar/avatar.jpg') }}" alt="user-image"
+                                class="rounded-circle">
                         @endif
                     </span>
                     <span>
@@ -111,7 +113,7 @@ $montantcaisse = Caisse::where('user_id', Auth::user()->id)->first();
                 <div
                     class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu profile-dropdown">
                     <!-- item-->
-                    <div class=" dropdown-header noti-title">
+                    {{-- <div class=" dropdown-header noti-title">
                         <h6 class="text-overflow m-0">{{ Auth::user()->name }}</h6>
                     </div>
 
@@ -131,7 +133,7 @@ $montantcaisse = Caisse::where('user_id', Auth::user()->id)->first();
                     <a href="javascript:void(0);" class="dropdown-item notify-item">
                         <i class="mdi mdi-lifebuoy me-1"></i>
                         <span>Support</span>
-                    </a>
+                    </a> --}}
 
 
                     <!-- item-->
@@ -148,13 +150,6 @@ $montantcaisse = Caisse::where('user_id', Auth::user()->id)->first();
             </li>
 
         </ul>
-        <a class="navbar-toggle" data-bs-toggle="collapse" data-bs-target="#topnav-menu-content">
-            <div class="lines">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </a>
     </div>
 </div>
 <!-- end Topbar -->
