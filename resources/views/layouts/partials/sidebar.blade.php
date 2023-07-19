@@ -87,6 +87,9 @@
                         <li>
                             <a href="{{ route('compteuser') }}">Compte utilisateur</a>
                         </li>
+                        <li>
+                            <a href="{{ route('taux') }}">Taux de change</a>
+                        </li>
                     </ul>
                 </div>
             </li>

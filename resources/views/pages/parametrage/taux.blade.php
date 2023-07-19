@@ -9,16 +9,16 @@
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="{{ route('home') }}">Accueil</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('compteuser') }}">Compte utilisateur</a>
+                            <li class="breadcrumb-item"><a href="{{ route('taux') }}">Configuration du taux</a>
                             </li>
-                            <li class="breadcrumb-item active">Liste</li>
+                            <li class="breadcrumb-item active">Taux</li>
                         </ol>
                     </div>
-                    <h4 class="page-title">Utilisateur</h4>
+                    <h4 class="page-title">Taux de change Actuel</h4>
                 </div>
             </div>
         </div>
         <!-- end page title -->
-        @livewire('parametrage.users')
+        @livewire('parametrage.taux-change')
     </div>
 @endsection
