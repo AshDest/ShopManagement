@@ -58,12 +58,15 @@
                             <h5 class="text-muted fw-normal mt-0" title="CA">CA</h5>
                             <h3 class="mt-3 mb-3">
                                 @php
-                                    echo number_format($this->ca) . ' CDF';
+                                    echo number_format($this->ca,2) . ' CDF';
                                 @endphp</h3>
                             <p class="mb-0 text-muted">
                                 <span class="text-danger me-2"><i class="mdi mdi-arrow-down-bold"></i>
                                     @php
-                                        echo date('Y');
+                                    if($this->taux_du_jour!=null && $this->taux_du_jour>0){
+                                        echo number_format($this->ca/$this->taux_du_jour,2) . ' USD';
+                                    }
+
                                     @endphp</span>
                                 <span class="text-nowrap">Chiffre d'Affaire</span>
                             </p>
@@ -79,12 +82,15 @@
                             <h5 class="text-muted fw-normal mt-0" title="Growth">Benefice</h5>
                             <h3 class="mt-3 mb-3">
                                 @php
-                                    echo number_format($this->nbr_benefice) . ' CDF';
+                                    echo number_format($this->nbr_benefice,2) . ' CDF';
                                 @endphp</h3>
                             <p class="mb-0 text-muted">
                                 <span class="text-danger me-2"><i class="mdi mdi-arrow-down-bold"></i>
                                     @php
-                                        echo date('Y');
+                                     if($this->taux_du_jour!=null && $this->taux_du_jour>0){
+                                        echo number_format($this->nbr_benefice/$this->taux_du_jour,2) . ' USD';
+                                    }
+
                                     @endphp</span>
                                 <span class="text-nowrap">Benefice Total</span>
                             </p>
@@ -102,32 +108,15 @@
                             <h5 class="text-muted fw-normal mt-0" title="Nombre de clients">
                                 Dettes</h5>
                             <h3 class="mt-3 mb-3">@php
-                                echo number_format($this->sum_dette) . ' CDF';
+                                echo number_format($this->sum_dette,2) . ' CDF';
                             @endphp</h3>
                             <p class="mb-0 text-muted">
-                                <span class="text-nowrap">Total de Dettes</span>
+                                <span class="text-nowrap">Total de Dettes&emsp;&emsp;</span>
                                 <span class="text-success me-2"><i class="mdi mdi-arrow-up-bold"></i>@php
-                                    echo date('Y');
-                                @endphp
-                                </span>
-                            </p>
-                        </div> <!-- end card-body-->
-                    </div> <!-- end card-->
-                </div> <!-- end col-->
-                <div class="col-md-4">
-                    <div class="card widget-flat">
-                        <div class="card-body">
-                            <div class="float-end">
-                                <i class="mdi mdi-cart-plus widget-icon"></i>
-                            </div>
-                            <h5 class="text-muted fw-normal mt-0" title="Nombre de Produits">Montant Payé</h5>
-                            <h3 class="mt-3 mb-3">@php
-                                echo number_format($this->sum_mtpayer) . ' CDF';
-                            @endphp</h3>
-                            <p class="mb-0 text-muted">
-                                <span class="text-nowrap">Montant deja payé</span>
-                                <span class="text-success me-2"><i class="mdi mdi-arrow-up-bold"></i>@php
-                                    echo date('Y');
+                                 if($this->taux_du_jour!=null && $this->taux_du_jour>0){
+                                       echo number_format($this->sum_dette/$this->taux_du_jour,2) . ' USD';
+                                    }
+
                                 @endphp
                                 </span>
                             </p>
@@ -142,16 +131,44 @@
                             </div>
                             <h5 class="text-muted fw-normal mt-0" title="Growth">Dettes payé</h5>
                             <h3 class="mt-3 mb-3">@php
-                                echo number_format($this->sumpaiement) . ' CDF';
+                                echo number_format($this->sumpaiement,2) . ' CDF';
                             @endphp</h3>
                             <p class="mb-0 text-muted">
                                 <span class="text-nowrap">Montant dettes payés</span>
                                 <span class="text-success me-2"><i class="mdi mdi-arrow-up-bold"></i>@php
-                                    echo date('Y');
+                                 if($this->taux_du_jour!=null && $this->taux_du_jour>0){
+                                       echo number_format($this->sumpaiement/$this->taux_du_jour,2) . ' USD';
+                                    }
+
                                 @endphp
                                 </span>
                             </p>
-                        </div> <!-- end card-body-->
+                        </div>
+                        <!-- end card-body-->
+                    </div> <!-- end card-->
+                </div> <!-- end col-->
+                <div class="col-md-4">
+                    <div class="card widget-flat">
+                        <div class="card-body">
+                            <div class="float-end">
+                                <i class="mdi mdi-cart-plus widget-icon"></i>
+                            </div>
+                            <h5 class="text-muted fw-normal mt-0" title="Nombre de Produits">Montant Payé</h5>
+                            <h3 class="mt-3 mb-3">@php
+                                echo number_format($this->sum_mtpayer,2) . ' CDF';
+                            @endphp</h3>
+                            <p class="mb-0 text-muted">
+                                <span class="text-nowrap">Montant cash payé</span>
+                                <span class="text-success me-2"><i class="mdi mdi-arrow-up-bold"></i>@php
+                                 if($this->taux_du_jour!=null && $this->taux_du_jour>0){
+                                       echo number_format($this->sum_mtpayer/$this->taux_du_jour,2) . ' USD';
+                                    }
+
+                                @endphp
+                                </span>
+                            </p>
+                        </div>
+                        <!-- end card-body-->
                     </div> <!-- end card-->
                 </div> <!-- end col-->
             </div><!-- end row -->
@@ -264,7 +281,7 @@
 @push('jschart')
     <script>
         var options = {
-            series: [@json($this->topproduct)],
+            series: @json($this->topproduct),
             chart: {
                 width: 380,
                 type: 'donut',

@@ -8,6 +8,7 @@ use App\Models\DetailVente;
 use App\Models\Dette;
 use App\Models\Paiement;
 use App\Models\Produit;
+use App\Models\Taux;
 use App\Models\User;
 use App\Models\Vente;
 use Livewire\Component;
@@ -24,6 +25,7 @@ class Dashaboard extends Component
 
     public $count_user, $ca, $ctaprov, $topproduct, $topdesi_prod;
 
+    public $taux_du_jour;
 
     public function vente()
     {
@@ -74,6 +76,7 @@ class Dashaboard extends Component
             $this->topproduct = $data_top;
             $this->topdesi_prod = $data_id;
         }
+        // dd($this->topproduct);
         // $designaprod = Produit::select(DB::raw("description"))->where('id', $top->produit_id)
         //     ->get();
         // $data_designa = array();
@@ -115,6 +118,7 @@ class Dashaboard extends Component
 
     public function render()
     {
+        $this->taux_du_jour=  Taux::value('taux');
 
         $this->vente();
         $this->beneficie();

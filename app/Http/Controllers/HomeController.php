@@ -47,4 +47,9 @@ class HomeController extends Controller
     {
         return view('pages.parametrage.utilisateurs');
     }
+
+    public function taux()
+    {
+        return view('pages.parametrage.taux');
+    }
 }
