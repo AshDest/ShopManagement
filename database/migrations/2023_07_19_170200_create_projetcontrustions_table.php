@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('projetcontrustions', function (Blueprint $table) {
             $table->id();
-            $table->string('codeprojet')->unique();
+            $table->string('codeprojet','10')->unique();
             $table->string('designationprojet');
             $table->string('responsableprojet');
             $table->string('contactreponsable');
