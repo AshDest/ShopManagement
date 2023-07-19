@@ -65,7 +65,9 @@
                             <div class="col">
                                 <a class="dropdown-icon-item" href="{{ route('paiements') }}">
                                     <img src="{{ asset('assets/images/brands/caisse.png') }}" alt="paiment">
-                                    <span>Caisse: <strong style="color: yellowgreen">
+                                    <span>Caisse:
+                                        <br>
+                                        <strong style="color: yellowgreen">
                                             @if ($montantcaisse)
                                                 @php
                                                     echo number_format($montantcaisse->solde) . ' CDF';
