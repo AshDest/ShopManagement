@@ -52,16 +52,16 @@
                                         <span>Adminstration</span>
                                     </a>
                                 </div>
-                                <div class="col">
-                                    <a class="dropdown-icon-item" href="{{ route('paiements') }}">
-                                        <img src="{{ asset('assets/images/brands/paiment.png') }}" alt="paiment">
-                                        <span>Paiement</span>
-                                    </a>
-                                </div>
                             </div>
                         @endif
 
                         <div class="row g-0">
+                            <div class="col">
+                                <a class="dropdown-icon-item" href="{{ route('paiements') }}">
+                                    <img src="{{ asset('assets/images/brands/paiment.png') }}" alt="paiment">
+                                    <span>Paiement</span>
+                                </a>
+                            </div>
                             <div class="col">
                                 <a class="dropdown-icon-item" href="{{ route('paiements') }}">
                                     <img src="{{ asset('assets/images/brands/caisse.png') }}" alt="paiment">
