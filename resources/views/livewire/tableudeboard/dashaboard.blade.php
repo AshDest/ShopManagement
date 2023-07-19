@@ -63,7 +63,10 @@
                             <p class="mb-0 text-muted">
                                 <span class="text-danger me-2"><i class="mdi mdi-arrow-down-bold"></i>
                                     @php
-                                       echo number_format($this->ca/$this->taux_du_jour,2) . ' USD';
+                                    if($this->taux_du_jour!=null && $this->taux_du_jour>0){
+                                        echo number_format($this->ca/$this->taux_du_jour,2) . ' USD';
+                                    }
+
                                     @endphp</span>
                                 <span class="text-nowrap">Chiffre d'Affaire</span>
                             </p>
@@ -84,7 +87,10 @@
                             <p class="mb-0 text-muted">
                                 <span class="text-danger me-2"><i class="mdi mdi-arrow-down-bold"></i>
                                     @php
-                                       echo number_format($this->nbr_benefice/$this->taux_du_jour,2) . ' USD';
+                                     if($this->taux_du_jour!=null && $this->taux_du_jour>0){
+                                        echo number_format($this->nbr_benefice/$this->taux_du_jour,2) . ' USD';
+                                    }
+
                                     @endphp</span>
                                 <span class="text-nowrap">Benefice Total</span>
                             </p>
@@ -107,7 +113,10 @@
                             <p class="mb-0 text-muted">
                                 <span class="text-nowrap">Total de Dettes&emsp;&emsp;</span>
                                 <span class="text-success me-2"><i class="mdi mdi-arrow-up-bold"></i>@php
-                                   echo number_format($this->sum_dette/$this->taux_du_jour,2) . ' USD';
+                                 if($this->taux_du_jour!=null && $this->taux_du_jour>0){
+                                       echo number_format($this->sum_dette/$this->taux_du_jour,2) . ' USD';
+                                    }
+
                                 @endphp
                                 </span>
                             </p>
@@ -127,7 +136,10 @@
                             <p class="mb-0 text-muted">
                                 <span class="text-nowrap">Montant dettes payés</span>
                                 <span class="text-success me-2"><i class="mdi mdi-arrow-up-bold"></i>@php
-                                    echo number_format($this->sumpaiement/$this->taux_du_jour,2) . ' USD';
+                                 if($this->taux_du_jour!=null && $this->taux_du_jour>0){
+                                       echo number_format($this->sumpaiement/$this->taux_du_jour,2) . ' USD';
+                                    }
+
                                 @endphp
                                 </span>
                             </p>
@@ -148,7 +160,10 @@
                             <p class="mb-0 text-muted">
                                 <span class="text-nowrap">Montant cash payé</span>
                                 <span class="text-success me-2"><i class="mdi mdi-arrow-up-bold"></i>@php
-                                     echo number_format($this->sum_mtpayer/$this->taux_du_jour,2) . ' USD';
+                                 if($this->taux_du_jour!=null && $this->taux_du_jour>0){
+                                       echo number_format($this->sum_mtpayer/$this->taux_du_jour,2) . ' USD';
+                                    }
+
                                 @endphp
                                 </span>
                             </p>
