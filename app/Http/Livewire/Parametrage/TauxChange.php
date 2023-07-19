@@ -16,7 +16,7 @@ class TauxChange extends Component
     protected $rules = [
         'taux' => 'required',
     ];
-    public function saveuser()
+    public function savetaux()
     {
         // Validate Form Request
 
@@ -46,12 +46,12 @@ class TauxChange extends Component
     {
         if ($this->reseach) {
             return view('livewire.parametrage.taux-change', [
-                'users' => Taux::where('id', 'LIKE', '%' . $this->reseach)
+                'tauxchanges' => Taux::where('id', 'LIKE', '%' . $this->reseach)
                     ->orwhere('taux', 'LIKE', '%' . $this->reseach)->get()
             ]);
         } else {
             return view('livewire.parametrage.taux-change', [
-                'users' => Taux::get()
+                'tauxchanges' => Taux::get()
             ]);
         }
     }

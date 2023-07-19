@@ -68,36 +68,18 @@
                             <thead>
                                 <tr>
                                     <th>N<sup>o</sup></th>
+                                    <th>USD</th>
                                     <th>Taux de change</th>
-                                    <th colspan="3"> Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {{-- @forelse ($users as $user)
+                                @forelse ($tauxchanges as $tauxchange)
                                     <tr>
                                         <td class="table-user">
-                                            {{ $user->id }}
+                                            {{ $tauxchange->id }}
                                         </td>
-                                        <td class="table-user">
-                                            @if ($user->avatar)
-                                                <img src="{{ asset('assets/images/avatar/' . $user->avatar . '') }}"
-                                                    alt="table-user" class="me-2 rounded-circle" />
-                                                {{ $user->noms }}
-                                            @else
-                                                <img src="{{ asset('assets/images/avatar/avatar.jpg') }}" alt="table-user"
-                                                    class="me-2 rounded-circle" />
-                                                {{ $user->noms }}
-                                            @endif
-
-                                        </td>
-                                        <td>{{ $user->email }}</td>
-                                        <td>{{ $user->role }}</td>
-                                        <td> <a wire:click="edituser({{ $user->id }})" class="action-icon"
-                                                style="cursor: pointer;"> <i class="mdi mdi-pencil"></i></a></td>
-                                        <td>
-                                            <a wire:click="delete({{ $user->id }})" class="action-icon"
-                                                style="cursor: pointer;"> <i class="mdi mdi-delete"></i></a>
-                                        </td>
+                                        <td>1 USD</td>
+                                        <td>{{ $tauxchange->taux }} CDF</td>
                                     </tr>
                                 @empty
                                     <tr>
@@ -105,7 +87,7 @@
                                             <center>... Pas d'enregistement pour l'estant ...</center>
                                         </td>
                                     </tr>
-                                @endforelse --}}
+                                @endforelse
 
                             </tbody>
                         </table>
