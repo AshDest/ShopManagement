@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('tauxes', function (Blueprint $table) {
             $table->id();
-            $table->double('taux');
+            $table->double('taux')->default('0.0');
             $table->timestamps();
         });
     }

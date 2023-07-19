@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('depensecontrusctions', function (Blueprint $table) {
             $table->id();
             $table->string('designationdepense');
-            $table->double('montantdepense')->default('0.0');;
+            $table->double('montantdepense')->default('0.0');
             $table->unsignedBigInteger('projetcontrustion_id');
             $table->foreign('projetcontrustion_id')->references('id')->on('projetcontrustions')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
