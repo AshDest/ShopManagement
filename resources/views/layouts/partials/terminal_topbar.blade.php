@@ -1,7 +1,9 @@
 <!-- Topbar Start -->
 @php
     use App\Models\Caisse;
+    use App\Models\Taux;
     $montantcaisse = Caisse::where('user_id', Auth::user()->id)->first();
+    $taux_du_jour = Taux::value('taux');
 @endphp
 <div class="navbar-custom topnav-navbar">
     <div class="container-fluid">
@@ -16,6 +18,33 @@
             </span>
         </a>
         <ul class="list-unstyled topbar-menu float-end mb-0">
+            <li class="dropdown notification-list topbar-dropdown">
+                <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#" role="button"
+                    aria-haspopup="false" aria-expanded="false">
+                    <img src="{{ asset('assets/images/flags/fc.png') }}" alt="user-image" class="me-0 me-sm-1"
+                        height="12">
+                    <span class="align-middle d-none d-sm-inline-block"><strong style="color: rgb(57, 76, 20)">
+                            @if ($montantcaisse)
+                                @php
+                                    echo number_format($montantcaisse->solde) . ' CDF';
+                                @endphp
+                            @else
+                                0
+                            @endif
+                        </strong></span> <i class="mdi mdi-chevron-down d-none d-sm-inline-block align-middle"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu">
+                    <!-- item-->
+                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                        <img src="{{ asset('assets/images/flags/usd.png') }}" alt="user-image" class="me-1"
+                            height="12"> <span class="align-middle"> @php
+                                if ($taux_du_jour != null && $taux_du_jour > 0) {
+                                    echo number_format($montantcaisse->solde / $taux_du_jour, 2) . ' USD';
+                                }
+                            @endphp</span>
+                    </a>
+                </div>
+            </li>
             <li class="dropdown notification-list d-none d-sm-inline-block">
                 <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#" role="button"
                     aria-haspopup="false" aria-expanded="false">
@@ -63,30 +92,14 @@
                                 </a>
                             </div>
                             <div class="col">
-                                <a class="dropdown-icon-item" href="{{ route('paiements') }}">
-                                    <img src="{{ asset('assets/images/brands/caisse.png') }}" alt="paiment">
-                                    <span>Caisse:
-                                        <br>
-                                        <strong style="color: yellowgreen">
-                                            @if ($montantcaisse)
-                                                @php
-                                                    echo number_format($montantcaisse->solde) . ' CDF';
-                                                @endphp
-                                            @else
-                                                0
-                                            @endif
-                                        </strong></span>
-                                </a>
-                            </div>
-                            <div class="col">
                                 <a class="dropdown-icon-item" href="{{ route('listeconversion') }}">
-                                    <img src="{{ asset('assets/images/brands/list_vente.png') }}" alt="listevente">
+                                    <img src="{{ asset('assets/images/brands/conversion.png') }}" alt="listevente">
                                     <span>Conversion</span>
                                 </a>
                             </div>
                             <div class="col">
                                 <a class="dropdown-icon-item" href="{{ route('listeproduitterminal') }}">
-                                    <img src="{{ asset('assets/images/brands/depense.png') }}" alt="paiment">
+                                    <img src="{{ asset('assets/images/brands/approv.png') }}" alt="paiment">
                                     <span>Aprovisionnement</span>
                                 </a>
                             </div>
