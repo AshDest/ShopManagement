@@ -26,9 +26,9 @@
                             </a>
                         </li>
                     </ul> <!-- end nav-->
-                    <div class="tab-content">
+                    <div class="table-responsive">
                         <table class="table table-striped table-centered mb-0">
-                            <thead>
+                            <thead >
                                 <tr>
                                     <th>Code</th>
                                     <th>Description</th>
@@ -179,10 +179,9 @@
                             </a>
                         </li>
                     </ul> <!-- end nav-->
-                    <div class="tab-content">
-
+                    <div class="table-responsive">
                         <table class="table table-striped table-centered mb-0">
-                            <thead>
+                            <thead >
                                 <tr>
                                     <th>N<sup>o</sup></th>
                                     <th>Description</th>

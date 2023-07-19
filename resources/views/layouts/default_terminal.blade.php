@@ -99,6 +99,4 @@
     <!-- end demo js-->
 </body>
 
-<!-- Mirrored from coderthemes.com/hyper/saas/layouts-horizontal.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Jul 2022 13:31:49 GMT -->
-
 </html>

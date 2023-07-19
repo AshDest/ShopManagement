@@ -55,7 +55,7 @@
                         <div class="col-md-6">
                             <script>
                                 document.write(new Date().getFullYear())
-                            </script> © G&D - Shopmanager
+                            </script> © G&G - Shopmanager
                         </div>
                         <div class="col-md-6">
                             <div class="text-md-end footer-links d-none d-md-block">
@@ -95,6 +95,8 @@
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     @stack('js')
     @stack('jschart')
+    @stack('addprojet_modal')
+
     <!-- third party js ends -->
     @livewireScripts
     <!-- demo app -->
