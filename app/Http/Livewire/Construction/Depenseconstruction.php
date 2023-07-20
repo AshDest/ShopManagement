@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Construction;
 
+use App\Models\Depensecontrusction;
 use App\Models\Projetcontrustion;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -14,7 +15,7 @@ class Depenseconstruction extends Component
     use WithPagination;
     use LivewireAlert;
     public $deleted, $desplayedit = false, $desplaydepense = false;
-    public  $reseach, $page_active = 3;
+    public  $reseach, $page_active = 3,$depenses;
     //  variables pour la table projet
     public $idprojet, $codeprojet, $designationprojet, $responsableprojet, $contactreponsable;
     // variable pour la table depense
@@ -169,7 +170,7 @@ class Depenseconstruction extends Component
                 'contactreponsable' => $this->contactreponsable,
             ])->save();
             // Set Flash Message
-            $this->alert('success', 'Projet bien enregistreé', [
+            $this->alert('success', 'Projet bien enregistré', [
                 'position' => 'center'
             ]);
             $this->reset_fields();
@@ -204,6 +205,10 @@ class Depenseconstruction extends Component
     }
     public function render()
     {
+        $this->depenses = Depensecontrusction::whereHas('projet', function ($s) {
+            $s->where('projetcontrustion_id', $this->idprojet);
+        })->get();
+        // $this->depenses = Depensecontrusction::all();
         if ($this->reseach) {
             return view('livewire.construction.depenseconstruction', [
                 'projets' => Projetcontrustion::where('codeprojet', 'LIKE', '%' . $this->reseach . '%')
@@ -230,6 +235,31 @@ class Depenseconstruction extends Component
     }
     public function savedepense(){
         $this->validate($this->rulesSecondForm());
-        dd("ok");
+        try {
+            Depensecontrusction::create([
+                'designationdepense' => $this->designationdepense,
+                'montantdepense' => $this->mtdepense,
+                'projetcontrustion_id' => $this->idprojet,
+                'depensedevise' => $this->depensedevise,
+
+            ])->save();
+            // Set Flash Message
+            $this->alert('success', 'Dépense bien enregistreé', [
+                'position' => 'center'
+            ]);
+            $this->reset_fields2();
+            // redirect('/admin/contruction/depense');
+        } catch (\Exception $e) {
+            // Set Flash Message
+            $this->alert('warning', 'Echec d\'enregistrement' . $e->getMessage(), [
+                'position' => 'center'
+            ]);
+            $this->reset_fields2();
+        }
+    }
+    public function reset_fields2(){
+        $this->designationdepense='';
+        $this->mtdepense='';
+        $this->depensedevise='';
     }
 }

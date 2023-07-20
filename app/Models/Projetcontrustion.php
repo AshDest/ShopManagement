@@ -17,4 +17,9 @@ class Projetcontrustion extends Model
         'statutprojet',
     ];
 
+    public function depense()
+    {
+        return $this->hasMany(Depensecontrusction::class);
+    }
+
 }

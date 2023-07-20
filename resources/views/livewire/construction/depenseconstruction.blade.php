@@ -112,7 +112,7 @@
         <div class=" col-lg-3">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="header-title">Terminal de dépense</h4>
+                    <h4 class="header-title">Terminal de dépenses</h4>
                     <p class="text-muted font-14">
                         Enregistrer toutes les dépenses sur cet projet
                     </p>
@@ -199,24 +199,23 @@
         <div class="col-lg-4">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="header-title">Panier</h4>
+                    <h4 class="header-title">Dépenses</h4>
                     <ul class="nav nav-tabs nav-bordered mb-3">
                         <li class="nav-item">
                             <a href="#simple-popover-preview" data-bs-toggle="tab" aria-expanded="false"
                                 class="nav-link active">
-                                Visualisation du panier
+                                Visualisation des dépense
                             </a>
                         </li>
                     </ul> <!-- end nav-->
-                    <div class="tab-content">
-
-                        <table class="table table-striped table-centered mb-0">
-                            <thead>
+                    <div class="table-responsive">
+                        <table class="table table-centered table-nowrap mb-0">
+                            <thead class="table-light">
                                 <tr>
                                     <th>N<sup>o</sup></th>
                                     <th>Description</th>
-                                    <th>Quantité</th>
-                                    <th>Prix Total</th>
+                                    <th>Montant payé</th>
+                                    <th>Projet</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -225,26 +224,30 @@
                                 @php
                                     $total_general = 0;
                                 @endphp
-                                {{-- @forelse ($this->paniers as $panier)
+                                @forelse ($this->depenses as $depense)
                                     <tr>
+
+                                        {{-- 'designationdepense',
+                                        'montantdepense',
+                                        'projetcontrustion_id',
+                                        'depensedevise', --}}
+
+
                                         <?php $i = 1; ?>
                                         <td><?php echo $i;
                                         $i++; ?></td>
-                                        <td>{{ $panier->produit->description }}</td>
-                                        <td>{{ $panier->qte_vente }}</td>
-                                        <td>{{ number_format($panier->pt_vente) . ' CDF' }}
+                                        <td>{{ $depense->designationdepense }}</td>
+                                        <td>{{ number_format($depense->montantdepense) . ' '.$depense->depensedevise }}
                                         </td>
+                                        <td>{{ $depense->projet->designationprojet }}</td>
                                         <td class="table-action">
                                             <a style="cursor: pointer;"
-                                                wire:click="suppannier({{ $panier->produit->id }},
-                                                '{{ $panier->qte_vente }}',
-                                                '{{ $panier->vente_id }}',
-                                                '{{ $panier->pt_vente }}')"
+                                                wire:click="suppannier({{ $depense->id }}"
                                                 class="action-icon">
                                                 <i class="mdi mdi-delete"></i></a>
                                         </td>
                                         @php
-                                            $total_general += $panier->pt_vente;
+                                            $total_general += $depense->montantdepense;
                                         @endphp
                                     </tr>
                                 @empty
@@ -253,12 +256,17 @@
                                             <center>... Pas de produit dans le panier ...</center>
                                         </td>
                                     </tr>
-                                @endforelse --}}
+                                @endforelse
                                 <tr>
-                                    <td colspan="4"><b>Total Générale</b> </td>
-                                    <td><b>@php
+                                    <td colspan="2" style="color: rgb(14, 10, 10); "><b>Total Générale USD</b> </td>
+                                    <td style="color: rgb(14, 10, 10); "><b>@php
                                         echo number_format($total_general);
                                     @endphp</b></td>
+
+                                <td colspan="1" style="color: rgb(14, 10, 10); "><b>Total Générale CDF</b> </td>
+                                <td style="color: rgb(14, 10, 10); "><b>@php
+                                    echo number_format($total_general);
+                                @endphp</b></td>
                                 </tr>
 
                             </tbody>

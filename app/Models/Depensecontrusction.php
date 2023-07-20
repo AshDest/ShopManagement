@@ -9,11 +9,16 @@ class Depensecontrusction extends Model
 {
     use HasFactory;
 
-    protected $fillabe =[
+    protected $fillable =[
         'id',
         'designationdepense',
         'montantdepense',
         'projetcontrustion_id',
         'depensedevise',
     ];
+
+    public function projet()
+    {
+        return $this->belongsTo(Projetcontrustion::class, 'projetcontrustion_id');
+    }
 }
