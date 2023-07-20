@@ -42,7 +42,7 @@
                                     <th>Responsable</th>
                                     <th> Contact</th>
                                     <th> Status</th>
-                                    <th colspan="4"> Action(View,Edit,Delete)</th>
+                                    <th colspan="4"> Actions(View,Edit,Delete)</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -72,7 +72,7 @@
                                                 data-bs-toggle="tooltip" data-bs-placement="top"
                                                 title="modifier projet"> <i class="mdi mdi-pencil"></i></a>
                                         <td>
-                                            <a  wire:click="delete({{ $projet->id }})"
+                                            <a  wire:click="delete({{ $projet->id }},'projet')"
                                                 class="action-icon text-primary me-2" style="cursor: pointer;"
                                                 data-bs-toggle="tooltip" data-bs-placement="top"
                                                 title="suprimer projet"> <i class="mdi mdi-delete-circle"></i></a>
@@ -225,7 +225,7 @@
                                     <th>Description</th>
                                     <th>Montant payé</th>
                                     <th>Projet</th>
-                                    <th>Action</th>
+                                    <th colspan="2">Actions(Edit,Delete)</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -250,11 +250,16 @@
                                         <td>{{ number_format($depense->montantdepense) . ' '.$depense->depensedevise }}
                                         </td>
                                         <td>{{ $depense->projet->designationprojet }}</td>
-                                        <td class="table-action">
-                                            <a style="cursor: pointer;"
-                                                wire:click="suppannier({{ $depense->id }}"
-                                                class="action-icon">
-                                                <i class="mdi mdi-delete"></i></a>
+                                        <td>
+                                            <a  wire:click="editdepense({{ $depense->id }})"
+                                                class="action-icon text-primary me-2" style="cursor: pointer;"
+                                                data-bs-toggle="tooltip" data-bs-placement="top"
+                                                title="modifier depense"> <i class="mdi mdi-pencil"></i></a>
+                                        <td>
+                                            <a  wire:click="delete({{ $depense->id }},'depense')"
+                                                class="action-icon text-primary me-2" style="cursor: pointer;"
+                                                data-bs-toggle="tooltip" data-bs-placement="top"
+                                                title="suprimer depense"> <i class="mdi mdi-delete-circle"></i></a>
                                         </td>
                                         @php
                                         switch ($depense->depensedevise) {
@@ -273,9 +278,16 @@
                                     </tr>
                                 @empty
                                     <tr>
+                                        @if ($this->idprojet)
                                         <td class="alert alert-danger" colspan="12">
-                                            <center>... Pas de produit dans le panier ...</center>
+                                            <center>... Pas de dépense enregistré pour ce projet ...</center>
                                         </td>
+                                        @else
+                                        <td class="alert alert-danger" colspan="12">
+                                            <center>... veuillez selectionner le projet dans la liste de projets ...</center>
+                                        </td>
+                                        @endif
+
                                     </tr>
                                 @endforelse
                                 <tr>
@@ -293,6 +305,12 @@
                             </tbody>
 
                         </table>
+                        <br>
+                        <center>
+                            @if (count($this->depenses))
+                                {{ $this->depenses->links('vendor.livewire.bootstrap') }}
+                            @endif
+                        </center>
                     </div> <!-- end tab-content-->
                 </div> <!-- end card-body -->
             </div>

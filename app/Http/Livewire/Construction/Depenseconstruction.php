@@ -14,8 +14,10 @@ class Depenseconstruction extends Component
 {
     use WithPagination;
     use LivewireAlert;
-    public $deleted, $desplayedit = false, $desplaydepense = false;
-    public  $reseach,$reseach_dep, $page_active = 3,$depenses;
+    public $deleted, $deleted_type, $desplayedit = false, $desplaydepense = false;
+    public  $reseach, $reseach_dep, $page_active = 10;
+    protected $depenses;
+    protected $page_active_dep = 10;
     //  variables pour la table projet
     public $idprojet, $codeprojet, $designationprojet, $responsableprojet, $contactreponsable;
     // variable pour la table depense
@@ -55,9 +57,9 @@ class Depenseconstruction extends Component
         switch ($this->formType) {
             case 'firstForm':
                 $this->validateOnly($field, $this->rulesFirstForm());
-            break;
+                break;
             case 'secondForm':
-                    $this->validateOnly($field, $this->rulesSecondForm());
+                $this->validateOnly($field, $this->rulesSecondForm());
                 break;
             default:
                 # code...
@@ -90,33 +92,71 @@ class Depenseconstruction extends Component
     protected $listeners = [
         'confirmed'
     ];
-    public function delete($id)
+    public function delete($id, $type)
     {
         $this->deleted = $id;
-        $this->alert('warning', 'Etes vous sur? de vouloir suprimer ce projet', [
-            'showConfirmButton' => true,
-            'confirmButtonText' => 'Suprimer',
-            'showCancelButton' => true,
-            'cancelButtonText' => 'Cancel',
-            'onConfirmed' => 'confirmed',
-            'onDismissed' => 'cancelled',
-            'position' => 'center'
-        ]);
+        $this->deleted_type = $type;
+        switch ($type) {
+            case 'projet':
+                $this->alert('warning', 'Etes vous sur? de vouloir suprimer ce projet', [
+                    'showConfirmButton' => true,
+                    'confirmButtonText' => 'Suprimer',
+                    'showCancelButton' => true,
+                    'cancelButtonText' => 'Cancel',
+                    'onConfirmed' => 'confirmed',
+                    'onDismissed' => 'cancelled',
+                    'position' => 'center'
+                ]);
+                break;
+
+            case 'depense':
+                $this->alert('warning', 'Etes vous sur? de vouloir suprimer cette dépense?', [
+                    'showConfirmButton' => true,
+                    'confirmButtonText' => 'Suprimer',
+                    'showCancelButton' => true,
+                    'cancelButtonText' => 'Cancel',
+                    'onConfirmed' => 'confirmed',
+                    'onDismissed' => 'cancelled',
+                    'position' => 'center'
+                ]);
+                break;
+
+            default:
+                # code...
+                break;
+        }
     }
+
     public function confirmed()
     {
-        $categdel = Projetcontrustion::whereId($this->deleted)->delete();
-        if ($categdel) {
-            $this->alert('info', 'Projet bien Suprime!', [
-                'position' => 'center'
-            ]);
-            $this->reset_fields();
+        switch ($this->deleted_type) {
+            case 'projet':
+                $categdel = Projetcontrustion::whereId($this->deleted)->delete();
+                if ($categdel) {
+                    $this->alert('info', 'Projet bien Suprime!', [
+                        'position' => 'center'
+                    ]);
+
+                }
+                break;
+            case 'depense':
+                $categdel = Depensecontrusction::whereId($this->deleted)->delete();
+                if ($categdel) {
+                    $this->alert('info', 'Depense bien Suprimée!', [
+                        'position' => 'center'
+                    ]);
+                }
+                break;
+
+            default:
+                # code...
+                break;
         }
     }
 
     public function newproject()
     {
-        $this->formType='firstForm';
+        $this->formType = 'firstForm';
         $this->reset_fields();
         $this->codeprojet();
         $this->dispatchBrowserEvent('modal_project');
@@ -208,19 +248,19 @@ class Depenseconstruction extends Component
         if ($this->reseach_dep) {
             $this->depenses = Depensecontrusction::whereHas('projet', function ($s) {
                 $s->where('projetcontrustion_id', $this->idprojet)
-                ->where(
-                    function ($query) {
-                        $query->where('designationprojet', 'LIKE', '%' . $this->reseach_dep . '%')
-                            ->orwhere('designationdepense', 'LIKE', '%' . $this->reseach_dep . '%')
-                            ->orwhere('depensedevise', 'LIKE', '%' . $this->reseach_dep . '%');
-                    });
-                })
-            ->get();
-        }
-        else{
+                    ->where(
+                        function ($query) {
+                            $query->where('designationprojet', 'LIKE', '%' . $this->reseach_dep . '%')
+                                ->orwhere('designationdepense', 'LIKE', '%' . $this->reseach_dep . '%')
+                                ->orwhere('depensedevise', 'LIKE', '%' . $this->reseach_dep . '%');
+                        }
+                    );
+            })
+                ->paginate($this->page_active_dep);
+        } else {
             $this->depenses = Depensecontrusction::whereHas('projet', function ($s) {
                 $s->where('projetcontrustion_id', $this->idprojet);
-            })->get();
+            })->paginate($this->page_active_dep);
         }
 
         // $this->depenses = Depensecontrusction::all();
@@ -241,14 +281,15 @@ class Depenseconstruction extends Component
     // ajout de depense sur le projet
     public function adddepense($id)
     {
-        $this->formType='secondForm';
+        $this->formType = 'secondForm';
         $this->idprojet = $id;
         $projects = Projetcontrustion::where('id', $id)->first();
         $this->codeprojet_dep = $projects->codeprojet;
         $this->designationprojet_dep = $projects->designationprojet;
         $this->desplaydepense = true;
     }
-    public function savedepense(){
+    public function savedepense()
+    {
         $this->validate($this->rulesSecondForm());
         try {
             Depensecontrusction::create([
@@ -272,9 +313,10 @@ class Depenseconstruction extends Component
             $this->reset_fields2();
         }
     }
-    public function reset_fields2(){
-        $this->designationdepense='';
-        $this->mtdepense='';
-        $this->depensedevise='';
+    public function reset_fields2()
+    {
+        $this->designationdepense = '';
+        $this->mtdepense = '';
+        $this->depensedevise = '';
     }
 }
