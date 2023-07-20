@@ -23,6 +23,7 @@ class Depenseconstruction extends Component
     // variable pour la table depense
     public $codeprojet_dep, $designationprojet_dep, $designationdepense, $mtdepense, $depensedevise;
     public $formType = ''; // Variable to track the current form being used
+    public $desplayedit_form_dep=false,$id_depense;
 
     // Définir les règles de validation pour le premier formulaire
     protected function rulesFirstForm()
@@ -319,4 +320,36 @@ class Depenseconstruction extends Component
         $this->mtdepense = '';
         $this->depensedevise = '';
     }
+    public function editdepense($id){
+        $this->id_depense = $id;
+        $deps = Depensecontrusction::where('id', $id)->first();
+        $this->designationdepense = $deps->designationdepense;
+        $this->mtdepense = $deps->montantdepense;
+        $this->depensedevise = $deps->depensedevise;
+        $this->desplayedit_form_dep = true;
+    }
+    public function modifierdepense(){
+        try {
+            $done = Depensecontrusction::find($this->id_depense)->fill([
+                'designationdepense' => $this->designationdepense,
+                'montantdepense' => $this->mtdepense,
+                'projetcontrustion_id' => $this->idprojet,
+                'depensedevise' => $this->depensedevise,
+            ])->save();
+            // Set Flash Message
+            if ($done) {
+                $this->alert('success', 'Dépense bien modifiée', [
+                    'position' => 'center'
+                ]);
+                $this->reset_fields2();
+            }
+            // redirect('/admin/contruction/depense');
+        } catch (\Exception $e) {
+            // Set Flash Message
+            $this->alert('warning', 'Echec de modification' . $e->getMessage(), [
+                'position' => 'center'
+            ]);
+            $this->reset_fields2();
+    }
+}
 }

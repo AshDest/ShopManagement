@@ -126,7 +126,7 @@
                         </li>
                     </ul> <!-- end nav-->
                     <div class="tab-content">
-                        <form class="needs-validation" wire:submit.prevent="savedepense">
+                        <form class="needs-validation">
                             <div class="mb-3">
                                 <label for="simpleinput" class="form-label">Code de projet</label>
                                 <input type="text" wire:model='codeprojet_dep' id="example-readonly" class="form-control"
@@ -180,10 +180,24 @@
                                 <span style="color: red;">{{ $message }}</span>
                             @enderror
                             </div>
+
+                            @if ($desplayedit_form_dep)
+                            <a wire:click="modifierdepense" class="btn btn-primary mb-2 me-2"><i
+                                class="mdi mdi-pencil"></i>
+                            Modifier la dépense</a>
+                            {{-- <button class="btn btn-primary" type="submit">Enregistrer la dépense</button> --}}
+                            @else
                             @if ($this->desplaydepense)
-                            <button class="btn btn-primary" type="submit">Enregistrer la dépense</button>
+                            <a wire:click="savedepense" class="btn btn-primary mb-2 me-2"><i
+                                class="mdi mdi-plus-circle-multiple-outline" ></i>
+                            Enregistrer la dépense</a>
+                            {{-- <button class="btn btn-primary" type="submit">Enregistrer la dépense</button> --}}
                                 @else
-                                <button class="btn btn-primary" type="submit" disabled>Enregistrer la dépense</button>
+                                <button wire:click="savedepense" class="btn btn-primary mb-2 me-2" disabled><i
+                                    class="mdi mdi-plus-circle-multiple-outline" ></i>
+                                    Enregistrer la dépense</button>
+                                {{-- <button class="btn btn-primary" type="submit" disabled>Enregistrer la dépense</button> --}}
+                            @endif
                             @endif
 
 
