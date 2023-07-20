@@ -327,7 +327,7 @@
                     @if ($this->desplayedit)
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                        <button wire:click="saveprojet" type="button" class="btn btn-primary">Modifier le
+                        <button wire:click="modifierprojet" type="button" class="btn btn-primary">Modifier le
                             projet</button>
                     </div> <!-- end modal footer -->
                     @else

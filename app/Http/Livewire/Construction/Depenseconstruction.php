@@ -87,11 +87,9 @@ class Depenseconstruction extends Component
         $this->dispatchBrowserEvent('modal_project');
     }
     public function modifierprojet(){
-        // dd("ok");
-        $this->validate();
-
         try {
             $done =Projetcontrustion::find($this->idprojet)->fill([
+                'codeprojet' => $this->codeprojet,
                 'designationprojet' => $this->designationprojet,
                 'responsableprojet' => $this->responsableprojet,
                 'contactreponsable' => $this->contactreponsable,
