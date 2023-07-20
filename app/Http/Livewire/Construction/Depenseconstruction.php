@@ -16,7 +16,7 @@ class Depenseconstruction extends Component
     public $deleted,$desplayedit=false;
     public  $reseach, $page_active = 3;
 
-    public $codeprojet, $designationprojet, $responsableprojet, $contactreponsable;
+    public $idprojet,$codeprojet, $designationprojet, $responsableprojet, $contactreponsable;
 
     protected function rules()
     {
@@ -77,6 +77,7 @@ class Depenseconstruction extends Component
         $this->dispatchBrowserEvent('modal_project');
     }
     public function editprojet($id){
+        $this->idprojet = $id;
         $projects = Projetcontrustion::where('id', $id)->first();
         $this->codeprojet = $projects->codeprojet;
         $this->designationprojet = $projects->designationprojet;
@@ -84,6 +85,33 @@ class Depenseconstruction extends Component
         $this->contactreponsable = $projects->contactreponsable;
         $this->desplayedit=true;
         $this->dispatchBrowserEvent('modal_project');
+    }
+    public function modifierprojet(){
+        // dd("ok");
+        $this->validate();
+
+        try {
+            $done =Projetcontrustion::find($this->idprojet)->fill([
+                'designationprojet' => $this->designationprojet,
+                'responsableprojet' => $this->responsableprojet,
+                'contactreponsable' => $this->contactreponsable,
+            ])->save();
+            // Set Flash Message
+            if($done){
+                $this->alert('success', 'Projet bien modifié',[
+                    'position' => 'center'
+                ]);
+                $this->reset_fields();
+            }
+            // redirect('/admin/contruction/depense');
+        } catch (\Exception $e) {
+            // Set Flash Message
+            $this->alert('warning', 'Echec de modification' . $e->getMessage(),[
+                'position' => 'center'
+            ]);
+            $this->reset_fields();
+        }
+        $this->dispatchBrowserEvent('close_modal');
     }
     public function saveprojet()
     {
