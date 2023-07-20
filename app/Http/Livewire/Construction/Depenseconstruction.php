@@ -13,7 +13,7 @@ class Depenseconstruction extends Component
 {
     use WithPagination;
     use LivewireAlert;
-    public $paniers = null;
+    public $deleted,$desplayedit=false;
     public  $reseach, $page_active = 3;
 
     public $codeprojet, $designationprojet, $responsableprojet, $contactreponsable;
@@ -40,12 +40,49 @@ class Depenseconstruction extends Component
         'contactreponsable.regex' => 'Le contact du responsable doit être un numéro de téléphone valide.',
     ];
 
+    protected $listeners = [
+        'confirmed'
+    ];
+    public function delete($id)
+    {
+        $this->deleted = $id;
+        $this->alert('warning', 'Etes vous sur? de vouloir suprimer ce projet', [
+            'showConfirmButton' => true,
+            'confirmButtonText' => 'Suprimer',
+            'showCancelButton' => true,
+            'cancelButtonText' => 'Cancel',
+            'onConfirmed' => 'confirmed',
+            'onDismissed' => 'cancelled',
+            'position' => 'center'
+        ]);
+    }
+    public function confirmed()
+    {
+        $categdel = Projetcontrustion::whereId($this->deleted)->delete();
+        if ($categdel) {
+            $this->alert('info', 'Projet bien Suprime!',[
+                'position' => 'center'
+            ]);
+            $this->reset_fields();
+        }
+    }
     public function updated($propertyName)
     {
         $this->validateOnly($propertyName);
     }
     public function newproject()
     {
+        $this->reset_fields();
+        $this->codeprojet();
+        $this->dispatchBrowserEvent('modal_project');
+    }
+    public function editprojet($id){
+        $projects = Projetcontrustion::where('id', $id)->first();
+        $this->codeprojet = $projects->codeprojet;
+        $this->designationprojet = $projects->designationprojet;
+        $this->responsableprojet = $projects->responsableprojet;
+        $this->contactreponsable = $projects->contactreponsable;
+        $this->desplayedit=true;
         $this->dispatchBrowserEvent('modal_project');
     }
     public function saveprojet()
@@ -59,16 +96,20 @@ class Depenseconstruction extends Component
                 'contactreponsable' => $this->contactreponsable,
             ])->save();
             // Set Flash Message
-            $this->alert('success', 'Projet bien enregistreé');
+            $this->alert('success', 'Projet bien enregistreé',[
+                'position' => 'center'
+            ]);
             $this->reset_fields();
-            redirect('/admin/contruction/depense');
+            // redirect('/admin/contruction/depense');
         } catch (\Exception $e) {
             // Set Flash Message
-            $this->alert('warning', 'Echec d\'enregistrement' . $e->getMessage());
+            $this->alert('warning', 'Echec d\'enregistrement' . $e->getMessage(),[
+                'position' => 'center'
+            ]);
             $this->reset_fields();
         }
-
-        // $this->dispatchBrowserEvent('close_modal'); CA MARCHE BIEN AUSSI
+        $this->dispatchBrowserEvent('close_modal');
+        // CA MARCHE BIEN AUSSI
     }
     public function  reset_fields()
     {
@@ -76,6 +117,7 @@ class Depenseconstruction extends Component
         $this->designationprojet = '';
         $this->responsableprojet = '';
         $this->contactreponsable = '';
+        $this->desplayedit=false;
     }
     public function mount()
     {
