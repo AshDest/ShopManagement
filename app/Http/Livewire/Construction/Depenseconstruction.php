@@ -160,9 +160,9 @@ class Depenseconstruction extends Component
         if ($this->reseach) {
             return view('livewire.construction.depenseconstruction', [
                 'projets' => Projetcontrustion::where('codeprojet', 'LIKE', '%' . $this->reseach . '%')
-                    ->orwhere('designationprojet', 'LIKE', '%' . $this->reseach)
-                    ->orwhere('responsableprojet', 'LIKE', '%' . $this->reseach)
-                    ->orwhere('statutprojet', 'LIKE', '%' . $this->reseach)
+                    ->orwhere('designationprojet', 'LIKE', '%' . $this->reseach . '%')
+                    ->orwhere('responsableprojet', 'LIKE', '%' . $this->reseach . '%')
+                    ->orwhere('statutprojet', 'LIKE', '%' . $this->reseach . '%')
                     ->paginate($this->page_active)
             ]);
         } else {

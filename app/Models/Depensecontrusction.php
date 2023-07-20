@@ -14,5 +14,6 @@ class Depensecontrusction extends Model
         'designationdepense',
         'montantdepense',
         'projetcontrustion_id',
+        'depensedevise',
     ];
 }

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('designationdepense');
             $table->double('montantdepense')->default('0.0');
+            $table->enum('depensedevise',['USD','CDF']);
             $table->unsignedBigInteger('projetcontrustion_id');
             $table->foreign('projetcontrustion_id')->references('id')->on('projetcontrustions')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();

@@ -112,38 +112,38 @@
         <div class=" col-lg-3">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="header-title">Terminal de vente</h4>
+                    <h4 class="header-title">Terminal de dépense</h4>
                     <p class="text-muted font-14">
-                        Enregistrer les operations de vente journaliere
+                        Enregistrer toutes les dépenses sur cet projet
                     </p>
 
                     <ul class="nav nav-tabs nav-bordered mb-3">
                         <li class="nav-item">
                             <a href="#simple-popover-preview" data-bs-toggle="tab" aria-expanded="false"
                                 class="nav-link active">
-                                Formulaire de vente
+                                Formulaire de dépense
                             </a>
                         </li>
                     </ul> <!-- end nav-->
                     <div class="tab-content">
-                        <form class="needs-validation" wire:submit.prevent="savepanier">
+                        <form class="needs-validation" wire:submit.prevent="savedepense">
                             <div class="mb-3">
-                                <label for="simpleinput" class="form-label">Numero de vente</label>
-                                <input type="text" wire:model='numvente' id="example-readonly" class="form-control"
+                                <label for="simpleinput" class="form-label">Code de projet</label>
+                                <input type="text" wire:model='codeprojet_dep' id="example-readonly" class="form-control"
                                     readonly="" value="Readonly value">
                                 <div class="valid-feedback">
-                                    @error('numvente')
+                                    @error('codeprojet_dep')
                                         <span style="color: red;">{{ $message }}</span>
                                     @enderror
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label" for="validationCustom01">Description produit</label>
+                                <label class="form-label" for="validationCustom01">Description du projet</label>
                                 <input type="text" class="form-control" id="validationCustom01"
-                                    placeholder="Description du produit" wire:model="description" disabled>
+                                    placeholder="Description du projet" wire:model="designationprojet" disabled>
                                 <div class="valid-feedback">
                                     <div class="valid-feedback">
-                                        @error('description')
+                                        @error('designationprojet')
                                             <span style="color: red;">{{ $message }}</span>
                                         @enderror
                                     </div>
@@ -151,19 +151,21 @@
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Quantié Vendue</label>
-                                <div class="input-group flex-nowrap">
-                                    <span class="input-group-text" id="basic-addon1">Unité</span>
-                                    <input class="form-control" wire:model='qtvendu' type="number" min="1"
-                                        placeholder="Quantié vendue" aria-label="Quantié vendue"
-                                        aria-describedby="basic-addon1">
+                                <label class="form-label" for="validationCustom02">Description de la dépense</label>
+                                <input type="text" class="form-control" id="validationCustom02"
+                                    placeholder="Description de la dépense" wire:model="designationdepense" disabled>
+                                <div class="valid-feedback">
+                                    <div class="valid-feedback">
+                                        @error('designationdepense')
+                                            <span style="color: red;">{{ $message }}</span>
+                                        @enderror
+                                    </div>
                                 </div>
-                                @error('qtvendu')
-                                    <span style="color: red;">{{ $message }}</span>
-                                @enderror
                             </div>
+
+
                             <div class="mb-3">
-                                <label class="form-label">Montant total à payer</label>
+                                <label class="form-label">Montant dépensé</label>
                                 <div class="input-group flex-nowrap">
                                     <span class="input-group-text" id="basic-addon1">CDF</span>
                                     <input class="form-control" wire:model='mttotal' type="number" min="1"
@@ -175,7 +177,7 @@
                                 @enderror
                             </div>
 
-                            <button class="btn btn-primary" type="submit">Ajouter au panier</button>
+                            <button class="btn btn-primary" type="submit">Enregistrer la dépense</button>
 
                         </form>
 
