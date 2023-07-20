@@ -15,7 +15,7 @@ class Depenseconstruction extends Component
     use WithPagination;
     use LivewireAlert;
     public $deleted, $desplayedit = false, $desplaydepense = false;
-    public  $reseach, $page_active = 3,$depenses;
+    public  $reseach,$reseach_dep, $page_active = 3,$depenses;
     //  variables pour la table projet
     public $idprojet, $codeprojet, $designationprojet, $responsableprojet, $contactreponsable;
     // variable pour la table depense
@@ -205,9 +205,24 @@ class Depenseconstruction extends Component
     }
     public function render()
     {
-        $this->depenses = Depensecontrusction::whereHas('projet', function ($s) {
-            $s->where('projetcontrustion_id', $this->idprojet);
-        })->get();
+        if ($this->reseach_dep) {
+            $this->depenses = Depensecontrusction::whereHas('projet', function ($s) {
+                $s->where('projetcontrustion_id', $this->idprojet)
+                ->where(
+                    function ($query) {
+                        $query->where('designationprojet', 'LIKE', '%' . $this->reseach_dep . '%')
+                            ->orwhere('designationdepense', 'LIKE', '%' . $this->reseach_dep . '%')
+                            ->orwhere('depensedevise', 'LIKE', '%' . $this->reseach_dep . '%');
+                    });
+                })
+            ->get();
+        }
+        else{
+            $this->depenses = Depensecontrusction::whereHas('projet', function ($s) {
+                $s->where('projetcontrustion_id', $this->idprojet);
+            })->get();
+        }
+
         // $this->depenses = Depensecontrusction::all();
         if ($this->reseach) {
             return view('livewire.construction.depenseconstruction', [

@@ -200,6 +200,15 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="header-title">Dépenses</h4>
+                    <div class="mb-3">
+                        <div class="app-search dropdown d-none d-lg-block">
+                            <div class="input-group">
+                                <input type="text" wire:model="reseach_dep" class="form-control dropdown-toggle"
+                                    placeholder="Recherche la dépense ici..." id="top-search">
+                                <span class="mdi mdi-magnify search-icon"></span>
+                            </div>
+                        </div>
+                    </div>
                     <ul class="nav nav-tabs nav-bordered mb-3">
                         <li class="nav-item">
                             <a href="#simple-popover-preview" data-bs-toggle="tab" aria-expanded="false"
@@ -222,7 +231,8 @@
                             <tbody>
 
                                 @php
-                                    $total_general = 0;
+                                    $total_general_cdf = 0;
+                                    $total_general_usd = 0;
                                 @endphp
                                 @forelse ($this->depenses as $depense)
                                     <tr>
@@ -247,7 +257,18 @@
                                                 <i class="mdi mdi-delete"></i></a>
                                         </td>
                                         @php
-                                            $total_general += $depense->montantdepense;
+                                        switch ($depense->depensedevise) {
+                                            case 'USD':
+                                                $total_general_usd += $depense->montantdepense;
+                                                break;
+                                            case 'CDF':
+                                                $total_general_cdf += $depense->montantdepense;
+                                                break;
+                                            default:
+
+                                                break;
+                                        }
+
                                         @endphp
                                     </tr>
                                 @empty
@@ -260,12 +281,12 @@
                                 <tr>
                                     <td colspan="2" style="color: rgb(14, 10, 10); "><b>Total Générale USD</b> </td>
                                     <td style="color: rgb(14, 10, 10); "><b>@php
-                                        echo number_format($total_general);
+                                        echo number_format($total_general_usd).'$';
                                     @endphp</b></td>
 
                                 <td colspan="1" style="color: rgb(14, 10, 10); "><b>Total Générale CDF</b> </td>
                                 <td style="color: rgb(14, 10, 10); "><b>@php
-                                    echo number_format($total_general);
+                                    echo number_format($total_general_cdf)."FC";
                                 @endphp</b></td>
                                 </tr>
 
