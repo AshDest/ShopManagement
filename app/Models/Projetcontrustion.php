@@ -8,13 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Projetcontrustion extends Model
 {
     use HasFactory;
-    protected $fillabe =[
+    protected $fillable =[
         'id',
         'codeprojet',
         'designationprojet',
         'responsableprojet',
         'contactreponsable',
-        'statutprojet'
+        'statutprojet',
     ];
 
 }

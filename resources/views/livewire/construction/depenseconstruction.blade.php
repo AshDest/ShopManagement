@@ -59,9 +59,6 @@
                                     <td>
                                         {{ $projet->statutprojet }}
                                     </td>
-                                    <td>
-                                        {{ $projet->contactreponsable }}
-                                    </td>
                                     <td> <a wire:click="editproduct({{ $projet->id }})" class="action-icon"
                                             style="cursor: pointer;">  <i
                                             class="mdi mdi-basket-plus"></i></a></td>
