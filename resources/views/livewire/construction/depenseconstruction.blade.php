@@ -130,54 +130,62 @@
                             <div class="mb-3">
                                 <label for="simpleinput" class="form-label">Code de projet</label>
                                 <input type="text" wire:model='codeprojet_dep' id="example-readonly" class="form-control"
-                                    readonly="" value="Readonly value">
-                                <div class="valid-feedback">
+                                    readonly="" value="Readonly value"  placeholder="code du projet">
+
                                     @error('codeprojet_dep')
                                         <span style="color: red;">{{ $message }}</span>
                                     @enderror
-                                </div>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label" for="validationCustom01">Description du projet</label>
                                 <input type="text" class="form-control" id="validationCustom01"
-                                    placeholder="Description du projet" wire:model="designationprojet" disabled>
-                                <div class="valid-feedback">
-                                    <div class="valid-feedback">
-                                        @error('designationprojet')
+                                    placeholder="Description du projet" wire:model="designationprojet_dep" disabled>
+
+                                        @error('designationprojet_dep')
                                             <span style="color: red;">{{ $message }}</span>
                                         @enderror
-                                    </div>
-                                </div>
+
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label" for="validationCustom02">Description de la dépense</label>
                                 <input type="text" class="form-control" id="validationCustom02"
-                                    placeholder="Description de la dépense" wire:model="designationdepense" disabled>
-                                <div class="valid-feedback">
-                                    <div class="valid-feedback">
+                                    placeholder="Description de la dépense" wire:model="designationdepense">
+
                                         @error('designationdepense')
                                             <span style="color: red;">{{ $message }}</span>
                                         @enderror
-                                    </div>
-                                </div>
                             </div>
 
 
                             <div class="mb-3">
                                 <label class="form-label">Montant dépensé</label>
                                 <div class="input-group flex-nowrap">
-                                    <span class="input-group-text" id="basic-addon1">CDF</span>
-                                    <input class="form-control" wire:model='mttotal' type="number" min="1"
-                                        placeholder="Montant total à payer" aria-label="Quantié vendue"
-                                        aria-describedby="basic-addon1" disabled>
+                                    <input class="form-control" wire:model='mtdepense' type="number" min="1"
+                                        placeholder="Montant total payer" aria-label=""
+                                        aria-describedby="basic-addon1">
                                 </div>
-                                @error('mttotal')
+                                @error('mtdepense')
                                     <span style="color: red;">{{ $message }}</span>
                                 @enderror
                             </div>
-
+                            <div class="mb-3">
+                                <label for="inputState" class="form-label">Devise</label>
+                                <select id="inputState" class="form-select" wire:model="depensedevise">
+                                    <option value="">Veuillez la devise</option>
+                                    <option value="USD">USD(Dollars)</option>
+                                    <option value="CDF">CDF(Franc congolais)</option>
+                                </select>
+                                @error('depensedevise')
+                                <span style="color: red;">{{ $message }}</span>
+                            @enderror
+                            </div>
+                            @if ($this->desplaydepense)
                             <button class="btn btn-primary" type="submit">Enregistrer la dépense</button>
+                                @else
+                                <button class="btn btn-primary" type="submit" disabled>Enregistrer la dépense</button>
+                            @endif
+
 
                         </form>
 
