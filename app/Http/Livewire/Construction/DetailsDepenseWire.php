@@ -17,7 +17,7 @@ class DetailsDepenseWire extends Component
         return view('livewire.construction.details-depense-wire');
     }
     public function mount(){
-        $projects = Projetcontrustion::where('id', $this->projet)->first();
+        $projects = Projetcontrustion::where('id',6)->first();
         $this->designationprojet=strtoupper($projects->designationprojet);
         $this->statut_projet=$projects->statut;
     }
