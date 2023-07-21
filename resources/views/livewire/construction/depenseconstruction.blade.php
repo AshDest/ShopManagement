@@ -60,25 +60,26 @@
                                             {{ $projet->statutprojet }}
                                         </td>
                                         <td class="table-action">
-                                            <a  wire:click="viewdepense({{ $projet->id }})"
+                                            <a wire:click="viewdepense({{ $projet->id }})"
                                                 class="action-icon text-primary me-2" style="cursor: pointer;"
                                                 data-bs-toggle="tooltip" data-bs-placement="top"
-                                                title="depenses du projet"> <i class="mdi mdi-eye-refresh-outline"></i></a>
+                                                title="depenses du projet"> <i
+                                                    class="mdi mdi-eye-refresh-outline"></i></a>
                                         </td>
 
                                         <td>
-                                            <a  wire:click="editprojet({{ $projet->id }})"
+                                            <a wire:click="editprojet({{ $projet->id }})"
                                                 class="action-icon text-primary me-2" style="cursor: pointer;"
                                                 data-bs-toggle="tooltip" data-bs-placement="top"
                                                 title="modifier projet"> <i class="mdi mdi-pencil"></i></a>
                                         <td>
-                                            <a  wire:click="delete({{ $projet->id }},'projet')"
+                                            <a wire:click="delete({{ $projet->id }},'projet')"
                                                 class="action-icon text-primary me-2" style="cursor: pointer;"
                                                 data-bs-toggle="tooltip" data-bs-placement="top"
                                                 title="suprimer projet"> <i class="mdi mdi-delete-circle"></i></a>
                                         </td>
                                         <td>
-                                            <a  wire:click="adddepense({{ $projet->id }})"
+                                            <a wire:click="adddepense({{ $projet->id }})"
                                                 class="action-icon text-primary me-2" style="cursor: pointer;"
                                                 data-bs-toggle="tooltip" data-bs-placement="top"
                                                 title="ajouter depense"> <i class="mdi mdi-link-variant-plus"></i></a>
@@ -129,21 +130,22 @@
                         <form class="needs-validation">
                             <div class="mb-3">
                                 <label for="simpleinput" class="form-label">Code de projet</label>
-                                <input type="text" wire:model='codeprojet_dep' id="example-readonly" class="form-control"
-                                    readonly="" value="Readonly value"  placeholder="code du projet">
+                                <input type="text" wire:model='codeprojet_dep' id="example-readonly"
+                                    class="form-control" readonly="" value="Readonly value"
+                                    placeholder="code du projet">
 
-                                    @error('codeprojet_dep')
-                                        <span style="color: red;">{{ $message }}</span>
-                                    @enderror
+                                @error('codeprojet_dep')
+                                    <span style="color: red;">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="mb-3">
                                 <label class="form-label" for="validationCustom01">Description du projet</label>
                                 <input type="text" class="form-control" id="validationCustom01"
                                     placeholder="Description du projet" wire:model="designationprojet_dep" disabled>
 
-                                        @error('designationprojet_dep')
-                                            <span style="color: red;">{{ $message }}</span>
-                                        @enderror
+                                @error('designationprojet_dep')
+                                    <span style="color: red;">{{ $message }}</span>
+                                @enderror
 
                             </div>
 
@@ -152,9 +154,9 @@
                                 <input type="text" class="form-control" id="validationCustom02"
                                     placeholder="Description de la dépense" wire:model="designationdepense">
 
-                                        @error('designationdepense')
-                                            <span style="color: red;">{{ $message }}</span>
-                                        @enderror
+                                @error('designationdepense')
+                                    <span style="color: red;">{{ $message }}</span>
+                                @enderror
                             </div>
 
 
@@ -177,27 +179,24 @@
                                     <option value="CDF">CDF(Franc congolais)</option>
                                 </select>
                                 @error('depensedevise')
-                                <span style="color: red;">{{ $message }}</span>
-                            @enderror
+                                    <span style="color: red;">{{ $message }}</span>
+                                @enderror
                             </div>
 
                             @if ($desplayedit_form_dep)
-                            <a wire:click="modifierdepense" class="btn btn-primary mb-2 me-2"><i
-                                class="mdi mdi-pencil"></i>
-                            Modifier la dépense</a>
-
+                                <a wire:click="modifierdepense" class="btn btn-primary mb-2 me-2"><i
+                                        class="mdi mdi-pencil"></i>
+                                    Modifier la dépense</a>
                             @else
-                            @if ($this->desplaydepense)
-                            <a wire:click="savedepense" class="btn btn-primary mb-2 me-2"><i
-                                class="mdi mdi-plus-circle-multiple-outline" ></i>
-                            Enregistrer la dépense</a>
-
+                                @if ($this->desplaydepense)
+                                    <a wire:click="savedepense" class="btn btn-primary mb-2 me-2"><i
+                                            class="mdi mdi-plus-circle-multiple-outline"></i>
+                                        Enregistrer la dépense</a>
                                 @else
-                                <button wire:click="savedepense" class="btn btn-primary mb-2 me-2" disabled><i
-                                    class="mdi mdi-plus-circle-multiple-outline" ></i>
-                                    Enregistrer la dépense</button>
-
-                            @endif
+                                    <button wire:click="savedepense" class="btn btn-primary mb-2 me-2" disabled><i
+                                            class="mdi mdi-plus-circle-multiple-outline"></i>
+                                        Enregistrer la dépense</button>
+                                @endif
                             @endif
 
 
@@ -257,59 +256,61 @@
                                         <td><?php echo $i;
                                         $i++; ?></td>
                                         <td>{{ $depense->designationdepense }}</td>
-                                        <td>{{ number_format($depense->montantdepense) . ' '.$depense->depensedevise }}
+                                        <td>{{ number_format($depense->montantdepense) . ' ' . $depense->depensedevise }}
                                         </td>
                                         <td>{{ $depense->projet->designationprojet }}</td>
                                         <td>
-                                            <a  wire:click="editdepense({{ $depense->id }})"
+                                            <a wire:click="editdepense({{ $depense->id }})"
                                                 class="action-icon text-primary me-2" style="cursor: pointer;"
                                                 data-bs-toggle="tooltip" data-bs-placement="top"
                                                 title="modifier depense"> <i class="mdi mdi-pencil"></i></a>
                                         <td>
-                                            <a  wire:click="delete({{ $depense->id }},'depense')"
+                                            <a wire:click="delete({{ $depense->id }},'depense')"
                                                 class="action-icon text-primary me-2" style="cursor: pointer;"
                                                 data-bs-toggle="tooltip" data-bs-placement="top"
                                                 title="suprimer depense"> <i class="mdi mdi-delete-circle"></i></a>
                                         </td>
                                         @php
-                                        switch ($depense->depensedevise) {
-                                            case 'USD':
-                                                $total_general_usd += $depense->montantdepense;
-                                                break;
-                                            case 'CDF':
-                                                $total_general_cdf += $depense->montantdepense;
-                                                break;
-                                            default:
-
-                                                break;
-                                        }
+                                            switch ($depense->depensedevise) {
+                                                case 'USD':
+                                                    $total_general_usd += $depense->montantdepense;
+                                                    break;
+                                                case 'CDF':
+                                                    $total_general_cdf += $depense->montantdepense;
+                                                    break;
+                                                default:
+                                                    break;
+                                            }
 
                                         @endphp
                                     </tr>
                                 @empty
                                     <tr>
                                         @if ($this->idprojet)
-                                        <td class="alert alert-danger" colspan="12">
-                                            <center>... Pas de dépense enregistré pour ce projet ...</center>
-                                        </td>
+                                            <td class="alert alert-danger" colspan="12">
+                                                <center>... Pas de dépense enregistré pour ce projet ...</center>
+                                            </td>
                                         @else
-                                        <td class="alert alert-danger" colspan="12">
-                                            <center>... veuillez selectionner le projet dans la liste de projets ...</center>
-                                        </td>
+                                            <td class="alert alert-danger" colspan="12">
+                                                <center>... veuillez selectionner le projet dans la liste de projets ...
+                                                </center>
+                                            </td>
                                         @endif
 
                                     </tr>
                                 @endforelse
                                 <tr>
-                                    <td colspan="2" style="color: rgb(14, 10, 10); "><b>Total Générale USD</b> </td>
+                                    <td colspan="2" style="color: rgb(14, 10, 10); "><b>Total Générale USD</b>
+                                    </td>
                                     <td style="color: rgb(14, 10, 10); "><b>@php
-                                        echo number_format($total_general_usd).'$';
+                                        echo number_format($total_general_usd) . '$';
                                     @endphp</b></td>
 
-                                <td colspan="1" style="color: rgb(14, 10, 10); "><b>Total Générale CDF</b> </td>
-                                <td style="color: rgb(14, 10, 10); "><b>@php
-                                    echo number_format($total_general_cdf)."FC";
-                                @endphp</b></td>
+                                    <td colspan="1" style="color: rgb(14, 10, 10); "><b>Total Générale CDF</b>
+                                    </td>
+                                    <td style="color: rgb(14, 10, 10); "><b>@php
+                                        echo number_format($total_general_cdf) . 'FC';
+                                    @endphp</b></td>
                                 </tr>
 
                             </tbody>
@@ -328,16 +329,16 @@
     </div>
 
 
-    <!-- Modal -->
+    <!-- Modal add and edit projet -->
     <div wire:ignore.self id="add_projet" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false"
         tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     @if ($this->desplayedit)
-                    <h5 class="modal-title" id="staticBackdropLabel">MODIFICATION DU PROJET</h5>
+                        <h5 class="modal-title" id="staticBackdropLabel">MODIFICATION DU PROJET</h5>
                     @else
-                    <h5 class="modal-title" id="staticBackdropLabel">ENREGISTREMENT DU PROJET</h5>
+                        <h5 class="modal-title" id="staticBackdropLabel">ENREGISTREMENT DU PROJET</h5>
                     @endif
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
                 </div> <!-- end modal header -->
@@ -392,20 +393,48 @@
 
                     </div>
                     @if ($this->desplayedit)
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                        <button wire:click="modifierprojet" type="button" class="btn btn-primary">Modifier le
-                            projet</button>
-                    </div> <!-- end modal footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                            <button wire:click="modifierprojet" type="button" class="btn btn-primary">Modifier le
+                                projet</button>
+                        </div> <!-- end modal footer -->
                     @else
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                        <button wire:click="saveprojet" type="button" class="btn btn-primary">Enregistrer le
-                            projet</button>
-                    </div> <!-- end modal footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                            <button wire:click="saveprojet" type="button" class="btn btn-primary">Enregistrer le
+                                projet</button>
+                        </div> <!-- end modal footer -->
                     @endif
 
                 </form>
+            </div> <!-- end modal content-->
+        </div> <!-- end modal dialog-->
+    </div>
+    <!-- end modal-->
+
+
+    <!-- Modal details depense per projet -->
+    <div wire:ignore.self id="md_dt_depense_projet" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    @if ($this->desplayedit)
+                        <h5 class="modal-title" id="staticBackdropLabel">DETAIL DEPENSE SUR LE PROJET</h5>
+                    @else
+                        <h5 class="modal-title" id="staticBackdropLabel">DESIGNATION PROJET</h5>
+                    @endif
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                </div> <!-- end modal header -->
+
+                    <div class="modal-body">
+
+                    </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                            <button wire:click="modifierprojet" type="button" class="btn btn-primary">Modifier le
+                                projet</button>
+                        </div> <!-- end modal footer -->
             </div> <!-- end modal content-->
         </div> <!-- end modal dialog-->
     </div>
@@ -421,6 +450,18 @@
             window.addEventListener('close_modal', event => {
                 // console.log("ok");
                 $('#add_projet').modal('hide');
+            });
+        </script>
+
+
+        <script type="text/javascript">
+            window.addEventListener('modal_dt_depense_projet', event => {
+                // console.log("ok");
+                $('#md_dt_depense_projet').modal('show');
+            });
+            window.addEventListener('close_modal_dt_depense_projet', event => {
+                // console.log("ok");
+                $('#md_dt_depense_projet').modal('hide');
             });
         </script>
     @endpush
