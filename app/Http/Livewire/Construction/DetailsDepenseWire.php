@@ -22,10 +22,7 @@ class DetailsDepenseWire extends Component
         $this->statut_projet = $projects->statutprojet;
         return view('livewire.construction.details-depense-wire');
     }
-    // public function mount()
-    // {
 
-    // }
 
     public function changerstatus($status)
     {

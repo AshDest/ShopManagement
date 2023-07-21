@@ -83,7 +83,6 @@ class AddConversionTerminal extends Component
     public function addproducts($id)
     {
         $vars = Produit::whereId($id)->first();
-        // dd($vars->category_id);
         if ($this->selectProdui1) {
             $this->idprod2 = $id;
             $this->catprod2 = $vars->category_id;

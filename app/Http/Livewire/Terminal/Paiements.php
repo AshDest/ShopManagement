@@ -65,10 +65,10 @@ class Paiements extends Component
                     'solde' => 0
                 ]);
             }
-            // dd($old_dettes->total_dette + $paies->montant_paie);
+
             if ($this->montant <= $old_dettes->total_dette + $paies->montant_paie) {
 
-                // dd(($paies->montant_paie + $paies->reste_paie) - $this->montant);
+
                 // Mofification de la caisse
                 $caisse->solde -= $paies->montant_paie;
                 $caisse->solde += $this->montant;

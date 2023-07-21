@@ -55,7 +55,7 @@
                         <div class="col-md-4">
                             <div class="mb-4">
                                 <h5>Contact</h5>
-                                <p>22 December 2018 <small class="text-muted">1:00 PM</small></p>
+                                <p>{{$this->contactreponsable}}</p>
                             </div>
                         </div>
                     </div>
@@ -63,19 +63,19 @@
                         <div class="col-md-4">
                             <div class="mb-4">
                                 <h5>Date de debit</h5>
-                                <p>17 March 2018 <small class="text-muted">1:00 PM</small></p>
+                                <p><i class="mdi mdi-calendar-arrow-right"></i> March 2018 <small class="text-muted">1:00 PM</small></p>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="mb-4">
                                 <h5>Date de fin</h5>
-                                <p>22 December 2018 <small class="text-muted">1:00 PM</small></p>
+                                <p><i class="mdi mdi-calendar-check-outline"></i>22 December 2018 <small class="text-muted">1:00 PM</small></p>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="mb-4">
                                 <h5>Budget Total</h5>
-                                <p>$15,800</p>
+                                <p><i class="mdi mdi-currency-usd"></i>15,800</p>
                             </div>
                         </div>
                     </div>
