@@ -2,12 +2,13 @@
 
 namespace App\Http\Livewire\Construction;
 
+use App\Models\Depensecontrusction;
 use App\Models\Projetcontrustion;
 use Livewire\Component;
 
 class DetailsDepenseWire extends Component
 {
-    public $projet;
+    public $projet,$depenses;
     //  variables pour la table projet
     public $codeprojet, $designationprojet, $responsableprojet, $contactreponsable, $statut_projet, $date_state, $date_end;
     // variable pour la table depense
@@ -20,6 +21,12 @@ class DetailsDepenseWire extends Component
         $this->responsableprojet = strtoupper($projects->responsableprojet);
         $this->contactreponsable = strtoupper($projects->contactreponsable);
         $this->statut_projet = $projects->statutprojet;
+
+            $this->depenses = Depensecontrusction::whereHas('projet', function ($s) {
+                $s->where('projetcontrustion_id', $this->projet);
+            })->paginate($this->page_active_dep);
+
+
         return view('livewire.construction.details-depense-wire');
     }
 
