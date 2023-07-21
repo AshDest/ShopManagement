@@ -75,7 +75,7 @@
                         <div class="col-md-4">
                             <div class="mb-4">
                                 <h5>Budget Total</h5>
-                                <p><i class="mdi mdi-currency-usd"></i>15,800</p>
+                                <p>15,800USD 23000CDF</p>
                             </div>
                         </div>
                     </div>
