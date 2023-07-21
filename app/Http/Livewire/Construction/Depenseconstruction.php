@@ -372,16 +372,8 @@ class Depenseconstruction extends Component
             $this->reset_fields2();
     }
 }
-public $design_projet,$statut_projet;
-public function viewdepense($id){
-    $this->idprojet = $id;
 
-        $projects = Projetcontrustion::where('id', $id)->first();
-        $this->design_projet=strtoupper($projects->designationprojet);
-        $this->statut_projet=$projects->statut;
-        $this->dispatchBrowserEvent('modal_dt_depense_projet');
 
-}
 
 public function changerstatus($id,$status){
     $projects = Projetcontrustion::where('id', $id)->first();

@@ -68,7 +68,7 @@
                                             @endif
                                         </td>
                                         <td class="table-action">
-                                            <a wire:click="viewdepense({{ $projet->id }})"
+                                            <a  {{ route('detaildepense', ['projet'=>$projet->id]) }}
                                                 class="action-icon text-primary me-2" style="cursor: pointer;"
                                                 data-bs-toggle="tooltip" data-bs-placement="top"
                                                 title="depenses du projet"> <i
