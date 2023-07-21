@@ -9,36 +9,44 @@ class DetailsDepenseWire extends Component
 {
     public $projet;
     //  variables pour la table projet
-    public $codeprojet, $designationprojet, $responsableprojet, $contactreponsable,$statut_projet,$date_state,$date_end;
+    public $codeprojet, $designationprojet, $responsableprojet, $contactreponsable, $statut_projet, $date_state, $date_end;
     // variable pour la table depense
     public $codeprojet_dep, $designationprojet_dep, $designationdepense, $mtdepense, $depensedevise;
     public function render()
     {
         return view('livewire.construction.details-depense-wire');
     }
-    public function mount(){
+    public function mount()
+    {
         $projects = Projetcontrustion::where('id', $this->projet)->first();
-        $this->designationprojet=strtoupper($projects->designationprojet);
-        $this->statut_projet=$projects->statutprojet;
+        $this->designationprojet = strtoupper($projects->designationprojet);
+        $this->statut_projet = $projects->statutprojet;
     }
 
-    public function changerstatus($status){
-        $projects = Projetcontrustion::where('id', $this->projet)->first();
+    public function changerstatus($status)
+    {
         switch ($status) {
             case 'Encours':
-                $projects->statut = $status;
+                Projetcontrustion::find($this->projects)->fill([
+                    'statutprojet' => $status,
+                ])->save();
+
                 break;
-                case 'Pending':
-                        $projects->statut = $status;
-                    break;
-                    case 'Cloturer':
-                        $projects->statut = $status;
-                        break;
+            case 'Pending':
+
+                Projetcontrustion::find($this->projects)->fill([
+                    'statutprojet' => $status,
+                ])->save();
+                break;
+            case 'Cloturer':
+                Projetcontrustion::find($this->projects)->fill([
+                    'statutprojet' => $status,
+                ])->save();
+                break;
 
             default:
                 # code...
                 break;
         }
-
     }
 }
