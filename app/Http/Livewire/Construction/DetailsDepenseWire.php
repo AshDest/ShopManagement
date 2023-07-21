@@ -5,10 +5,15 @@ namespace App\Http\Livewire\Construction;
 use App\Models\Depensecontrusction;
 use App\Models\Projetcontrustion;
 use Livewire\Component;
+use Livewire\WithPagination;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 class DetailsDepenseWire extends Component
 {
+    use WithPagination;
+    use LivewireAlert;
     public $projet,$depenses;
+    protected $page_active_dep = 10;
     //  variables pour la table projet
     public $codeprojet, $designationprojet, $responsableprojet, $contactreponsable, $statut_projet, $date_state, $date_end;
     // variable pour la table depense
