@@ -561,7 +561,7 @@
                 // console.log("ok");
                 $('#add_projet').modal('hide');
             });
-        </script>
+        </script>jschart_depense
 
         <script>
             var options = {
