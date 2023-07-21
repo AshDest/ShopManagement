@@ -14,14 +14,15 @@ class DetailsDepenseWire extends Component
     public $codeprojet_dep, $designationprojet_dep, $designationdepense, $mtdepense, $depensedevise;
     public function render()
     {
-        return view('livewire.construction.details-depense-wire');
-    }
-    public function mount()
-    {
         $projects = Projetcontrustion::where('id', $this->projet)->first();
         $this->designationprojet = strtoupper($projects->designationprojet);
         $this->statut_projet = $projects->statutprojet;
+        return view('livewire.construction.details-depense-wire');
     }
+    // public function mount()
+    // {
+
+    // }
 
     public function changerstatus($status)
     {
