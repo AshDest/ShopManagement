@@ -57,10 +57,10 @@
                                             {{ $projet->contactreponsable }}
                                         </td>
                                         <td>
-                                            @if ($projet->statutprojet=="encours")
+                                            @if ($projet->statutprojet=="Encours")
                                             <span class="badge bg-primary-lighten text-primary">{{ $projet->statutprojet }}</span>
-                                            @elseif ($projet->statutprojet=="pending")
-                                            <span class="badge bg-warning-lighten text-warning">{{ $projet->statutprojet }}</span>
+                                            @elseif ($projet->statutprojet=="Pending")
+                                            <span class="badge bg-warning-lighten text-warning">En attente</span>
                                             @else
                                             <span class="badge bg-success-lighten text-success">{{ $projet->statutprojet }}</span>
                                             @endif
@@ -442,11 +442,11 @@
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-end">
                                             <!-- item-->
-                                            <a href="javascript:void(0);" class="dropdown-item"><i class="mdi mdi-pencil me-1"></i>Cloturer</a>
+                                            <a href="javascript:void(0);" class="dropdown-item"><i class="mdi mdi-progress-close"></i>Cloturer</a>
                                             <!-- item-->
-                                            <a href="javascript:void(0);" class="dropdown-item"><i class="mdi mdi-delete me-1"></i>Stopper</a>
+                                            <a href="javascript:void(0);" class="dropdown-item"><i class="mdi mdi-progress-alert"></i>En attente</a>
                                             <!-- item-->
-                                            <a href="javascript:void(0);" class="dropdown-item"><i class="mdi mdi-email-outline me-1"></i>Encours</a>
+                                            <a href="javascript:void(0);" class="dropdown-item"><i class="mdi mdi-progress-clock"></i>Encours</a>
                                         </div>
                                     </div>
                                     <!-- project title-->

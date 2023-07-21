@@ -283,17 +283,19 @@ class Depenseconstruction extends Component
     public function adddepense($id,$status)
     {
        switch ($status) {
-        case 'cloturer':
+        case 'Cloturer':
              $this->alert('info', 'C\'est projet est déja cloturé, vous ne pouvez pas ajouter une dépense', [
                 'position' => 'center'
             ]);
+            $this->idprojet = $id;
             break;
-        case 'pending':
+        case 'Pending':
                  $this->alert('info', 'C\'est projet est stopé, vous ne pouvez pas ajouter une dépense', [
                 'position' => 'center'
             ]);
+            $this->idprojet = $id;
             break;
-        case 'encours':
+        case 'Encours':
             $this->formType = 'secondForm';
             $this->idprojet = $id;
             $projects = Projetcontrustion::where('id', $id)->first();
