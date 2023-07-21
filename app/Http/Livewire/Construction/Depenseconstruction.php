@@ -280,8 +280,9 @@ class Depenseconstruction extends Component
         }
     }
     // ajout de depense sur le projet
-    public function adddepense($id)
+    public function adddepense($id,$status)
     {
+        dd($status);
         $this->formType = 'secondForm';
         $this->idprojet = $id;
         $projects = Projetcontrustion::where('id', $id)->first();

@@ -421,7 +421,6 @@
 
     <!-- Modal details depense per projet -->
 <!-- Primary Header Modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#primary-header-modal">Primary Header</button>
 <div ire:ignore.self id="md_dt_depense_projet" id="centermodal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="primary-header-modalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
