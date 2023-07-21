@@ -284,12 +284,12 @@ class Depenseconstruction extends Component
     {
        switch ($status) {
         case 'cloturer':
-             $this->alert('info', 'C\'est projet est déja cloturé, \n vous ne pouvez pas ajouter une dépense', [
+             $this->alert('info', 'C\'est projet est déja cloturé, vous ne pouvez pas ajouter une dépense', [
                 'position' => 'center'
             ]);
             break;
         case 'pending':
-                 $this->alert('info', 'C\'est projet est stopé, \n vous ne pouvez pas ajouter une dépense', [
+                 $this->alert('info', 'C\'est projet est stopé, vous ne pouvez pas ajouter une dépense', [
                 'position' => 'center'
             ]);
             break;
