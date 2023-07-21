@@ -57,7 +57,13 @@
                                             {{ $projet->contactreponsable }}
                                         </td>
                                         <td>
-                                            {{ $projet->statutprojet }}
+                                            @if ($projet->statutprojet=="encours")
+                                            <span class="badge bg-primary-lighten text-primary">{{ $projet->statutprojet }}</span>
+                                            @elseif ($projet->statutprojet=="pending")
+                                            <span class="badge bg-warning-lighten text-warning">{{ $projet->statutprojet }}</span>
+                                            @else
+                                            <span class="badge bg-success-lighten text-success">{{ $projet->statutprojet }}</span>
+                                            @endif
                                         </td>
                                         <td class="table-action">
                                             <a wire:click="viewdepense({{ $projet->id }})"
@@ -79,7 +85,7 @@
                                                 title="suprimer projet"> <i class="mdi mdi-delete-circle"></i></a>
                                         </td>
                                         <td>
-                                            <a wire:click="adddepense({{ $projet->id }})"
+                                            <a wire:click="adddepense({{ $projet->id }}),{{$projet->statutprojet}}"
                                                 class="action-icon text-primary me-2" style="cursor: pointer;"
                                                 data-bs-toggle="tooltip" data-bs-placement="top"
                                                 title="ajouter depense"> <i class="mdi mdi-link-variant-plus"></i></a>
