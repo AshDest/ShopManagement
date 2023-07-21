@@ -425,7 +425,7 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-xxl-8 col-lg-6">
+                    <div class="col-xxl-6 col-lg-6">
                         <!-- project card -->
                         <div class="card d-block">
                             <div class="card-body">
@@ -437,13 +437,11 @@
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-end">
                                             <!-- item-->
-                                            <a href="javascript:void(0);" class="dropdown-item"><i class="mdi mdi-pencil me-1"></i>Edit</a>
+                                            <a href="javascript:void(0);" class="dropdown-item"><i class="mdi mdi-pencil me-1"></i>Cloturer</a>
                                             <!-- item-->
-                                            <a href="javascript:void(0);" class="dropdown-item"><i class="mdi mdi-delete me-1"></i>Delete</a>
+                                            <a href="javascript:void(0);" class="dropdown-item"><i class="mdi mdi-delete me-1"></i>Stopper</a>
                                             <!-- item-->
-                                            <a href="javascript:void(0);" class="dropdown-item"><i class="mdi mdi-email-outline me-1"></i>Invite</a>
-                                            <!-- item-->
-                                            <a href="javascript:void(0);" class="dropdown-item"><i class="mdi mdi-exit-to-app me-1"></i>Leave</a>
+                                            <a href="javascript:void(0);" class="dropdown-item"><i class="mdi mdi-email-outline me-1"></i>Encours</a>
                                         </div>
                                     </div>
                                     <!-- project title-->
@@ -493,13 +491,16 @@
 
                     </div> <!-- end col -->
 
-                    <div class="col-lg-6 col-xxl-4">
+                    <div class="col-lg-6 col-xxl-6">
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title mb-3">Progress</h5>
                                 <div dir="ltr">
                                     <div class="mt-3 chartjs-chart" style="height: 320px;">
-                                        <canvas id="line-chart-example"></canvas>
+                                        {{-- <div dir="ltr"> --}}
+                                            <div id="chartdepense" class="apex-charts" data-colors="#727cf5,#e3eaef"></div>
+                                        {{-- </div> --}}
+                                        {{-- <canvas id="line-chart-example"></canvas> --}}
                                     </div>
                                 </div>
                             </div>
@@ -542,5 +543,95 @@
                 $('#md_dt_depense_projet').modal('hide');
             });
         </script>
+
+
+<script>
+     var options = {
+          series: [{
+          name: 'Inflation',
+          data: [200, 4000, 2000, 1500]
+        }],
+          chart: {
+          height: 350,
+          type: 'bar',
+        },
+        plotOptions: {
+          bar: {
+            borderRadius: 10,
+            dataLabels: {
+              position: 'top', // top, center, bottom
+            },
+          }
+        },
+        dataLabels: {
+          enabled: true,
+          formatter: function (val) {
+            return val + "$";
+          },
+          offsetY: -20,
+          style: {
+            fontSize: '10px',
+            colors: ["#304758"]
+          }
+        },
+
+        xaxis: {
+          categories: ["Jan", "Feb", "Mar", "Apr"],
+          position: 'top',
+          axisBorder: {
+            show: false
+          },
+          axisTicks: {
+            show: false
+          },
+          crosshairs: {
+            fill: {
+              type: 'gradient',
+              gradient: {
+                colorFrom: '#D8E3F0',
+                colorTo: '#BED1E6',
+                stops: [0, 100],
+                opacityFrom: 0.4,
+                opacityTo: 0.5,
+              }
+            }
+          },
+          tooltip: {
+            enabled: true,
+          }
+        },
+        yaxis: {
+          axisBorder: {
+            show: true
+          },
+          axisTicks: {
+            show: true,
+          },
+          labels: {
+            show: true,
+            formatter: function (val) {
+              return val + "$";
+            }
+          }
+
+        },
+        title: {
+          text: 'Dépense mensuel',
+          floating: true,
+          offsetY: 330,
+          align: 'center',
+          style: {
+            color: '#444'
+          }
+        }
+        };
+
+        var chart = new ApexCharts(document.querySelector("#chartdepense"), options);
+        chart.render();
+</script>
+
+
     @endpush
+
+
 </div>
