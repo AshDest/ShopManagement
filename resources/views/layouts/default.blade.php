@@ -96,6 +96,7 @@
     @stack('js')
     @stack('jschart')
     @stack('addprojet_modal')
+    @stack('jschart_depense')
 
     <!-- third party js ends -->
     @livewireScripts
