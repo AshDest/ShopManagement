@@ -81,23 +81,31 @@
                     </div>
 
                     <p class="text-muted mb-2">
-                        With supporting text below as a natural lead-in to additional contenposuere erat
-                        a ante. Voluptates, illo, iste itaque voluptas
-                        corrupti ratione reprehenderit magni similique? Tempore, quos delectus
-                        asperiores libero voluptas quod perferendis! Voluptate,
-                        quod illo rerum? Lorem ipsum dolor sit amet.
+                        <table class="table table-dark mb-0">
+                            <thead>
+                                <tr>
+                                    <th>N<sup>o</sup></th>
+                                    <th>Description</th>
+                                    <th>Montant payé</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Risa D. Pearson</td>
+                                    <td>336-508-2157</td>
+                                    <td>July 24, 1950</td>
+                                    <td>
+                                        <!-- Switch-->
+                                        <div>
+                                            <input type="checkbox" id="switch6" data-switch="success"/>
+                                            <label for="switch6" data-on-label="Yes" data-off-label="No" class="mb-0 d-block"></label>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
                     </p>
-
-                    <p class="text-muted mb-4">
-                        Voluptates, illo, iste itaque voluptas corrupti ratione reprehenderit magni
-                        similique? Tempore, quos delectus asperiores
-                        libero voluptas quod perferendis! Voluptate, quod illo rerum? Lorem ipsum dolor
-                        sit amet. With supporting text below
-                        as a natural lead-in to additional contenposuere erat a ante.
-                    </p>
-
-
-
 
                 </div> <!-- end card-body-->
 
