@@ -90,18 +90,75 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Risa D. Pearson</td>
-                                    <td>336-508-2157</td>
-                                    <td>July 24, 1950</td>
-                                    <td>
-                                        <!-- Switch-->
-                                        <div>
-                                            <input type="checkbox" id="switch6" data-switch="success"/>
-                                            <label for="switch6" data-on-label="Yes" data-off-label="No" class="mb-0 d-block"></label>
-                                        </div>
-                                    </td>
-                                </tr>
+                                @php
+                                $total_general_cdf = 0;
+                                $total_general_usd = 0;
+                            @endphp
+                                 @forelse ($this->depenses as $depense)
+                                 <tr>
+
+
+
+                                     <?php $i = 1; ?>
+                                     <td><?php echo $i;
+                                     $i++; ?></td>
+                                     <td>{{ $depense->designationdepense }}</td>
+                                     <td>{{ number_format($depense->montantdepense) . ' ' . $depense->depensedevise }}
+                                     </td>
+                                     <td>{{ $depense->projet->designationprojet }}</td>
+                                     <td>
+                                         <a wire:click="editdepense({{ $depense->id }})"
+                                             class="action-icon text-primary me-2" style="cursor: pointer;"
+                                             data-bs-toggle="tooltip" data-bs-placement="top"
+                                             title="modifier depense"> <i class="mdi mdi-pencil"></i></a>
+                                     <td>
+                                         <a wire:click="delete({{ $depense->id }},'depense')"
+                                             class="action-icon text-primary me-2" style="cursor: pointer;"
+                                             data-bs-toggle="tooltip" data-bs-placement="top"
+                                             title="suprimer depense"> <i class="mdi mdi-delete-circle"></i></a>
+                                     </td>
+                                     @php
+                                         switch ($depense->depensedevise) {
+                                             case 'USD':
+                                                 $total_general_usd += $depense->montantdepense;
+                                                 break;
+                                             case 'CDF':
+                                                 $total_general_cdf += $depense->montantdepense;
+                                                 break;
+                                             default:
+                                                 break;
+                                         }
+
+                                     @endphp
+                                 </tr>
+                             @empty
+                                 <tr>
+                                     @if ($this->idprojet)
+                                         <td class="alert alert-danger" colspan="12">
+                                             <center>... Pas de dépense enregistré pour ce projet ...</center>
+                                         </td>
+                                     @else
+                                         <td class="alert alert-danger" colspan="12">
+                                             <center>... veuillez selectionner le projet dans la liste de projets ...
+                                             </center>
+                                         </td>
+                                     @endif
+
+                                 </tr>
+                             @endforelse
+                             <tr>
+                                 <td colspan="2" style="color: rgb(14, 10, 10); "><b>Total Générale USD</b>
+                                 </td>
+                                 <td style="color: rgb(14, 10, 10); "><b>@php
+                                     echo number_format($total_general_usd) . '$';
+                                 @endphp</b></td>
+
+                                 <td colspan="1" style="color: rgb(14, 10, 10); "><b>Total Générale CDF</b>
+                                 </td>
+                                 <td style="color: rgb(14, 10, 10); "><b>@php
+                                     echo number_format($total_general_cdf) . 'FC';
+                                 @endphp</b></td>
+                             </tr>
 
                             </tbody>
                         </table>
