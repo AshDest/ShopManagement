@@ -43,13 +43,13 @@
                         <div class="col-md-4">
                             <div class="mb-4">
                                 <h5>Code du Projet</h5>
-                                <p>$15,800</p>
+                                <p>{{$this->codeprojet}}</p>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="mb-4">
                                 <h5>Reponsable du Projet</h5>
-                                <p>17 March 2018 <small class="text-muted">1:00 PM</small></p>
+                                <p>{{$this->responsableprojet}}</p>
                             </div>
                         </div>
                         <div class="col-md-4">

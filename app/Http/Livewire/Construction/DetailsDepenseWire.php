@@ -16,6 +16,9 @@ class DetailsDepenseWire extends Component
     {
         $projects = Projetcontrustion::where('id', $this->projet)->first();
         $this->designationprojet = strtoupper($projects->designationprojet);
+        $this->codeprojet = strtoupper($projects->codeprojet);
+        $this->responsableprojet = strtoupper($projects->responsableprojet);
+        $this->contactreponsable = strtoupper($projects->contactreponsable);
         $this->statut_projet = $projects->statutprojet;
         return view('livewire.construction.details-depense-wire');
     }
