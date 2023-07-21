@@ -27,19 +27,19 @@ class DetailsDepenseWire extends Component
     {
         switch ($status) {
             case 'Encours':
-                Projetcontrustion::find($this->projects)->fill([
+                Projetcontrustion::find($this->projet)->fill([
                     'statutprojet' => $status,
                 ])->save();
 
                 break;
             case 'Pending':
 
-                Projetcontrustion::find($this->projects)->fill([
+                Projetcontrustion::find($this->projet)->fill([
                     'statutprojet' => $status,
                 ])->save();
                 break;
             case 'Cloturer':
-                Projetcontrustion::find($this->projects)->fill([
+                Projetcontrustion::find($this->projet)->fill([
                     'statutprojet' => $status,
                 ])->save();
                 break;
