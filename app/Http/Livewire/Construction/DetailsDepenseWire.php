@@ -22,19 +22,17 @@ class DetailsDepenseWire extends Component
         $this->statut_projet=$projects->statutprojet;
     }
 
-    public function changerstatus($id,$status){
-        $projects = Projetcontrustion::where('id', $id)->first();
+    public function changerstatus($status){
+        $projects = Projetcontrustion::where('id', $this->projet)->first();
         switch ($status) {
             case 'Encours':
                 $projects->statut = $status;
                 break;
                 case 'Pending':
-
-                    $projects->genealogie_mere_id = $status;
-                    redirect('/admin/contruction/depense');
+                        $projects->statut = $status;
                     break;
                     case 'Cloturer':
-                        $projects->genealogie_mere_id = $status;
+                        $projects->statut = $status;
                         break;
 
             default:

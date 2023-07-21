@@ -19,12 +19,12 @@
                                         class="mdi mdi-progress-close"></i>&ensp;Cloturer</a>
                                 <!-- item-->
                                 <a style="cursor: pointer;"
-                                    wire:click="editdepense('Pending')"
+                                    wire:click="changerstatus('Pending')"
                                     class="dropdown-item"><i
                                         class="mdi mdi-progress-alert"></i>&ensp;En attente</a>
                                 <!-- item-->
                                 <a style="cursor: pointer;"
-                                    wire:click="editdepense('Encours')"
+                                    wire:click="changerstatus('Encours')"
                                     class="dropdown-item"><i
                                         class="mdi mdi-progress-clock"></i>&ensp;Encours</a>
                             </div>
