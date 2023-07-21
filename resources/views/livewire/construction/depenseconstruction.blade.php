@@ -435,18 +435,18 @@
                         <div class="card d-block">
                             <div class="card-body">
                                 <div class="d-flex justify-content-between align-items-center mb-2">
-                                    <h3 class="">App design and development</h3>
+                                    <h3 class="">App design and development {{ $this->idprojet}}</h3>
                                     <div class="dropdown">
                                         <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
                                             <i class="dripicons-dots-3"></i>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-end">
                                             <!-- item-->
-                                            <a href="javascript:void(0);" class="dropdown-item"><i class="mdi mdi-progress-close"></i>Cloturer</a>
+                                            <a wire:click="changerstatus({{ $this->idprojet }})" class="dropdown-item"><i class="mdi mdi-progress-close"></i>Cloturer</a>
                                             <!-- item-->
-                                            <a href="javascript:void(0);" class="dropdown-item"><i class="mdi mdi-progress-alert"></i>En attente</a>
+                                            <a wire:click="editdepense({{ $this->idprojet }})" class="dropdown-item"><i class="mdi mdi-progress-alert"></i>En attente</a>
                                             <!-- item-->
-                                            <a href="javascript:void(0);" class="dropdown-item"><i class="mdi mdi-progress-clock"></i>Encours</a>
+                                            <a wire:click="editdepense({{ $this->idprojet }})" class="dropdown-item"><i class="mdi mdi-progress-clock"></i>Encours</a>
                                         </div>
                                     </div>
                                     <!-- project title-->
