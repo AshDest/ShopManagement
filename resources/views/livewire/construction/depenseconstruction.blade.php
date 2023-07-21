@@ -85,7 +85,7 @@
                                                 title="suprimer projet"> <i class="mdi mdi-delete-circle"></i></a>
                                         </td>
                                         <td>
-                                            <a wire:click="adddepense({{ $projet->id }}),{{$projet->statutprojet}}"
+                                            <a wire:click="adddepense({{ $projet->id }},'{{$projet->statutprojet}}')"
                                                 class="action-icon text-primary me-2" style="cursor: pointer;"
                                                 data-bs-toggle="tooltip" data-bs-placement="top"
                                                 title="ajouter depense"> <i class="mdi mdi-link-variant-plus"></i></a>
