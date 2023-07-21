@@ -352,14 +352,13 @@ class Depenseconstruction extends Component
             $this->reset_fields2();
     }
 }
+public $design_projet;
 public function viewdepense($id){
     $this->idprojet = $id;
 
         $projects = Projetcontrustion::where('id', $id)->first();
-        $this->codeprojet = $projects->codeprojet;
-        $this->designationprojet = $projects->designationprojet;
-        $this->responsableprojet = $projects->responsableprojet;
-        $this->contactreponsable = $projects->contactreponsable;
+        $this->design_projet=strtoupper($projects->designationprojet);
         $this->dispatchBrowserEvent('modal_dt_depense_projet');
+
 }
 }

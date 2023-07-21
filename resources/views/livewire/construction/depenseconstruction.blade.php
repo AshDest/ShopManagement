@@ -419,11 +419,8 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    @if ($this->desplayedit)
-                        <h5 class="modal-title" id="staticBackdropLabel">DETAIL DEPENSE SUR LE PROJET</h5>
-                    @else
-                        <h5 class="modal-title" id="staticBackdropLabel">DESIGNATION PROJET</h5>
-                    @endif
+
+                        <h5 class="modal-title" id="staticBackdropLabel">DETAIL DE DEPENSE SUR LE PROJET {{$this->design_projet}}</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
                 </div> <!-- end modal header -->
 
