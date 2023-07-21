@@ -414,29 +414,110 @@
 
 
     <!-- Modal details depense per projet -->
-    <div wire:ignore.self id="md_dt_depense_projet" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false"
-        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
+<!-- Primary Header Modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#primary-header-modal">Primary Header</button>
+<div ire:ignore.self id="md_dt_depense_projet" id="centermodal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="primary-header-modalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header modal-colored-header bg-primary">
+                <h4 class="modal-title" id="primary-header-modalLabel">DETAIL DE DEPENSE SUR LE PROJET {{$this->design_projet}}</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xxl-8 col-lg-6">
+                        <!-- project card -->
+                        <div class="card d-block">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <h3 class="">App design and development</h3>
+                                    <div class="dropdown">
+                                        <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class="dripicons-dots-3"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-end">
+                                            <!-- item-->
+                                            <a href="javascript:void(0);" class="dropdown-item"><i class="mdi mdi-pencil me-1"></i>Edit</a>
+                                            <!-- item-->
+                                            <a href="javascript:void(0);" class="dropdown-item"><i class="mdi mdi-delete me-1"></i>Delete</a>
+                                            <!-- item-->
+                                            <a href="javascript:void(0);" class="dropdown-item"><i class="mdi mdi-email-outline me-1"></i>Invite</a>
+                                            <!-- item-->
+                                            <a href="javascript:void(0);" class="dropdown-item"><i class="mdi mdi-exit-to-app me-1"></i>Leave</a>
+                                        </div>
+                                    </div>
+                                    <!-- project title-->
+                                </div>
+                                <div class="badge bg-secondary text-light mb-3">Ongoing</div>
 
-                        <h5 class="modal-title" id="staticBackdropLabel">DETAIL DE DEPENSE SUR LE PROJET {{$this->design_projet}}</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
-                </div> <!-- end modal header -->
+                                <h5>Project Overview:</h5>
 
-                    <div class="modal-body">
+                                <p class="text-muted mb-2">
+                                    With supporting text below as a natural lead-in to additional contenposuere erat a ante. Voluptates, illo, iste itaque voluptas
+                                    corrupti ratione reprehenderit magni similique? Tempore, quos delectus asperiores libero voluptas quod perferendis! Voluptate,
+                                    quod illo rerum? Lorem ipsum dolor sit amet.
+                                </p>
+
+                                <p class="text-muted mb-4">
+                                    Voluptates, illo, iste itaque voluptas corrupti ratione reprehenderit magni similique? Tempore, quos delectus asperiores
+                                    libero voluptas quod perferendis! Voluptate, quod illo rerum? Lorem ipsum dolor sit amet. With supporting text below
+                                    as a natural lead-in to additional contenposuere erat a ante.
+                                </p>
+
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="mb-4">
+                                            <h5>Start Date</h5>
+                                            <p>17 March 2018 <small class="text-muted">1:00 PM</small></p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="mb-4">
+                                            <h5>End Date</h5>
+                                            <p>22 December 2018 <small class="text-muted">1:00 PM</small></p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="mb-4">
+                                            <h5>Budget</h5>
+                                            <p>$15,800</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div> <!-- end card-body-->
+
+                        </div> <!-- end card-->
+
+
+                    </div> <!-- end col -->
+
+                    <div class="col-lg-6 col-xxl-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title mb-3">Progress</h5>
+                                <div dir="ltr">
+                                    <div class="mt-3 chartjs-chart" style="height: 320px;">
+                                        <canvas id="line-chart-example"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end card-->
+
 
                     </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                            <button wire:click="modifierprojet" type="button" class="btn btn-primary">Modifier le
-                                projet</button>
-                        </div> <!-- end modal footer -->
-            </div> <!-- end modal content-->
-        </div> <!-- end modal dialog-->
-    </div>
-    <!-- end modal-->
-
+                </div>
+                <!-- end row -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
     @push('addprojet_modal')
         <script type="text/javascript">
