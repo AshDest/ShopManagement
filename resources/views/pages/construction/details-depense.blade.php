@@ -19,6 +19,6 @@
     </div>
     <!-- end page title -->
 
-    @livewire('construction.depenseconstruction')
+    @livewire('construction.details-depense-wire',$projet)
 </div>
 @endsection
