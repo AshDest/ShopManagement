@@ -19,7 +19,7 @@ class DetailsDepenseWire extends Component
     public function mount(){
         $projects = Projetcontrustion::where('id', $this->projet)->first();
         $this->designationprojet=strtoupper($projects->designationprojet);
-        $this->statut_projet=$projects->statut;
+        $this->statut_projet=$projects->statutprojet;
     }
 
     public function changerstatus($id,$status){
@@ -29,7 +29,7 @@ class DetailsDepenseWire extends Component
                 $projects->statut = $status;
                 break;
                 case 'Pending':
-                    dd($status);
+
                     $projects->genealogie_mere_id = $status;
                     redirect('/admin/contruction/depense');
                     break;
