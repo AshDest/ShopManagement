@@ -185,18 +185,18 @@
                             <a wire:click="modifierdepense" class="btn btn-primary mb-2 me-2"><i
                                 class="mdi mdi-pencil"></i>
                             Modifier la dépense</a>
-                           
+
                             @else
                             @if ($this->desplaydepense)
                             <a wire:click="savedepense" class="btn btn-primary mb-2 me-2"><i
                                 class="mdi mdi-plus-circle-multiple-outline" ></i>
                             Enregistrer la dépense</a>
-                           
+
                                 @else
                                 <button wire:click="savedepense" class="btn btn-primary mb-2 me-2" disabled><i
                                     class="mdi mdi-plus-circle-multiple-outline" ></i>
                                     Enregistrer la dépense</button>
-                               
+
                             @endif
                             @endif
 
@@ -251,7 +251,7 @@
                                 @forelse ($this->depenses as $depense)
                                     <tr>
 
-                                      
+
 
                                         <?php $i = 1; ?>
                                         <td><?php echo $i;
