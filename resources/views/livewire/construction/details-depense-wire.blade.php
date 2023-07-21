@@ -5,7 +5,7 @@
             <div class="card d-block">
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center mb-2">
-                        <h3 class="">App design and development {{ $this->idprojet }}</h3>
+                        <h3 class="">App design and development {{ $this->projet }}</h3>
                         <div class="dropdown">
                             <a href="#" class="dropdown-toggle arrow-none card-drop"
                                 data-bs-toggle="dropdown" aria-expanded="false">
@@ -14,17 +14,17 @@
                             <div class="dropdown-menu dropdown-menu-end">
                                 <!-- item-->
                                 <a style="cursor: pointer;"
-                                    wire:click="changerstatus({{ $this->idprojet }},'Cloturer')"
+                                    wire:click="changerstatus('Cloturer')"
                                     class="dropdown-item"><i
                                         class="mdi mdi-progress-close"></i>&ensp;Cloturer</a>
                                 <!-- item-->
                                 <a style="cursor: pointer;"
-                                    wire:click="editdepense({{ $this->idprojet }},'Pending')"
+                                    wire:click="editdepense('Pending')"
                                     class="dropdown-item"><i
                                         class="mdi mdi-progress-alert"></i>&ensp;En attente</a>
                                 <!-- item-->
                                 <a style="cursor: pointer;"
-                                    wire:click="editdepense({{ $this->idprojet }},'Encours')"
+                                    wire:click="editdepense('Encours')"
                                     class="dropdown-item"><i
                                         class="mdi mdi-progress-clock"></i>&ensp;Encours</a>
                             </div>

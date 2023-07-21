@@ -373,27 +373,4 @@ class Depenseconstruction extends Component
     }
 }
 
-
-
-public function changerstatus($id,$status){
-    $projects = Projetcontrustion::where('id', $id)->first();
-    switch ($status) {
-        case 'Encours':
-            $projects->statut = $status;
-            break;
-            case 'Pending':
-                dd($status);
-                $projects->genealogie_mere_id = $status;
-                redirect('/admin/contruction/depense');
-                break;
-                case 'Cloturer':
-                    $projects->genealogie_mere_id = $status;
-                    break;
-
-        default:
-            # code...
-            break;
-    }
-
-}
 }
