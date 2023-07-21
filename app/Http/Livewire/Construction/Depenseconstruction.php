@@ -282,13 +282,30 @@ class Depenseconstruction extends Component
     // ajout de depense sur le projet
     public function adddepense($id,$status)
     {
-        dd($status);
-        $this->formType = 'secondForm';
-        $this->idprojet = $id;
-        $projects = Projetcontrustion::where('id', $id)->first();
-        $this->codeprojet_dep = $projects->codeprojet;
-        $this->designationprojet_dep = $projects->designationprojet;
-        $this->desplaydepense = true;
+       switch ($status) {
+        case 'cloturer':
+             $this->alert('info', 'C\'est projet est déja cloturé, \n vous ne pouvez pas ajouter une dépense', [
+                'position' => 'center'
+            ]);
+            break;
+        case 'pending':
+                 $this->alert('info', 'C\'est projet est stopé, \n vous ne pouvez pas ajouter une dépense', [
+                'position' => 'center'
+            ]);
+            break;
+        case 'encours':
+            $this->formType = 'secondForm';
+            $this->idprojet = $id;
+            $projects = Projetcontrustion::where('id', $id)->first();
+            $this->codeprojet_dep = $projects->codeprojet;
+            $this->designationprojet_dep = $projects->designationprojet;
+            $this->desplaydepense = true;
+            break;
+
+        default:
+            # code...
+            break;
+       }
     }
     public function savedepense()
     {
