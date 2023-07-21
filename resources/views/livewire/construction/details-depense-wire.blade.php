@@ -39,7 +39,46 @@
                         <span class="badge bg-success-lighten text-success">Projet: {{$this->statut_projet}}</span>
                     @endif
 
-                    <h5>Project Overview:</h5>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="mb-4">
+                                <h5>Code du Projet</h5>
+                                <p>$15,800</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-4">
+                                <h5>Reponsable du Projet</h5>
+                                <p>17 March 2018 <small class="text-muted">1:00 PM</small></p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-4">
+                                <h5>Contact</h5>
+                                <p>22 December 2018 <small class="text-muted">1:00 PM</small></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="mb-4">
+                                <h5>Date de debit</h5>
+                                <p>17 March 2018 <small class="text-muted">1:00 PM</small></p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-4">
+                                <h5>Date de fin</h5>
+                                <p>22 December 2018 <small class="text-muted">1:00 PM</small></p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-4">
+                                <h5>Budget Total</h5>
+                                <p>$15,800</p>
+                            </div>
+                        </div>
+                    </div>
 
                     <p class="text-muted mb-2">
                         With supporting text below as a natural lead-in to additional contenposuere erat
@@ -57,26 +96,7 @@
                         as a natural lead-in to additional contenposuere erat a ante.
                     </p>
 
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="mb-4">
-                                <h5>Start Date</h5>
-                                <p>17 March 2018 <small class="text-muted">1:00 PM</small></p>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="mb-4">
-                                <h5>End Date</h5>
-                                <p>22 December 2018 <small class="text-muted">1:00 PM</small></p>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="mb-4">
-                                <h5>Budget</h5>
-                                <p>$15,800</p>
-                            </div>
-                        </div>
-                    </div>
+
 
 
                 </div> <!-- end card-body-->
