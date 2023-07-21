@@ -5,7 +5,7 @@
             <div class="card d-block">
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center mb-2">
-                        <h3 class="">App design and development {{ $this->projet }}</h3>
+                        <h3 class="">{{$this->designationprojet}}</h3>
                         <div class="dropdown">
                             <a href="#" class="dropdown-toggle arrow-none card-drop"
                                 data-bs-toggle="dropdown" aria-expanded="false">
@@ -32,11 +32,11 @@
                         <!-- project title-->
                     </div>
                     @if ($this->statut_projet == 'Encours')
-                        <span class="badge bg-primary-lighten text-primary">{{$this->statut_projet}}</span>
+                        <span class="badge bg-primary-lighten text-primary">Projet: {{$this->statut_projet}}</span>
                     @elseif ($this->statut_projet == 'Pending')
-                        <span class="badge bg-warning-lighten text-warning">{{$this->statut_projet}}</span>
+                        <span class="badge bg-warning-lighten text-warning">Projet: {{$this->statut_projet}}</span>
                     @else
-                        <span class="badge bg-success-lighten text-success">{{$this->statut_projet}}</span>
+                        <span class="badge bg-success-lighten text-success">Projet: {{$this->statut_projet}}</span>
                     @endif
 
                     <h5>Project Overview:</h5>
