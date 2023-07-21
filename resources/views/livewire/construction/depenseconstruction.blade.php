@@ -563,19 +563,6 @@
             });
         </script>
 
-
-        <script type="text/javascript">
-            window.addEventListener('modal_dt_depense_projet', event => {
-                // console.log("ok");
-                $('#md_dt_depense_projet').modal('show');
-            });
-            window.addEventListener('close_modal_dt_depense_projet', event => {
-                // console.log("ok");
-                $('#md_dt_depense_projet').modal('hide');
-            });
-        </script>
-
-
         <script>
             var options = {
                 series: [{

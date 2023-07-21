@@ -40,6 +40,7 @@ Route::group(['middleware' => ['auth', 'redirect_based_on_role']], function () {
     // taux de d'echange route
     Route::get('/admin/taux', [App\Http\Controllers\HomeController::class, 'taux'])->name('taux');
     Route::get('/admin/contruction/depense', [App\Http\Controllers\HomeController::class, 'depenseconstruction'])->name('depenseconstruction');
+    Route::get('/admin/contruction/projet-depense/{projet}', [App\Http\Controllers\PagesController::class, 'detaildepense'])->name('detaildepense');
 
 });
 
