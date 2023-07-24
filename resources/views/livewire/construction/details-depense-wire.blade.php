@@ -97,9 +97,6 @@
                             @endphp
                                  @forelse ($this->depenses as $depense)
                                  <tr>
-
-
-
                                      {{-- <f?php $i = 1; ?>
                                      <td><f?php echo $i;
                                      $i++; ?></td> --}}
