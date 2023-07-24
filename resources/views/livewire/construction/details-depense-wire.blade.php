@@ -100,9 +100,10 @@
 
 
 
-                                     <?php $i = 1; ?>
-                                     <td><?php echo $i;
-                                     $i++; ?></td>
+                                     {{-- <f?php $i = 1; ?>
+                                     <td><f?php echo $i;
+                                     $i++; ?></td> --}}
+                                     <td> {{ $depense->id }}</td>
                                      <td>{{ $depense->designationdepense }}</td>
                                      <td>{{ number_format($depense->montantdepense) . ' ' . $depense->depensedevise }}
                                      </td>

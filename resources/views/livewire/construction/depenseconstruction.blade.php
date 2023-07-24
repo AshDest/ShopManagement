@@ -261,9 +261,10 @@
 
 
 
-                                        <?php $i = 1; ?>
-                                        <td><?php echo $i;
-                                        $i++; ?></td>
+                                        {{-- </?php $i = 1; ?> --}}
+                                        {{-- <td><c?php echo $i;
+                                        $i++; ?></td> --}}
+                                       <td> {{ $depense->id }}</td>
                                         <td>{{ $depense->designationdepense }}</td>
                                         <td>{{ number_format($depense->montantdepense) . ' ' . $depense->depensedevise }}
                                         </td>
