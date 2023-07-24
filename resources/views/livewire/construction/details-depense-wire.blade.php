@@ -139,7 +139,7 @@
                                         <td>{{ $depense->designationdepense }}</td>
                                         <td>{{ number_format($depense->montantdepense) . ' ' . $depense->depensedevise }}
                                         </td>
-                                        <td>{{ $depense->created_at }}</td>
+                                        <td>{{ $depense->date_debit }}</td>
                                     </tr>
                                 @empty
                                     <tr>
