@@ -138,7 +138,7 @@
                             <div id="chartdepense" class="apex-charts" data-colors="#727cf5,#e3eaef">
                             </div>
                             {{-- </div> --}}
-                            {{-- <canvas id="line-chart-example"></canvas> --}}
+
                         </div>
                     </div>
                 </div>
