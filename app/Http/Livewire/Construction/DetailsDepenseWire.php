@@ -13,7 +13,7 @@ class DetailsDepenseWire extends Component
 {
     use WithPagination;
     use LivewireAlert;
-    public $projet;
+    public $projet,$results;
     protected $depenses,$page_active_dep = 7;
     //  variables pour la table projet
     public $codeprojet, $designationprojet, $responsableprojet, $contactreponsable, $statut_projet, $date_state, $date_end;
@@ -34,7 +34,12 @@ class DetailsDepenseWire extends Component
                 $s->where('projetcontrustion_id', $this->projet);
             })->paginate($this->page_active_dep);
 
-
+            $this->results = DepenseContrusction::selectRaw('depensedevise, SUM(montantdepense) as total')
+            ->where('projetcontrustion_id', $this->projet)
+            ->whereIn('depensedevise', ['USD', 'CDF'])
+            ->groupBy('depensedevise')
+            ->get();
+            // dd($results);
         return view('livewire.construction.details-depense-wire');
     }
 

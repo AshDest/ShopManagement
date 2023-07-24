@@ -103,7 +103,12 @@
                         <div class="col-md-4">
                             <div class="mb-4">
                                 <h5>Budget Total</h5>
-                                <p>15,800USD 23000CDF</p>
+                            @forelse ($results as $result )
+                            {{$result->total.' '.$result->depensedevise}}
+                            @empty
+
+                            @endforelse
+
                             </div>
                         </div>
                     </div>
