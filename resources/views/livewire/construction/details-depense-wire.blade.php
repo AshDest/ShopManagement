@@ -1,6 +1,26 @@
 <div>
     <div class="row">
-        <div class="col-xxl-8 col-lg-8">
+
+        <div class="col-lg-5 col-xxl-5">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title mb-3">Progress</h5>
+                    <div dir="ltr">
+                        <div class="mt-3 chartjs-chart" style="height: 320px;">
+                            {{-- <div dir="ltr"> --}}
+                            <div id="chartdepense" class="apex-charts" data-colors="#727cf5,#e3eaef">
+                            </div>
+                            {{-- </div> --}}
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end card-->
+
+
+        </div>
+        <div class="col-xxl-7 col-lg-7">
             <!-- project card -->
             <div class="card d-block">
                 <div class="card-body">
@@ -63,13 +83,21 @@
                         <div class="col-md-4">
                             <div class="mb-4">
                                 <h5>Date de debit</h5>
-                                <p><i class="mdi mdi-calendar-arrow-right"></i> March 2018 <small class="text-muted">1:00 PM</small></p>
+                                {{-- <small class="text-muted">1:00 PM</small> --}}
+                                <p><i class="mdi mdi-calendar-arrow-right"></i> {{$this->date_debit}} </p>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="mb-4">
                                 <h5>Date de fin</h5>
-                                <p><i class="mdi mdi-calendar-check-outline"></i>22 December 2018 <small class="text-muted">1:00 PM</small></p>
+                                @if ($this->statut_projet == 'Encours')
+                                    <span class="badge bg-primary-lighten text-primary">Projet: {{$this->statut_projet}}</span>
+                                @elseif ($this->statut_projet == 'Pending')
+                                    <span class="badge bg-warning-lighten text-warning">Projet: {{$this->statut_projet}}</span>
+                                @else
+                                <p><i class="mdi mdi-calendar-check-outline"></i>{{$this->date_fin}}</p>
+                                @endif
+
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -129,25 +157,6 @@
 
         </div> <!-- end col -->
 
-        <div class="col-lg-4 col-xxl-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title mb-3">Progress</h5>
-                    <div dir="ltr">
-                        <div class="mt-3 chartjs-chart" style="height: 320px;">
-                            {{-- <div dir="ltr"> --}}
-                            <div id="chartdepense" class="apex-charts" data-colors="#727cf5,#e3eaef">
-                            </div>
-                            {{-- </div> --}}
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- end card-->
-
-
-        </div>
     </div>
     {{-- Success is as dangerous as failure. --}}
 

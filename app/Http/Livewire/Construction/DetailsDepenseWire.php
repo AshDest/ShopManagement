@@ -7,6 +7,7 @@ use App\Models\Projetcontrustion;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
+use Carbon\Carbon;
 
 class DetailsDepenseWire extends Component
 {
@@ -17,7 +18,7 @@ class DetailsDepenseWire extends Component
     //  variables pour la table projet
     public $codeprojet, $designationprojet, $responsableprojet, $contactreponsable, $statut_projet, $date_state, $date_end;
     // variable pour la table depense
-    public $codeprojet_dep, $designationprojet_dep, $designationdepense, $mtdepense, $depensedevise,$date_debit;
+    public $codeprojet_dep, $designationprojet_dep, $designationdepense, $mtdepense, $depensedevise,$date_debit,$date_fin;
     public function render()
     {
         $projects = Projetcontrustion::where('id', $this->projet)->first();
@@ -27,6 +28,7 @@ class DetailsDepenseWire extends Component
         $this->contactreponsable = strtoupper($projects->contactreponsable);
         $this->statut_projet = $projects->statutprojet;
         $this->date_debit = $projects->date_debit;
+        $this->date_fin = $projects->updated_at;
 
             $this->depenses = Depensecontrusction::whereHas('projet', function ($s) {
                 $s->where('projetcontrustion_id', $this->projet);
@@ -39,10 +41,12 @@ class DetailsDepenseWire extends Component
 
     public function changerstatus($status)
     {
+        $currentDate = Carbon::now();
         switch ($status) {
             case 'Encours':
                 Projetcontrustion::find($this->projet)->fill([
                     'statutprojet' => $status,
+                    'updated_at' => null,
                 ])->save();
 
                 break;
@@ -50,11 +54,13 @@ class DetailsDepenseWire extends Component
 
                 Projetcontrustion::find($this->projet)->fill([
                     'statutprojet' => $status,
+                    'updated_at' => null,
                 ])->save();
                 break;
             case 'Cloturer':
                 Projetcontrustion::find($this->projet)->fill([
                     'statutprojet' => $status,
+                    'updated_at' => $currentDate,
                 ])->save();
                 break;
 
