@@ -15,6 +15,7 @@ class Depensecontrusction extends Model
         'montantdepense',
         'projetcontrustion_id',
         'depensedevise',
+        'date_debit',
     ];
 
     public function projet()

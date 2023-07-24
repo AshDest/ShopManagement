@@ -15,13 +15,13 @@ class Depenseconstruction extends Component
     use WithPagination;
     use LivewireAlert;
     public $deleted, $deleted_type, $desplayedit = false, $desplaydepense = false;
-    public  $reseach, $reseach_dep, $page_active = 10;
+    public  $reseach, $reseach_dep, $page_active = 7;
     protected $depenses;
-    protected $page_active_dep = 10;
+    protected $page_active_dep = 7;
     //  variables pour la table projet
     public $idprojet, $codeprojet, $designationprojet, $responsableprojet, $contactreponsable;
     // variable pour la table depense
-    public $codeprojet_dep, $designationprojet_dep, $designationdepense, $mtdepense, $depensedevise;
+    public $codeprojet_dep, $designationprojet_dep, $designationdepense, $mtdepense, $depensedevise,$date_debit,$date_debit_dep;
     public $formType = ''; // Variable to track the current form being used
     public $desplayedit_form_dep=false,$id_depense;
 
@@ -32,6 +32,7 @@ class Depenseconstruction extends Component
             'codeprojet' => ['required', Rule::unique('projetcontrustions')],
             'designationprojet' => 'required',
             'responsableprojet' => 'required',
+            'date_debit' => 'required|date',
             'contactreponsable' => [
                 'required',
                 'regex:/^[0-9]{10}$/', 'numeric', Rule::unique('projetcontrustions')
@@ -82,6 +83,8 @@ class Depenseconstruction extends Component
         'contactreponsable.numeric' => 'Le contact du responsable doit être un numéro.',
         'contactreponsable.unique' => 'Ce contact du responsable est déjà utilisé.',
         'contactreponsable.regex' => 'Le contact du responsable doit être un numéro de téléphone valide.',
+        'date_debit' => 'La date debit de projet est obligatoire',
+        'date_debit' => 'le formatage de date est necessaire',
 
         'designationdepense.required' => 'La designation de la dépense est requise.',
         'mtdepense.required' => 'Le montant de la dépense est requis.',
@@ -170,6 +173,7 @@ class Depenseconstruction extends Component
         $this->designationprojet = $projects->designationprojet;
         $this->responsableprojet = $projects->responsableprojet;
         $this->contactreponsable = $projects->contactreponsable;
+        $this->date_debit = $projects->date_debit;
         $this->desplayedit = true;
         $this->dispatchBrowserEvent('modal_project');
     }
@@ -182,6 +186,7 @@ class Depenseconstruction extends Component
                 'designationprojet' => $this->designationprojet,
                 'responsableprojet' => $this->responsableprojet,
                 'contactreponsable' => $this->contactreponsable,
+                'date_debit' => $this->date_debit,
             ])->save();
             // Set Flash Message
             if ($done) {
@@ -202,6 +207,7 @@ class Depenseconstruction extends Component
     }
     public function saveprojet()
     {
+
         $this->validate($this->rulesFirstForm());
         try {
             Projetcontrustion::create([
@@ -209,6 +215,7 @@ class Depenseconstruction extends Component
                 'designationprojet' => $this->designationprojet,
                 'responsableprojet' => $this->responsableprojet,
                 'contactreponsable' => $this->contactreponsable,
+                'date_debit' => $this->date_debit,
             ])->save();
             // Set Flash Message
             $this->alert('success', 'Projet bien enregistré', [
@@ -233,6 +240,7 @@ class Depenseconstruction extends Component
         $this->responsableprojet = '';
         $this->contactreponsable = '';
         $this->desplayedit = false;
+        $this->date_debit='';
     }
     public function mount()
     {
@@ -253,7 +261,8 @@ class Depenseconstruction extends Component
                         function ($query) {
                             $query->where('designationprojet', 'LIKE', '%' . $this->reseach_dep . '%')
                                 ->orwhere('designationdepense', 'LIKE', '%' . $this->reseach_dep . '%')
-                                ->orwhere('depensedevise', 'LIKE', '%' . $this->reseach_dep . '%');
+                                ->orwhere('depensedevise', 'LIKE', '%' . $this->reseach_dep . '%')
+                                ->orwhere('date_debit', 'LIKE', '%' . $this->reseach_dep . '%');
                         }
                     );
             })
@@ -301,6 +310,7 @@ class Depenseconstruction extends Component
             $projects = Projetcontrustion::where('id', $id)->first();
             $this->codeprojet_dep = $projects->codeprojet;
             $this->designationprojet_dep = $projects->designationprojet;
+            $this->date_debit_dep = $projects->date_debit;
             $this->desplaydepense = true;
             break;
 
@@ -318,6 +328,7 @@ class Depenseconstruction extends Component
                 'montantdepense' => $this->mtdepense,
                 'projetcontrustion_id' => $this->idprojet,
                 'depensedevise' => $this->depensedevise,
+                'date_debit' => $this->date_debit_dep,
 
             ])->save();
             // Set Flash Message
@@ -346,6 +357,7 @@ class Depenseconstruction extends Component
         $this->designationdepense = $deps->designationdepense;
         $this->mtdepense = $deps->montantdepense;
         $this->depensedevise = $deps->depensedevise;
+        $this->date_debit_dep= $deps->date_debit;
         $this->desplayedit_form_dep = true;
     }
     public function modifierdepense(){
@@ -355,6 +367,7 @@ class Depenseconstruction extends Component
                 'montantdepense' => $this->mtdepense,
                 'projetcontrustion_id' => $this->idprojet,
                 'depensedevise' => $this->depensedevise,
+                'date_debit' => $this->date_debit_dep,
             ])->save();
             // Set Flash Message
             if ($done) {

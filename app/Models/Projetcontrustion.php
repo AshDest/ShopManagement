@@ -15,6 +15,7 @@ class Projetcontrustion extends Model
         'responsableprojet',
         'contactreponsable',
         'statutprojet',
+        'date_debit',
     ];
 
     public function depense()

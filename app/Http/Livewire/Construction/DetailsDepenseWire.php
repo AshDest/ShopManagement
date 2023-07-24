@@ -13,11 +13,11 @@ class DetailsDepenseWire extends Component
     use WithPagination;
     use LivewireAlert;
     public $projet;
-    protected $depenses,$page_active_dep = 10;
+    protected $depenses,$page_active_dep = 7;
     //  variables pour la table projet
     public $codeprojet, $designationprojet, $responsableprojet, $contactreponsable, $statut_projet, $date_state, $date_end;
     // variable pour la table depense
-    public $codeprojet_dep, $designationprojet_dep, $designationdepense, $mtdepense, $depensedevise;
+    public $codeprojet_dep, $designationprojet_dep, $designationdepense, $mtdepense, $depensedevise,$date_debit;
     public function render()
     {
         $projects = Projetcontrustion::where('id', $this->projet)->first();
@@ -26,6 +26,7 @@ class DetailsDepenseWire extends Component
         $this->responsableprojet = strtoupper($projects->responsableprojet);
         $this->contactreponsable = strtoupper($projects->contactreponsable);
         $this->statut_projet = $projects->statutprojet;
+        $this->date_debit = $projects->date_debit;
 
             $this->depenses = Depensecontrusction::whereHas('projet', function ($s) {
                 $s->where('projetcontrustion_id', $this->projet);
