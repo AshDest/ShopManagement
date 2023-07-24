@@ -161,7 +161,7 @@
                                 <div class="input-group flex-nowrap">
                                     <span class="input-group-text" id="basic-addon3" wire:ignore.self><i
                                             class="uil-money-stack"></i></span>
-                                    <input class="form-control" wire:model='date_debit_dep' type="text"
+                                    <input class="form-control" wire:model='date_debit_dep' type="date"
                                         placeholder="Date de depénse" aria-describedby="basic-addon3">
                                 </div>
                                 @error('date_debit_dep')
@@ -418,7 +418,7 @@
                             <div class="input-group flex-nowrap">
                                 <span class="input-group-text" id="basic-addon3" wire:ignore.self><i
                                         class="uil-money-stack"></i></span>
-                                <input class="form-control" wire:model='date_debit' type="text"
+                                <input class="form-control" wire:model='date_debit' type="date"
                                     placeholder="Date de debit" aria-describedby="basic-addon3">
                             </div>
                             @error('date_debit')
