@@ -81,42 +81,45 @@
                     </div>
 
                     <p class="text-muted mb-2">
-                        <table class="table table-dark mb-0">
-                            <thead>
-                                <tr>
-                                    <th>N<sup>o</sup></th>
-                                    <th>Description de la dépense</th>
-                                    <th>Montant payé</th>
-                                    <th>Date d'ajout</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @php
-                                // $total_general_cdf = 0;
-                                // $total_general_usd = 0;
-                            @endphp
-                                 @forelse ($this->depenses as $depense)
-                                 <tr>
-                                     {{-- <f?php $i = 1; ?>
-                                     <td><f?php echo $i;
-                                     $i++; ?></td> --}}
-                                     <td> {{ $depense->id }}</td>
-                                     <td>{{ $depense->designationdepense }}</td>
-                                     <td>{{ number_format($depense->montantdepense) . ' ' . $depense->depensedevise }}
-                                     </td>
-                                     <td>{{ $depense->created_at }}</td>
-                                 </tr>
-                             @empty
-                                 <tr>
-                                         <td class="alert alert-danger" colspan="12">
-                                             <center>... Pas de dépense enregistré pour ce projet ...</center>
-                                         </td>
+                        <div class="table-responsive">
 
-                                 </tr>
-                             @endforelse
+                            <table class="table table-dark mb-0">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>N<sup>o</sup></th>
+                                        <th>Description de la dépense</th>
+                                        <th>Montant payé</th>
+                                        <th>Date d'ajout</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php
+                                    // $total_general_cdf = 0;
+                                    // $total_general_usd = 0;
+                                @endphp
+                                    @forelse ($this->depenses as $depense)
+                                    <tr>
+                                        {{-- <f?php $i = 1; ?>
+                                        <td><f?php echo $i;
+                                        $i++; ?></td> --}}
+                                        <td> {{ $depense->id }}</td>
+                                        <td>{{ $depense->designationdepense }}</td>
+                                        <td>{{ number_format($depense->montantdepense) . ' ' . $depense->depensedevise }}
+                                        </td>
+                                        <td>{{ $depense->created_at }}</td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                            <td class="alert alert-danger" colspan="12">
+                                                <center>... Pas de dépense enregistré pour ce projet ...</center>
+                                            </td>
 
-                            </tbody>
-                        </table>
+                                    </tr>
+                                @endforelse
+
+                                </tbody>
+                            </table>
+                        <div>
                     </p>
 
                 </div> <!-- end card-body-->
