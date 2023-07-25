@@ -325,7 +325,7 @@
                                     @forelse ($results_total_dep as $result )
                                     <td colspan="2" style="color: rgb(14, 10, 10); "><b>Total Générale {{$result->depensedevise}}</b>
                                     </td>
-                                    <td style="color: rgb(14, 10, 10); "><b>{{$result->total.' '.$result->depensedevise}}</b></td>
+                                    <td style="color: rgb(14, 10, 10); "><b>{{number_format($result->total).' '.$result->depensedevise}}</b></td>
                                     @empty
 
                                     @endforelse
