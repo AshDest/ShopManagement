@@ -17,13 +17,13 @@ class Depenseconstruction extends Component
     public $deleted, $deleted_type, $desplayedit = false, $desplaydepense = false;
     public  $reseach, $reseach_dep, $page_active = 7;
     protected $depenses;
-    protected $page_active_dep = 7;
+    protected $page_active_dep = 4;
     //  variables pour la table projet
     public $idprojet, $codeprojet, $designationprojet, $responsableprojet, $contactreponsable;
     // variable pour la table depense
     public $codeprojet_dep, $designationprojet_dep, $designationdepense, $mtdepense, $depensedevise,$date_debit,$date_debit_dep;
     public $formType = ''; // Variable to track the current form being used
-    public $desplayedit_form_dep=false,$id_depense;
+    public $desplayedit_form_dep=false,$id_depense,$results_total_dep;
 
     // Définir les règles de validation pour le premier formulaire
     protected function rulesFirstForm()
@@ -254,6 +254,11 @@ class Depenseconstruction extends Component
     }
     public function render()
     {
+        $this->results_total_dep = DepenseContrusction::selectRaw('depensedevise, SUM(montantdepense) as total')
+        ->where('projetcontrustion_id', $this->idprojet)
+        ->whereIn('depensedevise', ['USD', 'CDF'])
+        ->groupBy('depensedevise')
+        ->get();
         if ($this->reseach_dep) {
             $this->depenses = Depensecontrusction::whereHas('projet', function ($s) {
                 $s->where('projetcontrustion_id', $this->idprojet)
@@ -268,6 +273,7 @@ class Depenseconstruction extends Component
             })
                 ->paginate($this->page_active_dep);
         } else {
+
             $this->depenses = Depensecontrusction::whereHas('projet', function ($s) {
                 $s->where('projetcontrustion_id', $this->idprojet);
             })->paginate($this->page_active_dep);
