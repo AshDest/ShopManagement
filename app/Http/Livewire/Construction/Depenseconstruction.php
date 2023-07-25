@@ -15,9 +15,9 @@ class Depenseconstruction extends Component
     use WithPagination;
     use LivewireAlert;
     public $deleted, $deleted_type, $desplayedit = false, $desplaydepense = false;
-    public  $reseach, $reseach_dep, $page_active = 2;
+    public  $reseach, $reseach_dep, $page_active = 7;
     protected $depenses;
-    protected $page_active_dep = 4;
+    protected $page_active_dep = 7;
     //  variables pour la table projet
     public $idprojet, $codeprojet, $designationprojet, $responsableprojet, $contactreponsable;
     // variable pour la table depense
