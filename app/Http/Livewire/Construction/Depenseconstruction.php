@@ -37,7 +37,7 @@ class Depenseconstruction extends Component
                 'required',
                 'regex:/^[0-9]{10}$/', 'numeric',
             ],
-            // Autres règles de validation spécifiques pour le premier formulaire Rule::unique('projetcontrustions')
+            //Rule::unique('projetcontrustions')
         ];
     }
 
@@ -48,7 +48,7 @@ class Depenseconstruction extends Component
             'designationdepense' => 'required',
             'mtdepense' => 'required|numeric',
             'depensedevise' => 'required|in:USD,CDF', // Remplacez les valeurs avec les devises acceptées
-            // Autres règles de validation spécifiques pour le deuxième formulaire
+
         ];
     }
 
