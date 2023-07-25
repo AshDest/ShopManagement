@@ -35,9 +35,9 @@ class Depenseconstruction extends Component
             'date_debit' => 'required|date',
             'contactreponsable' => [
                 'required',
-                'regex:/^[0-9]{10}$/', 'numeric', Rule::unique('projetcontrustions')
+                'regex:/^[0-9]{10}$/', 'numeric',
             ],
-            // Autres règles de validation spécifiques pour le premier formulaire
+            // Autres règles de validation spécifiques pour le premier formulaire Rule::unique('projetcontrustions')
         ];
     }
 
@@ -81,7 +81,7 @@ class Depenseconstruction extends Component
         'responsableprojet.required' => 'Le responsable du projet est requis.',
         'contactreponsable.required' => 'Le contact du responsable est requis.',
         'contactreponsable.numeric' => 'Le contact du responsable doit être un numéro.',
-        'contactreponsable.unique' => 'Ce contact du responsable est déjà utilisé.',
+        // 'contactreponsable.unique' => 'Ce contact du responsable est déjà utilisé.',
         'contactreponsable.regex' => 'Le contact du responsable doit être un numéro de téléphone valide.',
         'date_debit' => 'La date debit de projet est obligatoire',
         'date_debit' => 'le formatage de date est necessaire',
