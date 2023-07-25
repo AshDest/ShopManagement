@@ -322,6 +322,7 @@
                                 </tr>
                                 @endforelse
                                 <tr>
+                                    <thead class="table-light">
                                     @forelse ($results_total_dep as $result )
                                     <td colspan="2" style="color: rgb(14, 10, 10); "><b>Total Générale {{$result->depensedevise}}</b>
                                     </td>
@@ -329,6 +330,7 @@
                                     @empty
 
                                     @endforelse
+                                </thead>
                                 </tr>
 
                             </tbody>
