@@ -169,8 +169,8 @@
     <script>
         var options = {
             series: [{
-                name: 'Inflation',
-                data: [200, 4000, 2000, 1500]
+                name: 'Dépense',
+                data: @json($this->dep_per_month)
             }],
             chart: {
                 height: 350,
@@ -197,7 +197,7 @@
             },
 
             xaxis: {
-                categories: ["Jan", "Feb", "Mar", "Apr"],
+                categories: @json($this->all_month),
                 position: 'top',
                 axisBorder: {
                     show: false

@@ -19,8 +19,10 @@ class DetailsDepenseWire extends Component
     public $codeprojet, $designationprojet, $responsableprojet, $contactreponsable, $statut_projet, $date_state, $date_end;
     // variable pour la table depense
     public $codeprojet_dep, $designationprojet_dep, $designationdepense, $mtdepense, $depensedevise,$date_debit,$date_fin;
+    public $all_month,$dep_per_month;
     public function render()
     {
+        $this->depense_mensuelle();
         $projects = Projetcontrustion::where('id', $this->projet)->first();
         $this->designationprojet = strtoupper($projects->designationprojet);
         $this->codeprojet = strtoupper($projects->codeprojet);
@@ -72,6 +74,39 @@ class DetailsDepenseWire extends Component
             default:
                 # code...
                 break;
+        }
+    }
+
+    public function mount()
+    {
+        $mois = DepenseContrusction::groupBy('month')
+            ->selectRaw('month')
+            ->orderby('month','asc')
+            ->get();
+        $datamonth = array();
+        foreach ($mois as $moi) {
+            array_push(
+                $datamonth,
+                Carbon::create(null, $moi->month)->format('F')
+            );
+            $this->all_month = $datamonth;
+        }
+    }
+    public function depense_mensuelle()
+    {
+        $ventes = DepenseContrusction::groupBy('month')
+            ->selectRaw('sum(montantdepense) as sum')
+            ->where('depensedevise','USD')
+            ->get();
+
+        $data_vente = array();
+
+        foreach ($ventes as $value) {
+            array_push(
+                $data_vente,
+                $value->sum
+            );
+            $this->dep_per_month = ($data_vente);
         }
     }
 }
