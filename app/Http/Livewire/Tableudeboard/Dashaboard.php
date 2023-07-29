@@ -99,7 +99,7 @@ class Dashaboard extends Component
     public function charger()
     {
         if ($this->dt_filtre) {
-            // dd($this->dt_filtre);
+
         } else {
             $this->alert('warning', 'Veuillez selectionner une date svp!');
         }
