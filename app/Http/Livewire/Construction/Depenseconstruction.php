@@ -8,6 +8,7 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Illuminate\Validation\Rule;
+use Carbon\Carbon;
 
 
 class Depenseconstruction extends Component
@@ -327,6 +328,7 @@ class Depenseconstruction extends Component
     }
     public function savedepense()
     {
+       $carbonDate = Carbon::createFromFormat('Y-m-d', $this->date_debit_dep);
         $this->validate($this->rulesSecondForm());
         try {
             Depensecontrusction::create([
@@ -335,6 +337,7 @@ class Depenseconstruction extends Component
                 'projetcontrustion_id' => $this->idprojet,
                 'depensedevise' => $this->depensedevise,
                 'date_debit' => $this->date_debit_dep,
+                'month' =>$carbonDate->month,
 
             ])->save();
             // Set Flash Message
@@ -367,6 +370,7 @@ class Depenseconstruction extends Component
         $this->desplayedit_form_dep = true;
     }
     public function modifierdepense(){
+        $carbonDate = Carbon::createFromFormat('Y-m-d', $this->date_debit_dep);
         try {
             $done = Depensecontrusction::find($this->id_depense)->fill([
                 'designationdepense' => $this->designationdepense,
@@ -374,6 +378,7 @@ class Depenseconstruction extends Component
                 'projetcontrustion_id' => $this->idprojet,
                 'depensedevise' => $this->depensedevise,
                 'date_debit' => $this->date_debit_dep,
+                'month' =>$carbonDate->month,
             ])->save();
             // Set Flash Message
             if ($done) {
