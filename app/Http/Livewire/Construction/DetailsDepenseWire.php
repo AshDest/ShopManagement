@@ -79,7 +79,8 @@ class DetailsDepenseWire extends Component
 
     public function mount()
     {
-        $mois = DepenseContrusction::groupBy('month')
+        $mois = DepenseContrusction::where('projetcontrustion_id', $this->projet)
+        ->groupBy('month')
             ->selectRaw('month')
             ->orderby('month','asc')
             ->get();
@@ -94,7 +95,7 @@ class DetailsDepenseWire extends Component
     }
     public function depense_mensuelle()
     {
-        $ventes = DepenseContrusction::groupBy('month')
+        $ventes = DepenseContrusction::where('projetcontrustion_id', $this->projet)->groupBy('month')
             ->selectRaw('sum(montantdepense) as sum')
             ->where('depensedevise','USD')
             ->get();
