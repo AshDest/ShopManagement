@@ -4,25 +4,29 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="header-title">Liste de projets</h4>
-                    <div class="mb-3">
-                        <div class="app-search dropdown d-none d-lg-block">
-                            <div class="row">
-                                <div class="col-xl-8">
+                    {{-- <div class="mb-3"> --}}
+
+                        <div class="row">
+
+                            <div class="col-xl-8">
+                                <div class="app-search dropdown d-none d-lg-block">
                                     <div class="input-group">
                                         <input type="text" wire:model="reseach" class="form-control dropdown-toggle"
                                             placeholder="Recherche le projet ici..." id="top-search">
                                         <span class="mdi mdi-magnify search-icon"></span>
                                     </div>
                                 </div>
-                                <div class="col-xl-4">
-                                    <a wire:click="newproject" class="btn btn-primary mb-2 me-2"><i
-                                            class="mdi mdi-plus-circle-multiple-outline"></i>
-                                        Projet</a>
-                                </div>
                             </div>
+                            <div class="col-xl-4">
+                                <a wire:click="newproject" class="btn btn-primary mb-2 me-2"><i
+                                        class="mdi mdi-plus-circle-multiple-outline"></i>
+                                    Projet</a>
+                            </div>
+
                         </div>
 
-                    </div>
+                        {{--
+                    </div> --}}
 
 
                     <ul class="nav nav-tabs nav-bordered mb-3">
@@ -323,14 +327,16 @@
                                 @endforelse
                                 <tr>
                                     <thead class="table-light">
-                                    @forelse ($results_total_dep as $result )
-                                    <td colspan="2" style="color: rgb(14, 10, 10); "><b>Total Générale {{$result->depensedevise}}</b>
-                                    </td>
-                                    <td style="color: rgb(14, 10, 10); "><b>{{number_format($result->total).' '.$result->depensedevise}}</b></td>
-                                    @empty
+                                        @forelse ($results_total_dep as $result )
+                                        <td colspan="2" style="color: rgb(14, 10, 10); "><b>Total Générale
+                                                {{$result->depensedevise}}</b>
+                                        </td>
+                                        <td style="color: rgb(14, 10, 10); "><b>{{number_format($result->total).'
+                                                '.$result->depensedevise}}</b></td>
+                                        @empty
 
-                                    @endforelse
-                                </thead>
+                                        @endforelse
+                                    </thead>
                                 </tr>
 
                             </tbody>
