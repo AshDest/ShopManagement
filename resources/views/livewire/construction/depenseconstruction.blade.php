@@ -11,7 +11,7 @@
                         </div>
                         <a wire:click="newproject" class="btn btn-primary col-3"><i
                             class="mdi mdi-plus-circle-multiple-outline"></i>
-                        Projet</a>
+                        Projets</a>
 
                     </div>
 
