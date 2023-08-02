@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Construction;
 
 use App\Models\Depensecontrusction;
 use App\Models\Projetcontrustion;
+use App\Models\Taux;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
@@ -13,13 +14,13 @@ class DetailsDepenseWire extends Component
 {
     use WithPagination;
     use LivewireAlert;
-    public $projet,$results;
-    protected $depenses,$page_active_dep = 7;
+    public $projet, $results;
+    protected $depenses, $page_active_dep = 7;
     //  variables pour la table projet
     public $codeprojet, $designationprojet, $responsableprojet, $contactreponsable, $statut_projet, $date_state, $date_end;
     // variable pour la table depense
-    public $codeprojet_dep, $designationprojet_dep, $designationdepense, $mtdepense, $depensedevise,$date_debit,$date_fin;
-    public $all_month,$dep_per_month;
+    public $codeprojet_dep, $designationprojet_dep, $designationdepense, $mtdepense, $depensedevise, $date_debit, $date_fin;
+    public $all_month, $dep_per_month, $taux_du_jour;
     public function render()
     {
         $this->depense_mensuelle();
@@ -32,16 +33,16 @@ class DetailsDepenseWire extends Component
         $this->date_debit = $projects->date_debit;
         $this->date_fin = $projects->updated_at;
 
-            $this->depenses = Depensecontrusction::whereHas('projet', function ($s) {
-                $s->where('projetcontrustion_id', $this->projet);
-            })->paginate($this->page_active_dep);
+        $this->depenses = Depensecontrusction::whereHas('projet', function ($s) {
+            $s->where('projetcontrustion_id', $this->projet);
+        })->paginate($this->page_active_dep);
 
-            $this->results = DepenseContrusction::selectRaw('depensedevise, SUM(montantdepense) as total')
+        $this->results = DepenseContrusction::selectRaw('depensedevise, SUM(montantdepense) as total')
             ->where('projetcontrustion_id', $this->projet)
             ->whereIn('depensedevise', ['USD', 'CDF'])
             ->groupBy('depensedevise')
             ->get();
-            // dd($results);
+        // dd($results);
         return view('livewire.construction.details-depense-wire');
     }
 
@@ -80,9 +81,9 @@ class DetailsDepenseWire extends Component
     public function mount()
     {
         $mois = DepenseContrusction::where('projetcontrustion_id', $this->projet)
-        ->groupBy('month')
+            ->groupBy('month')
             ->selectRaw('month')
-            ->orderby('month','asc')
+            ->orderby('month', 'asc')
             ->get();
         $datamonth = array();
         foreach ($mois as $moi) {
@@ -95,19 +96,26 @@ class DetailsDepenseWire extends Component
     }
     public function depense_mensuelle()
     {
-        $ventes = DepenseContrusction::where('projetcontrustion_id', $this->projet)->groupBy('month')
-            ->selectRaw('sum(montantdepense) as sum')
-            ->where('depensedevise','USD')
+        $this->taux_du_jour =  Taux::value('taux');
+
+        $depensemens = DepenseContrusction::where('projetcontrustion_id', $this->projet)
+            ->groupBy('month')
+            ->selectRaw('SUM(CASE WHEN depensedevise = "USD" THEN montantdepense ELSE 0 END) as sum_usd,
+                     SUM(CASE WHEN depensedevise = "CDF" THEN montantdepense ELSE 0 END) as sum_cdf')
             ->get();
-
-        $data_vente = array();
-
-        foreach ($ventes as $value) {
+        $data_deps = array();
+        foreach ($depensemens as $value) {
+            $sommeUSD = $value->sum_usd;
+            $sommeCDF = $value->sum_cdf;
+            $montant_en_usd = $sommeUSD + ($sommeCDF / $this->taux_du_jour);
+            // Faites quelque chose avec la somme totale en USD...
             array_push(
-                $data_vente,
-                $value->sum
+                $data_deps,
+                $montant_en_usd
             );
-            $this->dep_per_month = ($data_vente);
+            $this->dep_per_month = ($data_deps);
         }
+
+        // dd($this->dep_per_month);
     }
 }
