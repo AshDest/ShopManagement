@@ -26,6 +26,11 @@
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center mb-2">
                         <h3 class="">{{$this->designationprojet}}</h3>
+                        <div class="text-xl-end mt-xl-0 mt-2">
+                            <a href="/listevente/excel" class="btn btn-primary mb-2 me-2"><i
+                                    class="mdi mdi-file-pdf-box"></i>
+                                Imprimer le rapport</a>
+                        </div>
                         <div class="dropdown">
                             <a href="#" class="dropdown-toggle arrow-none card-drop"
                                 data-bs-toggle="dropdown" aria-expanded="false">
