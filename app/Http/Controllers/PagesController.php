@@ -9,6 +9,7 @@ use App\Exports\VenteExport;
 use App\Exports\ExportSynthesevente;
 use App\Exports\FicheDepenseExport;
 use App\Exports\ProduitExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PagesController extends Controller
 {
@@ -136,6 +137,7 @@ class PagesController extends Controller
     }
     public function fichedepense($projet)
     {
-        return new FicheDepenseExport($projet);
+        return Excel::download(new FicheDepenseExport($projet), 'fichedepense.pdf', \Maatwebsite\Excel\Excel::DOMPDF);
+        // return new FicheDepenseExport($projet);
     }
 }

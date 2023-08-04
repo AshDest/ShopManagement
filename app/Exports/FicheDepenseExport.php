@@ -23,11 +23,11 @@ class FicheDepenseExport implements FromView,ShouldAutoSize, WithEvents
     public $projet;
     public function __construct($projet)
     {
-        $this->$projet = $projet;
+        $this->projet = $projet;
     }
     public function view(): View
     {
-        return view('pages.construction.fiche-deppense', ["projet" => $this->projet]);
+        return view('pages.construction.fiche-depense', ["projet" => $this->projet]);
     }
     public function registerEvents(): array
     {
