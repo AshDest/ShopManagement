@@ -7,6 +7,7 @@ use App\Exports\ExportDette;
 use App\Exports\ExportPaiement;
 use App\Exports\VenteExport;
 use App\Exports\ExportSynthesevente;
+use App\Exports\FicheDepenseExport;
 use App\Exports\ProduitExport;
 
 class PagesController extends Controller
@@ -132,5 +133,9 @@ class PagesController extends Controller
     public function listepaiment()
     {
         return new  ExportPaiement();
+    }
+    public function fichedepense($projet)
+    {
+        return new FicheDepenseExport($projet);
     }
 }
