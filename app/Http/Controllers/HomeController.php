@@ -58,4 +58,7 @@ class HomeController extends Controller
     public function detaildepense($projet){
         return view('pages.construction.details-depense',compact('projet'));
     }
+    public function fichedepensepdf($projet){
+        return view('pages.construction.fiche-depense',compact('projet'));
+    }
 }

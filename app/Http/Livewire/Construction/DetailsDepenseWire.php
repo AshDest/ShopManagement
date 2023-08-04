@@ -10,10 +10,12 @@ use Livewire\WithPagination;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Carbon\Carbon;
 
+
 class DetailsDepenseWire extends Component
 {
     use WithPagination;
     use LivewireAlert;
+
     public $projet, $results;
     protected $depenses, $page_active_dep = 7;
     //  variables pour la table projet
@@ -21,6 +23,8 @@ class DetailsDepenseWire extends Component
     // variable pour la table depense
     public $codeprojet_dep, $designationprojet_dep, $designationdepense, $mtdepense, $depensedevise, $date_debit, $date_fin;
     public $all_month, $dep_per_month, $taux_du_jour;
+
+    public $data; // Add any data you want to include in the PDF
     public function render()
     {
         $this->depense_mensuelle();
@@ -118,4 +122,6 @@ class DetailsDepenseWire extends Component
 
         // dd($this->dep_per_month);
     }
+
+
 }
