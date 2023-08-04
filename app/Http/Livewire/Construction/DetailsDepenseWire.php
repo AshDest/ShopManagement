@@ -123,5 +123,4 @@ class DetailsDepenseWire extends Component
         // dd($this->dep_per_month);
     }
 
-
 }
