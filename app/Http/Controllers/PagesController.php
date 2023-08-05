@@ -7,9 +7,8 @@ use App\Exports\ExportDette;
 use App\Exports\ExportPaiement;
 use App\Exports\VenteExport;
 use App\Exports\ExportSynthesevente;
-use App\Exports\FicheDepenseExport;
 use App\Exports\ProduitExport;
-use PDF;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class PagesController extends Controller
 {
@@ -139,15 +138,7 @@ class PagesController extends Controller
 
     public function fichedepense($projet)
     {
-        // $pdf = PDF::loadView('pages.construction.fiche-depense', ['projet' => $projet]);
-        $data = [
-            'title' => 'Welcome to ItSolutionStuff.com',
-            'date' => date('m/d/Y')
-        ];
-
-        $pdf = PDF::loadView('pages.construction.toto', $data);
-            return $pdf->download('fiche-depense '.$projet.'.pdf');
-
-        // return view('pages.construction.toto', compact('projet'));
+        $pdf = Pdf::loadView('pdf.fiche-depense',compact('projet'));
+        return $pdf->download('invoice.pdf');
     }
 }

@@ -21,15 +21,15 @@
                         </div>
                         <!-- project title-->
                     </div>
-                    {{-- @if ($this->statut_projet == 'Encours')
+                    @if ($this->statut_projet == 'Encours')
                         <span class="badge bg-primary-lighten text-primary">Projet: {{$this->statut_projet}}</span>
                     @elseif ($this->statut_projet == 'Pending')
                         <span class="badge bg-warning-lighten text-warning">Projet: {{$this->statut_projet}}</span>
                     @else
                         <span class="badge bg-success-lighten text-success">Projet: {{$this->statut_projet}}</span>
-                    @endif --}}
+                    @endif
 
-                    {{-- <div class="row">
+                    <div class="row">
                         <div class="col-md-4">
                             <div class="mb-4">
                                 <h5>Code du Projet</h5>
@@ -48,16 +48,16 @@
                                 <p>{{$this->contactreponsable}}</p>
                             </div>
                         </div>
-                    </div> --}}
-                    {{-- <div class="row">
+                    </div>
+                  <div class="row">
                         <div class="col-md-4">
                             <div class="mb-4">
                                 <h5>Date de debit</h5>
                                 {{-- <small class="text-muted">1:00 PM</small> --}}
-                                {{-- <p><i class="mdi mdi-calendar-arrow-right"></i> {{$this->date_debit}} </p>
+                                <p><i class="mdi mdi-calendar-arrow-right"></i> {{$this->date_debit}} </p>
                             </div>
-                        </div> --}}
-                        {{-- <div class="col-md-4">
+                        </div>
+                      <div class="col-md-4">
                             <div class="mb-4">
                                 <h5>Date de fin</h5>
                                 @if ($this->statut_projet == 'Encours')
@@ -69,8 +69,8 @@
                                 @endif
 
                             </div>
-                        </div> --}}
-                        {{-- <div class="col-md-4">
+                        </div>
+                        <div class="col-md-4">
                             <div class="mb-4">
                                 <h5>Budget Total</h5>
                             @forelse ($results as $result )
@@ -81,9 +81,9 @@
 
                             </div>
                         </div>
-                    </div>  --}}
+                    </div>
 
-                    {{-- <p class="text-muted mb-2">
+                     <p class="text-muted mb-2">
                         <div class="table-responsive">
 
                             <table class="table table-dark mb-0">
@@ -119,7 +119,7 @@
                                 </tbody>
                             </table>
                         <div>
-                    </p> --}}
+                    </p>
 
                 </div> <!-- end card-body-->
 
