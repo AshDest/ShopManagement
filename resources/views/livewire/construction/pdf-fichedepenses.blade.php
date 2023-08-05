@@ -2,10 +2,23 @@
     <div class="row">
 
 
-            <!-- end card-->
+        {{-- <div class="col-lg-5 col-xxl-5">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title mb-3">Progress</h5>
+                    <div dir="ltr">
+                        <div class="mt-3 chartjs-chart" style="height: 320px;">
+
+                            <div id="chartdepense" class="apex-charts" data-colors="#727cf5,#e3eaef">
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
 
 
-        </div>
+        </div> --}}
         <div class="col-xxl-7 col-lg-7">
             <!-- project card -->
             <div class="card d-block">
