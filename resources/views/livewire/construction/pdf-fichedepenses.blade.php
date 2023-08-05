@@ -1,21 +1,7 @@
 <div>
     <div class="row">
 
-        <div class="col-lg-5 col-xxl-5">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title mb-3">Progress</h5>
-                    <div dir="ltr">
-                        <div class="mt-3 chartjs-chart" style="height: 320px;">
-                            {{-- <div dir="ltr"> --}}
-                            <div id="chartdepense" class="apex-charts" data-colors="#727cf5,#e3eaef">
-                            </div>
-                            {{-- </div> --}}
 
-                        </div>
-                    </div>
-                </div>
-            </div>
             <!-- end card-->
 
 
@@ -31,18 +17,19 @@
                                 data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="dripicons-dots-3"></i>
                             </a>
+
                         </div>
                         <!-- project title-->
                     </div>
-                    @if ($this->statut_projet == 'Encours')
+                    {{-- @if ($this->statut_projet == 'Encours')
                         <span class="badge bg-primary-lighten text-primary">Projet: {{$this->statut_projet}}</span>
                     @elseif ($this->statut_projet == 'Pending')
                         <span class="badge bg-warning-lighten text-warning">Projet: {{$this->statut_projet}}</span>
                     @else
                         <span class="badge bg-success-lighten text-success">Projet: {{$this->statut_projet}}</span>
-                    @endif
+                    @endif --}}
 
-                    <div class="row">
+                    {{-- <div class="row">
                         <div class="col-md-4">
                             <div class="mb-4">
                                 <h5>Code du Projet</h5>
@@ -61,16 +48,16 @@
                                 <p>{{$this->contactreponsable}}</p>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
+                    </div> --}}
+                    {{-- <div class="row">
                         <div class="col-md-4">
                             <div class="mb-4">
                                 <h5>Date de debit</h5>
                                 {{-- <small class="text-muted">1:00 PM</small> --}}
-                                <p><i class="mdi mdi-calendar-arrow-right"></i> {{$this->date_debit}} </p>
+                                {{-- <p><i class="mdi mdi-calendar-arrow-right"></i> {{$this->date_debit}} </p>
                             </div>
-                        </div>
-                        <div class="col-md-4">
+                        </div> --}}
+                        {{-- <div class="col-md-4">
                             <div class="mb-4">
                                 <h5>Date de fin</h5>
                                 @if ($this->statut_projet == 'Encours')
@@ -82,8 +69,8 @@
                                 @endif
 
                             </div>
-                        </div>
-                        <div class="col-md-4">
+                        </div> --}}
+                        {{-- <div class="col-md-4">
                             <div class="mb-4">
                                 <h5>Budget Total</h5>
                             @forelse ($results as $result )
@@ -94,9 +81,9 @@
 
                             </div>
                         </div>
-                    </div>
+                    </div>  --}}
 
-                    <p class="text-muted mb-2">
+                    {{-- <p class="text-muted mb-2">
                         <div class="table-responsive">
 
                             <table class="table table-dark mb-0">
@@ -110,14 +97,10 @@
                                 </thead>
                                 <tbody>
                                     @php
-                                    // $total_general_cdf = 0;
-                                    // $total_general_usd = 0;
+
                                 @endphp
                                     @forelse ($this->depenses as $depense)
                                     <tr>
-                                        {{-- <f?php $i = 1; ?>
-                                        <td><f?php echo $i;
-                                        $i++; ?></td> --}}
                                         <td> {{ $depense->id }}</td>
                                         <td>{{ $depense->designationdepense }}</td>
                                         <td>{{ number_format($depense->montantdepense) . ' ' . $depense->depensedevise }}
@@ -136,7 +119,7 @@
                                 </tbody>
                             </table>
                         <div>
-                    </p>
+                    </p> --}}
 
                 </div> <!-- end card-body-->
 
@@ -148,7 +131,7 @@
     </div>
     {{-- Success is as dangerous as failure. --}}
 
-    @push('jschart_depense')
+    {{-- @push('jschart_depense')
     <script>
         var options = {
             series: [{
@@ -233,5 +216,5 @@
         var chart = new ApexCharts(document.querySelector("#chartdepense"), options);
         chart.render();
     </script>
-    @endpush
+    @endpush --}}
 </div>

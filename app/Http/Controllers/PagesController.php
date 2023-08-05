@@ -9,7 +9,7 @@ use App\Exports\VenteExport;
 use App\Exports\ExportSynthesevente;
 use App\Exports\FicheDepenseExport;
 use App\Exports\ProduitExport;
-use Maatwebsite\Excel\Facades\Excel;
+use PDF;
 
 class PagesController extends Controller
 {
@@ -135,9 +135,19 @@ class PagesController extends Controller
     {
         return new  ExportPaiement();
     }
+
+
     public function fichedepense($projet)
     {
-        return Excel::download(new FicheDepenseExport($projet), 'fichedepense.pdf', \Maatwebsite\Excel\Excel::DOMPDF);
-        // return new FicheDepenseExport($projet);
+        // $pdf = PDF::loadView('pages.construction.fiche-depense', ['projet' => $projet]);
+        $data = [
+            'title' => 'Welcome to ItSolutionStuff.com',
+            'date' => date('m/d/Y')
+        ];
+
+        $pdf = PDF::loadView('pages.construction.toto', $data);
+            return $pdf->download('fiche-depense '.$projet.'.pdf');
+
+        // return view('pages.construction.toto', compact('projet'));
     }
 }

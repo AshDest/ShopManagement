@@ -17,9 +17,11 @@ class PdfFichedepenses extends Component
     // variable pour la table depense
     public $codeprojet_dep, $designationprojet_dep, $designationdepense, $mtdepense, $depensedevise, $date_debit, $date_fin;
     public $all_month, $dep_per_month, $taux_du_jour;
+
     public function render()
     {
-        $this->depense_mensuelle();
+
+        // $this->depense_mensuelle();
         $projects = Projetcontrustion::where('id', $this->projet)->first();
         $this->designationprojet = strtoupper($projects->designationprojet);
         $this->codeprojet = strtoupper($projects->codeprojet);
@@ -28,33 +30,34 @@ class PdfFichedepenses extends Component
         $this->statut_projet = $projects->statutprojet;
         $this->date_debit = $projects->date_debit;
         $this->date_fin = $projects->updated_at;
-        $this->depenses = Depensecontrusction::whereHas('projet', function ($s) {
-            $s->where('projetcontrustion_id', $this->projet);
-        })->get();
 
-        $this->results = DepenseContrusction::selectRaw('depensedevise, SUM(montantdepense) as total')
-            ->where('projetcontrustion_id', $this->projet)
-            ->whereIn('depensedevise', ['USD', 'CDF'])
-            ->groupBy('depensedevise')
-            ->get();
+        // $this->depenses = Depensecontrusction::whereHas('projet', function ($s) {
+        //     $s->where('projetcontrustion_id', $this->projet);
+        // })->get();
+
+        // $this->results = DepenseContrusction::selectRaw('depensedevise, SUM(montantdepense) as total')
+        //     ->where('projetcontrustion_id', $this->projet)
+        //     ->whereIn('depensedevise', ['USD', 'CDF'])
+        //     ->groupBy('depensedevise')
+        //     ->get();
         return view('livewire.construction.pdf-fichedepenses');
     }
 
     public function mount()
     {
-        $mois = DepenseContrusction::where('projetcontrustion_id', $this->projet)
-            ->groupBy('month')
-            ->selectRaw('month')
-            ->orderby('month', 'asc')
-            ->get();
-        $datamonth = array();
-        foreach ($mois as $moi) {
-            array_push(
-                $datamonth,
-                Carbon::create(null, $moi->month)->format('F')
-            );
-            $this->all_month = $datamonth;
-        }
+        // $mois = DepenseContrusction::where('projetcontrustion_id', $this->projet)
+        //     ->groupBy('month')
+        //     ->selectRaw('month')
+        //     ->orderby('month', 'asc')
+        //     ->get();
+        // $datamonth = array();
+        // foreach ($mois as $moi) {
+        //     array_push(
+        //         $datamonth,
+        //         Carbon::create(null, $moi->month)->format('F')
+        //     );
+        //     $this->all_month = $datamonth;
+        // }
     }
     public function depense_mensuelle()
     {
