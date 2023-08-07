@@ -139,6 +139,6 @@ class PagesController extends Controller
     public function fichedepense($projet)
     {
         $pdf = Pdf::loadView('pdf.fiche-depense',compact('projet'));
-        return $pdf->download('invoice.pdf');
+        return $pdf->download('fiche-depense.pdf');
     }
 }

@@ -3,87 +3,73 @@
 
 
         <div class="container">
-            <div class="header">>{{$this->designationprojet}}</div>
+            <div class="header">{{ $this->designationprojet }}</div>
             <div class="project-info">
                 @if ($this->statut_projet == 'Encours')
-                        <span class="badge bg-primary-lighten text-primary">Projet: {{$this->statut_projet}}</span>
-                    @elseif ($this->statut_projet == 'Pending')
-                        <span class="badge bg-warning-lighten text-warning">Projet: {{$this->statut_projet}}</span>
-                    @else
-                        <span class="badge bg-success-lighten text-success">Projet: {{$this->statut_projet}}</span>
-                    @endif
-              <span>Code du Projet:</span> {{$this->codeprojet}}<br>
-              <span>Responsable du Projet:</span> {{$this->responsableprojet}}<br>
-              <span>Contact:</span> {{$this->contactreponsable}}<br>
-              <span>Date de début:</span> {{$this->date_debit}}<br>
-              <span>Date de fin:</span> Projet: Encours<br>
-              @if ($this->statut_projet == 'Encours')
-              <span >Projet: {{$this->statut_projet}}</span>
-          @elseif ($this->statut_projet == 'Pending')
-              <span >Projet: {{$this->statut_projet}}</span>
-          @else
-          <span>Date de fin:</span> {{$this->date_fin}}
-          @endif
-              <span>Budget Total:</span> 375 USD 54000 CDF<br>
+                    <span class="badge bg-primary-lighten text-primary">Projet: {{ $this->statut_projet }}</span>
+                @elseif ($this->statut_projet == 'Pending')
+                    <span class="badge bg-warning-lighten text-warning">Projet: {{ $this->statut_projet }}</span>
+                @else
+                    <span class="badge bg-success-lighten text-success">Projet: {{ $this->statut_projet }}</span>
+                @endif
+                <span>Code du Projet:</span> {{ $this->codeprojet }}<br>
+                <span>Responsable du Projet:</span> {{ $this->responsableprojet }}<br>
+                <span>Contact:</span> {{ $this->contactreponsable }}<br>
+                <span>Date de début:</span> {{ $this->date_debit }}<br>
+                <span>Date de fin:</span> Projet: Encours<br>
+                @if ($this->statut_projet == 'Encours')
+                    <span>Projet: {{ $this->statut_projet }}</span>
+                @elseif ($this->statut_projet == 'Pending')
+                    <span>Projet: {{ $this->statut_projet }}</span>
+                @else
+                    <span>Date de fin:</span> {{ $this->date_fin }}
+                @endif
+                <span>Budget Total:</span>
+                @forelse ($results as $result)
+                    {{ $result->total . ' ' . $result->depensedevise }}
+                @empty
+                @endforelse
+                <br>
             </div>
             <table class="expense-table">
-              <tr>
-                <th>No</th>
-                <th>Description de la dépense</th>
-                <th>Montant payé</th>
-                <th>Date d'ajout</th>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>achat ciments 100 sacs</td>
-                <td>100 USD</td>
-                <td>2023-05-24</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>achat eaux 20 bidons</td>
-                <td>150 USD</td>
-                <td>2023-05-24</td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>achat cloux de 6</td>
-                <td>4,000 CDF</td>
-                <td>2023-07-24</td>
-              </tr>
-              <tr>
-                <td>11</td>
-                <td>transport</td>
-                <td>5 USD</td>
-                <td>2023-06-04</td>
-              </tr>
-              <tr>
-                <td>12</td>
-                <td>chakula macon</td>
-                <td>10 USD</td>
-                <td>2023-06-04</td>
-              </tr>
-              <tr>
-                <td>13</td>
-                <td>cadastre</td>
-                <td>100 USD</td>
-                <td>2023-05-04</td>
-              </tr>
-              <tr>
-                <td>14</td>
-                <td>Autre planche</td>
-                <td>10 USD</td>
-                <td>2023-06-29</td>
-              </tr>
-              <tr>
-                <td>15</td>
-                <td>Transport</td>
-                <td>50,000 CDF</td>
-                <td>2023-06-06</td>
-              </tr>
+                <tr>
+                    <th>No</th>
+                    <th>Description de la dépense</th>
+                    <th>Montant payé</th>
+                    <th>Date d'ajout</th>
+                  </tr>
+                  <?php
+                        // Compteur pour le numéro de ligne
+                        $numeroLigne = 1;
+                    ?>
+                @forelse ($this->depenses as $depense)
+                    <tr>
+                        <td><?php echo $numeroLigne; ?></td>
+                        <td>{{ $depense->designationdepense }}</td>
+                        <td>{{ number_format($depense->montantdepense) . ' ' . $depense->depensedevise }}
+                        </td>
+                        <td>{{ $depense->date_debit }}</td>
+                    </tr>
+                    <?php
+                    // Incrémenter le numéro de ligne après chaque itération
+                    $numeroLigne++;
+                ?>
+                @empty
+                    <tr>
+                        <td class="alert alert-danger" colspan="12">
+                            <center>... Pas de dépense enregistré pour ce projet ...</center>
+                        </td>
+
+                    </tr>
+                @endforelse
+
             </table>
-            <div class="total">Total: 375 USD 54000 CDF</div>
-          </div>
+            <div class="total">Total: @forelse ($results as $result)
+                    {{ $result->total . ' ' . $result->depensedevise }}
+                @empty
+                @endforelse
+            </div>
+        </div>
 
 
     </div>
