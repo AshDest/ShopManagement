@@ -28,6 +28,7 @@
                         <table class="table table-centered table-nowrap mb-0">
                             <thead class="table-light">
                                 <tr>
+                                    <th>ID</th>
                                     <th>Code</th>
                                     <th>Designation</th>
                                     <th>Responsable</th>
@@ -37,9 +38,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-
+                                <?php
+                                // Compteur pour le numéro de ligne
+                                $numeroLigne = 1;
+                            ?>
                                 @forelse ($projets as $projet)
                                 <tr>
+                                    <td><?php echo $numeroLigne; ?></td>
                                     <td>{{ $projet->codeprojet }}</td>
                                     <td>{{ $projet->designationprojet }}</td>
                                     <td>{{ $projet->responsableprojet }}
@@ -86,6 +91,10 @@
 
 
                                 </tr>
+                                <?php
+                                // Incrémenter le numéro de ligne après chaque itération
+                                $numeroLigne++;
+                            ?>
                                 @empty
                                 <tr>
                                     <td class="alert alert-danger" colspan="12">

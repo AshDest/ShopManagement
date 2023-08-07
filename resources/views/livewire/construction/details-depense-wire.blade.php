@@ -135,17 +135,22 @@
                                     // $total_general_cdf = 0;
                                     // $total_general_usd = 0;
                                 @endphp
+                                 <?php
+                                 // Compteur pour le numéro de ligne
+                                 $numeroLigne = 1;
+                             ?>
                                     @forelse ($this->depenses as $depense)
                                     <tr>
-                                        {{-- <f?php $i = 1; ?>
-                                        <td><f?php echo $i;
-                                        $i++; ?></td> --}}
-                                        <td> {{ $depense->id }}</td>
+                                        <td><?php echo $numeroLigne; ?></td>
                                         <td>{{ $depense->designationdepense }}</td>
                                         <td>{{ number_format($depense->montantdepense) . ' ' . $depense->depensedevise }}
                                         </td>
                                         <td>{{ $depense->date_debit }}</td>
                                     </tr>
+                                    <?php
+                                    // Incrémenter le numéro de ligne après chaque itération
+                                    $numeroLigne++;
+                                ?>
                                 @empty
                                     <tr>
                                             <td class="alert alert-danger" colspan="12">
