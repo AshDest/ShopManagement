@@ -13,10 +13,17 @@
                         <span class="badge bg-success-lighten text-success">Projet: {{$this->statut_projet}}</span>
                     @endif
               <span>Code du Projet:</span> {{$this->codeprojet}}<br>
-              <span>Responsable du Projet:</span> SIKULY<br>
-              <span>Contact:</span> 0990458598<br>
-              <span>Date de début:</span> 2023-07-04<br>
+              <span>Responsable du Projet:</span> {{$this->responsableprojet}}<br>
+              <span>Contact:</span> {{$this->contactreponsable}}<br>
+              <span>Date de début:</span> {{$this->date_debit}}<br>
               <span>Date de fin:</span> Projet: Encours<br>
+              @if ($this->statut_projet == 'Encours')
+              <span >Projet: {{$this->statut_projet}}</span>
+          @elseif ($this->statut_projet == 'Pending')
+              <span >Projet: {{$this->statut_projet}}</span>
+          @else
+          <span>Date de fin:</span> {{$this->date_fin}}
+          @endif
               <span>Budget Total:</span> 375 USD 54000 CDF<br>
             </div>
             <table class="expense-table">
